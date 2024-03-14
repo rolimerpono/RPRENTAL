@@ -1,7 +1,26 @@
+using DatabaseAccess;
+using Microsoft.AspNetCore.Identity;
+using Model;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>();
+
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+
+    opt.Password.RequiredLength = 6;
+    opt.Password.RequiredUniqueChars = 1;
+    opt.Password.RequireUppercase = true;
+});
+
 
 var app = builder.Build();
 

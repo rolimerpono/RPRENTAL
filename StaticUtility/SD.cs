@@ -1,6 +1,6 @@
 ﻿namespace StaticUtility
 {
-    public class Class1
+    public class SD
     {
 
     }

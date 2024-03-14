@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +10,7 @@ namespace Model
     public class ApplicationUser : IdentityUser
     {
 
-        public string USER_NAME { get; set; }
-
+        public string? USER_NAME { get; set; }
         public DateTime? CREATED_DATE { get; set; } 
 
     }

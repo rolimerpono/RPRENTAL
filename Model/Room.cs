@@ -29,7 +29,6 @@ namespace Model
         public DateTime? UPDATED_DATE { get; set; }
 
         [ValidateNever]
-
         public IEnumerable<Amenity> ROOM_AMENITIES { get; set; }
 
         [NotMapped]
