@@ -13,15 +13,17 @@ namespace Model
         [Key]
         public int  BOOKING_ID { get;set; }
 
-        [ForeignKey(nameof(USER_ID))]
-        public required string USER_ID { get;set; } 
+     
+        public required string USER_ID { get;set; }
 
+
+        [ForeignKey(nameof(USER_ID))]
         public ApplicationUser? USERS { get; set; }
 
 
-        [ForeignKey(nameof(ROOM_ID))]
-        public required int ROOM_ID { get;set; }  
-        
+        public required int ROOM_ID { get;set; }
+
+        [ForeignKey("ROOM_ID")]
         public Room? ROOM { get;set; }
 
         public int ROOM_NUMBER { get; set; }

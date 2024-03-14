@@ -9,22 +9,24 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public  class ROOMNUMBER
+    public  class RoomNumber
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ROOM_NUMBER { get; set; }
 
+        public string? DESCRIPTION { get; set; }
+
         //RELATIONSHIP//
 
-        [ForeignKey(nameof(ROOM_ID))]
         public int ROOM_ID { get; set; }
 
-        [ValidateNever]
 
+        [ForeignKey("ROOM_ID")]
+        [ValidateNever]
         public Room? ROOM { get;set; }
 
         //
-        public string? DESCRIPTION { get; set; }
+      
 
 
     }

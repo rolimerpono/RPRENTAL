@@ -11,16 +11,20 @@ namespace Model
 {
     public  class Amenity
     {
+
+       [Key]    
         public int AMENITY_ID { get; set; }        
 
         public required string AMENITY_NAME { get; set;}
 
         public string? DESCRIPTION { get; set; }
 
-        [ForeignKey(nameof(ROOM_ID))]
+      
         public int ROOM_ID { get; set; }
 
+     
+        [ForeignKey("ROOM_ID")]
         [ValidateNever]
-        public Room ROOM { get; set; }
+        public Room? ROOM { get; set; }
     }
 }
