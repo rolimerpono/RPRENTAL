@@ -314,7 +314,14 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+                "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+              },
+              "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+                "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

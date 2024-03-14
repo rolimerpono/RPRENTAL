@@ -22,4 +22,9 @@
     <PackageReference Include="Stripe.net" Version="43.18.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj" />
+    <ProjectReference Include="..\StaticUtility\StaticUtility.csproj" />
+  </ItemGroup>
+
 </Project>

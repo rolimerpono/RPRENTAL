@@ -3,17 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPRENTAL", "RPRENTAL\RPRENTAL.csproj", "{B13B9EE1-69A2-4F48-9522-9468770258DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPRENTAL", "RPRENTAL\RPRENTAL.csproj", "{B13B9EE1-69A2-4F48-9522-9468770258DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{CA763EC3-37F6-4661-BB06-41535154F8C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{CA763EC3-37F6-4661-BB06-41535154F8C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{D384A1E6-923F-4D11-9458-DEA5B541C73D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{D384A1E6-923F-4D11-9458-DEA5B541C73D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{98EDD5D0-0C7D-40F4-AF52-97E30196D700}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{98EDD5D0-0C7D-40F4-AF52-97E30196D700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{5DE9546D-D747-4FD2-8CCD-2F287C15014A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{5DE9546D-D747-4FD2-8CCD-2F287C15014A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticUtility", "StaticUtility\StaticUtility.csproj", "{0A05C0FC-1380-45F0-961A-5923728E3529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticUtility", "StaticUtility\StaticUtility.csproj", "{0A05C0FC-1380-45F0-961A-5923728E3529}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataWrapper", "DataWrapper\DataWrapper.csproj", "{17171882-7D6A-40B9-B080-88057D868F6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServices", "DataServices\DataServices.csproj", "{B591339A-098B-4D18-8BEC-2C8E7854A460}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{0A05C0FC-1380-45F0-961A-5923728E3529}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A05C0FC-1380-45F0-961A-5923728E3529}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A05C0FC-1380-45F0-961A-5923728E3529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17171882-7D6A-40B9-B080-88057D868F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17171882-7D6A-40B9-B080-88057D868F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17171882-7D6A-40B9-B080-88057D868F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17171882-7D6A-40B9-B080-88057D868F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B591339A-098B-4D18-8BEC-2C8E7854A460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B591339A-098B-4D18-8BEC-2C8E7854A460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B591339A-098B-4D18-8BEC-2C8E7854A460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B591339A-098B-4D18-8BEC-2C8E7854A460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

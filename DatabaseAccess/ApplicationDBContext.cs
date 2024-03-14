@@ -28,6 +28,8 @@ namespace DatabaseAccess
 
         public DbSet<Booking> tbl_Booking { get; set; }
 
+        public DbSet<ApplicationUser> tbl_User { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
