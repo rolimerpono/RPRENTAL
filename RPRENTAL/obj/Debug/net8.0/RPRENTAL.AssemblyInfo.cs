@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RPRENTAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+015471a50c4ddd6947fb5e8efede446d768e7241")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ab9018d6f5af3d777e9304f6e4c5a0c71363a3c")]
 [assembly: System.Reflection.AssemblyProductAttribute("RPRENTAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RPRENTAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
