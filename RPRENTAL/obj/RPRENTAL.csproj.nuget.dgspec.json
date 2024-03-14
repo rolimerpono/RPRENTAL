@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {}
+    "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {
+    "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
+        "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
         "projectName": "RPRENTAL",
-        "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
+        "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
         "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\obj\\",
+        "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
