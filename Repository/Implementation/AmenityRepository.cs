@@ -18,7 +18,8 @@ namespace Repository.Implementation
             _db = db;
         }
      
-        public void save()
+    
+        public void Save()
         {
             _db.SaveChanges();
         }

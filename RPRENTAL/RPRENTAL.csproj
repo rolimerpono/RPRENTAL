@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj" />
+    <ProjectReference Include="..\DataWrapper\DataWrapper.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\StaticUtility\StaticUtility.csproj" />
@@ -36,6 +37,11 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Shared\Admin\" />
+    <Folder Include="wwwroot\js\JSRoom\" />
+    <Folder Include="wwwroot\js\JSAmenity\" />
+    <Folder Include="wwwroot\js\JSRoomNumber\" />
+    <Folder Include="wwwroot\js\JSRegister\" />
   </ItemGroup>
 
 </Project>

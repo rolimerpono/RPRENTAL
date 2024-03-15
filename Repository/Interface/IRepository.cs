@@ -10,15 +10,15 @@ namespace Repository.Interface
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAllRecords(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool isTracking = false);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool isTracking = false);
 
-        T GetRecord(Expression<Func<T, bool>> filter, string? IncludeProperties = null, bool isTracking = false);
+        T Get(Expression<Func<T, bool>> filter, string? IncludeProperties = null, bool isTracking = false);
 
         void Add(T objEntity);
 
         bool Any(Expression<Func<T, Boolean>>? Filter);
 
-        void remove(T objEntity);
+        void Remove(T objEntity);
 
 
 

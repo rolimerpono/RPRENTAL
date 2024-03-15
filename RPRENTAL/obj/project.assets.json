@@ -2008,6 +2008,21 @@
           "bin/placeholder/DatabaseAccess.dll": {}
         }
       },
+      "DataWrapper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DatabaseAccess": "1.0.0",
+          "Model": "1.0.0",
+          "Repository": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataWrapper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataWrapper.dll": {}
+        }
+      },
       "Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -5051,6 +5066,11 @@
       "path": "../DatabaseAccess/DatabaseAccess.csproj",
       "msbuildProject": "../DatabaseAccess/DatabaseAccess.csproj"
     },
+    "DataWrapper/1.0.0": {
+      "type": "project",
+      "path": "../DataWrapper/DataWrapper.csproj",
+      "msbuildProject": "../DataWrapper/DataWrapper.csproj"
+    },
     "Model/1.0.0": {
       "type": "project",
       "path": "../Model/Model.csproj",
@@ -5070,6 +5090,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "DataAccess >= 1.0.0",
+      "DataWrapper >= 1.0.0",
       "DatabaseAccess >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.1",
       "Microsoft.EntityFrameworkCore >= 8.0.1",
@@ -5121,6 +5142,9 @@
             },
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+            },
+            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
             },
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj"

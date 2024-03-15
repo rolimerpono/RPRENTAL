@@ -2,6 +2,9 @@ using DatabaseAccess;
 using Microsoft.AspNetCore.Identity;
 using Model;
 using Microsoft.EntityFrameworkCore;
+using System.IO.Pipes;
+using DataWrapper.Interface;
+using DataWrapper.Implementation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<iWorker, Worker>();
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>();
 
 

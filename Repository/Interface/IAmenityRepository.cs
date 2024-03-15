@@ -10,6 +10,6 @@ namespace Repository.Interface
     public interface IAmenityRepository : IRepository<Amenity>
     {
         void Update(Amenity objAmenity);
-        void save();
+        void Save();
     }
 }

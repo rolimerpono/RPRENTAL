@@ -31,7 +31,7 @@ namespace Repository.Implementation
             return dbSet.Any(Filter);
         }
 
-        public IEnumerable<T> GetAllRecords(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool isTracking = false)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool isTracking = false)
         {            
            
             IQueryable<T> objQuery = isTracking ? dbSet.AsQueryable() : dbSet.AsNoTracking();
@@ -52,7 +52,7 @@ namespace Repository.Implementation
             return objQuery;
         }
 
-        public T GetRecord(Expression<Func<T, bool>>? filter = null, string? IncludeProperties = null, bool isTracking = false)
+        public T Get(Expression<Func<T, bool>>? filter = null, string? IncludeProperties = null, bool isTracking = false)
         {
             IQueryable<T> objQuery = isTracking ? dbSet.AsQueryable() : dbSet.AsNoTracking();
 
@@ -72,7 +72,7 @@ namespace Repository.Implementation
             return objQuery.FirstOrDefault();
         }
 
-        public void remove(T objEntity)
+        public void Remove(T objEntity)
         {
             dbSet.Remove(objEntity);
         }
