@@ -27,6 +27,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj" />
     <ProjectReference Include="..\DataWrapper\DataWrapper.csproj" />
@@ -36,12 +37,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\Shared\Admin\" />
-    <Folder Include="wwwroot\js\JSRoom\" />
-    <Folder Include="wwwroot\js\JSAmenity\" />
-    <Folder Include="wwwroot\js\JSRoomNumber\" />
-    <Folder Include="wwwroot\js\JSRegister\" />
+    <Folder Include="wwwroot\css\Layout\Admin\" />
+    <Folder Include="wwwroot\css\Layout\" />
+    <Folder Include="wwwroot\js\Crud\JSAmenity\" />
+    <Folder Include="wwwroot\js\Crud\JSRoomNumber\" />
+    <Folder Include="wwwroot\js\Crud\JSRegister\" />
   </ItemGroup>
 
 </Project>

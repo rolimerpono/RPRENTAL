@@ -1,0 +1,48 @@
+﻿@model Room
+
+<div class="container">
+    <div class="row">
+        <!-- Left column for room image -->
+        <div class="col-md-5">
+            <div></div>
+            <img class="img-fluid" src="@Model.IMAGE_URL" alt="Room Image">
+        </div>
+
+        <!-- Right column for room details -->
+        <div class="col-md-7">
+            <div><h3 class="text-uppercase text-primary fw-bold">@Model.ROOM_NAME</h3></div>
+            <div style="min-height:130px;max-height:130px; overflow-y:auto;">
+                <p>@Model.DESCRIPTION</p>
+            </div>
+            <div><h4 class="text-primary fw-bold">ROOM AMENITIES:</h4></div>
+        
+            <div class="row">
+                @foreach (var objAmenity in Model.ROOM_AMENITIES)
+                {
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="fw-bold">@objAmenity.AMENITY_NAME</div>
+                    </div>
+                }
+            </div>
+          
+        </div>
+    </div>
+    <div class="row pt-3">
+       <div class="col-2"   >
+           <span class="text-primary fw-bold">MAX OCCUPANCY : </span>
+       </div>
+        <div class="col-10">
+            <span class="fw-bold">@Model.MAX_OCCUPANCY</span>
+        </div>
+    </div>
+    <div class="row pt-1">
+        <div class="col-2">
+            <span class="text-primary fw-bold">ROOM PRICE : </span>
+        </div>
+        <div class="col-10">
+            <span class="fw-bold">@Model.ROOM_PRICE.ToString("c")</span>
+        </div>
+    </div>
+</div>
+
+<script src =""></script>

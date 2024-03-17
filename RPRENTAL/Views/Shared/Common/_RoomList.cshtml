@@ -1,0 +1,77 @@
+﻿@model HomeVM
+
+<div id="ROOM_LIST">
+
+    <div class="row gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3 mt-5 pb-3" style="border: 1px solid #dcdcdc;">
+        @*  DISPLAY ROOM LIST *@
+        @foreach (var objRoom in Model.ROOM_LIST)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="@objRoom.IMAGE_URL" class="card-img-top" alt="...">
+                    <div class="card-body" style="height:250px;overflow-x:auto">
+                        <h5 class="card-title fw-bold">@objRoom.ROOM_NAME</h5>
+                        <p class="card-text">@objRoom.DESCRIPTION</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span class="fw-bold text-primary">Price :</span> <span class="fw-bold">@objRoom.ROOM_PRICE.ToString("c")</span></li>
+                        <li class="list-group-item"><span class="fw-bold text-primary">Max Occupancy :</span> <span class="fw-bold">@objRoom.MAX_OCCUPANCY</span></li>
+
+                    </ul>
+                    <div class="card-body d-flex flex-column flex-md-row justify-content-md-between">
+                        <div class="mb-2 mb-md-0">
+                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target='#exampleModal-@(objRoom.ROOM_ID)'>DETAILS</button>
+                        </div>
+                        @if (Model.CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
+                        {
+                            @if (objRoom.IS_ROOM_AVAILABLE)
+                            {
+                                <div>
+                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto" type="button">BOOK NOW</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <button class="btn btn-danger disabled  rounded-2 w-100 w-md-auto" type="button">SOLD OUT</button>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+
+            //DISPLAY MODAL ROOM DETAIL
+
+            <div class="modal fade" id="exampleModal-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl border border-secondary rounded">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title text-success fw-bold" id="exampleModalLabel">ROOM DETAILS</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body m-0">
+                            <partial name="Common/_RoomDetail" model="objRoom" />
+                        </div>
+                        
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>
+
+
+<script src="~/js/jquery.min.js"></script>
+@* <script src="~/js/Layout/Admin/RoomDetail.js"></script> *@

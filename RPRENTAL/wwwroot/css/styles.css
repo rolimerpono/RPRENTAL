@@ -1,5 +1,6 @@
 
-img {
-    object-fit: fill;
+.carousel-pic {
+    object-fit:cover;
     height: inherit;
 }
+

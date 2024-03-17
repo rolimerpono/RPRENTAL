@@ -46,9 +46,20 @@
             </div>
         </div>
     </nav>
+    <div>
+        <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" id="Carousel-Image">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="height: 620px;"><img class="w-100 d-block carousel-pic" src="~/img/Carousel/1.jpg" alt="Slide Image"></div>
+                <div class="carousel-item" style="height: 620px;"><img class="w-100 d-block carousel-pic" src="~/img/Carousel/2.jpg" alt="Slide Image"></div>
+                <div class="carousel-item" style="height: 620px;"><img class="w-100 d-block carousel-pic" src="~/img/Carousel/3.jpg" alt="Slide Image"></div>
+            </div>
+            <div><a class="carousel-control-prev" href="#Carousel-Image" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#Carousel-Image" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
+            <div class="carousel-indicators"><button type="button" data-bs-target="#Carousel-Image" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#Carousel-Image" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#Carousel-Image" data-bs-slide-to="2"></button></div>
+        </div>
+        
+    </div>
 
-
-    <div class="container-fluid">
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -124,7 +135,6 @@
     </footer>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/bs-init.js"></script>
-    @await RenderSectionAsync("Scripts",required:false)
 </body>
 
 </html>
