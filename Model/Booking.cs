@@ -41,15 +41,15 @@ namespace Model
 
         public string? BOOKING_STATUS { get; set; }
 
-        public required DateTime BOOKING_DATE { get; set; }
+        public required DateTime BOOKING_DATE { get; set; } = DateTime.Now;
 
         public required DateOnly CHECK_IN_DATE { get; set; }
 
-        public required  DateOnly CHECK_OUT_DATE { get; set; }
+        public required  DateOnly CHECK_OUT_DATE { get; set; } 
 
-        public Boolean IS_PAYMENT_SUCCESSFULL { get; set; }
+        public Boolean IS_PAYMENT_SUCCESSFULL { get; set; } = false;
 
-        public DateTime PAYMENT_DATE { get; set; }  
+        public DateTime PAYMENT_DATE { get; set; } 
 
         public string? STRIPE_SESSION_ID { get; set; }
 

@@ -28,6 +28,8 @@ namespace DatabaseAccess
 
         public DbSet<Booking> tbl_Booking { get; set; }
 
+        public DbSet<ApplicationUser> tbl_User { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -314,7 +316,7 @@ namespace DatabaseAccess
                     AMENITY_ID = 5,
                     ROOM_ID = 1,
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Microwave"
+                    AMENITY_NAME = "Washing Machine"
                 },
 
 
@@ -356,7 +358,7 @@ namespace DatabaseAccess
                     AMENITY_ID = 10,
                     ROOM_ID = 2,
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Microwave"
+                    AMENITY_NAME = "Washing Machine"
                 },
 
                  new Amenity
@@ -397,7 +399,7 @@ namespace DatabaseAccess
                     AMENITY_ID = 15,
                     ROOM_ID = 3,
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Microwave"
+                    AMENITY_NAME = "Washing Machine"
                 },
                  new Amenity
                  {
@@ -437,7 +439,7 @@ namespace DatabaseAccess
                     AMENITY_ID = 20,
                     ROOM_ID = 4,
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Microwave"
+                    AMENITY_NAME = "Washing Machine"
                 },
 
 
@@ -479,7 +481,7 @@ namespace DatabaseAccess
                     AMENITY_ID = 25,
                     ROOM_ID = 5,
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Microwave"
+                    AMENITY_NAME = "Washing Machine"
                 },
 
                  new Amenity
@@ -520,7 +522,7 @@ namespace DatabaseAccess
                     AMENITY_ID = 30,
                     ROOM_ID = 6,
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Microwave"
+                    AMENITY_NAME = "Washing Machine"
                 }
 
             );

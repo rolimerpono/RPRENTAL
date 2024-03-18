@@ -32,7 +32,7 @@ namespace Model
         public IEnumerable<Amenity> ROOM_AMENITIES { get; set; }
 
         [NotMapped]
-        public Boolean IS_ROOM_AVAILABLE { get; set; }
+        public Boolean IS_ROOM_AVAILABLE { get; set; } = true;
 
         
 
