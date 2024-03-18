@@ -11,7 +11,7 @@ namespace DataWrapper.Interface
     {
         IEnumerable<Amenity> GetAll();
 
-        Amenity Get(int Amenity_ID);
+        Amenity Get(int AMENITY_ID);
 
         Boolean IsAmenityExists(Amenity objAmenity);
 
@@ -19,7 +19,7 @@ namespace DataWrapper.Interface
 
         bool Update(Amenity objAmenity);
 
-        bool Delete(int Amenity_ID);
+        bool Delete(int AMENITY_ID);
 
     }
 }

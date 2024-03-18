@@ -9,7 +9,7 @@ namespace Repository.Interface
 {
     public interface IRoomRepository : IRepository<Room>
     {
-        void UpdateRecord(Room objEntity);
+        void Update(Room objEntity);
         void Save();
     }
 }

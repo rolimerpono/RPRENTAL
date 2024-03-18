@@ -24,9 +24,9 @@ namespace Repository.Implementation
             _db.SaveChanges();
         }
 
-        public void UpdateRecord(Room objEntity)
+        public void Update(Room objEntity)
         {
-            _db.tbl_Rooms.Add(objEntity);
+            _db.tbl_Rooms.Update(objEntity);
         }
     }
 }
