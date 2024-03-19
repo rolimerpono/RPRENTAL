@@ -39,6 +39,22 @@ namespace RPRENTAL.Controllers
         
         }
 
+        [HttpGet]
+        public IActionResult Update(int ROOM_ID)
+        {
+            try
+            {
+                Room objRoom;
+                objRoom = _IRoomService.Get(ROOM_ID);
+                return PartialView("Update", objRoom);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        
+        }
+
         [HttpPost]
         public IActionResult Update(Room objRoom)
         {
@@ -53,6 +69,38 @@ namespace RPRENTAL.Controllers
             }
            return RedirectToAction("Index");
         
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            try
+            {
+                Room objRoom =new Room{ ROOM_ID = 0, DESCRIPTION="", ROOM_NAME ="", ROOM_PRICE = 0, MAX_OCCUPANCY = 0, IMAGE_URL = "https://placehold.co/600x400", CREATED_DATE = DateTime.Now };             
+                return PartialView("Create", objRoom);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult Create(Room objRoom)
+        {
+            try
+            {
+                if (ModelState.IsValid && objRoom.ROOM_ID == 0)
+                {
+                    _IRoomService.Create(objRoom);                   
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return RedirectToAction("Index");
         }
     }
 }

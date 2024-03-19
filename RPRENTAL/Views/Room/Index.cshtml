@@ -7,7 +7,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-12">
-            <button id="AddNew" class="btn btn-primary btn-block w-25" type="button" data-bs-toggle="modal" data-bs-target="#AddModal">ADD NEW</button>
+            <button class="btn btn-primary btn-block btn-add" style="width:100px;" type="button">ADD NEW</button>
         </div>
     </div>
     <div class="row mt-3" >
@@ -46,107 +46,41 @@
 
 
 <!-- Edit Modal -->
-<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">   
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-primary fw-bold" id="editModalLabel">ROOM DETAIL</h5>
+            </div>           
+            <div id="modal-edit-content"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-edit">Save</button>
             </div>
-            <form id="EditForm" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12">
-                            <div id="image-container" class="border" style="max-width: 100%; height: auto;">
-                            </div>
-                            <div class="input-group pt-3">
-                                <input type="file" id="imageUpload" class="form-control" accept="image/*">
-                                <label class="input-group-text" for="imageUpload">Upload</label>
-                            </div>
-                        </div>
-                       
-                        <div class="col-lg-6 col-md-12 pt-2">
-                            <input type="text" class="form-control" hidden id="id" name="rooM_ID">
-                            <input type="text" class="form-control" hidden id="imageUrl" name="imagE_URL">
-                            <div class="mb-3">
-                                <label for="roomName" class="form-label fw-bold">Room Name:</label>
-                                <input type="text" class="form-control" id="roomName" name="rooM_NAME" placeholder="Enter Room Name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label fw-bold">Description:</label>
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
-                            </div>
-                            <div class="mb-3">
-                                <label for="price" class="form-label fw-bold">Price:</label>
-                                <input type="number" class="form-control" id="price" name="rooM_PRICE" placeholder="Enter Price">
-                            </div>
-                            <div class="mb-3">
-                                <label for="occupancy" class="form-label fw-bold">Occupancy:</label>
-                                <input type="number" class="form-control" id="occupancy" name="maX_OCCUPANCY" placeholder="Enter Occupancy">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="btnSave" type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
+        </div>      
+    </div>  
 </div>
 
 <!--End Edit Modal -->
 
 <!-- Add Modal -->
-<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-add" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-primary fw-bold" id="addModalLabel">ROOM DETAIL</h5>
             </div>
-            <form id="AddForm">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12">
-                            <div id="image-container" class="border" style="width: 540px; height: 350px;">
-                            </div>
-                            <div class="input-group pt-3">
-                                <input type="file" id="imageUpload" class="form-control" accept="image/*">
-                                <label class="input-group-text" for="imageUpload">Upload</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                            <input type="text" class="form-control" hidden id="id" name="rooM_ID">
-                            <input type="text" class="form-control" hidden id="imageUrl" name="imagE_URL">
-                            <div class="mb-3">
-                                <label for="roomName" class="form-label fw-bold">Room Name:</label>
-                                <input type="text" class="form-control" id="roomName" name="rooM_NAME" placeholder="Enter Room Name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label fw-bold">Description:</label>
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
-                            </div>                      
-                            <div class="mb-3">
-                                <label for="price" class="form-label fw-bold">Price:</label>
-                                <input type="number" class="form-control" id="price" name="rooM_PRICE" placeholder="Enter Price">
-                            </div>
-                            <div class="mb-3">
-                                <label for="occupancy" class="form-label fw-bold">Occupancy:</label>
-                                <input type="number" class="form-control" id="occupancy" name="maX_OCCUPANCY" placeholder="Enter Occupancy">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="btnSave" type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
+            <div id="modal-add-content"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-save">Save</button>
+            </div>
         </div>
     </div>
 </div>
 
-<!--End Edit Modal -->
+<!--End Add Modal -->
+
 
 @section Scripts {
     <script src="~/js/Crud/JSRoom/JSRoomCrud.js"></script>

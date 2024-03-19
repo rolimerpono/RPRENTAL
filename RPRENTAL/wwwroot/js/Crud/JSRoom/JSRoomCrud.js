@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data: null,
                     "width": "5%",
                     "render": function (data, type, row) {
-                        return '<button class="btn btn-primary btn-sm edit-btn w-100">Edit</button>';
+                        return '<button class="btn btn-primary btn-sm select-row w-100">Edit</button>';
                     }
                 },
                 {
@@ -49,26 +49,33 @@ document.addEventListener("DOMContentLoaded", function () {
         });
  
 
-    $("#tbl_Rooms").on("click", ".edit-btn", function () {
+    //EDIT
+    $("#tbl_Rooms").on("click", ".select-row", function () {
         var rowData = objDataTable.row($(this).closest('tr')).data();
-            
 
-        $("#id").val(rowData.rooM_ID);
-        $("#roomName").val(rowData.rooM_NAME);
-        $("#description").val(rowData.description);
-        $("#price").val(rowData.rooM_PRICE); 
-        $("#occupancy").val(rowData.maX_OCCUPANCY);     
-        $("#imageUrl").val(rowData.imagE_URL);  
-
-        $("#image-container").html("<img src='" + rowData.imagE_URL + "' alt='Room Image' class='img-fluid rounded border'>");
-
-        $("#EditModal").modal("show");
+        var data = { ROOM_ID: rowData.rooM_ID };
+        $.ajax(
+            {
+                type: "GET",
+                url: "/Room/Update",
+                contentType: "application/json; charset=utf=8",
+                data: data,
+                success: function (result) {
+                    console.log(result);
+                    $("#modal-edit-content").html(result);
+                    $("#modal-edit").modal("show");
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                }   
+            });         
+   
     });
 
 
-    $("#btnSave").click(function () {
+    $(".btn-edit").click(function () {
 
-        var objRoomData = $("#EditForm").serialize();
+        var objRoomData = $("#editform").serialize();
 
         $.ajax({
             type: "POST",
@@ -76,19 +83,60 @@ document.addEventListener("DOMContentLoaded", function () {
             data: objRoomData,
             success: function (response) {                      
                 objDataTable.ajax.reload();
-                $("#EditModal").modal("hide");
+                $("#modal-edit").modal("hide");
             },
             error: function (xhr, status, error) {
                 console.log("Error: " + error);
-
             }           
 
         })  
 
-    }) 
+    });
+    //END EDIT
+
+    $(".btn-add").click(function () {
+
+        $.ajax(
+            {
+                type: "GET",
+                url: "/Room/Create",
+                contentType: "application/json; charset=utf=8",              
+                success: function (result) {
+                    console.log(result);
+                    $("#modal-add-content").html(result);
+                    $("#modal-add").modal("show");
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });    
+    });
 
 
-   
+
+
+
+    $(".btn-save").click(function () {
+
+        var objRoomData = $("#saveform").serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/Room/Create",
+            data: objRoomData,
+            success: function (response) {
+                objDataTable.ajax.reload();
+                $("#modal-add").modal("hide");
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error);
+            }
+
+        })
+
+    });
+
+ 
        
 });
 
