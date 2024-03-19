@@ -43,4 +43,16 @@
     <Folder Include="wwwroot\js\Crud\JSRegister\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\img\Carousel\1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\img\Carousel\2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\img\Carousel\3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

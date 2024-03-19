@@ -17,58 +17,113 @@ document.addEventListener("DOMContentLoaded", function () {
                 { data: 'maX_OCCUPANCY', "width": "5%" },
                 { data: 'imagE_URL', "width": "5%" },
                 {
-                    data: null,
+                    data: 'rooM_ID',
                     "width": "5%",
                     "render": function (data, type, row) {
-                        return '<button class="btn btn-primary btn-sm edit-btn w-100">Edit</button>';
+                        return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                     }
                 },
                 {
-                    data: null,
+                    data: 'rooM_ID',
                     "width": "5%",
                     "render": function (data, type, row) {
-                        return '<button class="btn btn-danger btn-sm delete-btn w-100">Delete</button>';
+                        return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                     }
                 }
 
             ],
             "columnDefs":
                 [
-                    { "className": "dt-left", "targets": "_all" },
+                    { "className": "dt-right", "targets": "_all" },
                     {
                         "targets": [2], "className": "dt-nowrap", "render": function (data, type, row) {
                             return type === 'display' && data.length > 100 ? // Adjust the threshold as needed
                                 '<span title="' + data + '">' + data.substr(0, 100) + '...</span>' : data;
                         }
-                    } // Hide extra text in the 'description' and 'imagE_URL' columns
+                    } // Hide extra text in the 'description'
                 ],
             fixedColumns: true,
             scrollY: true
 
 
         });
+
+
+    //SELECT ROW BTN DELETE CLICK
+    $("#tbl_Rooms").on("click", ".select-delete-btn", function () {
+        var rowData = objDataTable.row($(this).closest('tr')).data();
+
+        console.log("DELETE BUTTON CLICK");
+      
+
+    });
  
 
-    $("#tbl_Rooms").on("click", ".edit-btn", function () {
-        var rowData = objDataTable.row($(this).closest('tr')).data();
-            
+    ////SELECT ROW BTN EDIT CLICK
+    //$("#tbl_Rooms").on("click", ".select-edit-btn", function () {
+    //    var rowData = objDataTable.row($(this).closest('tr')).data();
 
-        $("#id").val(rowData.rooM_ID);
-        $("#roomName").val(rowData.rooM_NAME);
-        $("#description").val(rowData.description);
-        $("#price").val(rowData.rooM_PRICE); 
-        $("#occupancy").val(rowData.maX_OCCUPANCY);     
-        $("#imageUrl").val(rowData.imagE_URL);  
+    //    var data = { ROOM_ID: rowData.rooM_ID };
+    //    $.ajax(
+    //        {
+    //            type: "GET",
+    //            url: "/Room/Update",
+    //            contentType: "application/json; charset=utf=8",
+    //            data: data,
+    //            success: function (result) {                  
+    //                $("#modal-edit-content").html(result);
+    //                $("#modal-edit").modal("show");
+    //            },
+    //            error: function (xhr, status, error) {
+    //                console.log("Error: " + error);
+    //            }   
+    //        });         
+   
+    //});
 
-        $("#image-container").html("<img src='" + rowData.imagE_URL + "' alt='Room Image' class='img-fluid rounded border'>");
+    $(".btn-add").click(function () {
 
-        $("#EditModal").modal("show");
+        $.ajax(
+            {
+                type: "GET",
+                url: "/Room/Create",
+                contentType: "application/json; charset=utf=8",
+                success: function (result) {
+                    console.log(result);
+                    $("#modal-add-content").html(result);
+                    $("#modal-add").modal("show");
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });
     });
 
 
-    $("#btnSave").click(function () {
+    $(".btn-save").click(function () {
 
-        var objRoomData = $("#EditForm").serialize();
+        var objRoomData = $("#saveform").serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/Room/Create",
+            data: objRoomData,
+            success: function (response) {
+                objDataTable.ajax.reload();
+                $("#modal-add").modal("hide");
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error);
+            }
+
+        })
+
+    });
+
+
+    $(".btn-edit").click(function () {
+
+        var objRoomData = $("#editform").serialize();
 
         $.ajax({
             type: "POST",
@@ -76,19 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
             data: objRoomData,
             success: function (response) {                      
                 objDataTable.ajax.reload();
-                $("#EditModal").modal("hide");
+                $("#modal-edit").modal("hide");
             },
             error: function (xhr, status, error) {
                 console.log("Error: " + error);
-
             }           
 
         })  
 
-    }) 
+    });
+    //END EDIT
 
 
    
+
        
 });
 

@@ -1,0 +1,37 @@
+﻿@model Room
+<form id="saveform">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="border" style="max-width: 100%; height: auto;">
+                    <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
+                </div>
+                <div class="input-group pt-3">
+                    <input type="file" id="imageUpload" class="form-control" accept="image/*">
+                    <label class="input-group-text" for="imageUpload">Upload</label>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 pt-md-0 pt-3">               
+                <input type="text" class="form-control" hidden asp-for="@Model.IMAGE_URL">
+                <div class="mb-3">
+                    <label for="roomName" class="form-label fw-bold">Room Name:</label>
+                    <input type="text" class="form-control" rquired asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label fw-bold">Description:</label>
+                    <input type="text" class="form-control" required asp-for="@Model.DESCRIPTION" placeholder="Enter Description">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label fw-bold">Price:</label>
+                    <input type="number" class="form-control" required asp-for="@Model.ROOM_PRICE" placeholder="Enter Price">
+                </div>
+                <div class="mb-3">
+                    <label for="occupancy" class="form-label fw-bold">Occupancy:</label>
+                    <input type="number" class="form-control" required asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
