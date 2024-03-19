@@ -7,7 +7,7 @@
                     <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
                 </div>
                 <div class="input-group pt-3">
-                    <input type="file" id="imageUpload" class="form-control" accept="image/*">
+                    <input type="file" id="imageUpload" class="form-control" asp-for="@Model.IMAGE_URL" accept="image/*">
                     <label class="input-group-text" for="imageUpload">Upload</label>
                 </div>
             </div>
@@ -16,19 +16,19 @@
                 <input type="text" class="form-control" hidden asp-for="@Model.ROOM_ID">
                 <input type="text" class="form-control" hidden asp-for="@Model.IMAGE_URL">
                 <div class="mb-3">
-                    <label for="roomName" class="form-label fw-bold">Room Name:</label>
+                    <label asp-for="@Model.ROOM_NAME" class="form-label fw-bold">Room Name:</label>
                     <input type="text" class="form-control" required asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name">
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label fw-bold">Description:</label>
+                    <label asp-for="@Model.DESCRIPTION" class="form-label fw-bold">Description:</label>
                     <input type="text" class="form-control" required asp-for="@Model.DESCRIPTION" placeholder="Enter Description">
                 </div>
                 <div class="mb-3">
-                    <label for="price" class="form-label fw-bold">Price:</label>
+                    <label asp-for="@Model.ROOM_PRICE" class="form-label fw-bold">Price:</label>
                     <input type="number" class="form-control" required asp-for="@Model.ROOM_PRICE" placeholder="Enter Price">
                 </div>
                 <div class="mb-3">
-                    <label for="occupancy" class="form-label fw-bold">Occupancy:</label>
+                    <label asp-for="@Model.MAX_OCCUPANCY" class="form-label fw-bold">Occupancy:</label>
                     <input type="number" class="form-control" required asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy">
                 </div>
             </div>
