@@ -40,12 +40,12 @@
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white fw-bold" id="addModalLabel">CREATE ROOM</h5>
-            </div>
+            </div>            
             <div id="modal-add-content"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
                 <button type="button" class="btn btn-primary btn-save" style="width:100px;">Save</button>
-            </div>        
+            </div>
         </div>
     </div>
 </div>
@@ -62,7 +62,7 @@
             </div>           
             <div id="modal-edit-content"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal" style="width:100px;">Close</button>
                 <button type="button" class="btn btn-primary btn-edit" style="width:100px;">Save</button>
             </div>           
         </div>      
@@ -79,7 +79,7 @@
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white fw-bold" id="deleteModalLabel">DELETE ROOM</h5>
             </div>
-            <form id="deleteform" enctype="multipart/form-data">
+            <form id="form-delete" enctype="multipart/form-data">
                 <input id="rooM_ID" hidden name="rooM_ID" />
                 <div class="modal-body" style="height:100px;">
                     <div class="row">
@@ -91,7 +91,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">No</button>
                     <button type="button" class="btn btn-primary btn-delete" style="width:100px;">Yes</button>
-                </div>             
+                </div>        
             </form>
         </div>
     </div>
@@ -105,8 +105,8 @@
 
 
 
-@section Scripts {  
-    <script src="~/js/Crud/JSRoom/JSRoomCrud.js"></script>
-    
+@section Scripts {
+
+    <script src="~/js/Crud/JSRoom/JSRoomCrud.js"></script>    
   }
 

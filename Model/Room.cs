@@ -11,13 +11,21 @@ namespace Model
         [Key]
         public int ROOM_ID { get; set; }
 
-        public required string ROOM_NAME { get; set; }
 
+        [Display(Name = "ROOM NAME")]
+        [Required(ErrorMessage = "Please provide a room name.")]
+        public string ROOM_NAME { get; set; }
+        
         public string? DESCRIPTION { get; set; }
 
-        public double ROOM_PRICE { get; set; }
+        [Display(Name = "PRICE")]
+        [Range(10,100)]
+        public required double ROOM_PRICE { get; set; }
 
-        public int MAX_OCCUPANCY { get; set; }
+
+        [Display(Name = "OCCUPANCY")]
+        [Range(1,10)]
+        public required int MAX_OCCUPANCY { get; set; }
 
         public string? IMAGE_URL { get; set; }
 
