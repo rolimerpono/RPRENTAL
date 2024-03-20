@@ -427,7 +427,7 @@ div.dt-container div.dt-length label {
     font-weight: bold;
     text-align: left;
     white-space: nowrap;
-    color:white;
+    color:white; 
 }
 
 div.dt-container div.dt-length select {
@@ -445,13 +445,13 @@ div.dt-container div.dt-search {
         font-weight: bold;
         white-space: nowrap;
         text-align: left;
-        color: white;
+        color: white;      
     }
 
     div.dt-container div.dt-search input {
         margin-left: 0.5em;
         display: inline-block;
-        width: 250px;
+        width: 250px;       
     }
 
 div.dt-container div.dt-info {

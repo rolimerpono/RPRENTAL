@@ -1,4 +1,4 @@
-﻿
+﻿<link rel="stylesheet" href="~/css/styles.css">
 <div class="container">
     <div class="row pt-3">
         <div class="col">
@@ -45,7 +45,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
                 <button type="button" class="btn btn-primary btn-save" style="width:100px;">Save</button>
-            </div>        
+            </div>
         </div>
     </div>
 </div>
@@ -64,7 +64,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
                 <button type="button" class="btn btn-primary btn-edit" style="width:100px;">Save</button>
-            </div>           
+            </div>
         </div>      
     </div>  
 </div>
@@ -80,7 +80,7 @@
                 <h5 class="modal-title text-white fw-bold" id="deleteModalLabel">DELETE ROOM</h5>
             </div>
             <form id="deleteform" enctype="multipart/form-data">
-                <input id="rooM_ID" hidden name="rooM_ID" />
+                <input id="ROOM_ID" hidden  name="rooM_ID"/>
                 <div class="modal-body" style="height:100px;">
                     <div class="row">
                         <div class="col-lg-12">
@@ -91,22 +91,16 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">No</button>
                     <button type="button" class="btn btn-primary btn-delete" style="width:100px;">Yes</button>
-                </div>             
+                </div>
             </form>
         </div>
     </div>
 </div>
-
-
 <!--End Delete Modal -->
 
-<!--Toaster Notification -->
-<div id="toaster" class="toaster"></div>
 
 
-
-@section Scripts {  
+@section Scripts {
     <script src="~/js/Crud/JSRoom/JSRoomCrud.js"></script>
-    
-  }
+}
 

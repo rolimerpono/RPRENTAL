@@ -4317,11 +4317,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataAccess\\DataAccess.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

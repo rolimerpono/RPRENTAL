@@ -31,6 +31,9 @@ namespace RPRENTAL.Controllers
             return View(objHomeVM);
         }
 
+    
+
+
         [HttpPost]
         public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE)
         {

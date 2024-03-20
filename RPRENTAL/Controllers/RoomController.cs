@@ -1,20 +1,23 @@
 ﻿using DataWrapper.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Model;
 
 namespace RPRENTAL.Controllers
 {
     public class RoomController : Controller
     {
-        private IRoomService _IRoomService;          
-       
+        private readonly IRoomService _IRoomService;         
 
         public RoomController(IRoomService roomService)
         {
             _IRoomService = roomService;
         }
 
-
+        public IActionResult Notification()
+        {
+            return PartialView("_Notification",TempData);
+        }
         public IActionResult Index()
         {
             try
@@ -64,6 +67,7 @@ namespace RPRENTAL.Controllers
                 if (ModelState.IsValid && objRoom.ROOM_ID == 0)
                 {
                     _IRoomService.Create(objRoom);
+                    TempData["success"] = "Room created successfully.";
                     return Json(new { success = true, message = "Room created successfully." });
                 }
                 return Json(new { success = false, message = "Something went wrong." });
@@ -100,6 +104,9 @@ namespace RPRENTAL.Controllers
                 if (ModelState.IsValid && objRoom.ROOM_ID > 0)
                 {
                     _IRoomService.Update(objRoom);
+
+                    TempData["success"] = "Room updated successfully.";
+                    return Json(new { success = true, message = "Room updated successfully."  });
                 }
             }
             catch (Exception ex)
@@ -113,10 +120,16 @@ namespace RPRENTAL.Controllers
         public IActionResult Delete(int ROOM_ID)
         {
             try
-            {            
-               
-                _IRoomService.Delete(ROOM_ID);
-                return Json(new { success = true, message = "Room deleted successfully." });
+            {
+                if (ROOM_ID != 0)
+                {
+
+                    _IRoomService.Delete(ROOM_ID);
+                    TempData["success"] = "Room deleted successfully.";
+                    return Json(new { success = true, message = "Room deleted successfully." });
+                }
+                return Json(new { success = false, message = "Something went wrong." });
+
             }
             catch (Exception ex)
             {
