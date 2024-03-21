@@ -1,5 +1,11 @@
 ﻿@model Room
 
+@{
+    var priceRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("ROOM_PRICE"), typeof(RangeAttribute));
+    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MAX_OCCUPANCY"), typeof(RangeAttribute));
+
+}
+
 
 <form id="form-edit">
     <div class="modal-body">
@@ -19,19 +25,22 @@
                 <input type="text" class="form-control" hidden asp-for="@Model.IMAGE_URL">
                 <div class="mb-3">
                     <label asp-for="@Model.ROOM_NAME" class="form-label fw-bold">Room Name:</label>
-                    <input type="text" class="form-control" required asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name">
+                    <input type="text" class="form-control" asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name" required>
+                    <div class="invalid-feedback">Please provide a room name.</div>
                 </div>
                 <div class="mb-3">
                     <label asp-for="@Model.DESCRIPTION" class="form-label fw-bold">Description:</label>
-                    <input type="text" class="form-control" required asp-for="@Model.DESCRIPTION" placeholder="Enter Description">
+                    <input type="text" class="form-control" asp-for="@Model.DESCRIPTION" placeholder="Enter Description">
                 </div>
                 <div class="mb-3">
                     <label asp-for="@Model.ROOM_PRICE" class="form-label fw-bold">Price:</label>
-                    <input type="number" class="form-control" required asp-for="@Model.ROOM_PRICE" placeholder="Enter Price">
+                    <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" required min="@priceRange.Minimum" max="@priceRange.Maximum">
+                    <div class="invalid-feedback">Please provide a range price of $ @priceRange.Minimum - $ @priceRange.Maximum</div>
                 </div>
                 <div class="mb-3">
                     <label asp-for="@Model.MAX_OCCUPANCY" class="form-label fw-bold">Occupancy:</label>
-                    <input type="number" class="form-control" required asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy">
+                    <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" required min="@occupancyRange.Minimum" max="@occupancyRange.Maximum">
+                    <div class="invalid-feedback">Please provide a range occupancy of @occupancyRange.Minimum - @occupancyRange.Maximum.</div>
                 </div>
             </div>
         </div>

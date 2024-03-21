@@ -32,12 +32,12 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price:</label>
-                    <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" min="@priceRange.Minimum" max="@priceRange.Maximum">                 
+                    <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" required min="@priceRange.Minimum" max="@priceRange.Maximum">                 
                     <div class="invalid-feedback">Please provide a range price of $ @priceRange.Minimum - $ @priceRange.Maximum</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Occupancy:</label>
-                    <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" min="@occupancyRange.Minimum" max="@occupancyRange.Maximum">
+                    <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" required min="@occupancyRange.Minimum" max="@occupancyRange.Maximum">
                     <div class="invalid-feedback">Please provide a range occupancy of @occupancyRange.Minimum - @occupancyRange.Maximum.</div>
                 </div>
             </div>

@@ -14,10 +14,7 @@ namespace RPRENTAL.Controllers
             _IRoomService = roomService;
         }
 
-        public IActionResult Notification()
-        {
-            return PartialView("_Notification",TempData);
-        }
+    
         public IActionResult Index()
         {
             try

@@ -39,7 +39,18 @@ function initializeDataTable() {
         "columns": [
             { data: 'rooM_ID', visible: false },
             { data: 'rooM_NAME', "width": "15%" },
-            { data: 'description', "width": "20%" },
+            {
+                data: 'description',
+                "width": "35%",
+                "render": function (data, type, row) {
+                    if (type === 'display' && data.length > 100) {
+                        return '<div style="max-height: 50px; overflow-x: auto;">' + data + '</div>';
+                    } else {
+                        return data;
+                    }
+                }
+            },
+                  
             { data: 'rooM_PRICE', "width": "5%" },
             { data: 'maX_OCCUPANCY', "width": "5%" },
             { data: 'imagE_URL', "width": "5%" },
@@ -57,29 +68,22 @@ function initializeDataTable() {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }
             }
-        ],
-        "columnDefs": [
-            { "className": "text-start", "targets": "_all" },
-            {
-                "targets": [2], "className": "dt-nowrap", "render": function (data, type, row) {
-                    return type === 'display' && data.length > 100 ? '<span title="' + data + '">' + data.substr(0, 100) + '...</span>' : data;
-                }
-            }
-        ],
+        ],       
         fixedColumns: true,
         scrollY: true
+       
     });
 }
 
 function loadModal(url, modalContentSelector, data = null) {
-    
+
     $.ajax({
         type: "GET",
-        url: url,    
+        url: url,
         data: data,
-        success: function (result) {     
+        success: function (result) {
             $(modalContentSelector).html(result);
-            $(modalContentSelector.replace("-content", "")).modal("show"); 
+            $(modalContentSelector.replace("-content", "")).modal("show");
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);
@@ -89,29 +93,31 @@ function loadModal(url, modalContentSelector, data = null) {
 
 
 function saveRoom(url, formSelector) {
- 
+
     var objRoomData = $(formSelector).serialize();
+    if ($(formSelector)[0].checkValidity()) {
     $.ajax({
         type: "POST",
         url: url,
         data: objRoomData,
         success: function (response) {
-            if ($(formSelector)[0].checkValidity()) {   
+            
                 if (response.success) {
                     objDataTable.ajax.reload();
-                    $(formSelector.replace("form","modal")).modal("hide");
+                    $(formSelector.replace("form", "modal")).modal("hide");
                     showToast("success", response.message);
                 } else {
                     showToast("error", response.message);
                 }
-            } else {
-                $(formSelector).addClass("was-validated");
-            }
+          
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);
         }
     });
+    } else {
+        $(formSelector).addClass("was-validated");
+    }
 }
 
 function deleteRoom(formSelector) {
