@@ -6,6 +6,9 @@ using RPRENTAL.ViewModels;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 
+using Model;
+
+
 namespace RPRENTAL.Controllers
 {
     public class HomeController : Controller
@@ -19,45 +22,57 @@ namespace RPRENTAL.Controllers
             _iWorker = worker;
         }
 
-        public IActionResult Index()
+        #region OLD INDEX
+        public IActionResult Index(int? iPage)
         {
-            HomeVM  objHomeVM = new HomeVM()
-            {
-                ROOM_LIST = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES"),
-                NO_OF_STAY = 1,
-                CHECKIN_DATE = DateOnly.FromDateTime(DateTime.Now)
-            };
-            
-            return View(objHomeVM);
+
+            int pageNumber = iPage ?? 1;
+            int pageSize = 6; 
+
+            var objRooms = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES").AsQueryable();
+        
+
+            return View(PaginatedList<Room>.Create(objRooms, pageNumber,pageSize));
         }
+        #endregion
 
-    
-
-
+      
         [HttpPost]
-        public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE)
+        public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE, int? iPage)
         {
 
             Util objUtil = new Util(_iWorker);
 
 
+            IEnumerable<Room> objRooms = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES");
 
-            var objRoomList = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES").ToList();
-            foreach (var roomItem in objRoomList)
+            List<Room> objRoomList = new List<Room>();
+            foreach (var roomItem in objRooms)
             {
-                int iCounter = objUtil.GetRoomsAvailableCount(roomItem.ROOM_ID, CHECKIN_DATE, CHECKOUT_DATE);
+                int iCounter = objUtil.GetRoomsAvailableCount(roomItem.ROOM_ID, CHECKIN_DATE, CHECKOUT_DATE);            
 
-                roomItem.IS_ROOM_AVAILABLE = iCounter > 0 ? true : false;
+                Room objRoom = new Room
+                {
+                    ROOM_ID = roomItem.ROOM_ID,
+                    ROOM_NAME = roomItem.ROOM_NAME,
+                    DESCRIPTION = roomItem.DESCRIPTION,
+                    ROOM_PRICE = roomItem.ROOM_PRICE,
+                    ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
+                    MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
+                    IS_ROOM_AVAILABLE = roomItem.IS_ROOM_AVAILABLE = iCounter > 0 ? true : false,
+                    IMAGE_URL = roomItem.IMAGE_URL,
+                    CHECKIN_DATE = CHECKIN_DATE,
+                    CHECKOUT_DATE = CHECKOUT_DATE
+                };
+
+              
+                objRoomList.Add(objRoom);
             }
 
-            HomeVM objHomeVM = new()
-            {
-                CHECKIN_DATE = CHECKIN_DATE,
-                CHECKOUT_DATE = CHECKOUT_DATE,
-                ROOM_LIST = objRoomList               
-
-            };
-            return PartialView("Common/_RoomList", objHomeVM);
+            int pageNumber = iPage ?? 1; 
+            int pageSize = 6;
+           
+            return PartialView("Common/_RoomList",PaginatedList<Room>.Create(objRoomList.AsQueryable(), pageNumber, pageSize));
         }
 
 

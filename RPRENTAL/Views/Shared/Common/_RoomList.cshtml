@@ -1,10 +1,11 @@
-﻿@model HomeVM
+﻿@model PaginatedList<Room>
+
 
 <div id="ROOM_LIST">
 
     <div class="row gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3 mt-5 pb-3" style="border: 1px thin #dcdcdc;">
         @*  DISPLAY ROOM LIST *@
-        @foreach (var objRoom in Model.ROOM_LIST)
+        @foreach (var objRoom in Model.ITEMS)
         {
             <div class="col">
                 <div class="card h-100">
@@ -20,20 +21,20 @@
                     </ul>
                     <div class="card-body d-flex flex-column flex-md-row justify-content-md-between">
                         <div class="mb-2 mb-md-0">
-                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target='#exampleModal-@(objRoom.ROOM_ID)'>DETAILS</button>
+                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-@(objRoom.ROOM_ID)">DETAILS</button>
                         </div>
-                        @if (Model.CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
+                        @if (Model.ITEMS.FirstOrDefault().CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
                         {
                             @if (objRoom.IS_ROOM_AVAILABLE)
                             {
                                 <div>
-                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto" type="button">BOOK NOW</button>
+                                    <button id="btnBookNow" class="btn btn-primary rounded-2 w-100 w-md-auto" type="button">BOOK NOW</button>
                                 </div>
                             }
                             else
                             {
                                 <div>
-                                    <button class="btn btn-danger disabled  rounded-2 w-100 w-md-auto" type="button">SOLD OUT</button>
+                                    <button id="btnSoldOut" class="btn btn-danger disabled  rounded-2 w-100 w-md-auto" type="button">SOLD OUT</button>
                                 </div>
                             }
                         }
@@ -49,7 +50,7 @@
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title text-success fw-bold" id="exampleModalLabel">ROOM DETAILS</h1>                         
+                            <h1 class="modal-title text-success fw-bold" id="exampleModalLabel">ROOM DETAILS</h1>
                         </div>
                         <div class="modal-body m-0">
                             <partial name="Common/_RoomDetail" model="objRoom" />
@@ -60,13 +61,52 @@
                     </div>
                 </div>
             </div>
-
-
-
         }
-    </div>
+    </div>  
+    @* PAGINATION *@
+
+   
+        <div class="col-12 justify-content-start">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item @(Model.PAGE_INDEX == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-route-iPage="1">
+                            <span>First</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item @(Model.HAS_PREVIOUS_PAGE ? "" : "disabled")">
+                        <a class="page-link" asp-route-iPage="@(Model.PAGE_INDEX - 1)">
+                            <span>Previous</span>
+                        </a>
+                    </li>
+
+                    @for (int i = 1; i <= Model.TOTAL_PAGES; i++)
+                    {
+                        <li class="page-item @(Model.PAGE_INDEX == i ? "active" : "")">
+                            <a class="page-link" asp-route-iPage="@i">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.HAS_NEXT_PAGE ? "" : "disabled")">
+                        <a class="page-link" asp-route-iPage="@(Model.PAGE_INDEX + 1)">
+                            <span>Next</span>
+                        </a>
+                    </li>
+                    <li class="page-item @(Model.PAGE_INDEX == Model.TOTAL_PAGES ? "disabled" : "")">
+                        <a class="page-link" asp-route-iPage="@Model.TOTAL_PAGES">
+                            <span>Last</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+  
 </div>
 
 
-<script src="~/js/jquery.min.js"></script>
-@* <script src="~/js/Layout/Admin/RoomDetail.js"></script> *@
+@section Scripts {
+   
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+}

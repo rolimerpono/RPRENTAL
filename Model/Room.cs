@@ -7,7 +7,7 @@ namespace Model
 {
     public class Room
     {
-
+       
         [Key]
         public int ROOM_ID { get; set; }
 
@@ -42,8 +42,12 @@ namespace Model
         [NotMapped]
         public Boolean IS_ROOM_AVAILABLE { get; set; } = true;
 
-        
+        [NotMapped]
+        public DateOnly? CHECKIN_DATE { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
+        [NotMapped]
+        public DateOnly? CHECKOUT_DATE { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
+     
     }
 }
