@@ -10,9 +10,9 @@ namespace DataWrapper.Implementation
 {
     public class AmenityService : IAmenityService
     {
-        private readonly iWorker _iWorker;
+        private readonly IWorker _iWorker;
 
-        public AmenityService(iWorker worker)
+        public AmenityService(IWorker worker)
         {
             _iWorker = worker;
         }

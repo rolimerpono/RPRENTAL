@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataWrapper.Implementation
 {
-    public class Worker : iWorker
+    public class Worker : IWorker
     {
         private readonly ApplicationDBContext _db;
 

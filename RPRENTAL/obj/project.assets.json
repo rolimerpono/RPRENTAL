@@ -5276,11 +5276,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
       "projectName": "RPRENTAL",
-      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\obj\\",
+      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\RPRENTAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5302,20 +5302,20 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Common\\Common.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
             }
           }
         }

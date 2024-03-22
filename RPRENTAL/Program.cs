@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IAmenityService, AmenityService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
-builder.Services.AddScoped<iWorker, Worker>();
+builder.Services.AddScoped<IWorker, Worker>();
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>();
 

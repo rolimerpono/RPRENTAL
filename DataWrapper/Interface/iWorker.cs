@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataWrapper.Interface
 {
-    public interface iWorker
+    public interface IWorker
     {
         IRoomRepository tbl_Rooms { get; }
         iRoomNumberRepository tbl_RoomNumber { get; }

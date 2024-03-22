@@ -6,9 +6,9 @@ namespace Common
 {
     public class Util
     {
-        private readonly iWorker _iWorker;
+        private readonly IWorker _iWorker;
 
-        public Util(iWorker worker)
+        public Util(IWorker worker)
         {
             _iWorker = worker;
             

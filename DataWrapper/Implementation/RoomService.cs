@@ -10,8 +10,8 @@ namespace DataWrapper.Implementation
 {
     public class RoomService : IRoomService
     {
-        private readonly iWorker _iWorker;
-        public RoomService(iWorker  iWorker)
+        private readonly IWorker _iWorker;
+        public RoomService(IWorker  iWorker)
         {
             _iWorker = iWorker;
         }

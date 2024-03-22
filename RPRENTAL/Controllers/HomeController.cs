@@ -1,80 +1,75 @@
 using Common;
 using DataWrapper.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 using RPRENTAL.Models;
 using RPRENTAL.ViewModels;
-using System.ComponentModel.Design;
 using System.Diagnostics;
-
-using Model;
-
+using System.Linq;
 
 namespace RPRENTAL.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly iWorker _iWorker;
+        private readonly IWorker _iWorker;
 
-        public HomeController(ILogger<HomeController> logger,iWorker worker)
+        public HomeController(ILogger<HomeController> logger, IWorker worker)
         {
             _logger = logger;
             _iWorker = worker;
         }
 
-        #region OLD INDEX
         public IActionResult Index(int? iPage)
         {
-
-            int pageNumber = iPage ?? 1;
-            int pageSize = 6; 
+            var pageNumber = iPage ?? 1;
+            var pageSize = 6;
 
             var objRooms = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES").AsQueryable();
-        
 
-            return View(PaginatedList<Room>.Create(objRooms, pageNumber,pageSize));
+            return View("Index", PaginatedList<Room>.Create(objRooms, pageNumber, pageSize));
         }
-        #endregion
 
-      
+        [HttpPost]
+        public IActionResult PageList(int? iPage)
+        {
+            return PartialView("Common/_RoomList", GetPaginatedRoomList(iPage));
+        }
+
         [HttpPost]
         public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE, int? iPage)
         {
-
-            Util objUtil = new Util(_iWorker);
-
-
-            IEnumerable<Room> objRooms = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES");
-
-            List<Room> objRoomList = new List<Room>();
-            foreach (var roomItem in objRooms)
-            {
-                int iCounter = objUtil.GetRoomsAvailableCount(roomItem.ROOM_ID, CHECKIN_DATE, CHECKOUT_DATE);            
-
-                Room objRoom = new Room
+            var objRoomList = _iWorker.tbl_Rooms
+                .GetAll(includeProperties: "ROOM_AMENITIES")
+                .AsEnumerable() // Load into memory to perform further operations
+                .Select(roomItem =>
                 {
-                    ROOM_ID = roomItem.ROOM_ID,
-                    ROOM_NAME = roomItem.ROOM_NAME,
-                    DESCRIPTION = roomItem.DESCRIPTION,
-                    ROOM_PRICE = roomItem.ROOM_PRICE,
-                    ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
-                    MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
-                    IS_ROOM_AVAILABLE = roomItem.IS_ROOM_AVAILABLE = iCounter > 0 ? true : false,
-                    IMAGE_URL = roomItem.IMAGE_URL,
-                    CHECKIN_DATE = CHECKIN_DATE,
-                    CHECKOUT_DATE = CHECKOUT_DATE
-                };
+                    var iCounter = new Util(_iWorker).GetRoomsAvailableCount(roomItem.ROOM_ID, CHECKIN_DATE, CHECKOUT_DATE);
 
-              
-                objRoomList.Add(objRoom);
-            }
+                    return new Room
+                    {
+                        ROOM_ID = roomItem.ROOM_ID,
+                        ROOM_NAME = roomItem.ROOM_NAME,
+                        DESCRIPTION = roomItem.DESCRIPTION,
+                        ROOM_PRICE = roomItem.ROOM_PRICE,
+                        ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
+                        MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
+                        IS_ROOM_AVAILABLE = iCounter > 0,
+                        IMAGE_URL = roomItem.IMAGE_URL,
+                        CHECKIN_DATE = CHECKIN_DATE,
+                        CHECKOUT_DATE = CHECKOUT_DATE
+                    };
+                }).ToList();
 
-            int pageNumber = iPage ?? 1; 
-            int pageSize = 6;
-           
-            return PartialView("Common/_RoomList",PaginatedList<Room>.Create(objRoomList.AsQueryable(), pageNumber, pageSize));
+            return PartialView("Common/_RoomList", GetPaginatedRoomList(iPage, objRoomList.AsQueryable()));
         }
 
+        private PaginatedList<Room> GetPaginatedRoomList(int? pageNumber, IQueryable<Room> source = null)
+        {
+            var pageSize = 6;
+            source ??= _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES").AsQueryable();
+            return PaginatedList<Room>.Create(source, pageNumber ?? 1, pageSize);
+        }
 
         public IActionResult Privacy()
         {
