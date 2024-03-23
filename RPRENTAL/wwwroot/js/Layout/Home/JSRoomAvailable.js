@@ -1,25 +1,6 @@
-﻿$(document).ready(function () {
-
+﻿
     const btnCheck = document.getElementById('btnCheck');
     const roomListDiv = document.getElementById('room_list');
-
-    btnCheck.addEventListener('click', function () {
-        fetchRoomAvailability();
-    });
-
-    function fetchRoomAvailability() {
-        const checkInDate = document.getElementById('CheckInDate').value;
-        const checkOutDate = document.getElementById('CheckOutDate').value;
-
-        if (checkOutDate >= checkInDate) {
-            const url = '/Home/GetRoomAvailable';
-            const body = new URLSearchParams();
-            body.append('CHECKIN_DATE', checkInDate);
-            body.append('CHECKOUT_DATE', checkOutDate);
-
-            sendFetchRequest(url, body);
-        }
-    }
 
     function sendFetchRequest(url, body) {
         fetch(url, {
@@ -43,19 +24,17 @@
             });
     }
 
-});
+    function GetRoomAvailable(pageID = '') {
+        const checkInDate = document.getElementById('CheckInDate').value;
+        const checkOutDate = document.getElementById('CheckOutDate').value;
 
-function GetRoomAvailable(pageID) { debugger
-    const checkInDate = document.getElementById('CheckInDate').value;
-    const checkOutDate = document.getElementById('CheckOutDate').value;
+        if (checkOutDate >= checkInDate) {
+            const url = '/Home/GetRoomAvailable';
+            const body = new URLSearchParams();
+            body.append('CHECKIN_DATE', checkInDate);
+            body.append('CHECKOUT_DATE', checkOutDate);
+            body.append('iPage', pageID);
 
-    if (checkOutDate >= checkInDate) {
-        const url = '/Home/GetRoomAvailable';
-        const body = new URLSearchParams();
-        body.append('CHECKIN_DATE', checkInDate);
-        body.append('CHECKOUT_DATE', checkOutDate);
-        body.append('iPage', pageID);
-
-        sendFetchRequest(url, body);
+            sendFetchRequest(url, body);
+        }
     }
-};
