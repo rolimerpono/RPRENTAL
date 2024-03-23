@@ -29,12 +29,7 @@ namespace RPRENTAL.Controllers
 
             return View("Index", PaginatedList<Room>.Create(objRooms, pageNumber, pageSize));
         }
-
-        [HttpPost]
-        public IActionResult PageList(int? iPage)
-        {
-            return PartialView("Common/_RoomList", GetPaginatedRoomList(iPage));
-        }
+           
 
         [HttpPost]
         public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE, int? iPage)

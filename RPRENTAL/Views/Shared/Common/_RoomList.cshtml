@@ -1,11 +1,5 @@
 ﻿@model PaginatedList<Room>
 
-@{
-    Boolean isButtonVisible = false;
-
-  }
-
-
 <div id="room_list">
 
     <div class="row gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3 mt-5 pb-3" style="border: 1px thin #dcdcdc;">
@@ -28,18 +22,17 @@
                         <div class="mb-2 mb-md-0">
                             <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-@(objRoom.ROOM_ID)">DETAILS</button>
                         </div>
-                        @if (@Model.ITEMS.FirstOrDefault().CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
+                        @if (objRoom.CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
                         {
                             @if (objRoom.IS_ROOM_AVAILABLE)
                             {
                                 <div>
                                     <button id="btnBookNow" class="btn btn-primary rounded-2 w-100 w-md-auto" type="button">BOOK NOW</button>
                                 </div>
-                                isButtonVisible = true;
+                              
                             }
                             else
-                            {
-                                isButtonVisible = true;
+                            {                              
                                 <div>
                                     <button id="btnSoldOut" class="btn btn-danger disabled  rounded-2 w-100 w-md-auto" type="button">SOLD OUT</button>
                                 </div>
@@ -69,90 +62,42 @@
                 </div>
             </div>
         }
-    </div>  
+    </div>
+
     @* PAGINATION *@
+    <div class="row-cols-1 justify-content-start">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item @(Model.PAGE_INDEX == 1 ? "disabled" : "")">
+                    <a class="page-link" onclick="GetRoomAvailable(1)">
+                        <span>First</span>
+                    </a>
+                </li>
 
-   
-        <div class="col-12 justify-content-start">
-        @if (!isButtonVisible)
-        {
-            <nav>                
-                <ul class="pagination">
-                    <li class="page-item @(Model.PAGE_INDEX == 1 ? "disabled" : "")">
-                        <a class="page-link" asp-route-iPage="1">
-                            <span>First</span>
-                        </a>
+                <li class="page-item @(Model.HAS_PREVIOUS_PAGE ? "" : "disabled")">
+                    <a class="page-link" onclick="GetRoomAvailable(@(Model.PAGE_INDEX - 1))">
+                        <span>Previous</span>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= Model.TOTAL_PAGES; i++)
+                {
+                    <li class="page-item @(Model.PAGE_INDEX == i ? "active" : "")">
+                        <a class="page-link" onclick="GetRoomAvailable(@i)">@i</a>
                     </li>
+                }
 
-                    <li class="page-item @(Model.HAS_PREVIOUS_PAGE ? "" : "disabled")">
-                        <a class="page-link" asp-route-iPage="@(Model.PAGE_INDEX - 1)">
-                            <span>Previous</span>
-                        </a>
-                    </li>
-
-                    @for (int i = 1; i <= Model.TOTAL_PAGES; i++)
-                    {
-                        <li class="page-item @(Model.PAGE_INDEX == i ? "active" : "")">
-                            <a class="page-link" asp-route-iPage="@i">@i</a>
-                        </li>
-                    }
-
-                    <li class="page-item @(Model.HAS_NEXT_PAGE ? "" : "disabled")">
-                        <a class="page-link" asp-route-iPage="@(Model.PAGE_INDEX + 1)">
-                            <span>Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item @(Model.PAGE_INDEX == Model.TOTAL_PAGES ? "disabled" : "")">
-                        <a class="page-link" asp-route-iPage="@Model.TOTAL_PAGES">
-                            <span>Last</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-        }
-        else
-        {
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item @(Model.PAGE_INDEX == 1 ? "disabled" : "")">
-                        <a class="page-link" onclick="GetRoomAvailable(1)">
-                            <span>First</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item @(Model.HAS_PREVIOUS_PAGE ? "" : "disabled")">
-                        <a  class="page-link" onclick="GetRoomAvailable(@(Model.PAGE_INDEX - 1))">
-                            <span>Previous</span>
-                        </a>
-                    </li>
-
-                    @for (int i = 1; i <= Model.TOTAL_PAGES; i++)
-                    {
-                        <li class="page-item @(Model.PAGE_INDEX == i ? "active" : "")">
-                            <a class="page-link" onclick="GetRoomAvailable(@i)">@i</a>
-                        </li>
-                    }
-
-                    <li class="page-item @(Model.HAS_NEXT_PAGE ? "" : "disabled")">
-                        <a  class="page-link" onclick="GetRoomAvailable(@(Model.PAGE_INDEX + 1))">
-                            <span>Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item @(Model.PAGE_INDEX == Model.TOTAL_PAGES ? "disabled" : "")">
-                        <a  class="page-link" onclick="GetRoomAvailable(@(Model.TOTAL_PAGES))">
-                            <span>Last</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-
-        }
-
-
-
-        </div>
-  
+                <li class="page-item @(Model.HAS_NEXT_PAGE ? "" : "disabled")">
+                    <a class="page-link" onclick="GetRoomAvailable(@(Model.PAGE_INDEX + 1))">
+                        <span>Next</span>
+                    </a>
+                </li>
+                <li class="page-item @(Model.PAGE_INDEX == Model.TOTAL_PAGES ? "disabled" : "")">
+                    <a class="page-link" onclick="GetRoomAvailable(@(Model.TOTAL_PAGES))">
+                        <span>Last</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
-
