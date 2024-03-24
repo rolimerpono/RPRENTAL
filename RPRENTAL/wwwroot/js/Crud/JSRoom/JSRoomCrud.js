@@ -3,46 +3,46 @@
 $(document).ready(function () {
     initializeDataTable();
 
-    $(".btn-add").click(function () {
-        loadModal("/Room/Create", "#modal-add-content");
+    $('.btn-add').click(function () {
+        loadModal('/Room/Create', '#modal-add-content');
     });
 
-    $(".btn-save").click(function () {
-        saveRoom("/Room/Create", "#form-add");
+    $('.btn-save').click(function () {
+        saveRoom('/Room/Create', '#form-add');
     });
 
-    $("#tbl_Rooms").on("click", ".select-edit-btn", function () {
+    $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
         var rowData = getRowData($(this));
-        loadModal("/Room/Update", "#modal-edit-content", rowData);
+        loadModal('/Room/Update', '#modal-edit-content', rowData);
     });
 
-    $(".btn-edit").click(function () {
-        saveRoom("/Room/Update", "#form-edit");
+    $('.btn-edit').click(function () {
+        saveRoom('/Room/Update', '#form-edit');
     });
 
-    $("#tbl_Rooms").on("click", ".select-delete-btn", function () {
+    $('#tbl_Rooms').on('click', '.select-delete-btn', function () {
         var rowData = getRowData($(this));
-        $("#rooM_ID").val(rowData.rooM_ID);
-        $("#modal-delete").modal("show");
+        $('#rooM_ID').val(rowData.rooM_ID);
+        $('#modal-delete').modal('show');
     });
 
-    $(".btn-delete").click(function () {
-        deleteRoom("#form-delete");
+    $('.btn-delete').click(function () {
+        deleteRoom('#form-delete');
     });
 });
 
 function initializeDataTable() {
     objDataTable = $('#tbl_Rooms').DataTable({
-        "ajax": {
+        'ajax': {
             url: '/Room/GetAll'
         },
-        "columns": [
+        'columns': [
             { data: 'rooM_ID', visible: false },
-            { data: 'rooM_NAME', "width": "15%" },
+            { data: 'rooM_NAME', 'width': '15%' },
             {
                 data: 'description',
-                "width": "35%",
-                "render": function (data, type, row) {
+                'width': '35%',
+                'render': function (data, type, row) {
                     if (type === 'display' && data.length > 100) {
                         return '<div style="max-height: 50px; overflow-x: auto;">' + data + '</div>';
                     } else {
@@ -50,40 +50,40 @@ function initializeDataTable() {
                     }
                 }
             },
-                  
-            { data: 'rooM_PRICE', "width": "5%" },
-            { data: 'maX_OCCUPANCY', "width": "5%" },
-            { data: 'imagE_URL', "width": "5%" },
+
+            { data: 'rooM_PRICE', 'width': '5%' },
+            { data: 'maX_OCCUPANCY', 'width': '5%' },
+            { data: 'imagE_URL', 'width': '5%' },
             {
                 data: 'rooM_ID',
-                "width": "5%",
-                "render": function (data, type, row) {
+                'width': '5%',
+                'render': function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'rooM_ID',
-                "width": "5%",
-                "render": function (data, type, row) {
+                'width': '5%',
+                'render': function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }
             }
-        ],       
+        ],
         fixedColumns: true,
         scrollY: true
-       
+
     });
 }
 
 function loadModal(url, modalContentSelector, data = null) {
 
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: url,
         data: data,
         success: function (result) {
             $(modalContentSelector).html(result);
-            $(modalContentSelector.replace("-content", "")).modal("show");
+            $(modalContentSelector.replace('-content', '')).modal('show');
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);
@@ -96,40 +96,40 @@ function saveRoom(url, formSelector) {
 
     var objRoomData = $(formSelector).serialize();
     if ($(formSelector)[0].checkValidity()) {
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: objRoomData,
-        success: function (response) {
-            
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: objRoomData,
+            success: function (response) {
+
                 if (response.success) {
                     objDataTable.ajax.reload();
-                    $(formSelector.replace("form", "modal")).modal("hide");
-                    showToast("success", response.message);
+                    $(formSelector.replace('form', 'modal')).modal('hide');
+                    showToast('success', response.message);
                 } else {
-                    showToast("error", response.message);
+                    showToast('error', response.message);
                 }
-          
-        },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
-        }
-    });
+
+            },
+            error: function (xhr, status, error) {
+                handleAjaxError(error);
+            }
+        });
     } else {
-        $(formSelector).addClass("was-validated");
+        $(formSelector).addClass('was-validated');
     }
 }
 
 function deleteRoom(formSelector) {
     var objRoomData = $(formSelector).serialize();
     $.ajax({
-        type: "POST",
-        url: "/Room/Delete",
+        type: 'POST',
+        url: '/Room/Delete',
         data: objRoomData,
         success: function (response) {
             objDataTable.ajax.reload();
-            $("#modal-delete").modal("hide");
-            showToast("success", response.message);
+            $('#modal-delete').modal('hide');
+            showToast('success', response.message);
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);
@@ -142,17 +142,17 @@ function getRowData(btn) {
 }
 
 function handleAjaxError(error) {
-    console.log("Error: " + error);
+    console.log('Error: ' + error);
 }
 
 function showToast(type, message) {
-    var toaster = $("#toaster");
+    var toaster = $('#toaster');
     toaster.text(message);
-    toaster.css("display", "block").css("backgroundColor", type === "success" ? "#006400" : "red").css("opacity", 1);
+    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
     setTimeout(function () {
-        toaster.css("opacity", 0);
+        toaster.css('opacity', 0);
         setTimeout(function () {
-            toaster.css("display", "none").css("opacity", 1);
+            toaster.css('display', 'none').css('opacity', 1);
         }, 500);
     }, 3000);
 }
