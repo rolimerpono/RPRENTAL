@@ -81,6 +81,10 @@
     z-index: 9999;
 }
 
+.pagination-link:hover {
+    cursor: pointer;
+}
+
 
 
 

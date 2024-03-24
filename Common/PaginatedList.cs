@@ -19,7 +19,7 @@ namespace Common
         public int TOTAL_PAGES { get; set; }
       
    
-        public PaginatedList(IEnumerable<T> items, int count , int pageIndex, int pageSize)
+        public PaginatedList(List<T> items, int count , int pageIndex, int pageSize)
         {
             PAGE_INDEX = pageIndex;
             TOTAL_PAGES = (int)Math.Ceiling(count / (double)pageSize);
@@ -35,7 +35,7 @@ namespace Common
         public int LAST_INDEX => Math.Min(PAGE_INDEX * PAGE_SIZE, TOTAL_ITEMS);
 
 
-        public static PaginatedList<T> Create(IEnumerable<T> source, int pageIndex, int pageSize)
+        public static PaginatedList<T> Create(IQueryable<T> source, int pageIndex, int pageSize)
         {
             var count = source.Count(); //Total Number of Items
 

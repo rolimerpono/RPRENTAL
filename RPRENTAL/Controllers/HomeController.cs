@@ -25,9 +25,25 @@ namespace RPRENTAL.Controllers
             var pageNumber = iPage ?? 1;
             var pageSize = 6;
 
-            var objRooms = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES").AsQueryable();
+            var objRoomList = _iWorker.tbl_Rooms
+                .GetAll(includeProperties: "ROOM_AMENITIES")
+                .AsEnumerable() // Load into memory to perform further operations
+                .Select(roomItem =>
+                { 
+                    return new HomeVM
+                    {
+                        ROOM_ID = roomItem.ROOM_ID,
+                        ROOM_NAME = roomItem.ROOM_NAME,
+                        DESCRIPTION = roomItem.DESCRIPTION,
+                        ROOM_PRICE = roomItem.ROOM_PRICE,
+                        ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
+                        MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
+                    
+                        IMAGE_URL = roomItem.IMAGE_URL
+                    };
+                }).ToList();
 
-            return View("Index", PaginatedList<Room>.Create(objRooms, pageNumber, pageSize));
+            return View("Index", PaginatedList<HomeVM>.Create(objRoomList.AsQueryable(), pageNumber, pageSize));
         }
            
 
@@ -41,7 +57,7 @@ namespace RPRENTAL.Controllers
                 {
                     var iCounter = new Util(_iWorker).GetRoomsAvailableCount(roomItem.ROOM_ID, CHECKIN_DATE, CHECKOUT_DATE);
 
-                    return new Room
+                    return new HomeVM
                     {
                         ROOM_ID = roomItem.ROOM_ID,
                         ROOM_NAME = roomItem.ROOM_NAME,
@@ -49,7 +65,7 @@ namespace RPRENTAL.Controllers
                         ROOM_PRICE = roomItem.ROOM_PRICE,
                         ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
                         MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
-                        IS_ROOM_AVAILABLE = iCounter > 0,
+                        IS_ROOM_AVAILABLE = iCounter > 0 ? true : false,
                         IMAGE_URL = roomItem.IMAGE_URL,
                         CHECKIN_DATE = CHECKIN_DATE,
                         CHECKOUT_DATE = CHECKOUT_DATE
@@ -59,11 +75,10 @@ namespace RPRENTAL.Controllers
             return PartialView("Common/_RoomList", GetPaginatedRoomList(iPage, objRoomList.AsQueryable()));
         }
 
-        private PaginatedList<Room> GetPaginatedRoomList(int? pageNumber, IQueryable<Room> source = null)
+        private PaginatedList<HomeVM> GetPaginatedRoomList(int? pageNumber, IQueryable<HomeVM> source = null)
         {
-            var pageSize = 6;
-            source ??= _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES").AsQueryable();
-            return PaginatedList<Room>.Create(source, pageNumber ?? 1, pageSize);
+            var pageSize = 6;       
+            return PaginatedList<HomeVM>.Create(source.AsQueryable(), pageNumber ?? 1, pageSize);
         }
 
         public IActionResult Privacy()

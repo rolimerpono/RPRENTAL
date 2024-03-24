@@ -1,4 +1,4 @@
-﻿@model PaginatedList<Room>
+﻿@model PaginatedList<HomeVM>
 
 <div class="d-none d-md-block">
     <div id="Carousel-Image" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
@@ -64,7 +64,7 @@
                 </div>
             </div>
           
-            <partial name="Common/_RoomList" model="Model" />
+            <partial name="Common/_RoomList" model="@Model" />
           
         </form>           
 

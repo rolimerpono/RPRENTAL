@@ -1,6 +1,6 @@
 ﻿
     const btnCheck = document.getElementById('btnCheck');
-    const roomListDiv = document.getElementById('room_list');
+    const objRoomListDiv = document.getElementById('room_list');
 
     function sendFetchRequest(url, body) {
         fetch(url, {
@@ -17,7 +17,7 @@
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
-                roomListDiv.innerHTML = data;
+                objRoomListDiv.innerHTML = data;
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
