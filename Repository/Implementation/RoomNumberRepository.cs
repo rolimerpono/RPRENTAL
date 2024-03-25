@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Implementation
 {
-    public class RoomNumberRepository : Repository<RoomNumber>, iRoomNumberRepository
+    public class RoomNumberRepository : Repository<RoomNumber>,IRoomNumberRepository
     {
         private readonly ApplicationDBContext _db;
         public RoomNumberRepository(ApplicationDBContext db) : base(db) 

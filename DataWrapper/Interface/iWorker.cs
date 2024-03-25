@@ -10,7 +10,7 @@ namespace DataWrapper.Interface
     public interface IWorker
     {
         IRoomRepository tbl_Rooms { get; }
-        iRoomNumberRepository tbl_RoomNumber { get; }
+        IRoomNumberRepository tbl_RoomNumber { get; }
         IAmenityRepository tbl_Amenity { get; }
         IBookingRepository tbl_Booking { get; } 
         IApplicationUserRepository tbl_User { get; }

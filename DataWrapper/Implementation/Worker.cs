@@ -25,7 +25,7 @@ namespace DataWrapper.Implementation
         }
         public IRoomRepository tbl_Rooms {get; private set;}
 
-        public iRoomNumberRepository tbl_RoomNumber { get; private set; }
+        public IRoomNumberRepository tbl_RoomNumber { get; private set; }
 
         public IAmenityRepository tbl_Amenity { get; private set; }
 

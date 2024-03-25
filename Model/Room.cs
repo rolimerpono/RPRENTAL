@@ -15,8 +15,8 @@ namespace Model
         [Display(Name = "ROOM NAME")]
         [Required(ErrorMessage = "Please provide a room name.")]
         public string ROOM_NAME { get; set; }
-        
-        public string? DESCRIPTION { get; set; }
+
+        public string? DESCRIPTION { get; set; } = "";
 
         [Display(Name = "PRICE")]
         [Range(10,100)]
@@ -32,9 +32,9 @@ namespace Model
         [NotMapped]
         public IFormFile? IMAGE { get; set; }
 
-        public DateTime? CREATED_DATE { get; set; }
+        public DateTime? CREATED_DATE { get; set; } = DateTime.Now;
 
-        public DateTime? UPDATED_DATE { get; set; }
+        public DateTime? UPDATED_DATE { get; set; } = DateTime.Now;
 
         [ValidateNever]
         public IEnumerable<Amenity> ROOM_AMENITIES { get; set; }

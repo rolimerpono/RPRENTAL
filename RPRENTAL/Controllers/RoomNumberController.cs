@@ -92,11 +92,64 @@ namespace RPRENTAL.Controllers
 
 
         [HttpGet]
+        public IActionResult Update(int ROOM_NUMBER)
+        {
+
+            RoomNumberVM objRoomNumberVM = new RoomNumberVM()
+            {
+
+                ROOM_LIST = _IRoomService.GetAll().Select(fw => new SelectListItem
+                {
+                    Text = fw.ROOM_NAME,
+                    Value = fw.ROOM_ID.ToString()
+
+                })
+                .OrderBy(fw => fw.Text)
+                 .GroupBy(fw => fw.Text)
+                 .Select(fw => fw.First()),
+                
+                tbl_RoomNumber = _IRoomNumberService.Get(ROOM_NUMBER)
+            };
+            
+
+            return PartialView("Update", objRoomNumberVM);
+
+        }
+
+        [HttpPost]
+        public IActionResult Update(RoomNumberVM objRoomNumberVM)
+        {          
+
+            if (ModelState.IsValid)
+            {
+                _IRoomNumberService.Update(objRoomNumberVM.tbl_RoomNumber);
+                return Json(new { success = true, message = "Room number updated successfully." });
+            }
+            else
+            {
+                objRoomNumberVM.ROOM_LIST = new List<SelectListItem>();
+
+                objRoomNumberVM.ROOM_LIST = _IRoomService.GetAll().Select(fw => new SelectListItem
+                {
+                    Text = fw.ROOM_NAME,
+                    Value = fw.ROOM_ID.ToString()
+                })
+                .OrderBy(fw => fw.Text)
+                .GroupBy(fw => fw.Text)
+                .Select(fw => fw.First())
+                .ToList()
+                ;
+
+                return Json(new { success = false, message = "Something went wrong..." });
+            }
+        }
+
+
+        [HttpGet]
         public IActionResult GetAll()
         {
             IEnumerable<RoomNumber> objRoomNumber;
             objRoomNumber = _IRoomNumberService.GetAll();
-
             return Json(new { data = objRoomNumber });
 
         }

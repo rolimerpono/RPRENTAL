@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interface
 {
-    public interface iRoomNumberRepository : IRepository<RoomNumber>
+    public interface IRoomNumberRepository : IRepository<RoomNumber>
     {
 
         void Update(RoomNumber objEntity);

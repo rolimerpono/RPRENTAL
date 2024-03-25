@@ -3,16 +3,16 @@
 <form id="form-add"> 
     <div class="modal-body">
         <div class="row">         
-            <div class="col-md-12 pt-md-0 pt-3">
-                <div class="mb-3">
-                <label for="description" class="form-label fw-bold">Select Room:</label>
-                <select class="form-select form-control border shadow" aria-label="Select Room" asp-for="@Model.tbl_RoomNumber.ROOM_ID" asp-items="@Model.ROOM_LIST" required>
-                    <option selected></option>                    
-                </select>
-                </div>
+            <div class="col-md-12 pt-md-0 pt-3">             
                 <div class="mb-3">
                     <label for="description" class="form-label fw-bold">Room Number:</label>
                     <input type="number" class="form-control" asp-for="@Model.tbl_RoomNumber.ROOM_NUMBER" placeholder="Enter Room Number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label fw-bold">Select Room:</label>
+                    <select class="form-select form-control border shadow" aria-label="Select Room" asp-for="@Model.tbl_RoomNumber.ROOM_ID" asp-items="@Model.ROOM_LIST" required>
+                        <option selected></option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Description:</label>

@@ -113,7 +113,6 @@ namespace DataWrapper.Implementation
             {
                 _IWorker.tbl_RoomNumber.Update(objRoomNumber);
                 _IWorker.tbl_RoomNumber.Save();
-               
             }
 
             catch (Exception ex) 
