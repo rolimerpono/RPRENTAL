@@ -10,7 +10,7 @@ namespace Repository.Interface
     public interface iRoomNumberRepository : IRepository<RoomNumber>
     {
 
-        void UpdateRecord(RoomNumber objEntity);
+        void Update(RoomNumber objEntity);
 
         void Save();
     }
