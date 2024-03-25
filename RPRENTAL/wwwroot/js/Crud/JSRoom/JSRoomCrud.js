@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     $('#tbl_Rooms').on('click', '.select-delete-btn', function () {
         var rowData = getRowData($(this));
-        $('#rooM_ID').val(rowData.rooM_ID);
+        $('#room_id').val(rowData.rooM_ID);
         $('#modal-delete').modal('show');
     });
 
@@ -146,7 +146,7 @@ function handleAjaxError(error) {
 }
 
 function showToast(type, message) {
-    var toaster = $('#toaster');
+    var toaster = $('.toaster');
     toaster.text(message);
     toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
     setTimeout(function () {

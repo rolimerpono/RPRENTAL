@@ -22,11 +22,11 @@
             });
     }
 
-    function GetRoomAvailable(pageID = '') {debugger
+    function GetRoomAvailable(pageID = '') {
         const checkInDate = document.getElementById('CheckInDate').value;
         const checkOutDate = document.getElementById('CheckOutDate').value;
 
-        if (checkOutDate >= checkInDate) {debugger
+        if (checkOutDate >= checkInDate) {
             const url = '/Home/GetRoomAvailable';
             const body = new URLSearchParams();
             body.append('CHECKIN_DATE', checkInDate);
@@ -35,7 +35,7 @@
 
             sendFetchRequest(url, body);
         }
-        else {debugger
+        else {
             showToast('error', 'Warning!, Checkout date should be greater than or equal to checkin date. Thank you.');
         }
     }
@@ -43,7 +43,7 @@
 
 
 function showToast(type, message) {
-    var toaster = $('#toaster');
+    var toaster = $('.toaster');
     toaster.text(message);
     toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
     setTimeout(function () {

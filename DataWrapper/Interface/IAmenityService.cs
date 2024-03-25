@@ -15,11 +15,11 @@ namespace DataWrapper.Interface
 
         Boolean IsAmenityExists(Amenity objAmenity);
 
-        bool Create(Amenity objAmenity);
+        void Create(Amenity objAmenity);
 
-        bool Update(Amenity objAmenity);
+        void Update(Amenity objAmenity);
 
-        bool Delete(int AMENITY_ID);
+        void Delete(int AMENITY_ID);
 
     }
 }

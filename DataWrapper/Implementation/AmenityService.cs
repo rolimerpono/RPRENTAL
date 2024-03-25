@@ -16,23 +16,23 @@ namespace DataWrapper.Implementation
         {
             _iWorker = worker;
         }
-        public bool Create(Amenity objAmenity)
+        public void Create(Amenity objAmenity)
         {
             try
             {
                 _iWorker.tbl_Amenity.Add(objAmenity);
                 _iWorker.tbl_Amenity.Save();
-                return true;
+               
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
 
             }
            
         }
 
-        public bool Delete(int Amenity_ID)
+        public void Delete(int Amenity_ID)
         {
             try
             {
@@ -42,14 +42,14 @@ namespace DataWrapper.Implementation
                 {
                     _iWorker.tbl_Amenity.Remove(objAmenity);
                     _iWorker.tbl_Amenity.Save();
-                    return true;
+                  
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
-            return false;
+         
         }
 
         public Amenity Get(int Amenity_ID)
@@ -102,18 +102,18 @@ namespace DataWrapper.Implementation
             }
         }
 
-        public bool Update(Amenity objAmenity)
+        public void Update(Amenity objAmenity)
         {
             try
             {
                 _iWorker.tbl_Amenity.Update(objAmenity);
                 _iWorker.tbl_Amenity.Save();
-                return true;
+               
             }
 
             catch (Exception e)
             {
-                return false;
+                throw;
             }
         }
       

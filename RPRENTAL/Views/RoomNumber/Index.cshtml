@@ -1,8 +1,8 @@
-﻿<link rel="stylesheet" href="~/css/styles.css">
+﻿
 <div class="container">
     <div class="row pt-3">
         <div class="col">
-            <div class="text-center text-white"><h2>ROOM LIST</h2></div>
+            <div class="text-center text-white"><h2>ROOM NUMBER LIST</h2></div>
         </div>
     </div>
     <div class="row mt-3">
@@ -12,15 +12,12 @@
     </div>
     <div class="row mt-3" >
         <div class="col-12">         
-            <table id="tbl_Rooms" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">
+            <table id="tbl_RoomNumber" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">
                 <thead class="bg-primary text-white">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                    <tr>                    
+                        <th>Room Number</th>                   
+                        <th>Room Name</th>   
                         <th>Description</th>
-                        <th>Price</th>
-                        <th>Occupancy</th>
-                        <th>Image</th>
                         <th class="text-center">Edit</th>
                         <th class="text-center">Delete</th>
                     </tr>
@@ -36,11 +33,11 @@
 
 <!-- Add Modal -->
 <div class="modal fade" id="modal-add" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white fw-bold" id="addModalLabel">CREATE ROOM</h5>
-            </div>
+                <h5 class="modal-title text-white fw-bold" id="addModalLabel">CREATE ROOM NUMBER</h5>
+            </div>            
             <div id="modal-add-content"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
@@ -58,13 +55,13 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white fw-bold" id="editModalLabel">EDIT ROOM</h5>
+                <h5 class="modal-title text-white fw-bold" id="editModalLabel">EDIT ROOM NUMBER</h5>
             </div>           
             <div id="modal-edit-content"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal" style="width:100px;">Close</button>
                 <button type="button" class="btn btn-primary btn-edit" style="width:100px;">Save</button>
-            </div>
+            </div>           
         </div>      
     </div>  
 </div>
@@ -77,10 +74,10 @@
     <div class="modal-dialog modal-dialog-centered" style="max-width:400px; width:100%;">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white fw-bold" id="deleteModalLabel">DELETE ROOM</h5>
+                <h5 class="modal-title text-white fw-bold" id="deleteModalLabel">DELETE ROOM NUMBER</h5>
             </div>
-            <form id="deleteform" enctype="multipart/form-data">
-                <input id="ROOM_ID" hidden  name="rooM_ID"/>
+            <form id="form-delete" enctype="multipart/form-data">
+                <input id="room_number" hidden name="room_number" />
                 <div class="modal-body" style="height:100px;">
                     <div class="row">
                         <div class="col-lg-12">
@@ -91,16 +88,20 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">No</button>
                     <button type="button" class="btn btn-primary btn-delete" style="width:100px;">Yes</button>
-                </div>
+                </div>        
             </form>
         </div>
     </div>
 </div>
+
+
 <!--End Delete Modal -->
 
+<!--Toaster Notification -->
+<div id="toaster" class="toaster"></div>
 
 
 @section Scripts {
-    <script src="~/js/Crud/JSRoom/JSRoomCrud.js"></script>
-}
+    <script src="~/js/Crud/JSRoomNumber/JSRoomNumberCrud.js"></script>    
+  }
 

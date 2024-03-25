@@ -16,22 +16,22 @@ namespace DataWrapper.Implementation
             _iWorker = iWorker;
         }
 
-        public bool Create(Room objRoom)
+        public void Create(Room objRoom)
         {
             try
             {
                 _iWorker.tbl_Rooms.Add(objRoom);
                 _iWorker.tbl_Rooms.Save();
-                return true;
+               
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
 
             }
         }
 
-        public bool Delete(int ROOM_ID)
+        public void Delete(int ROOM_ID)
         {
             try
             {
@@ -41,14 +41,14 @@ namespace DataWrapper.Implementation
                 {
                     _iWorker.tbl_Rooms.Remove(objRoom);
                     _iWorker.tbl_Rooms.Save();
-                    return true;
+                   
                 }
             }
             catch (Exception ex)
             {
-                throw;                
+                throw ex;                
             }
-            return false;
+          
         }
 
         public Room Get(int ROOM_ID)
@@ -109,18 +109,18 @@ namespace DataWrapper.Implementation
             }
         }
 
-        public bool Update(Room objRoom)
+        public void Update(Room objRoom)
         {
             try
             {
                 _iWorker.tbl_Rooms.Update(objRoom);
                 _iWorker.tbl_Rooms.Save();
-                return true;
+               
             }
 
             catch (Exception e)
             {
-                return false;
+                throw;
             }
         }
     }

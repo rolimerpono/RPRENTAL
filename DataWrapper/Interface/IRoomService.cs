@@ -15,10 +15,10 @@ namespace DataWrapper.Interface
 
         Boolean IsRoomNameExists(Room objRoom);
 
-        bool Create(Room objRoom);
+        void Create(Room objRoom);
 
-        bool Update(Room objRoom);
+        void Update(Room objRoom);
 
-        bool Delete(int ROOM_ID);
+        void Delete(int ROOM_ID);
     }
 }

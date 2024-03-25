@@ -40,7 +40,6 @@
     <Folder Include="wwwroot\css\Layout\Admin\" />
     <Folder Include="wwwroot\css\Layout\" />
     <Folder Include="wwwroot\js\Crud\JSAmenity\" />
-    <Folder Include="wwwroot\js\Crud\JSRoomNumber\" />
     <Folder Include="wwwroot\js\Crud\JSRegister\" />
   </ItemGroup>
 

@@ -22,7 +22,7 @@ namespace Repository.Implementation
             _db.SaveChanges();  
         }
 
-        public void UpdateRecord(RoomNumber objEntity)
+        public void Update(RoomNumber objEntity)
         {
            _db.tbl_RoomNumber.Update(objEntity);
         }

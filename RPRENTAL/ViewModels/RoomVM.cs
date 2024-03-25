@@ -10,5 +10,7 @@ namespace RPRENTAL.ViewModels
 
         [ValidateNever]
         public IEnumerable<Amenity>? ROOM_AMENITIES { get; set; }
+
+        
     }
 }
