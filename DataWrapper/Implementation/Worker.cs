@@ -26,12 +26,14 @@ namespace DataWrapper.Implementation
             
         }
 
-        public IAmenityOnlyRepository tbl_AmenityOnly { get; private set; }
+      
         public IRoomRepository tbl_Rooms {get; private set;}
 
         public IRoomNumberRepository tbl_RoomNumber { get; private set; }
 
         public IAmenityRepository tbl_Amenity { get; private set; }
+
+        public IAmenityOnlyRepository tbl_AmenityOnly { get; private set; }
 
         public IBookingRepository tbl_Booking { get; private set; }
 

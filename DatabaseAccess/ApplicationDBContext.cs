@@ -27,6 +27,7 @@ namespace DatabaseAccess
         public DbSet<Amenity> tbl_Amenity { get; set; }
 
         public DbSet<AmenityOnly> tbl_AmenityOnly { get; set; }
+     
 
         public DbSet<Booking> tbl_Booking { get; set; }
 
@@ -288,7 +289,7 @@ namespace DatabaseAccess
                 {
                     ID = 2,
                     AMENITY_NAME = "Electric Fan",
-                
+
                 },
                 new AmenityOnly
                 {
