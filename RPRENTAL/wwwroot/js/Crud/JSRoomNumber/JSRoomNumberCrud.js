@@ -44,7 +44,7 @@ function initializeDataTable() {
                 'width': '35%',
                 'render': function (data, type, row) {
                     if (type === 'display' && data.length > 100) {
-                        return '<div style="max-height: 50px; overflow-x: auto;">' + data + '</div>';
+                        return '<div style="max-height: 25px; overflow-x: auto;">' + data + '</div>';
                     } else {
                         return data;
                     }

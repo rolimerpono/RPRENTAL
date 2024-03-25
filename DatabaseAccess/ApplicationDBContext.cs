@@ -26,6 +26,8 @@ namespace DatabaseAccess
         
         public DbSet<Amenity> tbl_Amenity { get; set; }
 
+        public DbSet<AmenityOnly> tbl_AmenityOnly { get; set; }
+
         public DbSet<Booking> tbl_Booking { get; set; }
 
         public DbSet<ApplicationUser> tbl_User { get; set; }
@@ -272,6 +274,39 @@ namespace DatabaseAccess
                                 }
             );
 
+
+            #endregion
+
+            #region Amenity Only
+            builder.Entity<AmenityOnly>().HasData(
+                new AmenityOnly
+                {
+                    ID = 1,
+                    AMENITY_NAME = "Washing Machine",
+                },
+                new AmenityOnly
+                {
+                    ID = 2,
+                    AMENITY_NAME = "Electric Fan",
+                
+                },
+                new AmenityOnly
+                {
+                    ID = 3,
+                    AMENITY_NAME = "TV",
+                },
+                new AmenityOnly
+                {
+                    ID = 4,
+                    AMENITY_NAME = "Internet Wifi",
+                },
+                new AmenityOnly
+                {
+                    ID = 5,
+                    AMENITY_NAME = "Microwave",
+
+                }
+             );
 
             #endregion
 
