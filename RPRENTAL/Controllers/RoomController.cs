@@ -67,7 +67,10 @@ namespace RPRENTAL.Controllers
                     TempData["success"] = "Room created successfully.";
                     return Json(new { success = true, message = "Room created successfully." });
                 }
-                return Json(new { success = false, message = "Something went wrong." });
+                else
+                {
+                    return Json(new { success = false, message = "Something went wrong." });
+                }
 
             }
             catch (Exception ex)

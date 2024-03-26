@@ -81,12 +81,12 @@ namespace DataWrapper.Implementation
             }
         }
 
-        public bool IsAmenityExists(AmenityOnly objAmenity)
+        public bool IsAmenityExists(String AmenityName)
         {
             try
             {
                 //CHECK IF AMENITY NAME ALREADY EXISTS
-                var objResult = _iWorker.tbl_AmenityOnly.Any(fw => fw.AMENITY_NAME == objAmenity.AMENITY_NAME);
+                var objResult = _iWorker.tbl_AmenityOnly.Any(fw => fw.AMENITY_NAME == AmenityName);
 
                 return objResult;
 

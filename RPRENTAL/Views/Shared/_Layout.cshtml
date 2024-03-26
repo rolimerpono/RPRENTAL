@@ -29,7 +29,7 @@
                             <a class="dropdown-item" asp-controller="Room" asp-action="Index">Room</a>
                             <a class="dropdown-item" asp-controller="RoomNumber" asp-action="Index">Room Number</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Amenity</a>
+                            <a class="dropdown-item" asp-controller="AmenityOnly" asp-action="Index" >Amenity</a>
                             <a class="dropdown-item" href="#">Room Amenity</a>
                                                 
                             <div class="dropdown-divider"></div>
@@ -59,13 +59,13 @@
 
 
     <div class="container-fluid">
-        <main role="main" class="pb-3">               
+        <main role="main" class="pb-3 min-vh-100">               
             @RenderBody()            
         </main>
     </div>
 
   
-    <footer class="pt-5">   
+    <footer class="pt-5 bg-dark-subtle">   
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">

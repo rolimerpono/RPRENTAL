@@ -9,6 +9,12 @@ namespace Model
 {
     public class AmenityOnly
     {
+        public AmenityOnly()
+        {
+            ID = 0;
+            AMENITY_NAME = string.Empty;
+        }
+
         [Key]
         public int ID { get; set; }
 

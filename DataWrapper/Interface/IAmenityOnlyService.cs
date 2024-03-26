@@ -13,7 +13,7 @@ namespace DataWrapper.Interface
 
         AmenityOnly Get(int ID);
 
-        Boolean IsAmenityExists(AmenityOnly objAmenity);
+        Boolean IsAmenityExists(String AmenityName);
 
         void Create(AmenityOnly objAmenity);
 

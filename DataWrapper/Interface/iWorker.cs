@@ -14,7 +14,6 @@ namespace DataWrapper.Interface
         IAmenityRepository tbl_Amenity { get; }
         IBookingRepository tbl_Booking { get; } 
         IApplicationUserRepository tbl_User { get; }
-
         IAmenityOnlyRepository tbl_AmenityOnly { get; }
 
 
