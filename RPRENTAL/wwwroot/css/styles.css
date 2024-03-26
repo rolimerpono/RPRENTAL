@@ -85,6 +85,10 @@
     cursor: pointer;
 }
 
+.dropdown-toggle::after {
+    margin-left:10px;
+}
+
 
 
 

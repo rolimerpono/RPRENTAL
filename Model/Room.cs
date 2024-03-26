@@ -7,7 +7,18 @@ namespace Model
 {
     public class Room
     {
-       
+        public Room()
+        {
+            ROOM_ID = 0;
+            DESCRIPTION = "";
+            ROOM_NAME = "";
+            ROOM_PRICE = 0;
+            MAX_OCCUPANCY = 0;
+            IMAGE_URL = "https://placehold.co/600x400";
+            CREATED_DATE = DateTime.Now;
+        }
+
+
         [Key]
         public int ROOM_ID { get; set; }
 

@@ -1,0 +1,25 @@
+﻿@model AmenityOnly
+
+<form id="form-edit">  
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 pt-md-0 pt-3">
+                <div class="mb-3">
+                    <input asp-for ="@Model.ID" hidden />
+                    <label class="form-label fw-bold">Room Name:</label>
+                    <input type="text" class="form-control" asp-for="@Model.AMENITY_NAME" placeholder="Enter Amenity Name" required>
+                    <div class="invalid-feedback">Please provide a amenity name.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
