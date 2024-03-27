@@ -23,6 +23,7 @@ namespace DataWrapper.Implementation
             tbl_Booking = new BookingRepository(_db);
             tbl_User  = new  ApplicationRepository(_db);
             tbl_AmenityOnly = new AmenityOnlyRepository(_db);
+            tbl_RoomAmenity = new RoomAmenityRepository(_db);
             
         }
 
@@ -34,6 +35,8 @@ namespace DataWrapper.Implementation
         public IAmenityRepository tbl_Amenity { get; private set; }
 
         public IAmenityOnlyRepository tbl_AmenityOnly { get; private set; }
+
+        public IRoomAmenityRepository tbl_RoomAmenity { get; private set; }
 
         public IBookingRepository tbl_Booking { get; private set; }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,21 +10,16 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class AmenityOnly
+    public class RoomAmenity
     {
-        public AmenityOnly()
-        {
-            ID = 0;
-            AMENITY_NAME = string.Empty;
-       
-        }
+     
 
         [Key]
         public int ID { get; set; }
+   
+        public int ROOM_ID { get; set; }
 
-        public string AMENITY_NAME { get; set; }
-
-
-
+        public int AMENITY_ID { get; set; }     
+       
     }
 }
