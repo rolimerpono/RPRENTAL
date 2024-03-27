@@ -1,4 +1,6 @@
-﻿namespace RPRENTAL.ViewModels
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+namespace RPRENTAL.ViewModels
 {
     public class AmenityOnlyVM
     {
@@ -9,6 +11,8 @@
         }
         public int ID { get; set; }
         public String AMENITY_NAME { get; set; }
+
+      
 
     }
 }

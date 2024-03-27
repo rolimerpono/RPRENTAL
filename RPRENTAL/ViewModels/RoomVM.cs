@@ -6,10 +6,7 @@ namespace RPRENTAL.ViewModels
     public class RoomVM
     {
         [ValidateNever]
-        public Room? ROOM { get; set; }
-
-        [ValidateNever]
-        public IEnumerable<Amenity>? ROOM_AMENITIES { get; set; }
+        public Room? ROOM { get; set; }       
 
         
     }

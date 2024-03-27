@@ -27,7 +27,7 @@ namespace RPRENTAL.Controllers
 
             var objRoomList = _iWorker.tbl_Rooms
                 .GetAll(includeProperties: "ROOM_AMENITIES")
-                .AsEnumerable() // Load into memory to perform further operations
+                .AsEnumerable() 
                 .Select(roomItem =>
                 { 
                     return new HomeVM

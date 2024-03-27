@@ -26,6 +26,8 @@ namespace DatabaseAccess
         
         public DbSet<Amenity> tbl_Amenity { get; set; }
 
+        public DbSet<RoomAmenity> tbl_RoomAmenity { get; set; }
+
         public DbSet<AmenityOnly> tbl_AmenityOnly { get; set; }
      
 
@@ -311,6 +313,8 @@ namespace DatabaseAccess
 
             #endregion
 
+         
+
 
             #region tbl_Amenity
             builder.Entity<Amenity>().HasData (
@@ -564,6 +568,16 @@ namespace DatabaseAccess
             );
 
             #endregion
+
+            #region Room Amenity
+                builder.Entity<RoomAmenity>().HasData(
+                new RoomAmenity { ID = 1, ROOM_ID = 1, AMENITY_ID = 1 },
+                new RoomAmenity { ID = 2, ROOM_ID = 1, AMENITY_ID = 2 },
+                new RoomAmenity { ID = 3, ROOM_ID = 1, AMENITY_ID = 3 },
+                new RoomAmenity { ID = 4, ROOM_ID = 1, AMENITY_ID = 4 },
+                new RoomAmenity { ID = 5, ROOM_ID = 1, AMENITY_ID = 5 });       
+            #endregion
+
         }
 
 
