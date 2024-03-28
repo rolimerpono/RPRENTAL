@@ -24,6 +24,5 @@ namespace Model
         public string AMENITY_NAME { get; set; }
 
 
-
     }
 }

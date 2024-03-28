@@ -46,7 +46,7 @@ namespace DatabaseAccess.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("tbl_Roles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -71,7 +71,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("tbl_RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -96,7 +96,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("tbl_UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -118,7 +118,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("tbl_UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -133,7 +133,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("tbl_UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -152,7 +152,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("tbl_UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Model.Amenity", b =>
@@ -616,68 +616,68 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             ROOM_ID = 1,
-                            CREATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7908),
+                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3192),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 1,
                             ROOM_NAME = "Single Room",
                             ROOM_PRICE = 85.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7910)
+                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3193)
                         },
                         new
                         {
                             ROOM_ID = 2,
-                            CREATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7923),
+                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3201),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 2,
                             ROOM_NAME = "Double Room",
                             ROOM_PRICE = 90.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7925)
+                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3202)
                         },
                         new
                         {
                             ROOM_ID = 3,
-                            CREATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7937),
+                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3207),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 3,
                             ROOM_NAME = "Deluxed Room",
                             ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7939)
+                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3208)
                         },
                         new
                         {
                             ROOM_ID = 4,
-                            CREATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7951),
+                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3215),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 4,
                             ROOM_NAME = "Queens Room",
                             ROOM_PRICE = 120.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7953)
+                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3216)
                         },
                         new
                         {
                             ROOM_ID = 5,
-                            CREATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7964),
+                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3222),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 5,
                             ROOM_NAME = "Kings Room",
                             ROOM_PRICE = 130.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7966)
+                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3223)
                         },
                         new
                         {
                             ROOM_ID = 6,
-                            CREATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7978),
+                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3229),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Executive Suite",
                             ROOM_PRICE = 180.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 27, 15, 6, 53, 890, DateTimeKind.Local).AddTicks(7980)
+                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3230)
                         });
                 });
 
@@ -696,6 +696,8 @@ namespace DatabaseAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AMENITY_ID");
 
                     b.ToTable("tbl_RoomAmenity");
 
@@ -951,6 +953,17 @@ namespace DatabaseAccess.Migrations
                     b.Navigation("ROOM");
 
                     b.Navigation("USERS");
+                });
+
+            modelBuilder.Entity("Model.RoomAmenity", b =>
+                {
+                    b.HasOne("Model.AmenityOnly", "AMENITY")
+                        .WithMany()
+                        .HasForeignKey("AMENITY_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AMENITY");
                 });
 
             modelBuilder.Entity("Model.RoomNumber", b =>

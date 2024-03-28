@@ -31,7 +31,7 @@ namespace Repository.Implementation
             return dbSet.Any(Filter);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool isTracking = false)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? IncludeProperties = null, bool isTracking = false)
         {            
            
             IQueryable<T> objQuery = isTracking ? dbSet.AsQueryable() : dbSet.AsNoTracking();
@@ -41,9 +41,9 @@ namespace Repository.Implementation
                 objQuery = objQuery.Where(filter);
             }
 
-            if (!string.IsNullOrEmpty(includeProperties))
+            if (!string.IsNullOrEmpty(IncludeProperties))
             { 
-                foreach( var prop in includeProperties.Split(new char [] { ',' }, StringSplitOptions.RemoveEmptyEntries) )
+                foreach( var prop in IncludeProperties.Split(new char [] { ',' }, StringSplitOptions.RemoveEmptyEntries) )
                 {
                     objQuery = objQuery.Include(prop);
                 }
@@ -52,7 +52,7 @@ namespace Repository.Implementation
             return objQuery;
         }
 
-        public T Get(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool isTracking = false)
+        public T Get(Expression<Func<T, bool>>? filter = null, string? IncludeProperties = null, bool isTracking = false)
         {
             IQueryable<T> objQuery = isTracking ? dbSet.AsQueryable() : dbSet.AsNoTracking();
 
@@ -61,9 +61,9 @@ namespace Repository.Implementation
                 objQuery = objQuery.Where(filter);
             }
 
-            if (!string.IsNullOrEmpty(includeProperties)) 
+            if (!string.IsNullOrEmpty(IncludeProperties)) 
             { 
-                foreach( var prop in includeProperties.Split(new char [] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach( var prop in IncludeProperties.Split(new char [] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     objQuery = objQuery.Include(prop);
                 }

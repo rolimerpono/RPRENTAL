@@ -19,7 +19,14 @@ namespace Model
    
         public int ROOM_ID { get; set; }
 
-        public int AMENITY_ID { get; set; }     
+        [ForeignKey("AMENITY")]
+        public int AMENITY_ID { get; set; }
+
+        [ValidateNever]
+
+        public AmenityOnly? AMENITY { get; set; }
+
+
        
     }
 }

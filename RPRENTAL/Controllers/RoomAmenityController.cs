@@ -23,20 +23,52 @@ namespace RPRENTAL.Controllers
         }
         public IActionResult Index()
         {
-            var objRoomList = _IRoomService.GetAll();
+         
             var objAmenityList = _IAmenityOnlyService.GetAll();
-            var objRoomAmenityList = _IRoomAmenityService.GetAll();
 
-            RoomAmenityVM objData = new RoomAmenityVM
+            var objRoomAmenities = _IRoomService.GetAll()
+             .GroupJoin(
+                 _IRoomAmenityService.GetAll(),
+                 room => room.ROOM_ID,
+                 roomAmenity => roomAmenity.ROOM_ID,
+                 (room, roomAmenityGroup) => new
+                 {
+                     RoomId = room.ROOM_ID,
+                     RoomName = room.ROOM_NAME,
+                     Amenities = roomAmenityGroup.ToList()
+                 })
+             .Select(grouped => new
+             {
+                 grouped.RoomId,
+                 grouped.RoomName,
+                 Amenities = grouped.Amenities.Where(ra => ra != null).ToList()
+             });
+
+
+            List<RoomAmenityVM> objData = new List<RoomAmenityVM>();
+
+            foreach (var item in objRoomAmenities)
             {
-                ROOM_LIST = objRoomList,
-                AMENITY_LIST = objAmenityList,               
-            };
+                var objRoomVM = new RoomAmenityVM
+                {
+                    ROOM_ID = item.RoomId,
+                    ROOM_NAME = item.RoomName
+                };
 
-          
-           
+                if (item.Amenities != null && item.Amenities.Any())
+                {
+                    // Extract ID and AMENITY_NAME directly in the constructor of RoomAmenityVM
+                    objRoomVM.AMENITIES.AddRange(item.Amenities.Select(amenity => new AmenityOnly
+                    {
+                        ID = amenity.AMENITY.ID,
+                        AMENITY_NAME = amenity.AMENITY.AMENITY_NAME
+                    }));
+                }
 
-            return View("Index");
+                objData.Add(objRoomVM);
+            }
+
+            return View("Index", objData);
         }
 
         public IActionResult GetRoomList()

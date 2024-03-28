@@ -9,20 +9,25 @@ namespace RPRENTAL.ViewModels
     {
 
         public RoomAmenityVM()
-        {           
-            ROOM_LIST = new List<Room>();
-            ROOM_AMENITY = new List<AmenityOnly>();
+        {
+            ROOM_ID = 0;
+            ROOM_NAME = string.Empty;
+            AMENITIES = new List<AmenityOnly>();
+
+
         }
 
+ 
 
         [ValidateNever]
-        public IEnumerable<Room> ROOM_LIST { get; set; }
+        public int ROOM_ID { get; set; }
+        public string ROOM_NAME { get; set; }
 
-        [ValidateNever]    
-        public IEnumerable<AmenityOnly> ROOM_AMENITY { get; set; }
+        public List<AmenityOnly> AMENITIES { get; set; }
 
-        [ValidateNever]
-        public Boolean IS_CHECK { get; set; }
+
+
+     
 
       
     }

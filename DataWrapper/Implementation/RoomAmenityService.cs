@@ -38,14 +38,14 @@ namespace DataWrapper.Implementation
 
         public RoomAmenity Get(int ID)
         {
-            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID);
+            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID,IncludeProperties: "AMENITY");
             return objRoomAmenity;
         }
 
         public IEnumerable<RoomAmenity> GetAll()
         {
             IEnumerable<RoomAmenity> objRoomAmenity;
-            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll();
+            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "AMENITY");
             return objRoomAmenity;
         }
 

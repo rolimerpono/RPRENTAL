@@ -77,7 +77,7 @@ namespace DataWrapper.Implementation
             try
             {
 
-                objRoom = _iWorker.tbl_Rooms.GetAll(includeProperties: "ROOM_AMENITIES");
+                objRoom = _iWorker.tbl_Rooms.GetAll(IncludeProperties: "ROOM_AMENITIES");
                 if (objRoom != null)
                 {
                     return objRoom;

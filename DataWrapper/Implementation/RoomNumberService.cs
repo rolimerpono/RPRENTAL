@@ -77,7 +77,7 @@ namespace DataWrapper.Implementation
         {
             try
             {
-                var objRoomNumber = _IWorker.tbl_RoomNumber.GetAll(includeProperties: "ROOM");
+                var objRoomNumber = _IWorker.tbl_RoomNumber.GetAll(IncludeProperties: "ROOM");
 
                 if (objRoomNumber != null)
                 {

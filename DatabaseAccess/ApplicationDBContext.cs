@@ -28,8 +28,7 @@ namespace DatabaseAccess
 
         public DbSet<RoomAmenity> tbl_RoomAmenity { get; set; }
 
-        public DbSet<AmenityOnly> tbl_AmenityOnly { get; set; }
-     
+        public DbSet<AmenityOnly> tbl_AmenityOnly { get; set; }     
 
         public DbSet<Booking> tbl_Booking { get; set; }
 
@@ -313,9 +312,7 @@ namespace DatabaseAccess
 
             #endregion
 
-         
-
-
+  
             #region tbl_Amenity
             builder.Entity<Amenity>().HasData (
             new Amenity

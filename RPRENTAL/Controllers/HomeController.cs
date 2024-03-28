@@ -26,7 +26,7 @@ namespace RPRENTAL.Controllers
             var pageSize = 6;
 
             var objRoomList = _iWorker.tbl_Rooms
-                .GetAll(includeProperties: "ROOM_AMENITIES")
+                .GetAll(IncludeProperties: "ROOM_AMENITIES")
                 .AsEnumerable() 
                 .Select(roomItem =>
                 { 
@@ -51,7 +51,7 @@ namespace RPRENTAL.Controllers
         public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE, int? iPage)
         {
             var objRoomList = _iWorker.tbl_Rooms
-                .GetAll(includeProperties: "ROOM_AMENITIES")
+                .GetAll(IncludeProperties: "ROOM_AMENITIES")
                 .AsEnumerable() // Load into memory to perform further operations
                 .Select(roomItem =>
                 {

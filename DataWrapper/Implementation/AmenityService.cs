@@ -72,7 +72,7 @@ namespace DataWrapper.Implementation
             try
             {
                 IEnumerable<Amenity> objAmenity;
-                objAmenity = _iWorker.tbl_Amenity.GetAll(includeProperties: "ROOM").OrderBy(ob => ob.ROOM.ROOM_NAME);
+                objAmenity = _iWorker.tbl_Amenity.GetAll(IncludeProperties: "ROOM").OrderBy(ob => ob.ROOM.ROOM_NAME);
                 return objAmenity;
             }
             catch (Exception ex)
