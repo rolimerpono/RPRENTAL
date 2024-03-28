@@ -23,7 +23,11 @@ namespace RPRENTAL.ViewModels
         public int ROOM_ID { get; set; }
         public string ROOM_NAME { get; set; }
 
+       
         public List<AmenityOnly> AMENITIES { get; set; }
+        public List<Room> ROOM_LIST { get; set; }
+
+        public List<RoomAmenity> ROOM_AMENITY { get; set; }
 
 
 

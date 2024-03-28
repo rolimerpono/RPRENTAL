@@ -1,16 +1,13 @@
 ﻿var objDataTable;
 
-$(document).ready(function () {
-    
-    
-
+$(document).ready(function () {    
+    const objSelectedRoom = document.getElementById('#selected_room');
     initializeDataTable();
 
 
-    $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
-        const objSelectedRoom = document.getElementById('#selected_room');
+    $('#tbl_Rooms').on('click', '.select-edit-btn', function () {        
         var rowData = getRowData($(this));
-        Display('/RoomAmenity/GetSelectedRoom', rowData, objSelectedRoom);debugger
+        Display('/RoomAmenity/GetSelectedRoom', rowData, objSelectedRoom);
     });
 
     $('.btn-edit').click(function () {
@@ -50,10 +47,10 @@ function initializeDataTable() {
 }
 
 function Display(url, body, objDiv) {    
-    debugger
     fetch(url, {
         method: 'POST',
-        body: body,
+        body: { ID: body.rooM_ID }
+,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }

@@ -23,81 +23,72 @@ namespace RPRENTAL.Controllers
         }
         public IActionResult Index()
         {
-         
+
+            var objRoomList = _IRoomService.GetAll();
             var objAmenityList = _IAmenityOnlyService.GetAll();
+            var objRoomAmenities = _IRoomAmenityService.GetAll();
 
-            var objRoomAmenities = _IRoomService.GetAll()
-             .GroupJoin(
-                 _IRoomAmenityService.GetAll(),
-                 room => room.ROOM_ID,
-                 roomAmenity => roomAmenity.ROOM_ID,
-                 (room, roomAmenityGroup) => new
-                 {
-                     RoomId = room.ROOM_ID,
-                     RoomName = room.ROOM_NAME,
-                     Amenities = roomAmenityGroup.ToList()
-                 })
-             .Select(grouped => new
-             {
-                 grouped.RoomId,
-                 grouped.RoomName,
-                 Amenities = grouped.Amenities.Where(ra => ra != null).ToList()
-             });
+            RoomAmenityVM objData = new RoomAmenityVM();
 
-
-            List<RoomAmenityVM> objData = new List<RoomAmenityVM>();
-
-            foreach (var item in objRoomAmenities)
-            {
-                var objRoomVM = new RoomAmenityVM
-                {
-                    ROOM_ID = item.RoomId,
-                    ROOM_NAME = item.RoomName
-                };
-
-                if (item.Amenities != null && item.Amenities.Any())
-                {
-                    // Extract ID and AMENITY_NAME directly in the constructor of RoomAmenityVM
-                    objRoomVM.AMENITIES.AddRange(item.Amenities.Select(amenity => new AmenityOnly
-                    {
-                        ID = amenity.AMENITY.ID,
-                        AMENITY_NAME = amenity.AMENITY.AMENITY_NAME
-                    }));
-                }
-
-                objData.Add(objRoomVM);
-            }
+            objData.ROOM_LIST = objRoomList.ToList();
+            objData.AMENITIES = objAmenityList.ToList();
+            objData.ROOM_AMENITY = objRoomAmenities.ToList();           
+            
 
             return View("Index", objData);
         }
 
-        public IActionResult GetRoomList()
-        {
-         
-            var objRoomList = _IRoomService.GetAll();
-            var objAmenityList = _IAmenityOnlyService.GetAll();
-       
-
-            return Json(new { data = objAmenityList });            
-        }
+    
 
 
         [HttpPost]
-        public IActionResult GetSelectedRoom(int rooM_ID = 0)
+        public IActionResult GetSelectedRoom(int ID = 0)
         {
 
-            var objRoomAmenity = _IRoomAmenityService.GetAll().Where(fw => fw.ROOM_ID == rooM_ID);
             var objAmenityList = _IAmenityOnlyService.GetAll();
 
-           
+            var objRoomAmenities = _IRoomService.GetAll()
+                .Where(room => room.ROOM_ID == ID) // Filter based on the desired Room ID
+                .GroupJoin(
+                    _IRoomAmenityService.GetAll(),
+                    room => room.ROOM_ID,
+                    roomAmenity => roomAmenity.ROOM_ID,
+                    (room, roomAmenityGroup) => new
+                    {
+                        RoomId = room.ROOM_ID,
+                        RoomName = room.ROOM_NAME,
+                        Amenities = roomAmenityGroup.ToList()
+                    })
+                .Select(grouped => new
+                {
+                    grouped.RoomId,
+                    grouped.RoomName,
+                    RoomAmenities = objAmenityList
+                        .Select(amenity =>
+                        {
+                            var roomAmenity = grouped.Amenities.FirstOrDefault(ra => ra.AMENITY_ID == amenity.ID);
+                            return new
+                            {
+                                Amenity = amenity,
+                                IS_CHECK = roomAmenity != null ? true : false
+                            };
+                        })
+                        .ToList()
+                })
+                .FirstOrDefault(); 
 
-            return PartialView("Common/_RoomAmenity", objAmenityList);
+
+
+            return PartialView("Common/_RoomAmenity", objRoomAmenities);
         }
 
+        [HttpGet]
+        public IActionResult GetRoomList()
+        {
+            var objRoomList = _IRoomService.GetAll();
 
-
-
-
+            return Json(new { data = objRoomList });
+        }
 
     }
 }
