@@ -42,8 +42,8 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult GetSelectedRoom(int? ID)
-        {
+        public IActionResult GetSelectedRoom(int ID)
+        {           
 
             var objRoomList = _IRoomService.GetAll();
 
@@ -80,8 +80,10 @@ namespace RPRENTAL.Controllers
             RoomAmenityVM objData = new RoomAmenityVM();
             objData.ROOM_AMENITY = new List<RoomAmenity>();
             objData.ROOM_LIST = new List<Room>();
+            objData.ROOM_ID = (int)ID;
+          
            
-            foreach (var oAmenity in objRoomAmenities.RoomAmenities)
+            foreach (var oAmenity in objRoomAmenities.RoomAmenities.ToList())
             {
                
                 var newAmenity = new AmenityOnly
@@ -96,7 +98,7 @@ namespace RPRENTAL.Controllers
                 objData.AMENITIES.Add(newAmenity);
             }
 
-            return PartialView("Common/_RoomAmenity", objData);
+            return PartialView("Common/_RoomAmenity",objData);
         }
 
         [HttpGet]
