@@ -1,44 +1,46 @@
-﻿    const objRoomListDiv = document.getElementById('room_list');
+﻿const objRoomListDiv = document.getElementById('room_list');
 
-    function sendFetchRequest(url, body) {
-        fetch(url, {
-            method: 'POST',
-            body: body,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+function sendFetchRequest(url, body) {
+    debugger
+    fetch(url, {
+        method: 'POST',
+        body: body,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+        .then(response => {
+            debugger
+            if (response.ok) {
+                return response.text();
             }
+            throw new Error('Network response was not ok.');
         })
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                objRoomListDiv.innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
+        .then(data => {
+            objRoomListDiv.innerHTML = data;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
+
+function GetRoomAvailable(pageID = '') {
+    const checkInDate = document.getElementById('CheckInDate').value;
+    const checkOutDate = document.getElementById('CheckOutDate').value;
+
+    if (checkOutDate >= checkInDate) {
+        const url = '/Home/GetRoomAvailable';
+        const body = new URLSearchParams();
+        body.append('CHECKIN_DATE', checkInDate);
+        body.append('CHECKOUT_DATE', checkOutDate);
+        body.append('iPage', pageID);
+
+        sendFetchRequest(url, body);
     }
-
-    function GetRoomAvailable(pageID = '') {
-        const checkInDate = document.getElementById('CheckInDate').value;
-        const checkOutDate = document.getElementById('CheckOutDate').value;
-
-        if (checkOutDate >= checkInDate) {
-            const url = '/Home/GetRoomAvailable';
-            const body = new URLSearchParams();
-            body.append('CHECKIN_DATE', checkInDate);
-            body.append('CHECKOUT_DATE', checkOutDate);
-            body.append('iPage', pageID);
-
-            sendFetchRequest(url, body);
-        }
-        else {
-            showToast('error', 'Warning!, Checkout date should be greater than or equal to checkin date. Thank you.');
-        }
+    else {
+        showToast('error', 'Warning!, Checkout date should be greater than or equal to checkin date. Thank you.');
     }
+}
 
 
 

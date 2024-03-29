@@ -15,6 +15,7 @@ namespace Model
         {
             ID = 0;
             AMENITY_NAME = string.Empty;
+            IS_CHECK = false;
        
         }
 
@@ -22,6 +23,10 @@ namespace Model
         public int ID { get; set; }
 
         public string AMENITY_NAME { get; set; }
+
+        [NotMapped]
+        [ValidateNever]
+        public Boolean IS_CHECK { get; set; }
 
 
     }

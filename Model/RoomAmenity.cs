@@ -26,6 +26,7 @@ namespace Model
 
         public AmenityOnly? AMENITY { get; set; }
 
+  
 
        
     }

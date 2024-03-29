@@ -42,10 +42,10 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult GetSelectedRoom(int ID = 0)
+        public IActionResult GetSelectedRoom(int? ID)
         {
 
-            var objAmenityList = _IAmenityOnlyService.GetAll();
+            var objRoomList = _IRoomService.GetAll();
 
             var objRoomAmenities = _IRoomService.GetAll()
                 .Where(room => room.ROOM_ID == ID) // Filter based on the desired Room ID
@@ -63,7 +63,7 @@ namespace RPRENTAL.Controllers
                 {
                     grouped.RoomId,
                     grouped.RoomName,
-                    RoomAmenities = objAmenityList
+                    RoomAmenities = _IAmenityOnlyService.GetAll()
                         .Select(amenity =>
                         {
                             var roomAmenity = grouped.Amenities.FirstOrDefault(ra => ra.AMENITY_ID == amenity.ID);
@@ -77,9 +77,26 @@ namespace RPRENTAL.Controllers
                 })
                 .FirstOrDefault(); 
 
+            RoomAmenityVM objData = new RoomAmenityVM();
+            objData.ROOM_AMENITY = new List<RoomAmenity>();
+            objData.ROOM_LIST = new List<Room>();
+           
+            foreach (var oAmenity in objRoomAmenities.RoomAmenities)
+            {
+               
+                var newAmenity = new AmenityOnly
+                {
 
+                    ID = oAmenity.Amenity.ID,
+                    AMENITY_NAME = oAmenity.Amenity.AMENITY_NAME,
+                    IS_CHECK = oAmenity.IS_CHECK,
+                   
+                };
+              
+                objData.AMENITIES.Add(newAmenity);
+            }
 
-            return PartialView("Common/_RoomAmenity", objRoomAmenities);
+            return PartialView("Common/_RoomAmenity", objData);
         }
 
         [HttpGet]

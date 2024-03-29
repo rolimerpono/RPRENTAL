@@ -8,7 +8,8 @@
     </div>
     <div class="row mt-3">
         <div class="col-12">
-            <table id="tbl_Rooms" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">
+            <table id="tbl_Rooms" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">    
+                <input asp-for="@Model.ROOM_ID" hidden />
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>ID</th>
