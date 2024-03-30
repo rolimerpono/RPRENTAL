@@ -1,7 +1,7 @@
 ﻿const objRoomListDiv = document.getElementById('room_list');
 
 function sendFetchRequest(url, body) {
-    debugger
+    
     fetch(url, {
         method: 'POST',
         body: body,
@@ -10,7 +10,7 @@ function sendFetchRequest(url, body) {
         }
     })
         .then(response => {
-            debugger
+            
             if (response.ok) {
                 return response.text();
             }
