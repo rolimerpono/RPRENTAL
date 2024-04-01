@@ -4191,23 +4191,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ROLLY\\.nuget\\packages\\": {},
+    "C:\\Users\\rpono\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
       "projectName": "StaticUtility",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
-      "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\obj\\",
+      "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ROLLY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rpono\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4216,7 +4216,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

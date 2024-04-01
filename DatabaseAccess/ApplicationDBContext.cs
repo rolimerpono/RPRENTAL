@@ -572,7 +572,12 @@ namespace DatabaseAccess
                 new RoomAmenity { ID = 2, ROOM_ID = 1, AMENITY_ID = 2 },
                 new RoomAmenity { ID = 3, ROOM_ID = 1, AMENITY_ID = 3 },
                 new RoomAmenity { ID = 4, ROOM_ID = 1, AMENITY_ID = 4 },
-                new RoomAmenity { ID = 5, ROOM_ID = 1, AMENITY_ID = 5 });       
+                new RoomAmenity { ID = 5, ROOM_ID = 1, AMENITY_ID = 5 },
+                new RoomAmenity { ID = 6, ROOM_ID = 2, AMENITY_ID = 3 },
+                new RoomAmenity { ID = 7, ROOM_ID = 2, AMENITY_ID = 1 },
+                new RoomAmenity { ID = 8, ROOM_ID = 3, AMENITY_ID = 5 },
+                new RoomAmenity { ID = 9, ROOM_ID = 4, AMENITY_ID = 3 },
+                new RoomAmenity { ID = 10, ROOM_ID = 5, AMENITY_ID = 5 });       
             #endregion
 
         }
