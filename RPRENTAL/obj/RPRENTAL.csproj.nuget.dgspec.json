@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {}
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Common\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,17 +32,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj"
               }
             }
           }
@@ -76,14 +76,14 @@
         }
       }
     },
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
         "projectName": "DatabaseAccess",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -104,8 +104,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
               }
             }
           }
@@ -173,14 +173,14 @@
         }
       }
     },
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj",
         "projectName": "DataWrapper",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -201,14 +201,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj"
               }
             }
           }
@@ -242,14 +242,14 @@
         }
       }
     },
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -331,14 +331,14 @@
         }
       }
     },
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\Repository.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Repository\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -359,11 +359,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
               }
             }
           }
@@ -431,14 +431,14 @@
         }
       }
     },
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
         "projectName": "RPRENTAL",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\RPRENTAL\\RPRENTAL.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\RPRENTAL\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\RPRENTAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -459,20 +459,20 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Common\\Common.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
               },
-              "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
-                "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+              "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+                "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
               }
             }
           }
@@ -551,14 +551,14 @@
         }
       }
     },
-    "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+    "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+        "projectUniqueName": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
         "projectName": "StaticUtility",
-        "projectPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+        "projectPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
         "packagesPath": "C:\\Users\\rpono\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rpono\\Source\\Repos\\RPRENTAL\\StaticUtility\\obj\\",
+        "outputPath": "C:\\Users\\rpono\\source\\repos\\RPRENTAL\\StaticUtility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240328020017_ResetAllMigratedTable")]
-    partial class ResetAllMigratedTable
+    [Migration("20240401213000_resetAllMigration")]
+    partial class resetAllMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,7 +155,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("tbl_UserTokens", (string)null);
+                    b.ToTable("tbl_UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Model.Amenity", b =>
@@ -507,7 +507,7 @@ namespace DatabaseAccess.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("tbl_Users", (string)null);
                 });
 
             modelBuilder.Entity("Model.Booking", b =>
@@ -619,68 +619,68 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             ROOM_ID = 1,
-                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3192),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
+                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(712),
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 1,
                             ROOM_NAME = "Single Room",
                             ROOM_PRICE = 85.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3193)
+                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(713)
                         },
                         new
                         {
                             ROOM_ID = 2,
-                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3201),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
+                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(721),
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 2,
                             ROOM_NAME = "Double Room",
                             ROOM_PRICE = 90.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3202)
+                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(723)
                         },
                         new
                         {
                             ROOM_ID = 3,
-                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3207),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
+                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(732),
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 3,
                             ROOM_NAME = "Deluxed Room",
                             ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3208)
+                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(733)
                         },
                         new
                         {
                             ROOM_ID = 4,
-                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3215),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
+                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(739),
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 4,
                             ROOM_NAME = "Queens Room",
                             ROOM_PRICE = 120.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3216)
+                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(740)
                         },
                         new
                         {
                             ROOM_ID = 5,
-                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3222),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
+                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(747),
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 5,
                             ROOM_NAME = "Kings Room",
                             ROOM_PRICE = 130.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3223)
+                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(748)
                         },
                         new
                         {
                             ROOM_ID = 6,
-                            CREATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3229),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.",
+                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(754),
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Executive Suite",
                             ROOM_PRICE = 180.0,
-                            UPDATED_DATE = new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3230)
+                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(754)
                         });
                 });
 
@@ -734,6 +734,36 @@ namespace DatabaseAccess.Migrations
                             ID = 5,
                             AMENITY_ID = 5,
                             ROOM_ID = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            AMENITY_ID = 3,
+                            ROOM_ID = 2
+                        },
+                        new
+                        {
+                            ID = 7,
+                            AMENITY_ID = 1,
+                            ROOM_ID = 2
+                        },
+                        new
+                        {
+                            ID = 8,
+                            AMENITY_ID = 5,
+                            ROOM_ID = 3
+                        },
+                        new
+                        {
+                            ID = 9,
+                            AMENITY_ID = 3,
+                            ROOM_ID = 4
+                        },
+                        new
+                        {
+                            ID = 10,
+                            AMENITY_ID = 5,
+                            ROOM_ID = 5
                         });
                 });
 
@@ -758,121 +788,121 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             ROOM_NUMBER = 101,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor.",
                             ROOM_ID = 1
                         },
                         new
                         {
                             ROOM_NUMBER = 102,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 1
                         },
                         new
                         {
                             ROOM_NUMBER = 103,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 1
                         },
                         new
                         {
                             ROOM_NUMBER = 104,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 1
                         },
                         new
                         {
                             ROOM_NUMBER = 201,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 2
                         },
                         new
                         {
                             ROOM_NUMBER = 202,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 2
                         },
                         new
                         {
                             ROOM_NUMBER = 203,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 2
                         },
                         new
                         {
                             ROOM_NUMBER = 204,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 2
                         },
                         new
                         {
                             ROOM_NUMBER = 301,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 3
                         },
                         new
                         {
                             ROOM_NUMBER = 302,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 3
                         },
                         new
                         {
                             ROOM_NUMBER = 303,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 3
                         },
                         new
                         {
                             ROOM_NUMBER = 304,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 3
                         },
                         new
                         {
                             ROOM_NUMBER = 401,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 4
                         },
                         new
                         {
                             ROOM_NUMBER = 402,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 4
                         },
                         new
                         {
                             ROOM_NUMBER = 403,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 4
                         },
                         new
                         {
                             ROOM_NUMBER = 501,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 5
                         },
                         new
                         {
                             ROOM_NUMBER = 502,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 5
                         },
                         new
                         {
                             ROOM_NUMBER = 503,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 5
                         },
                         new
                         {
                             ROOM_NUMBER = 601,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 6
                         },
                         new
                         {
                             ROOM_NUMBER = 602,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus",
+                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
                             ROOM_ID = 6
                         });
                 });

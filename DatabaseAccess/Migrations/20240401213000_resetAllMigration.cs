@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class ResetAllMigratedTable : Migration
+    public partial class resetAllMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,7 +28,7 @@ namespace DatabaseAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "tbl_Users",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -51,7 +51,7 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_tbl_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,9 +121,9 @@ namespace DatabaseAccess.Migrations
                 {
                     table.PrimaryKey("PK_tbl_UserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tbl_UserClaims_AspNetUsers_UserId",
+                        name: "FK_tbl_UserClaims_tbl_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -141,9 +141,9 @@ namespace DatabaseAccess.Migrations
                 {
                     table.PrimaryKey("PK_tbl_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_tbl_UserLogins_AspNetUsers_UserId",
+                        name: "FK_tbl_UserLogins_tbl_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -165,15 +165,15 @@ namespace DatabaseAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tbl_UserRoles_AspNetUsers_UserId",
+                        name: "FK_tbl_UserRoles_tbl_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_UserTokens",
+                name: "tbl_UserClaims",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -183,11 +183,11 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_tbl_UserClaims", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_tbl_UserTokens_AspNetUsers_UserId",
+                        name: "FK_tbl_UserClaims_tbl_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -261,9 +261,9 @@ namespace DatabaseAccess.Migrations
                 {
                     table.PrimaryKey("PK_tbl_Booking", x => x.BOOKING_ID);
                     table.ForeignKey(
-                        name: "FK_tbl_Booking_AspNetUsers_USER_ID",
+                        name: "FK_tbl_Booking_tbl_Users_USER_ID",
                         column: x => x.USER_ID,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -310,12 +310,12 @@ namespace DatabaseAccess.Migrations
                 columns: new[] { "ROOM_ID", "CREATED_DATE", "DESCRIPTION", "IMAGE_URL", "MAX_OCCUPANCY", "ROOM_NAME", "ROOM_PRICE", "UPDATED_DATE" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3192), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3193) },
-                    { 2, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3201), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3202) },
-                    { 3, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3207), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3208) },
-                    { 4, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3215), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3216) },
-                    { 5, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3222), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3223) },
-                    { 6, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3229), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus, id aliquam ante lacinia. Donec a leo pharetra, venenatis est ut, scelerisque leo. Nam vitae ex nec felis suscipit lobortis non sed nisl.", "https://placehold.co/600x400/png", 10, "Executive Suite", 180.0, new DateTime(2024, 3, 28, 14, 0, 15, 970, DateTimeKind.Local).AddTicks(3230) }
+                    { 1, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(712), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(713) },
+                    { 2, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(721), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(723) },
+                    { 3, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(732), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(733) },
+                    { 4, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(739), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(740) },
+                    { 5, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(747), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(748) },
+                    { 6, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(754), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Executive Suite", 180.0, new DateTime(2024, 4, 2, 9, 29, 59, 467, DateTimeKind.Local).AddTicks(754) }
                 });
 
             migrationBuilder.InsertData(
@@ -364,7 +364,12 @@ namespace DatabaseAccess.Migrations
                     { 2, 2, 1 },
                     { 3, 3, 1 },
                     { 4, 4, 1 },
-                    { 5, 5, 1 }
+                    { 5, 5, 1 },
+                    { 6, 3, 2 },
+                    { 7, 1, 2 },
+                    { 8, 5, 3 },
+                    { 9, 3, 4 },
+                    { 10, 5, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -372,26 +377,26 @@ namespace DatabaseAccess.Migrations
                 columns: new[] { "ROOM_NUMBER", "DESCRIPTION", "ROOM_ID" },
                 values: new object[,]
                 {
-                    { 101, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 1 },
-                    { 102, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 1 },
-                    { 103, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 1 },
-                    { 104, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 1 },
-                    { 201, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 2 },
-                    { 202, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 2 },
-                    { 203, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 2 },
-                    { 204, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 2 },
-                    { 301, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 3 },
-                    { 302, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 3 },
-                    { 303, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 3 },
-                    { 304, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 3 },
-                    { 401, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 4 },
-                    { 402, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 4 },
-                    { 403, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 4 },
-                    { 501, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 5 },
-                    { 502, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 5 },
-                    { 503, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 5 },
-                    { 601, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 6 },
-                    { 602, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna. Donec quis consectetur mi, eu luctus lacus.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis metus quis orci faucibus", 6 }
+                    { 101, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor.", 1 },
+                    { 102, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 1 },
+                    { 103, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 1 },
+                    { 104, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 1 },
+                    { 201, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 2 },
+                    { 202, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 2 },
+                    { 203, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 2 },
+                    { 204, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 2 },
+                    { 301, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 3 },
+                    { 302, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 3 },
+                    { 303, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 3 },
+                    { 304, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 3 },
+                    { 401, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 4 },
+                    { 402, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 4 },
+                    { 403, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 4 },
+                    { 501, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 5 },
+                    { 502, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 5 },
+                    { 503, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 5 },
+                    { 601, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 6 },
+                    { 602, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.", 6 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -423,12 +428,12 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "AspNetUsers",
+                table: "tbl_Users",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "AspNetUsers",
+                table: "tbl_Users",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
@@ -475,7 +480,7 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_UserRoles");
 
             migrationBuilder.DropTable(
-                name: "tbl_UserTokens");
+                name: "tbl_UserClaims");
 
             migrationBuilder.DropTable(
                 name: "tbl_Amenity");
@@ -493,7 +498,7 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_Roles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "tbl_Users");
 
             migrationBuilder.DropTable(
                 name: "tbl_AmenityOnly");
