@@ -109,5 +109,14 @@ namespace RPRENTAL.Controllers
             return Json(new { data = objRoomList });
         }
 
+        [HttpPost]
+        public IActionResult ApplyRoomAmenities(List<AmenityOnly> objData)
+        {
+
+
+            return Json(new { success = true, message = "Room Amenities successfully applied." });
+        
+        }
+
     }
 }
