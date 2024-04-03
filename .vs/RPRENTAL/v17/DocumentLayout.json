@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\crud\\jsroomamenity\\jsroomamenity.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_roomamenity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomamenity.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\crud\\jsroomnumber\\jsroomnumbercrud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\crud\\jsroomnumber\\jsroomnumbercrud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17171882-7D6A-40B9-B080-88057D868F6F}|DataWrapper\\DataWrapper.csproj|c:\\users\\rolly\\source\\repos\\rprental\\datawrapper\\implementation\\roomamenityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17171882-7D6A-40B9-B080-88057D868F6F}|DataWrapper\\DataWrapper.csproj|solutionrelative:datawrapper\\implementation\\roomamenityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\roomamenity\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -51,14 +51,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "RoomAmenityService.cs",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\Implementation\\RoomAmenityService.cs",
+              "RelativeDocumentMoniker": "DataWrapper\\Implementation\\RoomAmenityService.cs",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\Implementation\\RoomAmenityService.cs",
+              "RelativeToolTip": "DataWrapper\\Implementation\\RoomAmenityService.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAACEAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-03T03:26:42.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "JSRoomNumberCrud.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRoomNumber\\JSRoomNumberCrud.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSRoomNumber\\JSRoomNumberCrud.js",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRoomNumber\\JSRoomNumberCrud.js",
               "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Crud\\JSRoomNumber\\JSRoomNumberCrud.js",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAAAFwAAAAcAAAA",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAAAIAAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-02T20:16:17.923Z"
+              "WhenOpened": "2024-04-03T03:22:27.602Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -68,21 +82,9 @@
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\RoomAmenity\\Index.cshtml",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\RoomAmenity\\Index.cshtml",
               "RelativeToolTip": "RPRENTAL\\Views\\RoomAmenity\\Index.cshtml",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAACYAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-02T20:07:22.958Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_RoomAmenity.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomAmenity.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomAmenity.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomAmenity.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomAmenity.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T20:07:17.154Z"
             },
             {
               "$type": "Document",
@@ -92,9 +94,10 @@
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSRoomAmenity\\JSRoomAmenity.js",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRoomAmenity\\JSRoomAmenity.js",
               "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Crud\\JSRoomAmenity\\JSRoomAmenity.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABDAAAA",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAAAEwAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-02T20:03:33.128Z"
+              "WhenOpened": "2024-04-02T20:03:33.128Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -104,7 +107,7 @@
               "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\RoomAmenityController.cs",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\RoomAmenityController.cs",
               "RelativeToolTip": "RPRENTAL\\Controllers\\RoomAmenityController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAkwIMAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-02T09:14:50.962Z",
               "EditorCaption": ""

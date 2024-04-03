@@ -28,10 +28,13 @@ namespace DataWrapper.Implementation
 
         public void Delete(int ID)
         {
-            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID);
-            if(objRoomAmenity != null) 
-            { 
-                _IWorker.tbl_RoomAmenity.Remove(objRoomAmenity);
+            IEnumerable<RoomAmenity> objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(fw => fw.ROOM_ID == ID);
+            if (objRoomAmenity != null)
+            {
+                foreach (var roomAmenity in objRoomAmenity)
+                {
+                    _IWorker.tbl_RoomAmenity.Remove(roomAmenity);
+                }
                 _IWorker.tbl_RoomAmenity.Save();
             }
         }

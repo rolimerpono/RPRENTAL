@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query;
 using Model;
+using Newtonsoft.Json;
 using PayPal.Api;
 using Repository.Interface;
 using RPRENTAL.ViewModels;
 using Stripe.Tax;
+using System.Diagnostics;
 
 namespace RPRENTAL.Controllers
 {
@@ -110,11 +112,32 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult ApplyRoomAmenities(string jsonData)
+        public IActionResult ApplyRoomAmenities(int ID, string jsonData)
         {
+            try
+            {
 
+                var objAmenityList = JsonConvert.DeserializeObject<List<AmenityOnly>>(jsonData);
 
-            return Json(new { success = true, message = "Room Amenities successfully applied." });
+                if (objAmenityList != null)
+                {
+                    _IRoomAmenityService.Delete(ID);
+
+                    foreach (var item in objAmenityList)
+                    {
+
+                        var objAmenity = new RoomAmenity { ID = 0, ROOM_ID = ID, AMENITY_ID = item.ID };
+                        _IRoomAmenityService.Create(objAmenity);
+
+                    }                   
+                }
+                return Json(new { success = true, message = "Room Amenities successfully applied." });
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Something went wrong." });
+            }
         
         }
 

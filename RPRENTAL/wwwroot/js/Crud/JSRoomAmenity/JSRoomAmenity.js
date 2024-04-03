@@ -2,44 +2,30 @@
 
 $(document).ready(function () {
     initializeDataTable();
-   
+    let rowData = '';
     $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
-        debugger
-        const rowData = objDataTable.row($(this).closest('tr')).data();
+        rowData = objDataTable.row($(this).closest('tr')).data();
         if (rowData) {
             DisplayRoomAmenities('/RoomAmenity/DisplayRoomAmenities', rowData.rooM_ID);
         }
-
-    });  
-
-
-
-
-    const btnApply = document.getElementById('btn-apply');
-
-
-    btnApply.addEventListener('click', function () {
-        
-        let checkItems = [];
-
-        $('input[type="checkbox"]').each(function () {
-            if ($(this).is(':checked')) {
-
-                let id = $(this).attr('id').replace('selected-item-', '');
-                let name = $(this).siblings('label').text();
-                let isChecked = $(this).is(':checked') ? 'True' : 'False';
-
-                checkItems.push({ ID: id, AMENITY_NAME: name, IS_CHECK: isChecked });
-            }
-
-        });
-
-        let serializedData = JSON.stringify(checkItems);       
-        ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', serializedData);
-
     });
 
-   
+    $('#btn-apply').on('click', function () {
+        const checkItems = $('input[type="checkbox"]:checked').map(function () {
+            const id = $(this).attr('id').replace('selected-item-', '');
+            const name = $(this).siblings('label').text();
+            return { ID: id, AMENITY_NAME: name, IS_CHECK: true };
+        }).get();
+
+        if (checkItems.length > 0) {
+            const serializedData = JSON.stringify(checkItems);      
+            if (rowData) {
+                ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.rooM_ID, serializedData);
+            }
+        } else {
+            console.log('No amenities selected');
+        }
+    });
 });
 
 
@@ -60,12 +46,14 @@ function initializeDataTable() {
             }
         ],
         fixedColumns: true,
-        scrollY: true
+        scrollY: true,
+        drawCallback: function (settings) {         
+            $('#tbl_Rooms tbody tr:first-child .select-edit-btn').trigger('click');
+        }
     });
 }
 
 function DisplayRoomAmenities(path, roomId) {
-    debugger
     $.ajax({
         url: path,
         type: 'POST',
@@ -79,19 +67,29 @@ function DisplayRoomAmenities(path, roomId) {
     });
 }
 
-
-function ApplyRoomAmenities(path, serializedData) {
-    debugger
-    console.log('Serialized Data : ' + serializedData);
+function ApplyRoomAmenities(path, roomId, serializedData) {
     $.ajax({
         url: path,
-        type: 'POST',          
-        data: {jsonData : serializedData},
-        success: function (response) {
-            console.log('This is the response ' + response);
+        type: 'POST',
+        data: { jsonData: serializedData, ID: roomId },
+        success: function (response) {           
+            objDataTable.ajax.reload();
+            showToast('success', response.message);
         },
         error: function (xhr, status, error) {
             console.error(error);
         }
     });
+}
+
+function showToast(type, message) {
+    var toaster = $('.toaster');
+    toaster.text(message);
+    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
+    setTimeout(function () {
+        toaster.css('opacity', 0);
+        setTimeout(function () {
+            toaster.css('display', 'none').css('opacity', 1);
+        }, 500);
+    }, 3000);
 }
