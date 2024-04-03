@@ -42,7 +42,7 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult GetSelectedRoom(int ID)
+        public IActionResult DisplayRoomAmenities(int ID)
         {           
 
             var objRoomList = _IRoomService.GetAll();
@@ -110,7 +110,7 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult ApplyRoomAmenities(List<AmenityOnly> objData)
+        public IActionResult ApplyRoomAmenities(string jsonData)
         {
 
 
