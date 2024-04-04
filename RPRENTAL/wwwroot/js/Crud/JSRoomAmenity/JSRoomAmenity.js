@@ -14,17 +14,19 @@ $(document).ready(function () {
         const checkItems = $('input[type="checkbox"]:checked').map(function () {
             const id = $(this).attr('id').replace('selected-item-', '');
             const name = $(this).siblings('label').text();
-            return { ID: id, AMENITY_NAME: name, IS_CHECK: true };
+            return { AMENITY_ID : id, AMENITY_NAME: name, IS_CHECK: true };
         }).get();
-
-        if (checkItems.length > 0) {
-            const serializedData = JSON.stringify(checkItems);      
-            if (rowData) {
-                ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.rooM_ID, serializedData);
-            }
-        } else {
-            console.log('No amenities selected');
+        
+     
+        const serializedData = JSON.stringify(checkItems);      
+        console.log(checkItems);
+        if (rowData != null) {
+            ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.rooM_ID, serializedData);
         }
+        else {
+            showToast('error','Please select a record.');
+        }
+       
     });
 });
 
@@ -59,7 +61,9 @@ function DisplayRoomAmenities(path, roomId) {
         type: 'POST',
         data: { ID: roomId },
         success: function (response) {
-            $('#selected_room').html(response);
+            if (response) {
+                $('#selected_room').html(response);
+            }
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -68,13 +72,20 @@ function DisplayRoomAmenities(path, roomId) {
 }
 
 function ApplyRoomAmenities(path, roomId, serializedData) {
+    
     $.ajax({
         url: path,
         type: 'POST',
-        data: { jsonData: serializedData, ID: roomId },
+        data: { ID: roomId, jsonData: serializedData },
         success: function (response) {           
-            objDataTable.ajax.reload();
-            showToast('success', response.message);
+            console.log(response);
+            if (response) {                
+                showToast('success', response.message);
+                objDataTable.ajax.reload();
+            }
+            else {
+                showToast('error', response.message);
+            }
         },
         error: function (xhr, status, error) {
             console.error(error);

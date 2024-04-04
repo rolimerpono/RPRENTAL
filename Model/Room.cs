@@ -20,9 +20,8 @@ namespace Model
 
 
         [Key]
-        public int ROOM_ID { get; set; }
-
-
+        public int ROOM_ID { get; set; }      
+ 
         [Display(Name = "ROOM NAME")]
         [Required(ErrorMessage = "Please provide a room name.")]
         public string ROOM_NAME { get; set; }
@@ -48,8 +47,8 @@ namespace Model
         public DateTime? UPDATED_DATE { get; set; } = DateTime.Now;
 
         [ValidateNever]
-        public IEnumerable<Amenity> ROOM_AMENITIES { get; set; }
-
+        public IEnumerable<RoomAmenity> ROOM_AMENITIES { get; set; }       
+      
         [NotMapped]
         public Boolean IS_ROOM_AVAILABLE { get; set; } = true;
 

@@ -4,25 +4,27 @@ $(document).ready(function () {
     initializeDataTable();
 
     $('.btn-add').click(function () {
-        loadModal('/AmenityOnly/Create', '#modal-add-content');
+        loadModal('/Amenity/Create', '#modal-add-content');
     });
 
     $('.btn-save').click(function () {
-        saveRoom('/AmenityOnly/Create', '#form-add');
+        saveRoom('/Amenity/Create', '#form-add');
     });
 
-    $('#tbl_AmenityOnly').on('click', '.select-edit-btn', function () {
+    $('#tbl_Amenity').on('click', '.select-edit-btn', function () {
         var rowData = getRowData($(this));
-        loadModal('/AmenityOnly/Update', '#modal-edit-content', rowData);
+        debugger
+        loadModal('/Amenity/Update', '#modal-edit-content', rowData);
+       
     });
 
     $('.btn-edit').click(function () {
-        saveRoom('/AmenityOnly/Update', '#form-edit');
+        saveRoom('/Amenity/Update', '#form-edit');
     });
 
-    $('#tbl_AmenityOnly').on('click', '.select-delete-btn', function () {
+    $('#tbl_Amenity').on('click', '.select-delete-btn', function () {
         var rowData = getRowData($(this));
-        $('#id').val(rowData.id);
+        $('#id').val(rowData.amenitY_ID);
         $('#modal-delete').modal('show');
     });
 
@@ -32,23 +34,23 @@ $(document).ready(function () {
 });
 
 function initializeDataTable() {
-    objDataTable = $('#tbl_AmenityOnly').DataTable({
+    objDataTable = $('#tbl_Amenity').DataTable({
         'ajax': {
-            url: '/AmenityOnly/GetAll'
+            url: '/Amenity/GetAll'
         },
         'columns': [
-            { data: 'id', visible: false },
+            { data: 'amenitY_ID', visible: false },
             { data: 'amenitY_NAME', 'width': '25%' },               
 
             {
-                data: 'id',
+                data: 'amenitY_ID',
                 'width': '5%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
-                data: 'id',
+                data: 'amenitY_ID',
                 'width': '5%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
@@ -111,7 +113,7 @@ function deleteRoom(formSelector) {
     var objRoomData = $(formSelector).serialize();
     $.ajax({
         type: 'POST',
-        url: '/AmenityOnly/Delete',
+        url: '/Amenity/Delete',
         data: objRoomData,
         success: function (response) {
             objDataTable.ajax.reload();

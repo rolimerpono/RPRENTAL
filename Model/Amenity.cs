@@ -9,22 +9,25 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public  class Amenity
+    public class Amenity
     {
+        public Amenity()
+        {
+            AMENITY_ID = 0;
+            AMENITY_NAME = string.Empty;
+            IS_CHECK = false;
+       
+        }
 
-       [Key]    
-        public int AMENITY_ID { get; set; }        
+        [Key]       
+        public int AMENITY_ID { get; set; }
 
-        public required string AMENITY_NAME { get; set;}
+        public string AMENITY_NAME { get; set; }
 
-        public string? DESCRIPTION { get; set; }
-
-      
-        public int ROOM_ID { get; set; }
-
-     
-        [ForeignKey("ROOM_ID")]
+        [NotMapped]
         [ValidateNever]
-        public Room? ROOM { get; set; }
+        public Boolean IS_CHECK { get; set; }
+
+
     }
 }

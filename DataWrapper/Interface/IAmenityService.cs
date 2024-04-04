@@ -11,15 +11,15 @@ namespace DataWrapper.Interface
     {
         IEnumerable<Amenity> GetAll();
 
-        Amenity Get(int AMENITY_ID);
+        Amenity Get(int ID);
 
-        Boolean IsAmenityExists(Amenity objAmenity);
+        Boolean IsAmenityExists(String AmenityName);
 
         void Create(Amenity objAmenity);
 
         void Update(Amenity objAmenity);
 
-        void Delete(int AMENITY_ID);
+        void Delete(int ID);
 
     }
 }

@@ -22,13 +22,12 @@ namespace DatabaseAccess
 
         public DbSet<Room> tbl_Rooms { get; set; }
 
-        public DbSet<RoomNumber> tbl_RoomNumber { get; set; }
-        
-        public DbSet<Amenity> tbl_Amenity { get; set; }
+        public DbSet<RoomNumber> tbl_RoomNumber { get; set; }       
+       
 
         public DbSet<RoomAmenity> tbl_RoomAmenity { get; set; }
 
-        public DbSet<AmenityOnly> tbl_AmenityOnly { get; set; }     
+        public DbSet<Amenity> tbl_Amenity { get; set; }     
 
         public DbSet<Booking> tbl_Booking { get; set; }
 
@@ -248,291 +247,38 @@ namespace DatabaseAccess
             #endregion
 
             #region Amenity Only
-            builder.Entity<AmenityOnly>().HasData(
-                new AmenityOnly
+            builder.Entity<Amenity>().HasData(
+                new Amenity
                 {
-                    ID = 1,
+                    AMENITY_ID = 1,
                     AMENITY_NAME = "Washing Machine",
                 },
-                new AmenityOnly
+                new Amenity
                 {
-                    ID = 2,
+                    AMENITY_ID = 2,
                     AMENITY_NAME = "Electric Fan",
 
                 },
-                new AmenityOnly
+                new Amenity
                 {
-                    ID = 3,
+                    AMENITY_ID = 3,
                     AMENITY_NAME = "TV",
                 },
-                new AmenityOnly
+                new Amenity
                 {
-                    ID = 4,
+                    AMENITY_ID = 4,
                     AMENITY_NAME = "Internet Wifi",
                 },
-                new AmenityOnly
+                new Amenity
                 {
-                    ID = 5,
+                    AMENITY_ID = 5,
                     AMENITY_NAME = "Microwave",
 
                 }
              );
 
-            #endregion
+            #endregion  
 
-  
-            #region tbl_Amenity
-            builder.Entity<Amenity>().HasData (
-            new Amenity
-            { 
-                
-                AMENITY_ID = 1,
-                ROOM_ID = 1,
-                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                AMENITY_NAME = "Microwave"
-            },
-             new Amenity
-             {
-
-                 AMENITY_ID = 2,
-                 ROOM_ID = 1,
-                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                 AMENITY_NAME = "Electric Fan"
-             },
-              new Amenity
-              {
-
-                  AMENITY_ID = 3,
-                  ROOM_ID = 1,
-                  DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                  AMENITY_NAME = "Aircon"
-              },
-               new Amenity
-               {
-
-                   AMENITY_ID = 4,
-                   ROOM_ID = 1,
-                   DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                   AMENITY_NAME = "Netflix"
-               },
-                new Amenity
-                {
-
-                    AMENITY_ID = 5,
-                    ROOM_ID = 1,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Washing Machine"
-                },
-
-
-                 new Amenity
-                 {
-
-                     AMENITY_ID = 6,
-                     ROOM_ID = 2,
-                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                     AMENITY_NAME = "Microwave"
-                 },
-             new Amenity
-             {
-
-                 AMENITY_ID = 7,
-                 ROOM_ID = 2,
-                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                 AMENITY_NAME = "Electric Fan"
-             },
-              new Amenity
-              {
-
-                  AMENITY_ID = 8,
-                  ROOM_ID = 2,
-                  DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                  AMENITY_NAME = "Aircon"
-              },
-               new Amenity
-               {
-
-                   AMENITY_ID = 9,
-                   ROOM_ID = 2,
-                   DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                   AMENITY_NAME = "Netflix"
-               },
-                new Amenity
-                {
-
-                    AMENITY_ID = 10,
-                    ROOM_ID = 2,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Washing Machine"
-                },
-
-                 new Amenity
-                 {
-
-                     AMENITY_ID = 11,
-                     ROOM_ID = 3,
-                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                     AMENITY_NAME = "Microwave"
-                 },
-             new Amenity
-             {
-
-                 AMENITY_ID = 12,
-                 ROOM_ID = 3,
-                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                 AMENITY_NAME = "Electric Fan"
-             },
-              new Amenity
-              {
-
-                  AMENITY_ID = 13,
-                  ROOM_ID = 3,
-                  DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                  AMENITY_NAME = "Aircon"
-              },
-               new Amenity
-               {
-
-                   AMENITY_ID = 14,
-                   ROOM_ID = 3,
-                   DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                   AMENITY_NAME = "Netflix"
-               },
-                new Amenity
-                {
-
-                    AMENITY_ID = 15,
-                    ROOM_ID = 3,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Washing Machine"
-                },
-                 new Amenity
-                 {
-
-                     AMENITY_ID = 16,
-                     ROOM_ID = 4,
-                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                     AMENITY_NAME = "Microwave"
-                 },
-             new Amenity
-             {
-
-                 AMENITY_ID = 17,
-                 ROOM_ID = 4,
-                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                 AMENITY_NAME = "Electric Fan"
-             },
-              new Amenity
-              {
-
-                  AMENITY_ID = 18,
-                  ROOM_ID = 4,
-                  DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                  AMENITY_NAME = "Aircon"
-              },
-               new Amenity
-               {
-
-                   AMENITY_ID = 19,
-                   ROOM_ID = 4,
-                   DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                   AMENITY_NAME = "Netflix"
-               },
-                new Amenity
-                {
-
-                    AMENITY_ID = 20,
-                    ROOM_ID = 4,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Washing Machine"
-                },
-
-
-                 new Amenity
-                 {
-
-                     AMENITY_ID = 21,
-                     ROOM_ID = 5,
-                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                     AMENITY_NAME = "Microwave"
-                 },
-             new Amenity
-             {
-
-                 AMENITY_ID = 22,
-                 ROOM_ID = 5,
-                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                 AMENITY_NAME = "Electric Fan"
-             },
-              new Amenity
-              {
-
-                  AMENITY_ID = 23,
-                  ROOM_ID = 5,
-                  DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                  AMENITY_NAME = "Aircon"
-              },
-               new Amenity
-               {
-
-                   AMENITY_ID = 24,
-                   ROOM_ID = 5,
-                   DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                   AMENITY_NAME = "Netflix"
-               },
-                new Amenity
-                {
-
-                    AMENITY_ID = 25,
-                    ROOM_ID = 5,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Washing Machine"
-                },
-
-                 new Amenity
-                 {
-
-                     AMENITY_ID = 26,
-                     ROOM_ID = 6,
-                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                     AMENITY_NAME = "Microwave"
-                 },
-             new Amenity
-             {
-
-                 AMENITY_ID = 27,
-                 ROOM_ID = 6,
-                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                 AMENITY_NAME = "Electric Fan"
-             },
-              new Amenity
-              {
-
-                  AMENITY_ID = 28,
-                  ROOM_ID = 6,
-                  DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                  AMENITY_NAME = "Aircon"
-              },
-               new Amenity
-               {
-
-                   AMENITY_ID = 29,
-                   ROOM_ID = 6,
-                   DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                   AMENITY_NAME = "Netflix"
-               },
-                new Amenity
-                {
-
-                    AMENITY_ID = 30,
-                    ROOM_ID = 6,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                    AMENITY_NAME = "Washing Machine"
-                }
-
-            );
-
-            #endregion
 
             #region Room Amenity
                 builder.Entity<RoomAmenity>().HasData(

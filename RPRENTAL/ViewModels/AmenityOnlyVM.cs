@@ -2,9 +2,9 @@
 
 namespace RPRENTAL.ViewModels
 {
-    public class AmenityOnlyVM
+    public class AmenityVM
     {
-        public AmenityOnlyVM()
+        public AmenityVM()
         {
             ID = 0;
             AMENITY_NAME = string.Empty;

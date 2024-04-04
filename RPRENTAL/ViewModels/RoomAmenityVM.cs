@@ -12,7 +12,7 @@ namespace RPRENTAL.ViewModels
         {
             ROOM_ID = 0;
             ROOM_NAME = string.Empty;
-            AMENITIES = new List<AmenityOnly>();
+            AMENITIES = new List<Amenity>();
 
 
         }
@@ -24,7 +24,7 @@ namespace RPRENTAL.ViewModels
         public string ROOM_NAME { get; set; }
 
        
-        public List<AmenityOnly> AMENITIES { get; set; }
+        public List<Amenity> AMENITIES { get; set; }
         public List<Room> ROOM_LIST { get; set; }
 
         public List<RoomAmenity> ROOM_AMENITY { get; set; }

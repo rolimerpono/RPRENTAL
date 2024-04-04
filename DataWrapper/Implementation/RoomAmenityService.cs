@@ -34,21 +34,22 @@ namespace DataWrapper.Implementation
                 foreach (var roomAmenity in objRoomAmenity)
                 {
                     _IWorker.tbl_RoomAmenity.Remove(roomAmenity);
+                    _IWorker.tbl_RoomAmenity.Save();
                 }
-                _IWorker.tbl_RoomAmenity.Save();
+                
             }
         }
 
         public RoomAmenity Get(int ID)
         {
-            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID,IncludeProperties: "AMENITY");
+            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID,IncludeProperties: "ROOMS");
             return objRoomAmenity;
         }
 
         public IEnumerable<RoomAmenity> GetAll()
         {
             IEnumerable<RoomAmenity> objRoomAmenity;
-            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "AMENITY");
+            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "ROOMS");
             return objRoomAmenity;
         }
 

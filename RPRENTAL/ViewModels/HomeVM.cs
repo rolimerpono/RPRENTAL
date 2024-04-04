@@ -27,12 +27,9 @@ namespace RPRENTAL.ViewModels
 
         public DateTime? UPDATED_DATE { get; set; }
 
-
-        public IEnumerable<Amenity> ROOM_AMENITIES { get; set; }
-
-
+        public IEnumerable<RoomAmenity>? ROOM_AMENITIES { get; set; }
+            
         public Boolean IS_ROOM_AVAILABLE { get; set; } = true;
-
     
         public DateOnly? CHECKIN_DATE { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 

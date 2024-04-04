@@ -11,14 +11,13 @@ namespace Repository.Implementation
 {
     public class AmenityRepository : Repository<Amenity>, IAmenityRepository
     {
-        private readonly ApplicationDBContext _db;
 
-        public AmenityRepository(ApplicationDBContext db) : base(db)
+        private readonly ApplicationDBContext _db;
+        public AmenityRepository(ApplicationDBContext db): base(db)
         {
             _db = db;
         }
-     
-    
+      
         public void Save()
         {
             _db.SaveChanges();

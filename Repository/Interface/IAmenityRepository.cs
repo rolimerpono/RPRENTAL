@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repository.Interface
 {
-    public interface IAmenityRepository : IRepository<Amenity>
+    public  interface IAmenityRepository : IRepository<Amenity>
     {
         void Update(Amenity objAmenity);
+
         void Save();
     }
 }

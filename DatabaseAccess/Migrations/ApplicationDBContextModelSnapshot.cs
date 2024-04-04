@@ -46,7 +46,7 @@ namespace DatabaseAccess.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("tbl_Roles", (string)null);
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -71,7 +71,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("tbl_RoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -96,7 +96,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("tbl_UserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -118,7 +118,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("tbl_UserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -133,7 +133,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("tbl_UserRoles", (string)null);
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -152,7 +152,7 @@ namespace DatabaseAccess.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("tbl_UserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Model.Amenity", b =>
@@ -167,15 +167,7 @@ namespace DatabaseAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DESCRIPTION")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ROOM_ID")
-                        .HasColumnType("int");
-
                     b.HasKey("AMENITY_ID");
-
-                    b.HasIndex("ROOM_ID");
 
                     b.ToTable("tbl_Amenity");
 
@@ -183,255 +175,26 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             AMENITY_ID = 1,
-                            AMENITY_NAME = "Microwave",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 1
-                        },
-                        new
-                        {
-                            AMENITY_ID = 2,
-                            AMENITY_NAME = "Electric Fan",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 1
-                        },
-                        new
-                        {
-                            AMENITY_ID = 3,
-                            AMENITY_NAME = "Aircon",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 1
-                        },
-                        new
-                        {
-                            AMENITY_ID = 4,
-                            AMENITY_NAME = "Netflix",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 1
-                        },
-                        new
-                        {
-                            AMENITY_ID = 5,
-                            AMENITY_NAME = "Washing Machine",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 1
-                        },
-                        new
-                        {
-                            AMENITY_ID = 6,
-                            AMENITY_NAME = "Microwave",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 2
-                        },
-                        new
-                        {
-                            AMENITY_ID = 7,
-                            AMENITY_NAME = "Electric Fan",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 2
-                        },
-                        new
-                        {
-                            AMENITY_ID = 8,
-                            AMENITY_NAME = "Aircon",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 2
-                        },
-                        new
-                        {
-                            AMENITY_ID = 9,
-                            AMENITY_NAME = "Netflix",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 2
-                        },
-                        new
-                        {
-                            AMENITY_ID = 10,
-                            AMENITY_NAME = "Washing Machine",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 2
-                        },
-                        new
-                        {
-                            AMENITY_ID = 11,
-                            AMENITY_NAME = "Microwave",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 3
-                        },
-                        new
-                        {
-                            AMENITY_ID = 12,
-                            AMENITY_NAME = "Electric Fan",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 3
-                        },
-                        new
-                        {
-                            AMENITY_ID = 13,
-                            AMENITY_NAME = "Aircon",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 3
-                        },
-                        new
-                        {
-                            AMENITY_ID = 14,
-                            AMENITY_NAME = "Netflix",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 3
-                        },
-                        new
-                        {
-                            AMENITY_ID = 15,
-                            AMENITY_NAME = "Washing Machine",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 3
-                        },
-                        new
-                        {
-                            AMENITY_ID = 16,
-                            AMENITY_NAME = "Microwave",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 4
-                        },
-                        new
-                        {
-                            AMENITY_ID = 17,
-                            AMENITY_NAME = "Electric Fan",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 4
-                        },
-                        new
-                        {
-                            AMENITY_ID = 18,
-                            AMENITY_NAME = "Aircon",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 4
-                        },
-                        new
-                        {
-                            AMENITY_ID = 19,
-                            AMENITY_NAME = "Netflix",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 4
-                        },
-                        new
-                        {
-                            AMENITY_ID = 20,
-                            AMENITY_NAME = "Washing Machine",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 4
-                        },
-                        new
-                        {
-                            AMENITY_ID = 21,
-                            AMENITY_NAME = "Microwave",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 5
-                        },
-                        new
-                        {
-                            AMENITY_ID = 22,
-                            AMENITY_NAME = "Electric Fan",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 5
-                        },
-                        new
-                        {
-                            AMENITY_ID = 23,
-                            AMENITY_NAME = "Aircon",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 5
-                        },
-                        new
-                        {
-                            AMENITY_ID = 24,
-                            AMENITY_NAME = "Netflix",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 5
-                        },
-                        new
-                        {
-                            AMENITY_ID = 25,
-                            AMENITY_NAME = "Washing Machine",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 5
-                        },
-                        new
-                        {
-                            AMENITY_ID = 26,
-                            AMENITY_NAME = "Microwave",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 6
-                        },
-                        new
-                        {
-                            AMENITY_ID = 27,
-                            AMENITY_NAME = "Electric Fan",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 6
-                        },
-                        new
-                        {
-                            AMENITY_ID = 28,
-                            AMENITY_NAME = "Aircon",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 6
-                        },
-                        new
-                        {
-                            AMENITY_ID = 29,
-                            AMENITY_NAME = "Netflix",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 6
-                        },
-                        new
-                        {
-                            AMENITY_ID = 30,
-                            AMENITY_NAME = "Washing Machine",
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta.",
-                            ROOM_ID = 6
-                        });
-                });
-
-            modelBuilder.Entity("Model.AmenityOnly", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("AMENITY_NAME")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("tbl_AmenityOnly");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
                             AMENITY_NAME = "Washing Machine"
                         },
                         new
                         {
-                            ID = 2,
+                            AMENITY_ID = 2,
                             AMENITY_NAME = "Electric Fan"
                         },
                         new
                         {
-                            ID = 3,
+                            AMENITY_ID = 3,
                             AMENITY_NAME = "TV"
                         },
                         new
                         {
-                            ID = 4,
+                            AMENITY_ID = 4,
                             AMENITY_NAME = "Internet Wifi"
                         },
                         new
                         {
-                            ID = 5,
+                            AMENITY_ID = 5,
                             AMENITY_NAME = "Microwave"
                         });
                 });
@@ -504,7 +267,7 @@ namespace DatabaseAccess.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("tbl_Users", (string)null);
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Model.Booking", b =>
@@ -616,68 +379,68 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             ROOM_ID = 1,
-                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4058),
+                            CREATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1573),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 1,
                             ROOM_NAME = "Single Room",
                             ROOM_PRICE = 85.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4059)
+                            UPDATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1574)
                         },
                         new
                         {
                             ROOM_ID = 2,
-                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4067),
+                            CREATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1581),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 2,
                             ROOM_NAME = "Double Room",
                             ROOM_PRICE = 90.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4069)
+                            UPDATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1582)
                         },
                         new
                         {
                             ROOM_ID = 3,
-                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4076),
+                            CREATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1588),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 3,
                             ROOM_NAME = "Deluxed Room",
                             ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4077)
+                            UPDATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1589)
                         },
                         new
                         {
                             ROOM_ID = 4,
-                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4084),
+                            CREATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1595),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 4,
                             ROOM_NAME = "Queens Room",
                             ROOM_PRICE = 120.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4085)
+                            UPDATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1596)
                         },
                         new
                         {
                             ROOM_ID = 5,
-                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4092),
+                            CREATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1602),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 5,
                             ROOM_NAME = "Kings Room",
                             ROOM_PRICE = 130.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4093)
+                            UPDATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1603)
                         },
                         new
                         {
                             ROOM_ID = 6,
-                            CREATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4188),
+                            CREATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1609),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Executive Suite",
                             ROOM_PRICE = 180.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 2, 9, 47, 6, 745, DateTimeKind.Local).AddTicks(4189)
+                            UPDATED_DATE = new DateTime(2024, 4, 4, 19, 39, 14, 847, DateTimeKind.Local).AddTicks(1610)
                         });
                 });
 
@@ -698,6 +461,8 @@ namespace DatabaseAccess.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("AMENITY_ID");
+
+                    b.HasIndex("ROOM_ID");
 
                     b.ToTable("tbl_RoomAmenity");
 
@@ -955,17 +720,6 @@ namespace DatabaseAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.Amenity", b =>
-                {
-                    b.HasOne("Model.Room", "ROOM")
-                        .WithMany("ROOM_AMENITIES")
-                        .HasForeignKey("ROOM_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ROOM");
-                });
-
             modelBuilder.Entity("Model.Booking", b =>
                 {
                     b.HasOne("Model.Room", "ROOM")
@@ -987,13 +741,21 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("Model.RoomAmenity", b =>
                 {
-                    b.HasOne("Model.AmenityOnly", "AMENITY")
+                    b.HasOne("Model.Amenity", "AMENITY")
                         .WithMany()
                         .HasForeignKey("AMENITY_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Model.Room", "ROOMS")
+                        .WithMany("ROOM_AMENITIES")
+                        .HasForeignKey("ROOM_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AMENITY");
+
+                    b.Navigation("ROOMS");
                 });
 
             modelBuilder.Entity("Model.RoomNumber", b =>

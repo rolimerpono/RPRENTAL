@@ -12,22 +12,27 @@ namespace Model
 {
     public class RoomAmenity
     {
-     
-
+      
         [Key]
         public int ID { get; set; }
-   
+
+        [ForeignKey("ROOMS")]
         public int ROOM_ID { get; set; }
 
-        [ForeignKey("AMENITY")]
+        [ValidateNever]
+        public Room? ROOMS { get; set; }
+
         public int AMENITY_ID { get; set; }
 
         [ValidateNever]
+        [NotMapped]
+        public string? AMENITY_NAME { get; set; }
 
-        public AmenityOnly? AMENITY { get; set; }
 
-  
+        [ForeignKey("AMENITY_ID")]
+        [Required]
+        public Amenity? AMENITY { get; set; }
 
-       
+
     }
 }

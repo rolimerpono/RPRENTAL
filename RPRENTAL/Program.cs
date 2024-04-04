@@ -13,10 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IAmenityService, AmenityService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IRoomNumberService, RoomNumberService>();
-builder.Services.AddScoped<IAmenityOnlyService, AmenityOnlyService>();
+builder.Services.AddScoped<IAmenityService, AmenityService>();
 builder.Services.AddScoped<IRoomAmenityService, RoomAmenityService>();
 builder.Services.AddScoped<IWorker, Worker>();
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

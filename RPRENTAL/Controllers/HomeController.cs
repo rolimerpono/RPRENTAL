@@ -26,22 +26,24 @@ namespace RPRENTAL.Controllers
             var pageSize = 6;
 
             var objRoomList = _iWorker.tbl_Rooms
-                .GetAll(IncludeProperties: "ROOM_AMENITIES")
-                .AsEnumerable() 
-                .Select(roomItem =>
-                { 
-                    return new HomeVM
-                    {
-                        ROOM_ID = roomItem.ROOM_ID,
-                        ROOM_NAME = roomItem.ROOM_NAME,
-                        DESCRIPTION = roomItem.DESCRIPTION,
-                        ROOM_PRICE = roomItem.ROOM_PRICE,
-                        ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
-                        MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
-                    
-                        IMAGE_URL = roomItem.IMAGE_URL
-                    };
-                }).ToList();
+             .GetAll(IncludeProperties: "ROOM_AMENITIES")
+             .Select(roomItem => new HomeVM
+             {
+                 ROOM_ID = roomItem.ROOM_ID,
+                 ROOM_NAME = roomItem.ROOM_NAME,
+                 DESCRIPTION = roomItem.DESCRIPTION,
+                 ROOM_PRICE = roomItem.ROOM_PRICE,
+                 ROOM_AMENITIES = roomItem.ROOM_AMENITIES?.Select(item => new RoomAmenity
+                 {
+                     ID= item.ID,
+                     ROOM_ID = item.ROOM_ID,
+                     AMENITY_ID = item.AMENITY_ID,
+                     AMENITY_NAME = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == item.AMENITY_ID)?.AMENITY_NAME,
+                     ROOMS = item.ROOMS
+                 }).ToList(),
+                 MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
+                 IMAGE_URL = roomItem.IMAGE_URL
+             }).ToList();
 
             return View("Index", PaginatedList<HomeVM>.Create(objRoomList.AsQueryable(), pageNumber, pageSize));
         }
@@ -63,7 +65,15 @@ namespace RPRENTAL.Controllers
                         ROOM_NAME = roomItem.ROOM_NAME,
                         DESCRIPTION = roomItem.DESCRIPTION,
                         ROOM_PRICE = roomItem.ROOM_PRICE,
-                        ROOM_AMENITIES = roomItem.ROOM_AMENITIES,
+                        ROOM_AMENITIES = roomItem.ROOM_AMENITIES.Select(item => new RoomAmenity
+                        {
+                            ID = item.ID,
+                            ROOM_ID = item.ROOM_ID,
+                            AMENITY_ID = item.AMENITY_ID,
+                            AMENITY_NAME = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == item.AMENITY_ID).AMENITY_NAME,
+                            ROOMS = item.ROOMS
+                        }).ToList(),
+
                         MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
                         IS_ROOM_AVAILABLE = iCounter > 0 ? true : false,
                         IMAGE_URL = roomItem.IMAGE_URL,

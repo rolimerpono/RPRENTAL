@@ -36,7 +36,7 @@ namespace DataWrapper.Implementation
         {
             try
             {
-                Amenity objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == Amenity_ID, IncludeProperties: "ROOM");
+                Amenity objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == Amenity_ID);
 
                 if (objAmenity != null)
                 {
@@ -57,7 +57,7 @@ namespace DataWrapper.Implementation
             try
             {
                 Amenity objAmenity;
-                objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == Amenity_ID, IncludeProperties: "ROOM");
+                objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == Amenity_ID);
                 return objAmenity;
 
             }
@@ -72,7 +72,7 @@ namespace DataWrapper.Implementation
             try
             {
                 IEnumerable<Amenity> objAmenity;
-                objAmenity = _iWorker.tbl_Amenity.GetAll(IncludeProperties: "ROOM").OrderBy(ob => ob.ROOM.ROOM_NAME);
+                objAmenity = _iWorker.tbl_Amenity.GetAll().OrderBy(fw => fw.AMENITY_NAME);
                 return objAmenity;
             }
             catch (Exception ex)
@@ -81,19 +81,14 @@ namespace DataWrapper.Implementation
             }
         }
 
-        public bool IsAmenityExists(Amenity objAmenity)
+        public bool IsAmenityExists(String AmenityName)
         {
             try
             {
-                //CHECK IF AMENITY NAME ALREADY EXISTS IN ROOM
-                var objResult = from oAmenity in _iWorker.tbl_Amenity.GetAll()
-                                join oRoom in _iWorker.tbl_Rooms.GetAll()
-                                on oAmenity.ROOM_ID equals oRoom.ROOM_ID
-                                where oAmenity.ROOM_ID == objAmenity.ROOM_ID
-                                && oAmenity.AMENITY_NAME == objAmenity.AMENITY_NAME
-                                select oRoom;
+                //CHECK IF AMENITY NAME ALREADY EXISTS
+                var objResult = _iWorker.tbl_Amenity.Any(fw => fw.AMENITY_NAME == AmenityName);
 
-                return objResult.Any();
+                return objResult;
 
             }
             catch(Exception ex)
