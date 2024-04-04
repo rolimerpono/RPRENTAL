@@ -7,12 +7,12 @@
                 <div class="mb-3">
                     <input asp-for="@Model.AMENITY_ID" hidden />
                     <label class="form-label fw-bold">Amenity Name:</label>
-                    <input type="text" class="form-control" asp-for="@Model.AMENITY_NAME" placeholder="Enter Amenity Name" name="amenity_name" autofocus required autocomplete="off">
+                    <input id="amenity_name" type="text" class="form-control" asp-for="@Model.AMENITY_NAME" placeholder="Enter Amenity Name" required autocomplete="off">
                     <div class="invalid-feedback">Please provide a amenity name.</div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>   
 </form>
 
 

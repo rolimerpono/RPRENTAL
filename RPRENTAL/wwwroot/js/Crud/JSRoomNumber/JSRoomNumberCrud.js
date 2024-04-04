@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     $('.btn-add').click(function () {
         loadModal('/RoomNumber/Create', '#modal-add-content');
+        InputBoxFocus('#modal-add');
     });
 
     $('.btn-save').click(function () {
@@ -14,6 +15,7 @@ $(document).ready(function () {
     $('#tbl_RoomNumber').on('click', '.select-edit-btn', function () {
         var rowData = getRowData($(this));
         loadModal('/RoomNumber/Update', '#modal-edit-content', rowData);
+        InputBoxFocus('#modal-edit');
     });
 
     $('.btn-edit').click(function () {
@@ -30,6 +32,19 @@ $(document).ready(function () {
         deleteRoom('#form-delete');
     });
 });
+
+function InputBoxFocus(modal_name) {
+    $(document).on('shown.bs.modal', modal_name, function () {
+        var input = $('#room_number');
+        input.focus();
+
+
+        if (input.val().trim() !== '') {
+            var inputLength = input.val().length;
+            input[0].setSelectionRange(inputLength, inputLength);
+        }
+    });
+}
 
 function initializeDataTable() {
     objDataTable = $('#tbl_RoomNumber').DataTable({
@@ -85,6 +100,11 @@ function loadModal(url, modalContentSelector, data = null) {
             handleAjaxError(error);
         }
     });
+
+    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
+        $(modalContentSelector).html('');
+    });
+
 }
 
 

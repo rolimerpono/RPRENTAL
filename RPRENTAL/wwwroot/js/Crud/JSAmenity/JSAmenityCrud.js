@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     $('.btn-add').click(function () {
         loadModal('/Amenity/Create', '#modal-add-content');
+        InputBoxFocus('#modal-add');
     });
 
     $('.btn-save').click(function () {
@@ -12,9 +13,10 @@ $(document).ready(function () {
     });
 
     $('#tbl_Amenity').on('click', '.select-edit-btn', function () {
-        var rowData = getRowData($(this));        
+        var rowData = getRowData($(this));
         loadModal('/Amenity/Update', '#modal-edit-content', rowData);
-       
+        InputBoxFocus('#modal-edit');
+
     });
 
     $('.btn-edit').click(function () {
@@ -30,7 +32,28 @@ $(document).ready(function () {
     $('.btn-delete').click(function () {
         deleteRoom('#form-delete');
     });
+
+    $('#btn-close').click(function () {
+        deleteRoom('#form-delete');
+    });
+
+
+
 });
+
+function InputBoxFocus(modal_name) {
+    $(document).on('shown.bs.modal', modal_name, function () {
+        var input = $('#amenity_name');
+        input.focus();
+
+
+        if (input.val().trim() !== '') {
+            var inputLength = input.val().length;
+            input[0].setSelectionRange(inputLength, inputLength);
+        }
+    });
+}
+
 
 function initializeDataTable() {
     objDataTable = $('#tbl_Amenity').DataTable({
@@ -39,7 +62,7 @@ function initializeDataTable() {
         },
         columns: [
             { data: 'amenitY_ID', visible: false },
-            { data: 'amenitY_NAME', 'width': '25%' },               
+            { data: 'amenitY_NAME', 'width': '25%' },
 
             {
                 data: 'amenitY_ID',
@@ -63,27 +86,30 @@ function initializeDataTable() {
 }
 
 function loadModal(url, modalContentSelector, data = null) {
-    
+
     $.ajax({
         type: 'GET',
         url: url,
         data: data,
         success: function (result) {
-            console.log('THIS IS THE RESPONSE : ' + result);
-            $(modalContentSelector).html(result);  
-            $(modalContentSelector.replace('-content', '')).modal('show');          
+            $(modalContentSelector).html(result);
+            $(modalContentSelector.replace('-content', '')).modal('show');
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);
         }
     });
-}
 
+    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
+        $(modalContentSelector).html('');
+    });
+
+}
 
 function saveRoom(url, formSelector) {
 
-    var objRoomData = $(formSelector).serialize(); 
-    
+    var objRoomData = $(formSelector).serialize();
+
     if ($(formSelector)[0].checkValidity()) {
         $.ajax({
             type: 'POST',
