@@ -12,8 +12,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Amenity').on('click', '.select-edit-btn', function () {
-        var rowData = getRowData($(this));
-        debugger
+        var rowData = getRowData($(this));        
         loadModal('/Amenity/Update', '#modal-edit-content', rowData);
        
     });
@@ -35,10 +34,10 @@ $(document).ready(function () {
 
 function initializeDataTable() {
     objDataTable = $('#tbl_Amenity').DataTable({
-        'ajax': {
+        ajax: {
             url: '/Amenity/GetAll'
         },
-        'columns': [
+        columns: [
             { data: 'amenitY_ID', visible: false },
             { data: 'amenitY_NAME', 'width': '25%' },               
 
@@ -70,8 +69,9 @@ function loadModal(url, modalContentSelector, data = null) {
         url: url,
         data: data,
         success: function (result) {
-            $(modalContentSelector).html(result);
-            $(modalContentSelector.replace('-content', '')).modal('show');
+            console.log('THIS IS THE RESPONSE : ' + result);
+            $(modalContentSelector).html(result);  
+            $(modalContentSelector.replace('-content', '')).modal('show');          
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);
