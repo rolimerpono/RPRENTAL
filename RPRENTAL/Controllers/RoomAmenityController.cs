@@ -82,7 +82,8 @@ namespace RPRENTAL.Controllers
             RoomAmenityVM objData = new RoomAmenityVM();
             objData.ROOM_AMENITY = new List<RoomAmenity>();
             objData.ROOM_LIST = new List<Room>();
-            objData.ROOM_ID = (int)ID;
+            objData.ROOM_ID = objRoomAmenities.RoomId;
+            objData.ROOM_NAME = objRoomAmenities.RoomName;
           
            
             foreach (var oAmenity in objRoomAmenities.RoomAmenities.ToList())

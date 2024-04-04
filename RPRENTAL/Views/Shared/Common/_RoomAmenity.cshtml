@@ -1,8 +1,14 @@
 ﻿@model RoomAmenityVM
 
 <div id="selected_room">
-    <div class="border p-5" style="max-height:250px; overflow-y:auto;">
-        <div class="row">             
+    <div class="row">
+        <div class="col-12">
+            <span class="fs-4 fw-bold text-danger-emphasis pb-2">@Model.ROOM_NAME.ToUpper()</span>
+        </div>
+    </div>
+    <div class="border p-5" style="max-height:250px; overflow-y:auto;">        
+        <div class="row">
+          
                 <input asp-for="@Model.ROOM_ID" hidden />
                 @foreach (var item in @Model.AMENITIES)
                 {
@@ -12,16 +18,12 @@
                         <label class="form-check-label" for="selected-item-@item.AMENITY_ID">@item.AMENITY_NAME</label>
                         </div>
                     </div>
-                }   
+                } 
            
         </div>
-    </div>
-   
+    </div>  
 </div>
 
 @section Scripts {
-
     <script src="~/js/Crud/JSRoomAmenity/JSRoomAmenity.js"></script>
 }
-
-
