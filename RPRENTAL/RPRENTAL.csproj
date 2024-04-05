@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Booking\" />
     <Folder Include="wwwroot\css\Layout\Admin\" />
     <Folder Include="wwwroot\css\Layout\" />
     <Folder Include="wwwroot\js\Crud\JSRegister\" />

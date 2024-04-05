@@ -1,6 +1,7 @@
 ﻿@model PaginatedList<HomeVM>
 
 <div id="room_list">
+
     <div class="row gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3 mt-5 pb-3" style="border: 1px thin #dcdcdc;">
         @*  DISPLAY ROOM LIST *@
         @foreach (var objRoom in Model.ITEMS)
@@ -19,21 +20,21 @@
                     </ul>
                     <div class="card-body d-flex flex-column flex-md-row justify-content-md-between">
                         <div class="mb-2 mb-md-0">
-                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-@(objRoom.ROOM_ID)">DETAILS</button>
+                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target="#room_detail_modal-@(objRoom.ROOM_ID)">DETAILS</button>
                         </div>
                         @if (objRoom.CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
                         {
                             @if (objRoom.IS_ROOM_AVAILABLE)
                             {
                                 <div>
-                                    <button id="btnBookNow" class="btn btn-primary rounded-2 w-100 w-md-auto" type="button">BOOK NOW</button>
+                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" data-bs-toggle="modal" data-bs-target="#booking_detail_modal-@(objRoom.ROOM_ID)">BOOK NOW</button>
                                 </div>
                               
                             }
                             else
                             {                              
                                 <div>
-                                    <button id="btnSoldOut" class="btn btn-danger disabled  rounded-2 w-100 w-md-auto" type="button">SOLD OUT</button>
+                                    <button class="btn btn-danger disabled  rounded-2 w-100 w-md-auto btn-soldout" type="button">SOLD OUT</button>
                                 </div>
                             }
                         }
@@ -43,13 +44,32 @@
             </div>
 
 
-            //DISPLAY MODAL ROOM DETAIL
+            //DISPLAY MODAL BOOKING DETAIL
 
-            <div class="modal fade" id="exampleModal-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="booking_detail_modal-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="booking_detail_modal" aria-hidden="true">
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title text-success fw-bold" id="exampleModalLabel">ROOM DETAILS</h1>
+                            <h1 class="modal-title text-success fw-bold" id="room_detail_modal">BOOKING DETAILS</h1>
+                        </div>
+                        <div class="modal-body m-0">
+                            <div id="modal-booking-content"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            //DISPLAY MODAL ROOM DETAIL
+
+            <div class="modal fade" id="room_detail_modal-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="room_detail_modal" aria-hidden="true">
+                <div class="modal-dialog modal-xl border border-secondary rounded">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title text-success fw-bold" id="room_detail_modal">ROOM DETAILS</h1>
                         </div>
                         <div class="modal-body m-0">
                             <partial name="Common/_RoomDetail" model="@objRoom" />
@@ -100,3 +120,11 @@
         </nav>
     </div>
 </div>
+
+<div id="toaster" class="toaster"></div>
+
+
+@section Scripts {
+    <script src="~/js/Crud/JSBooking/JSBookingCrud.js"></script>
+}
+

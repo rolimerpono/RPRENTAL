@@ -10,42 +10,61 @@ namespace Model
 {
     public class Booking
     {
+        public Booking()
+        {
+            ROOM_ID = 0;
+            BOOKING_ID = 0;
+            USER_ID = string.Empty;
+            USERS = new ApplicationUser();           
+            ROOM_NUMBER = 0;
+            USER_NAME = String.Empty;
+            USER_EMAIL = string.Empty;
+            PHONE_NUMBER = string.Empty;
+            TOTAL_COST = 0;
+
+        }
+
         [Key]
-        public int  BOOKING_ID { get;set; }
+        public int  BOOKING_ID { get;set; } 
 
-     
-        public required string USER_ID { get;set; }
+        [Required]
+        public string USER_ID { get;set; }
 
 
-        [ForeignKey(nameof(USER_ID))]
+        [ForeignKey("USER_ID")]
         public ApplicationUser? USERS { get; set; }
 
 
-        public required int ROOM_ID { get;set; }
+        [Required]
+        public int ROOM_ID { get;set; }
 
         [ForeignKey("ROOM_ID")]
         public Room? ROOM { get;set; }
 
         public int ROOM_NUMBER { get; set; }
 
-        public required string USER_NAME { get; set; }
+        [Required]
+        public string USER_NAME { get; set; }
 
-        public required string USER_EMAIL { get; set;}
+        [Required]
+        public string USER_EMAIL { get; set;}
 
         public string? PHONE_NUMBER { get; set; }
 
-        public required double TOTAL_COST { get; set; }
-
-        [NotMapped]
-        public int  NO_OF_STAY { get; set; }
+        [Required]
+        public double TOTAL_COST { get; set; }      
 
         public string? BOOKING_STATUS { get; set; }
 
-        public required DateTime BOOKING_DATE { get; set; } = DateTime.Now;
+        [Required]
+        public  DateTime BOOKING_DATE { get; set; } = DateTime.Now;
 
-        public required DateOnly CHECK_IN_DATE { get; set; }
 
-        public required  DateOnly CHECK_OUT_DATE { get; set; } 
+        [Required]
+        public DateOnly CHECK_IN_DATE { get; set; }
+
+        [Required]
+        public  DateOnly CHECK_OUT_DATE { get; set; } 
 
         public Boolean IS_PAYMENT_SUCCESSFULL { get; set; } = false;
 

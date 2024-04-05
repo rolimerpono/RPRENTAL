@@ -1,56 +1,44 @@
 ﻿@model Room
 
-@{   
+@{
     var priceRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("ROOM_PRICE"), typeof(RangeAttribute));
-    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MAX_OCCUPANCY"), typeof(RangeAttribute));    
-   
+    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MAX_OCCUPANCY"), typeof(RangeAttribute));
 }
 
 <form id="form-add">
-   @*  <div asp-validation-summary="All" class="text-danger"></div> *@
     <div class="modal-body">
-        <div class="row">          
+        <div class="row">
             <div class="col-lg-6 col-md-12">
-                <div class="border" style="max-width: 100%; height: auto;">
+                <div class="border">
                     <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
                 </div>
                 <div class="input-group pt-3">
                     <input type="file" id="imageUpload" class="form-control" accept="image/*">
                     <label class="input-group-text">Upload</label>
                 </div>
-            </div>         
-            <div class="col-lg-6 col-md-12 pt-md-0 pt-3">               
+            </div>
+            <div class="col-lg-6 col-md-12 pt-md-0 pt-3">
                 <input type="text" class="form-control" hidden asp-for="@Model.IMAGE_URL">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Room Name:</label>
-                    <input id="room_name" type="text" class="form-control" asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name" required>
-                    <div class="invalid-feedback">Please provide a room name.</div>                     
+                    <input id="room_name" type="text" class="form-control" asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name" required autocomplete="off">
+                    <div class="invalid-feedback">Please provide a room name.</div>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label fw-bold">Description:</label>
-                    <input type="text" class="form-control" asp-for="@Model.DESCRIPTION" placeholder="Enter Description">                 
+                    <label class="form-label fw-bold" for="description">Description:</label>
+                    <input type="text" class="form-control" asp-for="@Model.DESCRIPTION" placeholder="Enter Description" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price:</label>
-                    <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" required min="@priceRange.Minimum" max="@priceRange.Maximum" style="-moz-appearance: textfield;">
-                    <div class="invalid-feedback">Please provide a range price of $ @priceRange.Minimum - $ @priceRange.Maximum</div>
+                    <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" required autocomplete="off" min="@priceRange.Minimum" max="@priceRange.Maximum">
+                    <div class="invalid-feedback">Please provide a price between $@priceRange.Minimum and $@priceRange.Maximum.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Occupancy:</label>
-                    <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" required min="@occupancyRange.Minimum" max="@occupancyRange.Maximum" style="-moz-appearance: textfield;">
-                    <div class="invalid-feedback">Please provide a range occupancy of @occupancyRange.Minimum - @occupancyRange.Maximum.</div>
+                    <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" required autocomplete="off" min="@occupancyRange.Minimum" max="@occupancyRange.Maximum">
+                    <div class="invalid-feedback">Please provide an occupancy between @occupancyRange.Minimum and @occupancyRange.Maximum.</div>
                 </div>
             </div>
         </div>
-    </div> 
-
+    </div>
 </form>
-
-
-
-
-
-
-
-
-
