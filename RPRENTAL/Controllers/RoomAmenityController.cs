@@ -1,4 +1,4 @@
-﻿using DataWrapper.Interface;
+﻿using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query;
 using Model;

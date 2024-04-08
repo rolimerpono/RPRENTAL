@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj" />
-    <ProjectReference Include="..\DataWrapper\DataWrapper.csproj" />
-    <ProjectReference Include="..\Model\Model.csproj" />
-    <ProjectReference Include="..\Repository\Repository.csproj" />
+    <ProjectReference Include="..\DataService\DataService.csproj" />
+    <ProjectReference Include="..\StaticUtility\StaticUtility.csproj" />
   </ItemGroup>
 
 </Project>

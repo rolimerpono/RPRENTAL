@@ -1,5 +1,5 @@
 ﻿using DatabaseAccess;
-using DataWrapper.Interface;
+using DataService.Interface;
 using Repository.Implementation;
 using Repository.Interface;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataWrapper.Implementation
+namespace DataService.Implementation
 {
     public class Worker : IWorker
     {

@@ -2060,10 +2060,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "DataWrapper": "1.0.0",
-          "DatabaseAccess": "1.0.0",
-          "Model": "1.0.0",
-          "Repository": "1.0.0"
+          "DataService": "1.0.0",
+          "StaticUtility": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Common.dll": {}
@@ -2090,19 +2088,18 @@
           "bin/placeholder/DatabaseAccess.dll": {}
         }
       },
-      "DataWrapper/1.0.0": {
+      "DataService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "DatabaseAccess": "1.0.0",
           "Model": "1.0.0",
           "Repository": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/DataWrapper.dll": {}
+          "bin/placeholder/DataService.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DataWrapper.dll": {}
+          "bin/placeholder/DataService.dll": {}
         }
       },
       "Model/1.0.0": {
@@ -5230,10 +5227,10 @@
       "path": "../DatabaseAccess/DatabaseAccess.csproj",
       "msbuildProject": "../DatabaseAccess/DatabaseAccess.csproj"
     },
-    "DataWrapper/1.0.0": {
+    "DataService/1.0.0": {
       "type": "project",
-      "path": "../DataWrapper/DataWrapper.csproj",
-      "msbuildProject": "../DataWrapper/DataWrapper.csproj"
+      "path": "../DataService/DataService.csproj",
+      "msbuildProject": "../DataService/DataService.csproj"
     },
     "Model/1.0.0": {
       "type": "project",
@@ -5254,7 +5251,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Common >= 1.0.0",
-      "DataWrapper >= 1.0.0",
+      "DataService >= 1.0.0",
       "DatabaseAccess >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.1",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 8.0.1",
@@ -5265,6 +5262,7 @@
       "Model >= 1.0.0",
       "PagedList.Mvc >= 4.5.0",
       "PayPal >= 1.9.1",
+      "Repository >= 1.0.0",
       "StaticUtility >= 1.0.0",
       "Stripe.net >= 43.18.0"
     ]
@@ -5308,11 +5306,14 @@
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataWrapper.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj"
             },
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
+            },
+            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Repository\\Repository.csproj"
             },
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"

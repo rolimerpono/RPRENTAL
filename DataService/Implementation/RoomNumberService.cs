@@ -1,4 +1,4 @@
-﻿using DataWrapper.Interface;
+﻿using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataWrapper.Implementation
+namespace DataService.Implementation
 {
     public class RoomNumberService : IRoomNumberService
     {

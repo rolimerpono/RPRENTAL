@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Model;
 using Microsoft.EntityFrameworkCore;
 using System.IO.Pipes;
-using DataWrapper.Interface;
-using DataWrapper.Implementation;
+using DataService.Interface;
+using DataService.Implementation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stripe;
 

@@ -2,7 +2,7 @@
 
 
     var objRoomData = $('#checking_info').serialize(); 
-    debugger
+    
     $.ajax({
         type: 'GET',
         url: '/Booking/CreateBooking',
@@ -10,7 +10,7 @@
         success: function (result) {
 
             $('#modal-booking-content').html(result);
-            $('#booking_detail_modal').modal('show');
+            $('#modal-booking').modal('show');
         },
         error: function (xhr, status, error) {
             handleAjaxError(error);

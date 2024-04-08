@@ -1917,22 +1917,6 @@
           }
         }
       },
-      "Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj": "1.0.0",
-          "DatabaseAccess": "1.0.0",
-          "Model": "1.0.0",
-          "Repository": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Common.dll": {}
-        }
-      },
       "DatabaseAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -5689,11 +5673,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Common/1.0.0": {
-      "type": "project",
-      "path": "../Common/Common.csproj",
-      "msbuildProject": "../Common/Common.csproj"
-    },
     "DatabaseAccess/1.0.0": {
       "type": "project",
       "path": "../DatabaseAccess/DatabaseAccess.csproj",
@@ -5717,8 +5696,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Common >= 1.0.0",
-      "DatabaseAccess >= 1.0.0",
       "Model >= 1.0.0",
       "Repository >= 1.0.0"
     ]
@@ -5730,11 +5707,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataService.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj",
       "projectName": "DataService",
-      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\DataService.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataWrapper\\obj\\",
+      "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5756,12 +5733,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Common\\Common.csproj"
-            },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
-            },
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
             },
@@ -5806,15 +5777,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Unable to find project information for 'C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
-      "libraryId": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

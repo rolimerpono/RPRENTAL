@@ -1,5 +1,5 @@
-﻿using DataWrapper.Implementation;
-using DataWrapper.Interface;
+﻿using DataService.Implementation;
+using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Model;

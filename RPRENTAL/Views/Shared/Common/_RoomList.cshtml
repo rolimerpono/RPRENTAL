@@ -49,17 +49,21 @@
 
             //DISPLAY MODAL BOOKING DETAIL
 
-            <div class="modal fade" id="booking_detail_modal" tabindex="-1" aria-labelledby="booking_detail_modal" aria-hidden="true">
+            <div class="modal fade" id="modal-booking" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true">
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title text-success fw-bold" id="room_detail_modal">BOOKING DETAILS</h1>
+                            <h3 class="modal-title text-success fw-bold" id="modal-booking">BOOKING DETAILS</h3>
                         </div>
-                        <div class="modal-body m-0">
+                        <div class="modal-body m-0">    
+                            <div class="row pb-3">
+                                <partial name="Common/_RoomDetail" model="@objRoom" />
+                             </div>
                             <div id="modal-booking-content"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                            <button type="button" class="btn btn-outline-success" style="width:100px;">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -72,7 +76,7 @@
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title text-success fw-bold" id="room_detail_modal">ROOM DETAILS</h1>
+                            <h3 class="modal-title text-success fw-bold" id="room_detail_modal">ROOM DETAILS</h3>
                         </div>
                         <div class="modal-body m-0">
                             <partial name="Common/_RoomDetail" model="@objRoom" />

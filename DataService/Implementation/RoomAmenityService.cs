@@ -1,4 +1,4 @@
-﻿using DataWrapper.Interface;
+﻿using DataService.Interface;
 using Microsoft.EntityFrameworkCore.Query;
 using Model;
 using Repository.Interface;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataWrapper.Implementation
+namespace DataService.Implementation
 {
     public class RoomAmenityService : IRoomAmenityService
     {
