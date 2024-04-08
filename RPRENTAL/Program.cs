@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System.IO.Pipes;
 using DataWrapper.Interface;
 using DataWrapper.Implementation;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Stripe;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,8 @@ builder.Services.AddScoped<IWorker, Worker>();
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>();
 
+
+builder.Services.AddMvc().AddViewOptions(options => options.HtmlHelperOptions.FormInputRenderMode = FormInputRenderMode.AlwaysUseCurrentCulture);
 
 builder.Services.Configure<IdentityOptions>(opt =>
 {

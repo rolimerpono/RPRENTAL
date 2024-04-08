@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class ResetMigrationTablePhase1 : Migration
+    public partial class ResetMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -87,7 +87,7 @@ namespace DatabaseAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_RoleCLaims",
+                name: "tbl_RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -98,9 +98,9 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_RoleCLaims", x => x.Id);
+                    table.PrimaryKey("PK_tbl_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tbl_RoleCLaims_tbl_Roles_RoleId",
+                        name: "FK_tbl_RoleClaims_tbl_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "tbl_Roles",
                         principalColumn: "Id",
@@ -246,6 +246,12 @@ namespace DatabaseAccess.Migrations
                 {
                     table.PrimaryKey("PK_tbl_RoomAmenity", x => x.ID);
                     table.ForeignKey(
+                        name: "FK_tbl_RoomAmenity_tbl_Amenity_AMENITY_ID",
+                        column: x => x.AMENITY_ID,
+                        principalTable: "tbl_Amenity",
+                        principalColumn: "AMENITY_ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_tbl_RoomAmenity_tbl_Rooms_ROOM_ID",
                         column: x => x.ROOM_ID,
                         principalTable: "tbl_Rooms",
@@ -289,12 +295,12 @@ namespace DatabaseAccess.Migrations
                 columns: new[] { "ROOM_ID", "CREATED_DATE", "DESCRIPTION", "IMAGE_URL", "MAX_OCCUPANCY", "ROOM_NAME", "ROOM_PRICE", "UPDATED_DATE" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6086), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6087) },
-                    { 2, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6093), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6094) },
-                    { 3, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6100), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6101) },
-                    { 4, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6107), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6108) },
-                    { 5, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6114), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6115) },
-                    { 6, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6120), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Executive Suite", 180.0, new DateTime(2024, 4, 4, 16, 28, 25, 431, DateTimeKind.Local).AddTicks(6121) }
+                    { 1, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9736), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9737) },
+                    { 2, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9743), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9744) },
+                    { 3, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9752), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9753) },
+                    { 4, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9759), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9760) },
+                    { 5, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9766), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9767) },
+                    { 6, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9773), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Executive Suite", 180.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9774) }
                 });
 
             migrationBuilder.InsertData(
@@ -342,8 +348,8 @@ namespace DatabaseAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_RoleCLaims_RoleId",
-                table: "tbl_RoleCLaims",
+                name: "IX_tbl_RoleClaims_RoleId",
+                table: "tbl_RoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
@@ -391,6 +397,11 @@ namespace DatabaseAccess.Migrations
                 column: "USER_ID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_tbl_RoomAmenity_AMENITY_ID",
+                table: "tbl_RoomAmenity",
+                column: "AMENITY_ID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_tbl_RoomAmenity_ROOM_ID",
                 table: "tbl_RoomAmenity",
                 column: "ROOM_ID");
@@ -405,7 +416,7 @@ namespace DatabaseAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tbl_RoleCLaims");
+                name: "tbl_RoleClaims");
 
             migrationBuilder.DropTable(
                 name: "tbl_UserClaims");
@@ -418,9 +429,6 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_UserTokens");
-
-            migrationBuilder.DropTable(
-                name: "tbl_Amenity");
 
             migrationBuilder.DropTable(
                 name: "tbl_Booking");
@@ -436,6 +444,9 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_Users");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Amenity");
 
             migrationBuilder.DropTable(
                 name: "tbl_Rooms");

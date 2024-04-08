@@ -115,6 +115,7 @@ function loadModal(url, modalContentSelector, data = null) {
 function saveRoom(url, formSelector) {
 
     var objRoomData = $(formSelector).serialize();
+    debugger
     if ($(formSelector)[0].checkValidity()) {
         $.ajax({
             type: 'POST',

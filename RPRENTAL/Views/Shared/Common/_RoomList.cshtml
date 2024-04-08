@@ -1,11 +1,14 @@
 ﻿@model PaginatedList<HomeVM>
 
-<div id="room_list">
 
+<div id="room_list">  
+  
     <div class="row gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3 mt-5 pb-3" style="border: 1px thin #dcdcdc;">
+      
         @*  DISPLAY ROOM LIST *@
         @foreach (var objRoom in Model.ITEMS)
-        {
+        {  
+
             <div class="col">
                 <div class="card h-100">
                     <img src="@objRoom.IMAGE_URL" class="card-img-top" alt="...">
@@ -27,7 +30,7 @@
                             @if (objRoom.IS_ROOM_AVAILABLE)
                             {
                                 <div>
-                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" data-bs-toggle="modal" data-bs-target="#booking_detail_modal-@(objRoom.ROOM_ID)">BOOK NOW</button>
+                                        <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" onclick="GetBooking(@objRoom.ROOM_ID)">BOOK NOW</button>
                                 </div>
                               
                             }
@@ -118,13 +121,8 @@
                 </li>
             </ul>
         </nav>
-    </div>
+    </div>  
 </div>
 
 <div id="toaster" class="toaster"></div>
-
-
-@section Scripts {
-    <script src="~/js/Crud/JSBooking/JSBookingCrud.js"></script>
-}
 
