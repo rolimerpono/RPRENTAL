@@ -62,7 +62,7 @@ namespace RPRENTAL.Controllers
           
             objBooking.TOTAL_COST = objBooking.ROOM.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
 
-            return PartialView("CreateBooking",objBooking);
+            return PartialView("Common/_BookingDetail", objBooking);
 
         }
     }
