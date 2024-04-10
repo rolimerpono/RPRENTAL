@@ -71,15 +71,31 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult ConfirmBooking(Booking objBooking)
+        public IActionResult ConfirmBooking(string jsonData)
         {
 
+            var objData = jsonData.Split('&').Select(obj => obj.Split('=')).ToDictionary(obj => obj[0], obj => obj[1]);
 
-            var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID);
+            DateOnly checkin_date = DateOnly.Parse(objData["CHECKIN_DATE"]);
+            DateOnly checkout_date = DateOnly.Parse(objData["CHECKOUT_DATE"]);
+            int room_id = int.Parse(objData["ROOM_ID"]);
 
-            objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (objBooking.CHECK_OUT_DATE.AddDays(1 - objBooking.CHECK_IN_DATE.DayNumber).DayNumber);
+            Booking objBooking = new Booking();
 
 
+            var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == room_id);
+            objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
+            
+            objBooking.USER_ID = "518a0e59-f15f-45f6-b5b6-09de189c3724";
+            objBooking.USER_NAME = "rolimer_pono@yahoo.com";
+            objBooking.USER_EMAIL = "rolimer_pono@yahoo.com";
+
+            //objBooking.CHECK_IN_DATE = checkin_date;
+            //objBooking.CHECK_OUT_DATE = checkout_date;
+
+
+            objBooking.ROOM = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == room_id);
+            objBooking.ROOM_ID = room_id;
             objBooking.BOOKING_STATUS = BookingStatus.PENDING.ToString();
             objBooking.BOOKING_DATE = DateTime.Now;
 
@@ -95,7 +111,7 @@ namespace RPRENTAL.Controllers
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment",
                 SuccessUrl = domain + $"Booking/CompleteBooking?BookingID={objBooking.BOOKING_ID}",
-                CancelUrl = $"{domain}Booking/ConfirmBooking/ID={objBooking.ROOM_ID}&jsonData={JsonConvert.SerializeObject($"{objBooking.CHECK_IN_DATE} {objBooking.CHECK_OUT_DATE}")}"
+                CancelUrl = $"{domain}Booking/ConfirmBooking/ID={objBooking.ROOM_ID}&jsonData={JsonConvert.SerializeObject($"{checkin_date} {checkout_date}")}"
             };
 
             options.LineItems.Add(new SessionLineItemOptions

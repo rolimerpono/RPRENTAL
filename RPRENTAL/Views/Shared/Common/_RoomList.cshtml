@@ -49,7 +49,7 @@
 
             //DISPLAY MODAL BOOKING DETAIL
 
-            <div class="modal fade" id="modal-booking" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true">                       
+            <div class="modal fade" id="modal-booking-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true">                       
                
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
@@ -60,12 +60,12 @@
                             <div class="row pb-3">
                                 <partial name="Common/_RoomDetail" model="@objRoom" />
                              </div>
-                            <div id="modal-booking-content"></div>
+                            <div id="modal-booking-content-@(objRoom.ROOM_ID)"></div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
-                            <button id="btn-confirm" type="button" class="btn btn-outline-success" style="width:100px;">Confirm</button>
+                            <button type="button" onclick="ConfirmBooking()"  class="btn btn-outline-success" style="width:100px;">Confirm</button>
                         </div>
 
                     </div>
