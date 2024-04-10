@@ -1,11 +1,14 @@
-﻿using DataService.Interface;
+﻿using DataService.Implementation;
+using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Newtonsoft.Json;
 using StaticUtility;
+using Stripe;
 using Stripe.Checkout;
 using System.Security.Claims;
 using static StaticUtility.SD;
+
 
 namespace RPRENTAL.Controllers
 {
@@ -84,34 +87,49 @@ namespace RPRENTAL.Controllers
 
 
             var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == room_id);
-            objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
-            
-            objBooking.USER_ID = "518a0e59-f15f-45f6-b5b6-09de189c3724";
+           
+            objBooking.USER_ID = "a507b587-2751-4f6f-ac26-1e9c96ec769e";
+            objBooking.ROOM_ID = room_id;
+            objBooking.ROOM_NUMBER = 0;
             objBooking.USER_NAME = "rolimer_pono@yahoo.com";
             objBooking.USER_EMAIL = "rolimer_pono@yahoo.com";
-
-            //objBooking.CHECK_IN_DATE = checkin_date;
-            //objBooking.CHECK_OUT_DATE = checkout_date;
-
-
-            objBooking.ROOM = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == room_id);
-            objBooking.ROOM_ID = room_id;
-            objBooking.BOOKING_STATUS = BookingStatus.PENDING.ToString();
+            objBooking.PHONE_NUMBER = "0212477441";         
+            objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
+            objBooking.BOOKING_STATUS = SD.BookingStatus.PENDING.ToString();
             objBooking.BOOKING_DATE = DateTime.Now;
+            objBooking.CHECK_IN_DATE = DateOnly.FromDateTime( DateTime.Now);
+            objBooking.CHECK_OUT_DATE = DateOnly.FromDateTime(DateTime.Now);
+            objBooking.IS_PAYMENT_SUCCESSFULL = false;
+            objBooking.PAYMENT_DATE = DateTime.Parse("1900-01-01");
+            objBooking.STRIPE_SESSION_ID = "";
+            objBooking.STRIPE_PAYEMENT_INTENT_ID = "";
+            objBooking.ACTUAL_CHECK_IN_DATE = DateTime.Parse("1900-01-01");
+            objBooking.ACTUAL_CHECK_OUT_DATE = DateTime.Parse("1900-01-01");
 
 
             _IWorker.tbl_Booking.Add(objBooking);
             _IWorker.tbl_Booking.Save();
 
+            return Json(new { success = true, message = "Successfully", booking = JsonConvert.SerializeObject(objBooking) });
+            
 
+          }
+
+        [HttpPost]
+        public IActionResult ShowPayment(int booking_id)
+        {
+            var objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id);
+
+            var objRoom= _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID);    
 
             var domain = Request.Scheme + "://" + Request.Host.Value + "/";
+
             var options = new SessionCreateOptions
             {
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment",
-                SuccessUrl = domain + $"Booking/CompleteBooking?BookingID={objBooking.BOOKING_ID}",
-                CancelUrl = $"{domain}Booking/ConfirmBooking/ID={objBooking.ROOM_ID}&jsonData={JsonConvert.SerializeObject($"{checkin_date} {checkout_date}")}"
+                SuccessUrl = domain + $"Booking/BookingConfirmation?booking_id={objBooking.BOOKING_ID}",
+                CancelUrl = domain + $"Booking/CreateBooking/ID={objBooking.ROOM_ID}&jsonData={JsonConvert.SerializeObject($"CHECKIN_DATE{objBooking.CHECK_IN_DATE}, CHECKOUT_DATE{objBooking.CHECK_OUT_DATE}")}",
             };
 
             options.LineItems.Add(new SessionLineItemOptions
@@ -126,9 +144,7 @@ namespace RPRENTAL.Controllers
                         Name = objRoom.ROOM_NAME,
                         Description = objRoom.DESCRIPTION
                         //Images= new List<string> { domain + room.ImgUrl}
-
                     }
-
                 },
                 Quantity = 1
 
@@ -145,6 +161,25 @@ namespace RPRENTAL.Controllers
             Response.Headers.Add("Location", session.Url);
             return new StatusCodeResult(303);
 
+        }
+
+        public IActionResult BookingConfirmation(int booking_id)
+        {
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "User,Room");
+
+            if (objBooking.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
+            {
+                var service = new SessionService();
+                Session session = service.Get(objBooking.STRIPE_SESSION_ID);
+
+                if (session.PaymentStatus == "paid")
+                {
+                    _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BOOKING_ID, SD.BookingStatus.APPROVED.ToString(), 0);
+                    _IWorker.tbl_Booking.UpdateStripePaymentID(objBooking.BOOKING_ID, session.Id, session.PaymentIntentId);
+                    _IWorker.tbl_Booking.Save();
+                }
+            }
+            return View(booking_id);
         }
 
 

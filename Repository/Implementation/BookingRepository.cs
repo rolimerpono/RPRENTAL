@@ -43,32 +43,23 @@ namespace Repository.Implementation
                 case SD.BookingStatus.CHECK_IN:
                     objBooking.ROOM_NUMBER = RoomNumber;
                     objBooking.ACTUAL_CHECK_IN_DATE = DateTime.Now;
-
-                break;
+                    break;
 
                 case SD.BookingStatus.CHECK_OUT:
                     objBooking.ACTUAL_CHECK_OUT_DATE = DateTime.Now;
-
-                break;
+                    break;
 
                 case SD.BookingStatus.APPROVED:
                     objBooking.BOOKING_DATE = DateTime.Now;      
-                break;
+                    break;
 
-                case SD.BookingStatus.CANCELLED:
-                   
-                break;
-            
+                case SD.BookingStatus.CANCELLED:                   
+                    break;            
             
             }
             
         }
-
-        public void UpdatePaypalPaymentID(int BookingID, string SessionID, string PaypalPaymentID)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public void UpdateStripePaymentID(int BookingID, string SessionID, string StripePaymentID)
         {
             var objBooking = _db.tbl_Booking.FirstOrDefault(fw => fw.BOOKING_ID ==BookingID);
@@ -89,5 +80,11 @@ namespace Repository.Implementation
             
             }
         }
+
+        public void UpdatePaypalPaymentID(int BookingID, string SessionID, string PaypalPaymentID)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

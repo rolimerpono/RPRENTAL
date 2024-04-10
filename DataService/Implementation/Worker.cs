@@ -14,6 +14,18 @@ namespace DataService.Implementation
     {
         private readonly ApplicationDBContext _db;
 
+        public IRoomRepository tbl_Rooms { get; private set; }
+
+        public IRoomNumberRepository tbl_RoomNumber { get; private set; }
+
+        public IAmenityRepository tbl_Amenity { get; private set; }
+
+        public IRoomAmenityRepository tbl_RoomAmenity { get; private set; }
+
+        public IBookingRepository tbl_Booking { get; private set; }
+
+        public IApplicationUserRepository tbl_User { get; private set; }
+
         public Worker(ApplicationDBContext db)
         {
             _db = db;
@@ -27,16 +39,5 @@ namespace DataService.Implementation
         }
 
       
-        public IRoomRepository tbl_Rooms {get; private set;}
-
-        public IRoomNumberRepository tbl_RoomNumber { get; private set; }       
-
-        public IAmenityRepository tbl_Amenity { get; private set; }
-
-        public IRoomAmenityRepository tbl_RoomAmenity { get; private set; }
-
-        public IBookingRepository tbl_Booking { get; private set; }
-
-        public IApplicationUserRepository tbl_User { get; private set; }
     }
 }

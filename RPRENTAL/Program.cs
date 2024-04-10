@@ -7,6 +7,8 @@ using DataService.Interface;
 using DataService.Implementation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stripe;
+using Repository.Interface;
+using Repository.Implementation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,7 @@ builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IRoomNumberService, RoomNumberService>();
 builder.Services.AddScoped<IAmenityService, AmenityService>();
 builder.Services.AddScoped<IRoomAmenityService, RoomAmenityService>();
+builder.Services.AddScoped<IDBInitializer, DBInitializer>();
 builder.Services.AddScoped<IWorker, Worker>();
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>();
@@ -33,6 +36,8 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.Password.RequiredUniqueChars = 1;
     opt.Password.RequireUppercase = true;
 });
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 
 var app = builder.Build();
@@ -51,9 +56,20 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+SeedDatabase();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDBInitializer>();
+        dbInitializer.Initialize();
+
+    }
+}

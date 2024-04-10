@@ -26,8 +26,6 @@ namespace Repository.Implementation
                 
         }
 
-
-
         public void Initialize()
         {
             try

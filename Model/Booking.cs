@@ -12,15 +12,7 @@ namespace Model
     {
         public Booking()
         {
-            ROOM_ID = 0;
-            BOOKING_ID = 0;
-            USER_ID = string.Empty;
-            USERS = new ApplicationUser();           
-            ROOM_NUMBER = 0;
-            USER_NAME = String.Empty;
-            USER_EMAIL = string.Empty;
-            PHONE_NUMBER = string.Empty;
-            TOTAL_COST = 0;
+           
 
         }
 
@@ -30,10 +22,8 @@ namespace Model
         [Required]
         public string USER_ID { get;set; }
 
-
         [ForeignKey("USER_ID")]
         public ApplicationUser? USERS { get; set; }
-
 
         [Required]
         public int ROOM_ID { get;set; }

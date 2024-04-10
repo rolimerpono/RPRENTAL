@@ -1,8 +1,7 @@
 ﻿@model Booking
 
    
-<div class="row pt-3 border-top border-1"> 
-    <form id="booking_info">
+<div class="row pt-3 border-top border-1">  
         <input asp-for="@Model.ROOM_ID" hidden />        
         <div class="col-lg-6">      
         <div class="mb-3">
@@ -41,7 +40,6 @@
             <input type="text" class="form-control" id="formNoOfStay" value="@numberOfNights" disabled>
         </div>
     </div>
-    </form>
-   
+
 </div>
 

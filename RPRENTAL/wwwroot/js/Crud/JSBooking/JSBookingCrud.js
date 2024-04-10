@@ -1,7 +1,7 @@
 ﻿
 
 
-function ConfirmBooking() {
+function ConfirmBooking(room_id) {
 
     var serializedData = $('#checking_info').serialize();
 
@@ -9,11 +9,30 @@ function ConfirmBooking() {
         type: 'Post',
         url: '/Booking/ConfirmBooking',
         data: { jsonData: serializedData },
-        success: function (result) {
-            console.log('This is the result : ' + result);
+        success: function (response) {
+            if (response.success) {
+                let responseData = JSON.parse(response.booking);          
+                $('#modal-booking-' + room_id).modal('hide');  
+            }
         },
         error: function (xhr, status, error) {
-            handleAjaxError(error);
+            console.log('This is the error : ' + error);
+        }
+    });
+}
+
+function ShowPayment(id) {    
+
+    $.ajax({
+        type: 'Post',
+        url: '/Booking/ShowPayment',
+        data: { booking_id: id },
+        success: function (paymentResponse) {
+            debugger
+            alert('This is the response : ' + paymentResponse);           
+        },
+        error: function (xhr, status, error) {
+            console.log('Error calling showpayment controller: ' + error);
         }
     });
 }
@@ -32,7 +51,7 @@ function GetBooking(room_id) {
             $('#modal-booking-'+ room_id).modal('show');
         },
         error: function (xhr, status, error) {
-            handleAjaxError(error);
+            console.log('This is the error : ' + error);
         }
     }); 
 }

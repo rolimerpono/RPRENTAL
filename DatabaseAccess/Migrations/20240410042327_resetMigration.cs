@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class ResetMigration : Migration
+    public partial class resetMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tbl_Roles",
+                name: "AspNetRoles",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -24,11 +24,11 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_Roles", x => x.Id);
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_Users",
+                name: "AspNetUsers",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -51,7 +51,7 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_Users", x => x.Id);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +87,7 @@ namespace DatabaseAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_RoleClaims",
+                name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -98,17 +98,17 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_RoleClaims", x => x.Id);
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tbl_RoleClaims_tbl_Roles_RoleId",
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "tbl_Roles",
+                        principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_UserClaims",
+                name: "AspNetUserClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -119,17 +119,17 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_UserClaims", x => x.Id);
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tbl_UserClaims_tbl_Users_UserId",
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "tbl_Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_UserLogins",
+                name: "AspNetUserLogins",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -139,17 +139,17 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_tbl_UserLogins_tbl_Users_UserId",
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "tbl_Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_UserRoles",
+                name: "AspNetUserRoles",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -157,23 +157,23 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_UserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_tbl_UserRoles_tbl_Roles_RoleId",
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "tbl_Roles",
+                        principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tbl_UserRoles_tbl_Users_UserId",
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "tbl_Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbl_UserTokens",
+                name: "AspNetUserTokens",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -183,11 +183,11 @@ namespace DatabaseAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_tbl_UserTokens_tbl_Users_UserId",
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "tbl_Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -220,9 +220,9 @@ namespace DatabaseAccess.Migrations
                 {
                     table.PrimaryKey("PK_tbl_Booking", x => x.BOOKING_ID);
                     table.ForeignKey(
-                        name: "FK_tbl_Booking_tbl_Users_USER_ID",
+                        name: "FK_tbl_Booking_AspNetUsers_USER_ID",
                         column: x => x.USER_ID,
-                        principalTable: "tbl_Users",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -295,12 +295,12 @@ namespace DatabaseAccess.Migrations
                 columns: new[] { "ROOM_ID", "CREATED_DATE", "DESCRIPTION", "IMAGE_URL", "MAX_OCCUPANCY", "ROOM_NAME", "ROOM_PRICE", "UPDATED_DATE" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9736), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9737) },
-                    { 2, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9743), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9744) },
-                    { 3, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9752), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9753) },
-                    { 4, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9759), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9760) },
-                    { 5, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9766), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9767) },
-                    { 6, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9773), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Executive Suite", 180.0, new DateTime(2024, 4, 8, 13, 53, 45, 440, DateTimeKind.Local).AddTicks(9774) }
+                    { 1, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7373), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7374) },
+                    { 2, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7381), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7382) },
+                    { 3, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7388), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7389) },
+                    { 4, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7394), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7395) },
+                    { 5, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7403), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7404) },
+                    { 6, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7410), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Executive Suite", 180.0, new DateTime(2024, 4, 10, 16, 23, 27, 5, DateTimeKind.Local).AddTicks(7411) }
                 });
 
             migrationBuilder.InsertData(
@@ -348,40 +348,40 @@ namespace DatabaseAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_RoleClaims_RoleId",
-                table: "tbl_RoleClaims",
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
-                table: "tbl_Roles",
+                table: "AspNetRoles",
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_UserClaims_UserId",
-                table: "tbl_UserClaims",
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_UserLogins_UserId",
-                table: "tbl_UserLogins",
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_UserRoles_RoleId",
-                table: "tbl_UserRoles",
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "tbl_Users",
+                table: "AspNetUsers",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "tbl_Users",
+                table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
@@ -416,19 +416,19 @@ namespace DatabaseAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tbl_RoleClaims");
+                name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
-                name: "tbl_UserClaims");
+                name: "AspNetUserClaims");
 
             migrationBuilder.DropTable(
-                name: "tbl_UserLogins");
+                name: "AspNetUserLogins");
 
             migrationBuilder.DropTable(
-                name: "tbl_UserRoles");
+                name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
-                name: "tbl_UserTokens");
+                name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
                 name: "tbl_Booking");
@@ -440,10 +440,10 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_RoomNumber");
 
             migrationBuilder.DropTable(
-                name: "tbl_Roles");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "tbl_Users");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "tbl_Amenity");

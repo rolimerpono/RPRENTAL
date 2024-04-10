@@ -18,5 +18,6 @@ namespace DataService.Interface
         IAmenityRepository tbl_Amenity { get; }
 
 
+
     }
 }
