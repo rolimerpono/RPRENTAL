@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\layout\\home\\jsroomavailable.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\layout\\home\\jsroomavailable.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_roomlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\crud\\jsbooking\\jsbookingcrud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\crud\\jsbooking\\jsbookingcrud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,14 +51,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Room\\Index.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Room\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Room\\Index.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Room\\Index.cshtml",
-              "ViewState": "AQIAABkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "JSRoomAvailable.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSRoomAvailable.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSRoomAvailable.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSRoomAvailable.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSRoomAvailable.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-10T01:19:38.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAAAHsAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-08T09:22:58.151Z",
+              "WhenOpened": "2024-04-10T01:10:11.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "JSBookingCrud.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSBooking\\JSBookingCrud.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSBooking\\JSBookingCrud.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSBooking\\JSBookingCrud.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Crud\\JSBooking\\JSBookingCrud.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-10T00:44:18.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_RoomList.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAAEMAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-10T00:44:00.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "RPRENTAL\\Controllers\\BookingController.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAABsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T00:43:45.358Z",
               "EditorCaption": ""
             }
           ]

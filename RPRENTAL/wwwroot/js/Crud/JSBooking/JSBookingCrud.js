@@ -1,4 +1,15 @@
-﻿function GetBooking(room_id) {
+﻿    // Event handler for the "Confirm" button
+document.getElementById("btn-confirm").addEventListener("click", function () {
+    clickMessage();
+});
+
+
+function clickMessage() {
+    alert('Button was click');
+}
+
+
+function GetBooking(room_id) {
 
 
     var objRoomData = $('#checking_info').serialize(); 

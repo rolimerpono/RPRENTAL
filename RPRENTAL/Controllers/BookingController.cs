@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Newtonsoft.Json;
+using StaticUtility;
+using Stripe.Checkout;
 using System.Security.Claims;
+using static StaticUtility.SD;
 
 namespace RPRENTAL.Controllers
 {
@@ -65,5 +68,69 @@ namespace RPRENTAL.Controllers
             return PartialView("Common/_BookingDetail", objBooking);
 
         }
+
+
+        [HttpPost]
+        public IActionResult ConfirmBooking(Booking objBooking)
+        {
+
+
+            var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID);
+
+            objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (objBooking.CHECK_OUT_DATE.AddDays(1 - objBooking.CHECK_IN_DATE.DayNumber).DayNumber);
+
+
+            objBooking.BOOKING_STATUS = BookingStatus.PENDING.ToString();
+            objBooking.BOOKING_DATE = DateTime.Now;
+
+
+            _IWorker.tbl_Booking.Add(objBooking);
+            _IWorker.tbl_Booking.Save();
+
+
+
+            var domain = Request.Scheme + "://" + Request.Host.Value + "/";
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain + $"Booking/CompleteBooking?BookingID={objBooking.BOOKING_ID}",
+                CancelUrl = $"{domain}Booking/ConfirmBooking/ID={objBooking.ROOM_ID}&jsonData={JsonConvert.SerializeObject($"{objBooking.CHECK_IN_DATE} {objBooking.CHECK_OUT_DATE}")}"
+            };
+
+            options.LineItems.Add(new SessionLineItemOptions
+            {
+
+                PriceData = new SessionLineItemPriceDataOptions
+                {
+                    UnitAmount = (long)(objBooking.TOTAL_COST * 100),
+                    Currency = "nzd",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = objRoom.ROOM_NAME,
+                        Description = objRoom.DESCRIPTION
+                        //Images= new List<string> { domain + room.ImgUrl}
+
+                    }
+
+                },
+                Quantity = 1
+
+            });
+
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+
+            _IWorker.tbl_Booking.UpdateStripePaymentID(objBooking.BOOKING_ID, session.Id, session.PaymentIntentId);
+            _IWorker.tbl_Booking.Save();
+
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+
+        }
+
+
     }
 }

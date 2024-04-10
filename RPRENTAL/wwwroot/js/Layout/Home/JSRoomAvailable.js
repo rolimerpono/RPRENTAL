@@ -1,5 +1,6 @@
 ﻿const objRoomListDiv = document.getElementById('room_list');
-
+const btnCheckAvailability = document.getElementById('check-availability');
+ 
 function sendFetchRequest(url, body) {
 
     fetch(url, {
@@ -16,8 +17,8 @@ function sendFetchRequest(url, body) {
             }
             throw new Error('Network response was not ok.');
         })
-        .then(data => {
-            console.log(data);
+        .then(data => {              
+            objRoomListDiv.innerHTML = '';
             objRoomListDiv.innerHTML = data;
         })
         .catch(error => {

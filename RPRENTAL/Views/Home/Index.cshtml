@@ -58,18 +58,16 @@
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 mt-2">
                     <div class="text-center text-md-start mt-3">
-                        <button class="btn btn-primary mt-2" type="button" style="width:100%;" onclick="GetRoomAvailable()">
+                        <button onclick="GetRoomAvailable()" class="btn btn-primary mt-2" type="button" style="width:100%;">
                             CHECK AVAILABILITY
                         </button>
                     </div>
                 </div>
             </div>
           
-            <partial name="Common/_RoomList" model="@Model" />
-          
-        </form>           
-
-    </div>      
+            <partial name="Common/_RoomList" model="@Model" />          
+        </form>      
+    </div> 
 </div>
 
 <!--Toaster Notification -->

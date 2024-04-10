@@ -49,7 +49,8 @@
 
             //DISPLAY MODAL BOOKING DETAIL
 
-            <div class="modal fade" id="modal-booking" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true">
+            <div class="modal fade" id="modal-booking" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true">                       
+               
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -61,12 +62,15 @@
                              </div>
                             <div id="modal-booking-content"></div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
-                            <button type="button" class="btn btn-outline-success" style="width:100px;">Confirm</button>
+                            <button id="btn-confirm" type="button" class="btn btn-outline-success" style="width:100px;">Confirm</button>
                         </div>
+
                     </div>
                 </div>
+              
             </div>
 
 
@@ -90,7 +94,6 @@
         }
     </div>
 
-    @* PAGINATION *@
     <div class="row-cols-1 justify-content-start">
         <nav>
             <ul class="pagination">
@@ -125,8 +128,18 @@
                 </li>
             </ul>
         </nav>
-    </div>  
+    </div>
+
 </div>
 
+
+
 <div id="toaster" class="toaster"></div>
+
+
+@section Scripts {
+    <script src="~/js/Crud/JSBooking/JSBookingCrud.js"></script>
+}
+
+
 
