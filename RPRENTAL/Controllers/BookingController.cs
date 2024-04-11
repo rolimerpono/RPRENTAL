@@ -109,7 +109,6 @@ namespace RPRENTAL.Controllers
 
             _IWorker.tbl_Booking.Add(objBooking);
             _IWorker.tbl_Booking.Save();
-
             return Json(new { success = true, message = "Successfully", booking = JsonConvert.SerializeObject(objBooking) });
             
 
@@ -129,7 +128,8 @@ namespace RPRENTAL.Controllers
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment",
                 SuccessUrl = domain + $"Booking/BookingConfirmation?booking_id={objBooking.BOOKING_ID}",
-                CancelUrl = domain + $"Booking/CreateBooking/ID={objBooking.ROOM_ID}&jsonData={JsonConvert.SerializeObject($"CHECKIN_DATE{objBooking.CHECK_IN_DATE}, CHECKOUT_DATE{objBooking.CHECK_OUT_DATE}")}",
+                CancelUrl = domain,
+            
             };
 
             options.LineItems.Add(new SessionLineItemOptions
@@ -154,18 +154,17 @@ namespace RPRENTAL.Controllers
             var service = new SessionService();
             Session session = service.Create(options);
 
-
             _IWorker.tbl_Booking.UpdateStripePaymentID(objBooking.BOOKING_ID, session.Id, session.PaymentIntentId);
             _IWorker.tbl_Booking.Save();
-
-            Response.Headers.Add("Location", session.Url);
-            return new StatusCodeResult(303);
+         
+            var responseData = new { redirectUrl = session.Url };
+            return Json(responseData);        
 
         }
 
         public IActionResult BookingConfirmation(int booking_id)
         {
-            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "User,Room");
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id);
 
             if (objBooking.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
             {
