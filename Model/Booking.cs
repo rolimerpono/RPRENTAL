@@ -68,8 +68,9 @@ namespace Model
 
         public DateTime ACTUAL_CHECK_OUT_DATE { get; set; }
 
+      
         [NotMapped]
-        public List<String>? ROOM_NUMBER_LIST { get; set; }
+        public IEnumerable<RoomAmenity> ROOM_AMENITY { get; set; }
 
 
 

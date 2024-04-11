@@ -1,14 +1,12 @@
-﻿// Function to perform AJAX POST request
-function ajaxPost(url, data) {
+﻿function ajaxPost(url, data) {
     return $.ajax({
         type: 'POST',
         url: url,
         data: data,
-        dataType: 'json' // Assuming the response is JSON
+        dataType: 'json' 
     });
 }
 
-// Function to perform AJAX GET request
 function ajaxGet(url, data) {
     return $.ajax({
         type: 'GET',
@@ -17,7 +15,6 @@ function ajaxGet(url, data) {
     });
 }
 
-// Function to show payment
 function showPayment(id) {
     ajaxPost('/Booking/ShowPayment', { booking_id: id })
         .done(function (paymentResponse) {
@@ -28,7 +25,6 @@ function showPayment(id) {
         });
 }
 
-// Function to confirm booking
 function confirmBooking(room_id) {
     var serializedData = $('#checking_info').serialize();
     ajaxPost('/Booking/ConfirmBooking', { jsonData: serializedData })
@@ -44,7 +40,6 @@ function confirmBooking(room_id) {
         });
 }
 
-// Function to get booking
 function getBooking(room_id) {
     var objRoomData = $('#checking_info').serialize();
     ajaxGet('/Booking/CreateBooking', { ID: room_id, jsonData: objRoomData })

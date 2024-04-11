@@ -227,7 +227,8 @@ namespace RPRENTAL.Controllers
 
         public IActionResult BookingConfirmation(int booking_id)
         {
-            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id);
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id,IncludeProperties:"ROOM");
+            objBooking.ROOM_AMENITY = _IWorker.tbl_RoomAmenity.GetAll(fw => fw.ROOM_ID == objBooking.ROOM_ID);
 
             if (objBooking.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
             {
@@ -241,7 +242,7 @@ namespace RPRENTAL.Controllers
                     _IWorker.tbl_Booking.Save();
                 }
             }
-            return View(booking_id);
+            return View(objBooking);
         }
 
 

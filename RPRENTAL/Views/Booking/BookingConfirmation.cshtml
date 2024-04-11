@@ -1,1 +1,92 @@
-﻿<h1>SUCCESSFULL TRANSACTION</h1>
+﻿@model Booking
+
+<div class="row justify-content-center pt-5">
+    <div class="col-lg-12 text-center">
+        <h2>Thank you for booking with us!</h2>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-5">
+        <div></div>
+        <img class="img-fluid border border-dark border-1" src="@Model.ROOM.IMAGE_URL" alt="Room Image">
+    </div>
+
+
+    <div class="col-md-7">
+        <div class="pt-2"><h3 class="text-uppercase text-primary fw-bold">@Model.ROOM.ROOM_NAME</h3></div>
+        <div style="min-height:130px;max-height:130px; overflow-y:auto;">
+            <p>@Model.ROOM.DESCRIPTION</p>
+        </div>
+        <div class="pt-2"><h4 class="text-primary fw-bold">ROOM AMENITIES:</h4></div>
+
+        <div class="row">
+            @foreach (var objAmenity in Model.ROOM_AMENITY)
+            {
+                <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                    <div class="fw-bold">@objAmenity.AMENITY_NAME</div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<div class="row pt-3">
+    <div class="col-6 col-md-2">
+        <span class="text-primary fw-bold">OCCUPANCY:</span>
+    </div>
+    <div class="col-6 col-md-10 text-end">
+        <span class="fw-bold">@Model.ROOM.MAX_OCCUPANCY Person</span>
+    </div>
+</div>
+<div class="row pt-1">
+    <div class="col-6 col-md-2">
+        <span class="text-primary fw-bold">PRICE:</span>
+    </div>
+    <div class="col-6 col-md-10 text-end">
+        <span class="fw-bold">@Model.ROOM.ROOM_PRICE.ToString("c")</span>
+    </div>
+</div>
+
+<div class="row pt-3 border-top border-1">
+    <input asp-for="@Model.ROOM_ID" hidden />
+    <div class="col-lg-6">
+        <div class="mb-3">
+            <label for="formName" class="form-label">NAME</label>
+            <input type="text" class="form-control" id="formName" asp-for="@Model.USER_NAME" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label for="formPhone" class="form-label">PHONE</label>
+            <input type="text" class="form-control" id="formPhone" asp-for="@Model.PHONE_NUMBER" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label for="formEmail" class="form-label">EMAIL</label>
+            <input type="text" class="form-control" id="formEmail" asp-for="@Model.USER_EMAIL" disabled>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="mb-3">
+            <label for="formCheckinDate" class="form-label">CHECKIN DATE</label>
+            <input type="text" class="form-control" id="formCheckinDate" asp-for="@Model.CHECK_IN_DATE" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label for="formCheckoutDate" class="form-label">CHECKOUT DATE</label>
+            <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.CHECK_OUT_DATE" disabled>
+        </div>
+
+        @{
+            var numberOfNights = 2;
+        }
+
+        <div class="mb-3">
+            <label for="formNoOfStay" class="form-label">NUMBER OF STAY</label>
+            <input type="text" class="form-control" id="formNoOfStay" value="@numberOfNights" disabled>
+        </div>
+    </div>
+
+</div>
+
