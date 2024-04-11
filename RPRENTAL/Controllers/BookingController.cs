@@ -1,6 +1,7 @@
 ﻿using DataService.Implementation;
 using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient.DataClassification;
 using Model;
 using Newtonsoft.Json;
 using StaticUtility;
@@ -8,6 +9,7 @@ using Stripe;
 using Stripe.Checkout;
 using System.Security.Claims;
 using static StaticUtility.SD;
+using static System.Net.WebRequestMethods;
 
 
 namespace RPRENTAL.Controllers
@@ -125,15 +127,74 @@ namespace RPRENTAL.Controllers
 
             var options = new SessionCreateOptions
             {
+
                 LineItems = new List<SessionLineItemOptions>(),
+
+                CustomFields = new List<Stripe.Checkout.SessionCustomFieldOptions>
+                {
+                    new Stripe.Checkout.SessionCustomFieldOptions
+                    {
+                        Key = "engraving",
+                        Label = new Stripe.Checkout.SessionCustomFieldLabelOptions
+                        {
+                            Type ="custom",
+                            Custom = "Please find test card number below. Thank you."
+
+                        },
+                        Type = "dropdown",
+                        Optional = true,
+                        Dropdown = new SessionCustomFieldDropdownOptions
+                        {
+
+                            Options = new List<SessionCustomFieldDropdownOptionOptions>
+                            {
+                                new SessionCustomFieldDropdownOptionOptions
+                                {
+                                    Label = "Visa - [4242 4242 4242 4242]",
+                                    Value = "4242424242424242"
+                                },
+                                new SessionCustomFieldDropdownOptionOptions
+                                {
+                                    Label = "Visa Debit - [4000 0566 5566 5556]",
+                                    Value = "4000056655665556"
+                                },
+                                new SessionCustomFieldDropdownOptionOptions
+                                {
+                                    Label = "Mastercard - [5555 5555 5555 4444]",
+                                    Value = "5555555555554444"
+                                },
+
+                            },
+
+                        },
+                    },
+                   
+                },
+
+
                 Mode = "payment",
                 SuccessUrl = domain + $"Booking/BookingConfirmation?booking_id={objBooking.BOOKING_ID}",
-                CancelUrl = domain,
-            
+                CancelUrl = domain,              
+                ClientReferenceId = "rolimer_pono@yahoo.com",
+
+                ConsentCollection = new SessionConsentCollectionOptions 
+                {                    
+                    TermsOfService = "required",
+                },
+                CustomText = new SessionCustomTextOptions 
+                { 
+                    TermsOfServiceAcceptance = new SessionCustomTextTermsOfServiceAcceptanceOptions 
+                    { 
+                        Message = "I agree to the [Terms of Service]",
+                    }, 
+                    
+                },
+
+
             };
 
             options.LineItems.Add(new SessionLineItemOptions
-            {
+            { 
 
                 PriceData = new SessionLineItemPriceDataOptions
                 {
@@ -142,11 +203,13 @@ namespace RPRENTAL.Controllers
                     ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
                         Name = objRoom.ROOM_NAME,
-                        Description = objRoom.DESCRIPTION
-                        //Images= new List<string> { domain + room.ImgUrl}
-                    }
-                },
-                Quantity = 1
+                        Description = objRoom.DESCRIPTION,
+                        Images= new List<string> {"https://placehold.co/600x400/png"},
+          
+                    }   
+                   
+                },               
+                Quantity = 1,
 
             });
 
