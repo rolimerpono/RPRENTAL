@@ -69,7 +69,8 @@ namespace RPRENTAL.Controllers
                 USER_NAME       = user.USER_NAME,
             };
 
-          
+
+            objBooking.NO_OF_STAY = (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
             objBooking.TOTAL_COST = objBooking.ROOM.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
 
             return PartialView("Common/_BookingDetail", objBooking);

@@ -1,130 +1,76 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(() => {
+    $('.btn-login').click(() => loginUser('/Account/Login'));
+    $('.btn-register').click(() => registerUser('/Account/Register'));
+    $('.btn-logout').click(() => logoutUser('/Account/Logout'));
 
-    // Event listener for login button
-    $('.btn-login').click(function () {
-        loginUser('/Account/Login');
-    });
-
-    // Event listener for register button
-    $('.btn-register').click(function () {
-        registerUser('/Account/Register');
-    });
-
-    // Event listener for logout button
-    $('.btn-logout').click(function () {     
-        logoutUser('/Account/Logout');
-    });
-
-    // Event handler for login modal shown
-    $(document).on('shown.bs.modal', '#modal-login', function () {
-        focusAndSelectInput($('#email'));
-    });
-
-    // Event handler for register modal shown
-    $(document).on('shown.bs.modal', '#modal-register', function () {
-        focusAndSelectInput($('#remail'));
-    });
-
+    $('#modal-login').on('shown.bs.modal', () => focusAndSelectInput($('#email')));
+    $('#modal-register').on('shown.bs.modal', () => focusAndSelectInput($('#remail')));
 });
 
-// Function to focus and select input
 function focusAndSelectInput(input) {
-    input.focus();
-    if (input.val().trim() !== '') {
-        var inputLength = input.val().length;
-        input[0].setSelectionRange(inputLength, inputLength);
-    }
+    input.focus().select();
 }
 
-// Function to handle AJAX errors
-function handleAjaxError(error) {
-    console.log('Error: ' + error);
+function handleAjaxError(xhr, status, error) {
+    console.error('AJAX Error:', error);
+    showToast('error', 'An error occurred. Please try again later.');
 }
 
-// Function to show toast messages
 function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css({
+    const toaster = $('.toaster');
+    toaster.text(message).css({
         'display': 'block',
         'background-color': type === 'success' ? '#006400' : 'red',
         'opacity': 1
     });
-    setTimeout(function () {
+
+    setTimeout(() => {
         toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
+        setTimeout(() => toaster.css('display', 'none').css('opacity', 1), 500);
     }, 3000);
 }
 
-// Function to handle login
 function loginUser(url) {
-    let email = $('#email').val();
-    let password = $('#password').val();
-    let loginForm = { EMAIL: email, PASSWORD: password };
+    const email = $('#email').val();
+    const password = $('#password').val();
+    const loginForm = { EMAIL: email, PASSWORD: password };
 
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: loginForm,
-        success: function (response) {
-            if (response.success) {
-                $('#modal-login').modal('hide');
-                window.location.href = '/Home/Index';               
-            } else {
-                showToast('error', response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
-        }
-    });
+    $.post(url, loginForm)
+        .done(response => {
+            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+        })
+        .fail(handleAjaxError);
 }
 
-// Function to handle registration
 function registerUser(url) {
-    let email = $('#remail').val();
-    let fullname = $('#rfullname').val();
-    let password = $('#rpassword').val();
-    let confirmpass = $('#rconfirmpass').val();
-    let phoneno = $('#rphoneno').val();
+    const email = $('#remail').val();
+    const fullname = $('#rfullname').val();
+    const password = $('#rpassword').val();
+    const confirmpass = $('#rconfirmpass').val();
+    const phoneno = $('#rphoneno').val();
+    const registerForm = { EMAIL: email, NAME: fullname, PASSWORD: password, CONFIRM_PASSWORD: confirmpass, PHONE_NUBMER: phoneno };
 
-    let registerForm = { EMAIL: email, NAME: fullname, PASSWORD: password, CONFIRM_PASSWORD: confirmpass, PHONE_NUBMER: phoneno };
+    if (!validateEmail(email)) {
+        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
+        return;
+    }
 
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: registerForm,
-        success: function (response) {
-            if (response.success) {
-                $('#modal-register').modal('hide');
-                window.location.href = '/Home/Index';
-                showToast('success', response.message);
-            } else {
-                showToast('error', response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
-        }
-    });
+    $.post(url, registerForm)
+        .done(response => {
+            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+        })
+        .fail(handleAjaxError);
 }
 
-// Function to handle login
+function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
 function logoutUser(url) {
-    $.ajax({
-        type: 'POST',
-        url: url,       
-        success: function (response) {
-            if (response.success) {
-                window.location.href = '/Home/Index';               
-            } else {
-                showToast('error', response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
-        }
-    });
+    $.post(url)
+        .done(response => {
+            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+        })
+        .fail(handleAjaxError);
 }

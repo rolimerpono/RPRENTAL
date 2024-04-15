@@ -31,13 +31,10 @@
             <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.CHECK_OUT_DATE" disabled>
         </div>
 
-        @{
-            var numberOfNights = 2;
-        }
-
+      
         <div class="mb-3">
             <label for="formNoOfStay" class="form-label">NUMBER OF STAY</label>
-            <input type="text" class="form-control" id="formNoOfStay" value="@numberOfNights" disabled>
+            <input type="text" class="form-control" id="formNoOfStay" value="@Model.NO_OF_STAY" disabled>
         </div>
     </div>
 

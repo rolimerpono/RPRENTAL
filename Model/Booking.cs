@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -71,6 +72,10 @@ namespace Model
       
         [NotMapped]
         public IEnumerable<RoomAmenity> ROOM_AMENITY { get; set; }
+
+        [ValidateNever]
+        [NotMapped]
+        public int NO_OF_STAY { get; set; }
 
 
 
