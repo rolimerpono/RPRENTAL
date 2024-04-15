@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> _UserManager
+@inject SignInManager<ApplicationUser> _SignInManager
+
+<!DOCTYPE html>
 <html data-bs-theme="dark" lang="en">
 <head>
     <meta charset="utf-8">
@@ -43,20 +47,100 @@
                     <li class="nav-item">
                         <label class="col-form-label fw-bold text-light" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" title="Number of bookings">[ <span class="text-primary">5</span> ]</label>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Welcome, Rolimer Pono</a>
-                        <div class="dropdown-menu text-dark bg-dark" style="background: rgb(207, 226, 255);">
-                            <a class="dropdown-item" href="#">Login</a>
-                            <a class="dropdown-item" href="#">Logout</a>
-                            <a class="dropdown-item" href="#">Register</a>
-                        </div>
-                    </li>
-                 
+                   
+                    @if (_SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Welcome, Rolimer Pono</a>
+                        </li>
+                        <li class="nav-item">                       
+                            <a class="nav-link" href="#">Logout</a>                   
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a id="btn-login-modal" class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-register">Register</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Login Modal -->
+    <div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white fw-bold" id="loginModalLabel">LOGIN USER</h5>                    
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" autofocus autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" autocomplete="new-password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-login">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Login Modal -->
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="modal-register" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white fw-bold" id="registerModalLabel">REGISTER USER</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="remail" name="remail" placeholder="Enter email" autofocus autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Fullname</label>
+                            <input type="text" class="form-control" id="rfullname" name="rfullname" placeholder="Enter user fullname" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneno" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="rphoneno" name="rphoneno" placeholder="Enter phone number" autocomplete="off">
+                        </div>
+                         <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="rpassword" name="rpassword" placeholder="Enter password" autocomplete="new-password">
+                        </div>
+                         <div class="mb-3">
+                            <label for="confirmpass" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="rconfirmpass" name="rconfirmpass" placeholder="Re-enter password" autocomplete="new-password"> 
+                        </div>                      
+                     
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-register">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Register Modal -->
 
     <div class="container-fluid">
         <main role="main" class="pb-3 min-vh-100">               
@@ -120,8 +204,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+  
 
     <script src="~/js/bs-init.js"></script>  
+    <script src="~/js/Layout/Home/JSAccount.js"></script>    
+   
 
     @await RenderSectionAsync("Scripts", required: false)
 

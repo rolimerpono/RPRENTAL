@@ -1,5 +1,6 @@
 ﻿using DataService.Implementation;
 using DataService.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient.DataClassification;
 using Model;
@@ -14,6 +15,7 @@ using static System.Net.WebRequestMethods;
 
 namespace RPRENTAL.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
 

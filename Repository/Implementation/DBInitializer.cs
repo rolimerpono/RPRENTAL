@@ -36,6 +36,7 @@ namespace Repository.Implementation
                 }
                 if (!_roleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult())
                 {
+                    _roleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
                     _roleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
 
                     _userManager.CreateAsync(new ApplicationUser
