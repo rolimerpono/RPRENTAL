@@ -61,33 +61,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        //[HttpPost]
-        //public IActionResult Register(string returnURL = null)
-        //{
-        //    returnURL ??= Url.Content("~/");
-
-        //    if (!_RoleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult())
-        //    {
-        //        _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
-        //        _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
-        //    }
-
-
-        //    RegisterVM objRegisterVM = new RegisterVM()
-        //    {
-        //        ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
-        //        {
-        //            Text = fw.Name,
-        //            Value = fw.Id
-
-        //        }),
-        //        REDIRECT_URL = returnURL
-        //    };
-
-        //    return Json(new { success = true, message = "ok" }, objRegisterVM);
-        //}
-
-
+     
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
@@ -105,6 +79,10 @@ namespace RPRENTAL.Controllers
 
                 };
 
+                if (registerVM.PASSWORD != registerVM.CONFIRM_PASSWORD)
+                {              
+                    return Json(new { success = false, message = "The password you entered did not matched." });
+                }
 
                 var objUserManager = await _UserManager.CreateAsync(objUser, registerVM.PASSWORD);
 
@@ -131,6 +109,15 @@ namespace RPRENTAL.Controllers
             }
 
             return Json(new { success = true, message = "Successfully registered" });
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _SignInManager.SignOutAsync();
+
+            return Json(new { success = true, message = "Successfully logout" });
 
         }
 

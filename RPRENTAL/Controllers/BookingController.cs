@@ -82,6 +82,9 @@ namespace RPRENTAL.Controllers
         {
 
             var objData = jsonData.Split('&').Select(obj => obj.Split('=')).ToDictionary(obj => obj[0], obj => obj[1]);
+            var user_id = (User.Identity as ClaimsIdentity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            ApplicationUser objUser = _IWorker.tbl_User.Get(fw => fw.Id == user_id);
 
             DateOnly checkin_date = DateOnly.Parse(objData["CHECKIN_DATE"]);
             DateOnly checkout_date = DateOnly.Parse(objData["CHECKOUT_DATE"]);
@@ -92,12 +95,12 @@ namespace RPRENTAL.Controllers
 
             var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == room_id);
            
-            objBooking.USER_ID = "a507b587-2751-4f6f-ac26-1e9c96ec769e";
+            objBooking.USER_ID = objUser.Id ;
             objBooking.ROOM_ID = room_id;
             objBooking.ROOM_NUMBER = 0;
-            objBooking.USER_NAME = "rolimer_pono@yahoo.com";
-            objBooking.USER_EMAIL = "rolimer_pono@yahoo.com";
-            objBooking.PHONE_NUMBER = "0212477441";         
+            objBooking.USER_NAME = objUser.USER_NAME;
+            objBooking.USER_EMAIL = objUser.Email;
+            objBooking.PHONE_NUMBER = objUser.PhoneNumber;         
             objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
             objBooking.BOOKING_STATUS = SD.BookingStatus.PENDING.ToString();
             objBooking.BOOKING_DATE = DateTime.Now;

@@ -10,6 +10,11 @@
         registerUser('/Account/Register');
     });
 
+    // Event listener for logout button
+    $('.btn-logout').click(function () {     
+        logoutUser('/Account/Logout');
+    });
+
     // Event handler for login modal shown
     $(document).on('shown.bs.modal', '#modal-login', function () {
         focusAndSelectInput($('#email'));
@@ -66,8 +71,7 @@ function loginUser(url) {
         success: function (response) {
             if (response.success) {
                 $('#modal-login').modal('hide');
-                window.location.href = '/Home/Index';
-                showToast('success', response.message);
+                window.location.href = '/Home/Index';               
             } else {
                 showToast('error', response.message);
             }
@@ -97,6 +101,24 @@ function registerUser(url) {
                 $('#modal-register').modal('hide');
                 window.location.href = '/Home/Index';
                 showToast('success', response.message);
+            } else {
+                showToast('error', response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            handleAjaxError(error);
+        }
+    });
+}
+
+// Function to handle login
+function logoutUser(url) {
+    $.ajax({
+        type: 'POST',
+        url: url,       
+        success: function (response) {
+            if (response.success) {
+                window.location.href = '/Home/Index';               
             } else {
                 showToast('error', response.message);
             }

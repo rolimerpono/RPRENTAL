@@ -54,7 +54,7 @@
                             <a class="nav-link" href="#">Welcome, Rolimer Pono</a>
                         </li>
                         <li class="nav-item">                       
-                            <a class="nav-link" href="#">Logout</a>                   
+                            <a class="nav-link btn-logout" href="#">Logout</a>                   
                         </li>
                     }
                     else
@@ -120,7 +120,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="phoneno" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="rphoneno" name="rphoneno" placeholder="Enter phone number" autocomplete="off">
+                            <input type="number" class="form-control" id="rphoneno" name="rphoneno" placeholder="Enter phone number" autocomplete="off">
                         </div>
                          <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -208,6 +208,7 @@
 
     <script src="~/js/bs-init.js"></script>  
     <script src="~/js/Layout/Home/JSAccount.js"></script>    
+    <script src="~/js/Crud/JSBooking/JSBookingCrud.js"></script>
    
 
     @await RenderSectionAsync("Scripts", required: false)

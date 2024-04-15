@@ -49,7 +49,25 @@ function getBooking(room_id) {
             modalContent.empty().html(result);
             $('#modal-booking-' + room_id).modal('show');
         })
-        .fail(function (xhr, status, error) {
+        .fail(function (xhr, status, error) {   
+            showToast('error', 'To proceed you need to login first.');
             console.error('This is the error : ' + error);
         });
+}
+
+// Function to show toast messages
+function showToast(type, message) {
+    var toaster = $('.toaster');
+    toaster.text(message);
+    toaster.css({
+        'display': 'block',
+        'background-color': type === 'success' ? '#006400' : 'red',
+        'opacity': 1
+    });
+    setTimeout(function () {
+        toaster.css('opacity', 0);
+        setTimeout(function () {
+            toaster.css('display', 'none').css('opacity', 1);
+        }, 500);
+    }, 3000);
 }
