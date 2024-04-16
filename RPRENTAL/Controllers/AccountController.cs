@@ -1,7 +1,9 @@
-﻿using DataService.Interface;
+﻿using DataService.Implementation;
+using DataService.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using RPRENTAL.ViewModels;
 using StaticUtility;
@@ -24,17 +26,169 @@ namespace RPRENTAL.Controllers
             _RoleManager = RoleManager;
 
         }
+
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var objUsers = await _UserManager.Users.ToListAsync();
+
+            IEnumerable<RegisterVM> objUserList = objUsers.Select(user => new RegisterVM
+            {
+                NAME = user.USER_NAME,
+                PASSWORD = user.PasswordHash,
+                CONFIRM_PASSWORD = user.PasswordHash,
+                EMAIL = user.Email,
+                PHONE_NUMBER = user.PhoneNumber              
+                
+               
+            });         
+
+            return Json(new { data = objUserList });
+
+        }
+      
+
+        [HttpGet]
         public IActionResult Login()
         {         
             return View();
 
-        }     
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var returnURL = Url.Content("~/");
+
+            if (!_RoleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult())
+            {
+                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
+                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
+            }
+
+            RegisterVM objUser = new RegisterVM();
+            try
+            {               
+
+                objUser = new RegisterVM()
+                {
+                    ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
+                    {
+                        Text = fw.Name,
+                        Value = fw.Name
+                    }),
+                    REDIRECT_URL = returnURL
+
+                };
+
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+            return PartialView("Create", objUser);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(RegisterVM objData)
+        {           
+            if (ModelState.IsValid)
+            {
+                ApplicationUser objUser = new ApplicationUser()
+                {
+                    USER_NAME = objData.NAME,
+                    Email = objData.EMAIL,
+                    PhoneNumber = objData.PHONE_NUMBER,
+                    NormalizedEmail = objData.EMAIL.ToUpper(),
+                    EmailConfirmed = true,
+                    UserName = objData.EMAIL,
+                    CREATED_DATE = DateTime.Now,
+
+                };
+
+              
+
+                if (objData.PASSWORD != objData.CONFIRM_PASSWORD)
+                {
+                    return Json(new { success = false, message = "The password you entered did not matched." });
+                }
+
+                var objUserManager = await _UserManager.CreateAsync(objUser, objData.PASSWORD);
+
+                if (objUserManager.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(objData.ROLE))
+                    {
+                        await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
+                    }
+                    else
+                    {
+                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.CUSTOMER.ToString());
+                    }                    
+
+                    return Json(new { success = true, message = "Successfully registered" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "The email or password entered was invalid. Please try again." });
+                }
+
+            }
+
+            return Json(new { success = false, message = "Something went wrong" });
+
+        }
+
+        public async Task<IActionResult> Update(string email)
+        {
+            var objUser = await _UserManager.FindByEmailAsync(email);
+
+            RegisterVM objRegister = new RegisterVM();
+
+            objRegister.EMAIL = objUser.Email;
+            objRegister.NAME = objUser.USER_NAME;
+            objRegister.PHONE_NUMBER = objUser.PhoneNumber;          
+            objRegister.ROLE = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+            objRegister.ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
+            {
+                Text = fw.Name,
+                Value = fw.Name
+            });
+
+
+            return PartialView("Update", objRegister);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(RegisterVM objData)
+        {
+            var objUser = await _UserManager.FindByEmailAsync(objData.EMAIL);
+            var objUserRole = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+
+
+            await _UserManager.RemoveFromRoleAsync(objUser, objUserRole);
+            await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
+           
+
+            if (ModelState.IsValid)
+            {
+
+                objUser.USER_NAME = objData.NAME;
+                objUser.PhoneNumber = objData.PHONE_NUMBER;
+                objUser.PasswordHash = objData.PASSWORD;
+
+                await _UserManager.UpdateAsync(objUser);
+            }          
+            
+            return Json(new { success = true, message = "Successfully registered" });
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
@@ -71,7 +225,7 @@ namespace RPRENTAL.Controllers
                 {
                     USER_NAME = registerVM.NAME,
                     Email = registerVM.EMAIL,
-                    PhoneNumber = registerVM.PHONE_NUBMER,
+                    PhoneNumber = registerVM.PHONE_NUMBER,
                     NormalizedEmail = registerVM.EMAIL.ToUpper(),
                     EmailConfirmed = true,
                     UserName = registerVM.EMAIL,

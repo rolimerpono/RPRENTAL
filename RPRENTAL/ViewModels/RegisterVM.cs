@@ -8,18 +8,20 @@ namespace RPRENTAL.ViewModels
 {
     public class RegisterVM
     {
+      
         [Required]
         public string EMAIL { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public string PASSWORD { get; set; }
+        public string PASSWORD { get; set; }     
         [Required]
+
         [DataType(DataType.Password)]
         public string CONFIRM_PASSWORD { get; set; }
 
         [Required]
         public string NAME { get; set; }
-        public string? PHONE_NUBMER { get; set; }
+        public string? PHONE_NUMBER { get; set; }
         public string? REDIRECT_URL { get; set; }
 
         public string? ROLE { get; set; }
