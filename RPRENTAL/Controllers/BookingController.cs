@@ -24,9 +24,29 @@ namespace RPRENTAL.Controllers
         {
             _IWorker = IWorker; 
         }
+
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAll(string status)
+        {
+
+            var objBookings = _IWorker.tbl_Booking.GetAll();
+
+            if (!string.IsNullOrEmpty(status) && status != "null")
+            {
+                objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == status.ToLower());
+            }
+            else
+            {
+                objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == SD.BookingStatus.PENDING.ToString().ToLower());
+            }
+
+
+            return Json(new { data = objBookings });
         }
     
 
@@ -251,6 +271,8 @@ namespace RPRENTAL.Controllers
             return View(objBooking);
         }
 
+
+     
 
     }
 }

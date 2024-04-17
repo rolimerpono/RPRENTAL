@@ -1,0 +1,73 @@
+﻿@using StaticUtility
+@model Booking
+
+@{
+    var status = Context.Request.Query["status"];
+}
+
+<div class="container">
+    <div class="row pt-3">
+        <div class="col">
+            <div class="text-center text-white"><h2>BOOKING LIST</h2></div>
+        </div>
+    </div>
+    <div class="row mt-3 justify-content-end text-end">
+        <div class="col-lg-8">
+
+        </div>
+        <div class="col-lg-4">
+            <div class="btn-group-toggle btn-group d-flex flex-wrap border border-1" data-toggle="buttons">
+                <a id="pending" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.PENDING.ToString()> Pending
+                    <input type="radio" class="btn-check" id="option1" autocomplete="off">                    
+                </a>
+                <a id="approved" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.APPROVED.ToString()>
+                    Approved
+                    <input type="radio" class="btn-check" id="option2" autocomplete="off">                    
+                </a>
+                <a id="checkin" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.CHECK_IN.ToString()>
+                    Checkin
+                    <input type="radio" class="btn-check" id="option3" autocomplete="off">                   
+                </a>
+                <a id="checkout" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.CHECK_OUT.ToString()>
+                    Checkout
+                    <input type="radio" class="btn-check" id="option4" autocomplete="off">                    
+                </a>
+                <a id="cancelled" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.CANCELLED.ToString()> Cancelled
+                    <input type="radio" class="btn-check" id="option5" autocomplete="off">                    
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <table id="tbl_Bookings" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Checkin Date</th>
+                        <th>Checkout Date</th>
+                        <th>No of Stay</th>
+                        <th>Total Cost</th>
+                        <th class="text-center"></th>                       
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Toaster Notification -->
+<div id="toaster" class="toaster"></div>
+
+
+@section Scripts {
+    <script src="~/js/Crud/JSBooking/JSBooking.js"></script>
+}
