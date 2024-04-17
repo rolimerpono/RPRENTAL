@@ -1,4 +1,5 @@
-﻿using DataService.Implementation;
+﻿using Common;
+using DataService.Implementation;
 using DataService.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,11 @@ namespace RPRENTAL.Controllers
 
         public IActionResult Index()
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                return View("Unauthorized");
+            }
+
             return View();
         }
 
@@ -34,11 +40,23 @@ namespace RPRENTAL.Controllers
         public IActionResult GetAll(string status)
         {
 
-            var objBookings = _IWorker.tbl_Booking.GetAll();
+            IEnumerable<Booking> objBookings;
+
+           
+            if (User.IsInRole(SD.UserRole.ADMIN.ToString()))
+            {
+                objBookings = _IWorker.tbl_Booking.GetAll();
+
+            }
+            else
+            {
+                var user_id = (User.Identity as ClaimsIdentity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                objBookings = _IWorker.tbl_Booking.GetAll(fw => fw.USER_ID ==user_id);
+            }          
 
             if (!string.IsNullOrEmpty(status) && status != "null")
-            {
-                objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == status.ToLower());
+            {            
+                objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == status.ToLower());                      
             }
             else
             {
@@ -95,6 +113,30 @@ namespace RPRENTAL.Controllers
 
             return PartialView("Common/_BookingDetail", objBooking);
 
+        }
+
+        public IActionResult BookingDetails(int booking_id)
+        {
+            Util objUtil = new Util(_IWorker);
+
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "USER,ROOM");
+
+            if(objBooking !=null)
+            {
+                if (objBooking.ROOM_NUMBER == 0 && objBooking.BOOKING_STATUS == SD.BookingStatus.CHECK_OUT.ToString())
+                {
+                    List<string> objList = objUtil.GetRoomNumberAvailable(objBooking.ROOM_ID).ToList();
+
+                    objBooking.ROOM_NUMBER_LIST = objList;
+                }
+                else
+                { 
+                    objBooking.ROOM_NUMBER_LIST = new List<string>();
+                }
+            }
+
+            return PartialView("Common/_BookingDetail", objBooking);
+        
         }
 
 
@@ -270,8 +312,6 @@ namespace RPRENTAL.Controllers
             }
             return View(objBooking);
         }
-
-
      
 
     }

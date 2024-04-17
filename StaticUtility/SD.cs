@@ -10,6 +10,7 @@
 
         public enum BookingStatus
         { 
+            ALL,
             APPROVED,
             PENDING,
             CHECK_IN,

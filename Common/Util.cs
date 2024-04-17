@@ -26,6 +26,17 @@ namespace Common
 
         }
 
+        public List<string> GetRoomNumberAvailable(int room_id)
+
+        {
+            var query = (from objRoom in _iWorker.tbl_RoomNumber.GetAll(fr => fr.ROOM_ID == room_id)
+                         where !_iWorker.tbl_Booking.Any(fb => fb.ROOM_ID == room_id && fb.ROOM_NUMBER == objRoom.ROOM_NUMBER && fb.BOOKING_STATUS != SD.BookingStatus.CHECK_OUT.ToString())
+                         select objRoom.ROOM_NUMBER.ToString()).ToList();
+
+            return query;
+
+        }
+
 
 
     }

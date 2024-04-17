@@ -1,6 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DataService.Implementation;
+using DataService.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,152 +7,280 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using RPRENTAL.ViewModels;
 using StaticUtility;
+using Stripe.Treasury;
 
 namespace RPRENTAL.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IWorker _IWorker;
+        private readonly UserManager<ApplicationUser> _UserManager;
+        private readonly SignInManager<ApplicationUser> _SignInManager;
+        private readonly RoleManager<IdentityRole> _RoleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(IWorker IWorker, UserManager<ApplicationUser> ApplicationUser, SignInManager<ApplicationUser> SignInManager, RoleManager<IdentityRole> RoleManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
+            _IWorker = IWorker;
+            _UserManager = ApplicationUser;
+            _SignInManager = SignInManager;
+            _RoleManager = RoleManager;
+
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
-
             return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _userManager.Users
-                .Select(user => new RegisterVM
-                {
-                    NAME = user.USER_NAME,
-                    PASSWORD = user.PasswordHash,
-                    CONFIRM_PASSWORD = user.PasswordHash,
-                    EMAIL = user.Email,
-                    PHONE_NUMBER = user.PhoneNumber,
-                    ROLE = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault(),
+            var objUsers = await _UserManager.Users.ToListAsync();
 
-        }).ToListAsync();
+            IEnumerable<RegisterVM> objUserList = objUsers.Select(user => new RegisterVM
+            {
+                NAME = user.USER_NAME,
+                PASSWORD = user.PasswordHash,
+                CONFIRM_PASSWORD = user.PasswordHash,
+                EMAIL = user.Email,
+                PHONE_NUMBER = user.PhoneNumber,
+                ROLE = _UserManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault()
 
-            return Json(new { data = users });
+            });
+
+            return Json(new { data = objUserList });
+
         }
+
 
         [HttpGet]
         public IActionResult Login()
         {
             return View();
+
         }
 
         [HttpGet]
-        public IActionResult Create() => PartialView("Create", GetRegisterViewModel());
-
-        [HttpPost]
-        public async Task<IActionResult> Create(RegisterVM model)
+        public IActionResult Create()
         {
-            if (!ModelState.IsValid)
-                return Json(new { success = false, message = "Invalid model state" });
+            var returnURL = Url.Content("~/");
 
-            var user = new ApplicationUser
+            if (!_RoleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult())
             {
-                USER_NAME = model.NAME,
-                Email = model.EMAIL,
-                PhoneNumber = model.PHONE_NUMBER,
-                NormalizedEmail = model.EMAIL.ToUpper(),
-                EmailConfirmed = true,
-                UserName = model.EMAIL,
-                CREATED_DATE = DateTime.Now
-            };
-
-            if (model.PASSWORD != model.CONFIRM_PASSWORD)
-                return Json(new { success = false, message = "Passwords do not match" });
-
-            var result = await _userManager.CreateAsync(user, model.PASSWORD);
-
-            if (result.Succeeded)
-            {
-                await AddUserRole(user, model.ROLE);
-                return Json(new { success = true, message = "Successfully registered" });
+                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
+                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
             }
 
-            return Json(new { success = false, message = "Failed to register user" });
-        }
+            RegisterVM objUser = new RegisterVM();
+            try
+            {
 
-        private async Task AddUserRole(ApplicationUser user, string role)
-        {
-            role ??= SD.UserRole.CUSTOMER.ToString();
-            await _userManager.AddToRoleAsync(user, role);
-        }
+                objUser = new RegisterVM()
+                {
+                    ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
+                    {
+                        Text = fw.Name,
+                        Value = fw.Name
+                    }),
+                    REDIRECT_URL = returnURL
 
-        [HttpGet]
-        public async Task<IActionResult> Update(string email)
-        {
-            var user = await _userManager.FindByEmailAsync(email);
-            var viewModel = GetRegisterViewModel();
-            viewModel.EMAIL = user.Email;
-            viewModel.NAME = user.USER_NAME;
-            viewModel.PHONE_NUMBER = user.PhoneNumber;
-            viewModel.ROLE = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+                };
 
-            return PartialView("Update", viewModel);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+            return PartialView("Create", objUser);
+
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(RegisterVM model)
+        public async Task<IActionResult> Create(RegisterVM objData)
         {
-            var user = await _userManager.FindByEmailAsync(model.EMAIL);
-            var userRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                ApplicationUser objUser = new ApplicationUser()
+                {
+                    USER_NAME = objData.NAME,
+                    Email = objData.EMAIL,
+                    PhoneNumber = objData.PHONE_NUMBER,
+                    NormalizedEmail = objData.EMAIL.ToUpper(),
+                    EmailConfirmed = true,
+                    UserName = objData.EMAIL,
+                    CREATED_DATE = DateTime.Now,
+
+                };
+
+                if (objData.PASSWORD != objData.CONFIRM_PASSWORD)
+                {
+                    return Json(new { success = false, message = "The password you entered did not matched." });
+                }
+
+                var objUserManager = await _UserManager.CreateAsync(objUser, objData.PASSWORD);
+
+                if (objUserManager.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(objData.ROLE))
+                    {
+                        await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
+                    }
+                    else
+                    {
+                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.CUSTOMER.ToString());
+                    }
+
+                    return Json(new { success = true, message = "Successfully registered" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "The email or password entered was invalid. Please try again." });
+                }
+
+            }
+
+            return Json(new { success = false, message = "Something went wrong" });
+
+        }
+
+        public async Task<IActionResult> Update(string email)
+        {
+            var objUser = await _UserManager.FindByEmailAsync(email);
+
+            RegisterVM objRegister = new RegisterVM();
+
+            objRegister.EMAIL = objUser.Email;
+            objRegister.NAME = objUser.USER_NAME;
+            objRegister.PHONE_NUMBER = objUser.PhoneNumber;
+            objRegister.ROLE = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+            objRegister.ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
+            {
+                Text = fw.Name,
+                Value = fw.Name
+            });
+
+
+            return PartialView("Update", objRegister);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(RegisterVM objData)
+        {
+            var objUser = await _UserManager.FindByEmailAsync(objData.EMAIL);
+            var objUserRole = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+
 
             try
             {
-                await _userManager.RemoveFromRoleAsync(user, userRole);
-                await AddUserRole(user, model.ROLE);
 
-                user.USER_NAME = model.NAME;
-                user.PhoneNumber = model.PHONE_NUMBER;
+                await _UserManager.RemoveFromRoleAsync(objUser, objUserRole);
+                await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
 
-                if (!string.IsNullOrEmpty(model.PASSWORD))
+                objUser.USER_NAME = objData.NAME;
+                objUser.PhoneNumber = objData.PHONE_NUMBER;
+
+                if (!String.IsNullOrEmpty(objData.PASSWORD))
                 {
-                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                    await _userManager.ResetPasswordAsync(user, token, model.PASSWORD);
+                    var token = await _UserManager.GeneratePasswordResetTokenAsync(objUser);
+                    await _UserManager.ResetPasswordAsync(objUser, token, objData.PASSWORD);
                 }
 
-                await _userManager.UpdateAsync(user);
+                await _UserManager.UpdateAsync(objUser);
 
-                return Json(new { success = true, message = "Successfully updated" });
+                return Json(new { success = true, message = "Successfully registered" });
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json(new { success = false, message = "Failed to update user" });
+                return Json(new { success = false, message = "Something went wrong" });
             }
+
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM model)
+        public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.EMAIL, model.PASSWORD, model.IS_REMEMBER, lockoutOnFailure: false);
+            var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.EMAIL, loginVM.PASSWORD, loginVM.IS_REMEMBER, lockoutOnFailure: false);
 
-            if (result.Succeeded)
-                return Json(new { success = true, message = "Successfully logged in" });
+            if (objSignIn.Succeeded)
+            {
+                var objUser = await _UserManager.FindByEmailAsync(loginVM.EMAIL);
 
-            return Json(new { success = false, message = "Invalid login attempt" });
+                if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.ADMIN.ToString()))
+                {
+                    return Json(new { success = true, message = "Successfully login" });
+                }
+                else
+                {
+                    return Json(new { success = true, message = "Successfully login" });
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "Invalid user login or password. Please try again." });
+            }
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM registerVM)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser objUser = new ApplicationUser()
+                {
+                    USER_NAME = registerVM.NAME,
+                    Email = registerVM.EMAIL,
+                    PhoneNumber = registerVM.PHONE_NUMBER,
+                    NormalizedEmail = registerVM.EMAIL.ToUpper(),
+                    EmailConfirmed = true,
+                    UserName = registerVM.EMAIL,
+                    CREATED_DATE = DateTime.Now,
+
+                };
+
+                if (registerVM.PASSWORD != registerVM.CONFIRM_PASSWORD)
+                {
+                    return Json(new { success = false, message = "The password you entered did not matched." });
+                }
+
+                var objUserManager = await _UserManager.CreateAsync(objUser, registerVM.PASSWORD);
+
+                if (objUserManager.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(registerVM.ROLE))
+                    {
+                        await _UserManager.AddToRoleAsync(objUser, registerVM.ROLE);
+                    }
+                    else
+                    {
+                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.CUSTOMER.ToString());
+                    }
+
+                    await _SignInManager.SignInAsync(objUser, isPersistent: false);
+
+                    return Json(new { success = true, message = "Successfully registered" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "The email or password entered was invalid. Please try again." });
+                }
+
+            }
+
+            return Json(new { success = true, message = "Successfully registered" });
+
         }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            return Json(new { success = true, message = "Successfully logged out" });
+            await _SignInManager.SignOutAsync();
+
+            return Json(new { success = true, message = "Successfully logout" });
+
         }
 
         public IActionResult AccessDenied()
@@ -161,25 +288,5 @@ namespace RPRENTAL.Controllers
             return View();
         }
 
-        private RegisterVM GetRegisterViewModel()
-        {
-            var returnURL = Url.Content("~/");
-
-            if (!_roleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).Result)
-            {
-                _roleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
-                _roleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
-            }
-
-            return new RegisterVM
-            {
-                ROLE_LIST = _roleManager.Roles.Select(fw => new SelectListItem
-                {
-                    Text = fw.Name,
-                    Value = fw.Name
-                }),
-                REDIRECT_URL = returnURL
-            };
-        }
     }
 }

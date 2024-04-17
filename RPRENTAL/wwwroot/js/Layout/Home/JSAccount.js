@@ -42,7 +42,7 @@ function loginUser(url) {
         .fail(handleAjaxError);
 }
 
-function registerUser(url) {
+function registerUser(url) {    
     const email = $('#remail').val();
     const fullname = $('#rfullname').val();
     const password = $('#rpassword').val();

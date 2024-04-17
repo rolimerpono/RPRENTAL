@@ -31,7 +31,7 @@ namespace Repository.Implementation
            _db.tbl_Booking.Update(objBooking);
         }
 
-        public void UpdateBookingStatus(int BookingID, string BookingStatus, int RoomNumber)
+        public void UpdateBookingStatus(int BookingID, string BookingStatus, int room_number)
         {
             var objBooking = _db.tbl_Booking.FirstOrDefault(fw => fw.BOOKING_ID == BookingID);
 
@@ -41,7 +41,7 @@ namespace Repository.Implementation
             switch (objStatus) 
             {
                 case SD.BookingStatus.CHECK_IN:
-                    objBooking.ROOM_NUMBER = RoomNumber;
+                    objBooking.ROOM_NUMBER = room_number;
                     objBooking.ACTUAL_CHECK_IN_DATE = DateTime.Now;
                     break;
 
@@ -50,7 +50,8 @@ namespace Repository.Implementation
                     break;
 
                 case SD.BookingStatus.APPROVED:
-                    objBooking.BOOKING_DATE = DateTime.Now;      
+                    objBooking.BOOKING_DATE = DateTime.Now;
+                    objBooking.BOOKING_STATUS = BookingStatus;
                     break;
 
                 case SD.BookingStatus.CANCELLED:                   

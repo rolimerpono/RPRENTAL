@@ -75,6 +75,10 @@ namespace Model
 
         [ValidateNever]
         [NotMapped]
+        public List<string> ROOM_NUMBER_LIST { get; set; }
+
+        [ValidateNever]
+        [NotMapped]
         public int NO_OF_STAY { get; set; }
 
 

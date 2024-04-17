@@ -51,7 +51,7 @@
                     @if (_SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Welcome, Rolimer Pono</a>
+                            <a class="nav-link" href="#">Welcome, @User.Identity.Name</a>
                         </li>
                         <li class="nav-item">                       
                             <a class="nav-link btn-logout" href="#">Logout</a>                   

@@ -5,6 +5,7 @@
 
 
     const statusToButtonMap = {
+        'all': '#all',
         'pending': '#pending',
         'approved': '#approved',
         'check_in': '#checkin',
@@ -16,8 +17,6 @@
         const buttonId = statusToButtonMap[status.toLowerCase()];
         if (buttonId) $(buttonId).toggleClass('btn-primary btn-success');
     };
-
-
 
     updateButtonColor(status);  
 
