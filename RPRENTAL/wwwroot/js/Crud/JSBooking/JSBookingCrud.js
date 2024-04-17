@@ -1,15 +1,11 @@
-﻿
-
-
-
-
-function jQueryPost(url, data) {
+﻿function jQueryPost(url, data) {
     return $.ajax({
         type: 'POST',
         url: url,
         data: data,
         dataType: 'json' 
     });
+    
 }
 
 function jQueryGet(url, data) {
@@ -18,6 +14,7 @@ function jQueryGet(url, data) {
         url: url,
         data: data
     });
+    
 }
 
 function showPayment(id) {
@@ -32,7 +29,7 @@ function showPayment(id) {
 
 function confirmBooking(room_id) {
     var serializedData = $('#checking_info').serialize();
-    jQueryPost('/Booking/ConfirmBooking', { jsonData: serializedData })
+    jQueryPost('/Booking/ConfirmBooking', { ID: room_id, jsonData: serializedData })
         .done(function (response) {
             if (response.success) {
                 var responseData = JSON.parse(response.booking);
@@ -46,12 +43,12 @@ function confirmBooking(room_id) {
 }
 
 function getBooking(room_id) {
-    var objRoomData = $('#checking_info').serialize();
+    var objRoomData = $('#checking_info').serialize();    
     jQueryGet('/Booking/CreateBooking', { ID: room_id, jsonData: objRoomData })
         .done(function (result) {
             var modalContent = $('#modal-booking-content-' + room_id);
             modalContent.empty().html(result);
-            $('#modal-booking-' + room_id).modal('show');
+            $('#modal-booking-' + room_id).modal('show');            
         })
         .fail(function (xhr, status, error) {   
             showToast('error', 'To proceed you need to login first.');

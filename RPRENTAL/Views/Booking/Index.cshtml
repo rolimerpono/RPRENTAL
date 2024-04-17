@@ -1,5 +1,4 @@
 ﻿@using StaticUtility
-@model Booking
 
 @{
     var status = Context.Request.Query["status"];
@@ -61,6 +60,23 @@
         </div>
     </div>
 </div>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="modal-booking" tabindex="-1" aria-labelledby="modalbookingDetails" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white fw-bold" id="modalbookingDetails">BOOKING DETAILS</h5>
+            </div>         
+            <div class="pt-3" id="modal-booking-content"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                <button type="button" class="btn btn-primary btn-save" style="width:100px;">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Booking Modal -->
 
 
 

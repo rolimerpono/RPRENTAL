@@ -47,10 +47,9 @@ function registerUser(url) {
     const password = $('#rpassword').val();
     const confirmpass = $('#rconfirmpass').val();
     const phoneno = $('#rphoneno').val();
-    debugger
+ 
     const registerForm = { EMAIL: email, NAME: fullname, PASSWORD: password, CONFIRM_PASSWORD: confirmpass, PHONE_NUMBER: phoneno };
-
-    debugger
+   
 
     if (!validateEmail(email)) {
         $('#email-validation').css('color', 'red').html('Please enter a valid email.');

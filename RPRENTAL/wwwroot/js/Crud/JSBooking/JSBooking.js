@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿let objDataTable;
+
+$(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     let status = urlParams.get('status') ?? 'Pending';    
@@ -22,11 +24,20 @@
 
     loadBookings(status);
 
+    $('#tbl_Bookings').on('click', '.select-view-btn', function () {     
+        var rowData = getRowData($(this));
+        loadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
+    });
+
 });
+
+function getRowData(btn) {
+    return objDataTable.row(btn.closest('tr')).data();
+}
 
 function loadBookings(status) {
     
-    $('#tbl_Bookings').DataTable({
+    objDataTable = $('#tbl_Bookings').DataTable({
         'ajax': {
             url: '/Booking/GetAll?status=' + status
         },
@@ -43,7 +54,7 @@ function loadBookings(status) {
                 data: 'bookinG_ID',
                 'width': '5%',
                 'render': function (data, type, row) {
-                    return '<button class="btn btn-primary btn-sm select-edit-btn w-100">View Details</button>';
+                    return '<button class="btn btn-primary btn-sm select-view-btn w-100">View Details</button>';
                 }
             },
         ],
@@ -53,4 +64,24 @@ function loadBookings(status) {
     });
     
 
+}
+
+function loadModal(url, modalContentSelector, data = null) {
+
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: data,
+        success: function (result) {
+            $(modalContentSelector).empty().html(result);
+            $(modalContentSelector.replace('-content', '')).modal('show');
+        },
+        error: function (xhr, status, error) {
+            handleAjaxError(error);
+        }
+    });
+
+    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
+        $(modalContentSelector).html('');
+    });
 }

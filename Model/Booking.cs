@@ -30,7 +30,7 @@ namespace Model
         public int ROOM_ID { get;set; }
 
         [ForeignKey("ROOM_ID")]
-        public Room? ROOM { get;set; }
+        public Room? ROOM { get;set; }      
 
         public int ROOM_NUMBER { get; set; }
 

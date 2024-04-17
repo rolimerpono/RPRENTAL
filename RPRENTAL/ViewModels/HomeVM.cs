@@ -20,7 +20,6 @@ namespace RPRENTAL.ViewModels
 
         public string? IMAGE_URL { get; set; }
 
-
         public IFormFile? IMAGE { get; set; }
 
         public DateTime? CREATED_DATE { get; set; }

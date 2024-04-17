@@ -116,7 +116,7 @@ namespace RPRENTAL.Controllers
                 if (objData.PASSWORD != objData.CONFIRM_PASSWORD)
                 {
                     return Json(new { success = false, message = "The password you entered did not matched." });
-                }
+                }              
 
                 var objUserManager = await _UserManager.CreateAsync(objUser, objData.PASSWORD);
 

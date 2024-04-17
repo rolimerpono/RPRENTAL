@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient.DataClassification;
 using Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using StaticUtility;
 using Stripe;
 using Stripe.Checkout;
@@ -28,12 +29,7 @@ namespace RPRENTAL.Controllers
 
         public IActionResult Index()
         {
-            if(!User.Identity.IsAuthenticated)
-            {
-                return View("Unauthorized");
-            }
-
-            return View();
+            return View();         
         }
 
         [HttpGet]
@@ -79,11 +75,12 @@ namespace RPRENTAL.Controllers
                 user = _IWorker.tbl_User.Get(fw => fw.Id == userID);
             }
 
-
             var objData = jsonData.Split('&').Select(obj => obj.Split('=')).ToDictionary(obj => obj[0], obj => obj[1]);
 
             DateOnly checkin_date = DateOnly.Parse(objData["CHECKIN_DATE"]);
             DateOnly checkout_date = DateOnly.Parse(objData["CHECKOUT_DATE"]);
+
+            objData = null;
 
 
 
@@ -111,7 +108,7 @@ namespace RPRENTAL.Controllers
             objBooking.NO_OF_STAY = (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
             objBooking.TOTAL_COST = objBooking.ROOM.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
 
-            return PartialView("Common/_BookingDetail", objBooking);
+            return PartialView("Common/_BookingDetails", objBooking);
 
         }
 
@@ -119,11 +116,12 @@ namespace RPRENTAL.Controllers
         {
             Util objUtil = new Util(_IWorker);
 
-            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "USER,ROOM");
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "USERS,ROOM");
+            objBooking.ROOM = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID, IncludeProperties: "ROOM_AMENITIES");
 
-            if(objBooking !=null)
+            if (objBooking !=null)
             {
-                if (objBooking.ROOM_NUMBER == 0 && objBooking.BOOKING_STATUS == SD.BookingStatus.CHECK_OUT.ToString())
+                if (objBooking.ROOM_NUMBER == 0 && objBooking.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString())
                 {
                     List<string> objList = objUtil.GetRoomNumberAvailable(objBooking.ROOM_ID).ToList();
 
@@ -141,7 +139,7 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult ConfirmBooking(string jsonData)
+        public IActionResult ConfirmBooking(int ID, string jsonData)
         {
 
             var objData = jsonData.Split('&').Select(obj => obj.Split('=')).ToDictionary(obj => obj[0], obj => obj[1]);
@@ -151,7 +149,7 @@ namespace RPRENTAL.Controllers
 
             DateOnly checkin_date = DateOnly.Parse(objData["CHECKIN_DATE"]);
             DateOnly checkout_date = DateOnly.Parse(objData["CHECKOUT_DATE"]);
-            int room_id = int.Parse(objData["ROOM_ID"]);
+            int room_id = ID;
 
             Booking objBooking = new Booking();
 
