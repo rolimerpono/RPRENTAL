@@ -29,7 +29,7 @@ namespace Model
         public string? DESCRIPTION { get; set; } = "";
 
         [Display(Name = "PRICE")]
-        [Range(10,100)]
+        [Range(10,150)]
         public required double ROOM_PRICE { get; set; }
 
 

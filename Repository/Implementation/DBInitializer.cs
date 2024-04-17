@@ -47,6 +47,8 @@ namespace Repository.Implementation
                         NormalizedUserName = "rolimer_pono@yahoo.com",
                         NormalizedEmail = "rolimer_pono@yahoo.com",
                         PhoneNumber = "0212477440",
+                        CREATED_DATE = DateTime.Now,
+                        EmailConfirmed = true,
                     },"Admin@123").GetAwaiter().GetResult();
 
 

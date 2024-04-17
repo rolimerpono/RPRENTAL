@@ -225,34 +225,34 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterVM registerVM)
+        public async Task<IActionResult> Register(RegisterVM objData)
         {
             if (ModelState.IsValid)
             {
                 ApplicationUser objUser = new ApplicationUser()
                 {
-                    USER_NAME = registerVM.NAME,
-                    Email = registerVM.EMAIL,
-                    PhoneNumber = registerVM.PHONE_NUMBER,
-                    NormalizedEmail = registerVM.EMAIL.ToUpper(),
+                    USER_NAME = objData.NAME,
+                    Email = objData.EMAIL,
+                    PhoneNumber = objData.PHONE_NUMBER,
+                    NormalizedEmail = objData.EMAIL.ToUpper(),
                     EmailConfirmed = true,
-                    UserName = registerVM.EMAIL,
+                    UserName = objData.EMAIL,
                     CREATED_DATE = DateTime.Now,
 
                 };
 
-                if (registerVM.PASSWORD != registerVM.CONFIRM_PASSWORD)
+                if (objData.PASSWORD != objData.CONFIRM_PASSWORD)
                 {
                     return Json(new { success = false, message = "The password you entered did not matched." });
                 }
 
-                var objUserManager = await _UserManager.CreateAsync(objUser, registerVM.PASSWORD);
+                var objUserManager = await _UserManager.CreateAsync(objUser, objData.PASSWORD);
 
                 if (objUserManager.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(registerVM.ROLE))
+                    if (!string.IsNullOrEmpty(objData.ROLE))
                     {
-                        await _UserManager.AddToRoleAsync(objUser, registerVM.ROLE);
+                        await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
                     }
                     else
                     {

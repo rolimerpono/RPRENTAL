@@ -2,7 +2,6 @@
     $('.btn-login').click(() => loginUser('/Account/Login'));
     $('.btn-register').click(() => registerUser('/Account/Register'));
     $('.btn-logout').click(() => logoutUser('/Account/Logout'));
-
     $('#modal-login').on('shown.bs.modal', () => focusAndSelectInput($('#email')));
     $('#modal-register').on('shown.bs.modal', () => focusAndSelectInput($('#remail')));
 });
@@ -48,7 +47,10 @@ function registerUser(url) {
     const password = $('#rpassword').val();
     const confirmpass = $('#rconfirmpass').val();
     const phoneno = $('#rphoneno').val();
-    const registerForm = { EMAIL: email, NAME: fullname, PASSWORD: password, CONFIRM_PASSWORD: confirmpass, PHONE_NUBMER: phoneno };
+    debugger
+    const registerForm = { EMAIL: email, NAME: fullname, PASSWORD: password, CONFIRM_PASSWORD: confirmpass, PHONE_NUMBER: phoneno };
+
+    debugger
 
     if (!validateEmail(email)) {
         $('#email-validation').css('color', 'red').html('Please enter a valid email.');

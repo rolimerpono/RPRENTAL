@@ -37,7 +37,7 @@ namespace Common
 
         public static PaginatedList<T> Create(IQueryable<T> source, int pageIndex, int pageSize)
         {
-            var count = source.Count(); //Total Number of Items
+            var count = source.Count(); 
 
             var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 

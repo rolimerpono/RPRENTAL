@@ -108,16 +108,52 @@ namespace DatabaseAccess
                     ROOM_NAME = "Executive Suite",
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                     MAX_OCCUPANCY = 10,
-                    ROOM_PRICE = 180,
+                    ROOM_PRICE = 100,
                     IMAGE_URL = "https://placehold.co/600x400/png",
                     CREATED_DATE = DateTime.Now,
                     UPDATED_DATE = DateTime.Now
+                },
 
-                }
+                 new Room
+                 {
+                     ROOM_ID = 7,
+                     ROOM_NAME = "Super Deluxed",
+                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                     MAX_OCCUPANCY = 10,
+                     ROOM_PRICE = 110,
+                     IMAGE_URL = "https://placehold.co/600x400/png",
+                     CREATED_DATE = DateTime.Now,
+                     UPDATED_DATE = DateTime.Now
+
+                 },
+                  new Room
+                  {
+                      ROOM_ID = 8,
+                      ROOM_NAME = "Diamond Room",
+                      DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                      MAX_OCCUPANCY = 10,
+                      ROOM_PRICE = 87,
+                      IMAGE_URL = "https://placehold.co/600x400/png",
+                      CREATED_DATE = DateTime.Now,
+                      UPDATED_DATE = DateTime.Now
+
+                  },
+                   new Room
+                   {
+                       ROOM_ID = 9,
+                       ROOM_NAME = "Emerald Deluxed",
+                       DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                       MAX_OCCUPANCY = 10,
+                       ROOM_PRICE = 98,
+                       IMAGE_URL = "https://placehold.co/600x400/png",
+                       CREATED_DATE = DateTime.Now,
+                       UPDATED_DATE = DateTime.Now
+
+                   }
+
             );
 
             #endregion
-
 
             #region tbl_RoomNumber
             builder.Entity<RoomNumber>().HasData(           
@@ -278,7 +314,6 @@ namespace DatabaseAccess
              );
 
             #endregion  
-
 
             #region Room Amenity
                 builder.Entity<RoomAmenity>().HasData(
