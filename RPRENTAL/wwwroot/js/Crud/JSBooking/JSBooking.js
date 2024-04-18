@@ -1,9 +1,15 @@
 ﻿let objDataTable;
 
+
 $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
-    let status = urlParams.get('status') ?? 'Pending';    
+    let status = urlParams.get('status') ?? 'Pending';       
+
+
+    $('.btn-checkin').click(function () {
+        alert('I AM CLICK');
+    });
 
 
     const statusToButtonMap = {
@@ -29,7 +35,33 @@ $(document).ready(function () {
         loadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
     });
 
+  
+
 });
+
+function check_in() {
+
+        $.ajax({
+            type: 'POST',
+            url: 'Bookin/Checkin',
+            data: data,
+            success: function (response) {
+                if (response.success)
+                {
+
+                }
+            },
+            error: function (xhr, status, error) {
+                handleAjaxError(error);
+            }
+        });
+
+        $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
+            $(modalContentSelector).html('');
+        });
+
+
+}
 
 function getRowData(btn) {
     return objDataTable.row(btn.closest('tr')).data();
@@ -72,8 +104,8 @@ function loadModal(url, modalContentSelector, data = null) {
         type: 'GET',
         url: url,
         data: data,
-        success: function (result) {
-            $(modalContentSelector).empty().html(result);
+        success: function (response) {           
+            $(modalContentSelector).empty().html(response);
             $(modalContentSelector.replace('-content', '')).modal('show');
         },
         error: function (xhr, status, error) {

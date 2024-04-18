@@ -22,9 +22,11 @@ namespace RPRENTAL.Controllers
     {
 
         private readonly IWorker _IWorker;
-        public BookingController(IWorker IWorker)
+        private readonly IRoomAmenityService _IRoomAmenityService;
+        public BookingController(IWorker IWorker, IRoomAmenityService iRoomAmenityService)
         {
             _IWorker = IWorker; 
+            _IRoomAmenityService = iRoomAmenityService;
         }
 
         public IActionResult Index()
@@ -112,12 +114,21 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult CheckIn(Booking objBooking)
+        {
+            _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BOOKING_ID, SD.BookingStatus.CHECK_IN.ToString(), objBooking.ROOM_NUMBER);
+            _IWorker.tbl_Booking.Save();
+            return Json(new { success = true, message = "success" });
+
+        }
+
         public IActionResult BookingDetails(int booking_id)
         {
             Util objUtil = new Util(_IWorker);
 
             Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "USERS,ROOM");
-            objBooking.ROOM = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID, IncludeProperties: "ROOM_AMENITIES");
+            objBooking.ROOM.ROOM_AMENITIES = _IRoomAmenityService.GetAll().Where(fw => fw.ROOM_ID == objBooking.ROOM_ID);
 
             if (objBooking !=null)
             {

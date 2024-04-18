@@ -1,4 +1,5 @@
-﻿@model Booking
+﻿@using StaticUtility
+@model Booking
 
 <div class="container">
     <div class="row pb-3">
@@ -21,25 +22,103 @@
                 <label for="formEmail" class="form-label">EMAIL</label>
                 <input type="text" class="form-control" id="formEmail" asp-for="@Model.USER_EMAIL" disabled>
             </div>
+
+            <div class="mb-3">
+                <label for="formBookingStatus" class="form-label">BOOKING STATUS</label>
+                <input type="text" class="form-control" id="formBookingStatus" asp-for="@Model.BOOKING_STATUS" disabled>
+            </div>
+
+            <div class="mb-3">
+                <label for="formCheckinDate" class="form-label">BOOKING DATE</label>
+                <input type="text" class="form-control" id="formBookingDate" asp-for="@Model.BOOKING_DATE" disabled>
+            </div>
+               
+        </div>
+      
+        <div class="col-lg-6">
+
+             @if (Model.IS_PAYMENT_SUCCESSFULL && User.IsInRole(SD.UserRole.ADMIN.ToString()) && Model.BOOKING_STATUS == SD.BookingStatus.CHECK_IN.ToString())
+            {
+                <div class="mb-3">
+                    <label for="formCheckInDate" class="form-label">STRIPE PAYMENT ID</label>
+                    <input type="text" class="form-control" id="formCheckInDate" asp-for="@Model.STRIPE_PAYEMENT_INTENT_ID" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formCheckoutDate" class="form-label">STRIPE SESSION ID</label>
+                    <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.STRIPE_SESSION_ID" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formNoOfStay" class="form-label">PAYMENT DATE</label>
+                    <input type="text" class="form-control" id="formNoOfStay" value="@Model.PAYMENT_DATE" disabled>
+                </div>
+            }
+            else
+            {
+
+                <div class="mb-3">
+                    <label for="formCheckInDate" class="form-label">ACTUAL CHECKIN DATE</label>
+                    <input type="text" class="form-control" id="formCheckInDate" asp-for="@Model.ACTUAL_CHECK_IN_DATE" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formCheckoutDate" class="form-label">ACTUAL CHECKOUT DATE</label>
+                    <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.ACTUAL_CHECK_OUT_DATE" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formNoOfStay" class="form-label">NUMBER OF STAY</label>
+                    <input type="text" class="form-control" id="formNoOfStay" value="@Model.NO_OF_STAY" disabled>
+                </div>
+            }
+
+
+            <div class="mb-3">
+                <label for="formNoOfStay" class="form-label">Total Cost</label>
+                <input type="text" class="form-control" id="formNoOfStay" value="@Model.TOTAL_COST.ToString("c")" disabled>
+            </div>     
+            
+
+
+            @if (Model.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString() && User.IsInRole(SD.UserRole.ADMIN.ToString()))
+            {
+                <div class="mb-3">                   
+                    <label for="ROOM_NUMBER" class="form-label">ROOM NUMBER</label>
+
+                    <select class="form-select" asp-for="@Model.ROOM_NUMBER">
+                        @foreach (var rooms in Model.ROOM_NUMBER_LIST)
+                        {
+                            <option value="@rooms">@rooms</option>
+
+                        }
+                    </select>
+                </div>
+            }
+            else
+            {
+                @if (Model.BOOKING_STATUS == SD.BookingStatus.CHECK_IN.ToString() || Model.BOOKING_STATUS == SD.BookingStatus.CHECK_OUT.ToString())
+                {
+                    <div class="mb-3">
+                        <label for="ROOM_NUMBER" class="form-label">ROOM NUMBER</label>                       
+                        <input type="text" class="form-control" id="room_number" asp-for="@Model.ROOM_NUMBER" disabled>
+                    </div>
+                }
+            }
+
+
         </div>
 
-        <div class="col-lg-6">
-            <div class="mb-3">
-                <label for="formCheckinDate" class="form-label">CHECKIN DATE</label>
-                <input type="text" class="form-control" id="formCheckinDate" asp-for="@Model.CHECK_IN_DATE" disabled>
-            </div>
-
-            <div class="mb-3">
-                <label for="formCheckoutDate" class="form-label">CHECKOUT DATE</label>
-                <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.CHECK_OUT_DATE" disabled>
-            </div>
-
-      
-            <div class="mb-3">
-                <label for="formNoOfStay" class="form-label">NUMBER OF STAY</label>
-                <input type="text" class="form-control" id="formNoOfStay" value="@Model.NO_OF_STAY" disabled>
-            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+            @if (Model.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString() &&  User.IsInRole(SD.UserRole.ADMIN.ToString()))
+            {
+                <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
+            }
+            @if (Model.BOOKING_STATUS == SD.BookingStatus.CHECK_IN.ToString())
+            {
+                <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
+            }
         </div>
     </div>
 </div>
-

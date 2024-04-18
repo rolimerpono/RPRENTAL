@@ -42,14 +42,14 @@ namespace DataService.Implementation
 
         public RoomAmenity Get(int ID)
         {
-            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID,IncludeProperties: "ROOMS");
+            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID,IncludeProperties: "ROOMS , AMENITY");
             return objRoomAmenity;
         }
 
         public IEnumerable<RoomAmenity> GetAll()
         {
             IEnumerable<RoomAmenity> objRoomAmenity;
-            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "ROOMS");
+            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "ROOMS,AMENITY");
             return objRoomAmenity;
         }
 

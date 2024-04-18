@@ -22,16 +22,19 @@ namespace Model
         [ValidateNever]
         public Room? ROOMS { get; set; }
 
+
+        [ForeignKey("AMENITY")]
+        [Required]
         public int AMENITY_ID { get; set; }
+     
+        public Amenity? AMENITY { get; set; }
 
         [ValidateNever]
         [NotMapped]
         public string? AMENITY_NAME { get; set; }
 
 
-        [ForeignKey("AMENITY_ID")]
-        [Required]
-        public Amenity? AMENITY { get; set; }
+      
 
 
     }
