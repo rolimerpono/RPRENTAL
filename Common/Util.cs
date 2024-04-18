@@ -34,16 +34,19 @@ namespace Common
 
         public List<string> GetRoomNumberAvailable(int ROOM_ID, DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE)
         {
-            var room_number_available = (from objRoom in _iWorker.tbl_RoomNumber.GetAll(fr => fr.ROOM_ID == ROOM_ID)
-                         where !_iWorker.tbl_Booking.Any(fb => fb.ROOM_ID == ROOM_ID &&
-                            (CHECKIN_DATE >= fb.CHECK_IN_DATE && CHECKIN_DATE < fb.CHECK_OUT_DATE) ||
-                            (CHECKOUT_DATE > fb.CHECK_IN_DATE && CHECKOUT_DATE <= fb.CHECK_OUT_DATE) ||
-                            (CHECKIN_DATE <= fb.CHECK_IN_DATE && CHECKOUT_DATE >= fb.CHECK_OUT_DATE) &&
-                            fb.ROOM_NUMBER == objRoom.ROOM_NUMBER && fb.BOOKING_STATUS != SD.BookingStatus.CHECK_OUT.ToString())
-                            select objRoom.ROOM_NUMBER.ToString()).ToList();
+            var room_number_available = _iWorker.tbl_RoomNumber
+                                        .GetAll(fr => fr.ROOM_ID == ROOM_ID)
+                                        .Where(objRoom => !_iWorker.tbl_Booking.Any(fb =>
+                                            fb.ROOM_ID == ROOM_ID &&
+                                            ((CHECKIN_DATE >= fb.CHECK_IN_DATE && CHECKIN_DATE < fb.CHECK_OUT_DATE) ||
+                                            (CHECKOUT_DATE > fb.CHECK_IN_DATE && CHECKOUT_DATE <= fb.CHECK_OUT_DATE) ||
+                                            (CHECKIN_DATE <= fb.CHECK_IN_DATE && CHECKOUT_DATE >= fb.CHECK_OUT_DATE)) &&
+                                            fb.ROOM_NUMBER == objRoom.ROOM_NUMBER &&
+                                            fb.BOOKING_STATUS != SD.BookingStatus.CHECK_OUT.ToString()))
+                                        .Select(objRoom => objRoom.ROOM_NUMBER.ToString())
+                                        .ToList();
 
             return room_number_available;
-
         }
 
 
