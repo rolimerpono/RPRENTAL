@@ -43,10 +43,12 @@ namespace Repository.Implementation
                 case SD.BookingStatus.CHECK_IN:
                     objBooking.ROOM_NUMBER = room_number;
                     objBooking.ACTUAL_CHECK_IN_DATE = DateTime.Now;
+                    objBooking.BOOKING_STATUS = BookingStatus;
                     break;
 
                 case SD.BookingStatus.CHECK_OUT:
                     objBooking.ACTUAL_CHECK_OUT_DATE = DateTime.Now;
+                    objBooking.BOOKING_STATUS = BookingStatus;
                     break;
 
                 case SD.BookingStatus.APPROVED:

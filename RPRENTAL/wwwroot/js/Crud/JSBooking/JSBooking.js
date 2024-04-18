@@ -9,7 +9,7 @@ $(document).ready(function () {
     let status = urlParams.get('status') ?? 'Pending';
 
     $('.btn-checkin').click(function () {    
-        alert("Check-In button clicked!");
+        checkIn();
     }); 
 
 
@@ -40,16 +40,19 @@ $(document).ready(function () {
 
 });
 
-function check_in() {
-
+function checkIn() {
+    data = $('#booking_detail').serialize();    
         $.ajax({
             type: 'POST',
-            url: 'Bookin/Checkin',
+            url: 'Booking/CheckIn',
             data: data,
             success: function (response) {
-                if (response.success)
-                {
-
+                if (response.success) {
+                    objDataTable.ajax.reload();
+                    $('#modal-booking').modal('hide');
+                    showToast('success', response.message);
+                } else {
+                    showToast('error', response.message);
                 }
             },
             error: function (xhr, status, error) {
@@ -121,4 +124,18 @@ function loadModal(url, modalContentSelector, data = null) {
 
 function handleAjaxError(xhr, status, error) {
     showToast('error', 'An error occurred. Please try again later.');
+}
+
+function showToast(type, message) {
+    const toaster = $('.toaster');
+    toaster.text(message).css({
+        'display': 'block',
+        'background-color': type === 'success' ? '#006400' : 'red',
+        'opacity': 1
+    });
+
+    setTimeout(() => {
+        toaster.css('opacity', 0);
+        setTimeout(() => toaster.css('display', 'none').css('opacity', 1), 500);
+    }, 3000);
 }

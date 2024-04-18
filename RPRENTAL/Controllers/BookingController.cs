@@ -134,12 +134,13 @@ namespace RPRENTAL.Controllers
 
             Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "USERS,ROOM");
             objBooking.ROOM.ROOM_AMENITIES = _IRoomAmenityService.GetAll().Where(fw => fw.ROOM_ID == objBooking.ROOM_ID);
+            
 
             if (objBooking !=null)
             {
                 if (objBooking.ROOM_NUMBER == 0 && objBooking.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString())
                 {
-                    List<string> objList = objUtil.GetRoomNumberAvailable(objBooking.ROOM_ID).ToList();
+                    List<string> objList = objUtil.GetRoomNumberAvailable(objBooking.ROOM_ID,objBooking.CHECK_IN_DATE,objBooking.CHECK_OUT_DATE).ToList();
 
                     objBooking.ROOM_NUMBER_LIST = objList;
                 }
@@ -181,8 +182,8 @@ namespace RPRENTAL.Controllers
             objBooking.TOTAL_COST = objRoom.ROOM_PRICE * (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
             objBooking.BOOKING_STATUS = SD.BookingStatus.PENDING.ToString();
             objBooking.BOOKING_DATE = DateTime.Now;
-            objBooking.CHECK_IN_DATE = DateOnly.FromDateTime( DateTime.Now);
-            objBooking.CHECK_OUT_DATE = DateOnly.FromDateTime(DateTime.Now);
+            objBooking.CHECK_IN_DATE = checkin_date;
+            objBooking.CHECK_OUT_DATE = checkout_date;
             objBooking.IS_PAYMENT_SUCCESSFULL = false;
             objBooking.PAYMENT_DATE = DateTime.Parse("1900-01-01");
             objBooking.STRIPE_SESSION_ID = "";
