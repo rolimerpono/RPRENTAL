@@ -1,6 +1,4 @@
-﻿@using StaticUtility
-
-@{
+﻿@{
     var status = Context.Request.Query["status"];
 }
 
@@ -15,7 +13,7 @@
 
         </div>
         <div class="col-lg-4">
-            <div class="btn-group-toggle btn-group d-flex flex-wrap border border-1" data-toggle="buttons">              
+            <div class="btn-group-toggle btn-group d-flex flex-wrap" data-toggle="buttons">              
                 <a id="pending" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.PENDING.ToString()> Pending
                     <input type="radio" class="btn-check" id="option1" autocomplete="off">                    
                 </a>
@@ -63,13 +61,28 @@
 
 <!-- Booking Modal -->
 <div class="modal fade" id="modal-booking" tabindex="-1" aria-labelledby="modalbookingDetails" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" style="max-height: 300px;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-height: 280px;">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white fw-bold" id="modalbookingDetails">BOOKING DETAILS</h5>
             </div>         
-            <div class="pt-3" id="modal-booking-content"></div>         
+            <div class="pt-3" id="modal-booking-content"></div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+
+                @if (status == SD.BookingStatus.APPROVED.ToString() && User.IsInRole(SD.UserRole.ADMIN.ToString()))
+                {
+                    <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
+                }
+                @if (status == SD.BookingStatus.CHECK_IN.ToString())
+                {
+                    <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
+                }
+            </div>
+
         </div>
+     
     </div>
 </div>
 <!--End Booking Modal -->

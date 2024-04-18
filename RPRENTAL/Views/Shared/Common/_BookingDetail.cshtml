@@ -1,5 +1,4 @@
-﻿@using StaticUtility
-@model Booking
+﻿@model Booking
 
 <div class="container">
     <div class="row pb-3">
@@ -105,20 +104,7 @@
                     </div>
                 }
             }
-
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
-            @if (Model.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString() &&  User.IsInRole(SD.UserRole.ADMIN.ToString()))
-            {
-                <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
-            }
-            @if (Model.BOOKING_STATUS == SD.BookingStatus.CHECK_IN.ToString())
-            {
-                <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
-            }
-        </div>
+        </div>       
     </div>
 </div>
+

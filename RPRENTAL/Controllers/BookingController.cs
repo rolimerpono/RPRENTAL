@@ -34,6 +34,11 @@ namespace RPRENTAL.Controllers
             return View();         
         }
 
+        public IActionResult Test()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult GetAll(string status)
         {

@@ -10,8 +10,7 @@ function focusAndSelectInput(input) {
     input.focus().select();
 }
 
-function handleAjaxError(xhr, status, error) {
-    console.error('AJAX Error:', error);
+function handleAjaxError(xhr, status, error) {    
     showToast('error', 'An error occurred. Please try again later.');
 }
 

@@ -1,15 +1,16 @@
 ﻿let objDataTable;
 
 
+
+
 $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
-    let status = urlParams.get('status') ?? 'Pending';       
+    let status = urlParams.get('status') ?? 'Pending';
 
-
-    $('.btn-checkin').click(function () {
-        alert('I AM CLICK');
-    });
+    $('.btn-checkin').click(function () {    
+        alert("Check-In button clicked!");
+    }); 
 
 
     const statusToButtonMap = {
@@ -116,4 +117,8 @@ function loadModal(url, modalContentSelector, data = null) {
     $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
         $(modalContentSelector).html('');
     });
+}
+
+function handleAjaxError(xhr, status, error) {
+    showToast('error', 'An error occurred. Please try again later.');
 }
