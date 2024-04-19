@@ -1,3 +1,11 @@
-﻿@{
+﻿
+@if (User.IsInRole(SD.UserRole.ADMIN.ToString()))
+{
     Layout = "Admin/_Layout";
+
+}
+else
+{
+    Layout = "_Layout";
+
 }
