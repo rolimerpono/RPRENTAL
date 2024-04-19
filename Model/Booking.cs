@@ -13,8 +13,7 @@ namespace Model
     {
         public Booking()
         {
-           
-
+            NO_OF_STAY = (CHECK_IN_DATE.AddDays(1 - CHECK_OUT_DATE.DayNumber).DayNumber);
         }
 
         [Key]
@@ -55,7 +54,10 @@ namespace Model
         public DateOnly CHECK_IN_DATE { get; set; }
 
         [Required]
-        public  DateOnly CHECK_OUT_DATE { get; set; } 
+        public  DateOnly CHECK_OUT_DATE { get; set; }
+
+        [ValidateNever]
+        public int NO_OF_STAY { get; set; }
 
         public Boolean IS_PAYMENT_SUCCESSFULL { get; set; } = false;
 
@@ -69,6 +71,7 @@ namespace Model
 
         public DateTime ACTUAL_CHECK_OUT_DATE { get; set; }
 
+        public DateTime ACTUAL_CANCELLED_DATE { get; set; }
       
         [NotMapped]
         public IEnumerable<RoomAmenity> ROOM_AMENITY { get; set; }
@@ -77,9 +80,7 @@ namespace Model
         [NotMapped]
         public List<string> ROOM_NUMBER_LIST { get; set; }
 
-        [ValidateNever]
-        [NotMapped]
-        public int NO_OF_STAY { get; set; }
+     
 
 
 

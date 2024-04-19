@@ -1,5 +1,9 @@
 ﻿@{
     var status = Context.Request.Query["status"];
+    if (string.IsNullOrEmpty(status))
+    {
+        status = "Pending";    
+    }
 }
 
 <div class="container">
@@ -69,17 +73,45 @@
             <div class="pt-3" id="modal-booking-content"></div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
 
-                @if (status == SD.BookingStatus.APPROVED.ToString() && User.IsInRole(SD.UserRole.ADMIN.ToString()))
+            
+                @if (status.ToString().ToLower() == SD.BookingStatus.PENDING.ToString().ToLower() || status.ToString().ToLower() == SD.BookingStatus.APPROVED.ToString().ToLower())
                 {
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-danger btn-cancel" style="width:120px;">Cancel Booking</button>
+                    </div>
+                }
+
+                <div class="col"></div> 
+
+                <div class="col-auto">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                </div>
+               
+                @if (status.ToString().ToLower() == SD.BookingStatus.PENDING.ToString().ToLower() && (User.IsInRole(SD.UserRole.ADMIN.ToString())))
+                {
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary btn-payment" style="width:100px;">Payment</button>
+                    </div>
+                }
+
+              
+                @if (status.ToString().ToLower() == SD.BookingStatus.APPROVED.ToString().ToLower() && User.IsInRole(SD.UserRole.ADMIN.ToString()))
+                {
+                <div class="col-auto">
                     <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
-                }
-                @if (status == SD.BookingStatus.CHECK_IN.ToString())
+                </div>
+                }               
+
+                @if (status.ToString().ToLower() == SD.BookingStatus.CHECK_IN.ToString().ToLower())
                 {
+                <div class="col-auto">
                     <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
-                }
+                </div>
+                }              
+
             </div>
+
 
         </div>
      

@@ -56,7 +56,10 @@ namespace Repository.Implementation
                     objBooking.BOOKING_STATUS = BookingStatus;
                     break;
 
-                case SD.BookingStatus.CANCELLED:                   
+                case SD.BookingStatus.CANCELLED:
+                    objBooking.BOOKING_STATUS = BookingStatus;
+                    objBooking.ACTUAL_CANCELLED_DATE = DateTime.Now;
+
                     break;            
             
             }

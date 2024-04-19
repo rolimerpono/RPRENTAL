@@ -40,7 +40,7 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(string status)
+        public IActionResult GetAll(string? status)
         {
 
             IEnumerable<Booking> objBookings;
@@ -64,7 +64,7 @@ namespace RPRENTAL.Controllers
             else
             {
                 objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == SD.BookingStatus.PENDING.ToString().ToLower());
-            }
+            }          
 
 
             return Json(new { data = objBookings });
@@ -128,6 +128,24 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult CheckOut(Booking objBooking)
+        {
+            _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BOOKING_ID, SD.BookingStatus.CHECK_OUT.ToString(), objBooking.ROOM_NUMBER);
+            _IWorker.tbl_Booking.Save();
+            return Json(new { success = true, message = "success" });
+
+        }
+
+        [HttpPost]
+        public IActionResult CancelBooking(Booking objBooking)
+        {
+            _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BOOKING_ID, SD.BookingStatus.CANCELLED.ToString(), objBooking.ROOM_NUMBER);
+            _IWorker.tbl_Booking.Save();
+            return Json(new { success = true, message = "success" });
+
+        }
+
         public IActionResult BookingDetails(int booking_id)
         {
             Util objUtil = new Util(_IWorker);
@@ -184,13 +202,14 @@ namespace RPRENTAL.Controllers
             objBooking.BOOKING_DATE = DateTime.Now;
             objBooking.CHECK_IN_DATE = checkin_date;
             objBooking.CHECK_OUT_DATE = checkout_date;
+            objBooking.NO_OF_STAY = (checkout_date.AddDays(1 - checkin_date.DayNumber).DayNumber);
             objBooking.IS_PAYMENT_SUCCESSFULL = false;
             objBooking.PAYMENT_DATE = DateTime.Parse("1900-01-01");
             objBooking.STRIPE_SESSION_ID = "";
             objBooking.STRIPE_PAYEMENT_INTENT_ID = "";
             objBooking.ACTUAL_CHECK_IN_DATE = DateTime.Parse("1900-01-01");
             objBooking.ACTUAL_CHECK_OUT_DATE = DateTime.Parse("1900-01-01");
-
+            
 
             _IWorker.tbl_Booking.Add(objBooking);
             _IWorker.tbl_Booking.Save();
