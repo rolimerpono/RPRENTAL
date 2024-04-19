@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>@ViewData["Title"]RPRENTAL</title>
+    <title>@ViewData["Title"]RP HOTEL</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">@*
@@ -27,50 +27,50 @@
             <ul class="nav flex-column">
                 <!-- Logo Holder -->
                 <li class="nav-item logo-holder">
-                    <div class="text-center text-white logo py-4 mx-4">
-                        <a class="text-white text-decoration-none" id="title" href="#"><strong>Sidebar</strong></a>
+                    <div class="text-center text-white logo py-4 mx-4">                     
+                        <a class="text-white text-decoration-none" id="title" href="#"><strong>RP HOTEL</strong></a>
+                        <hr />
                         <a class="text-white float-end" id="sidebarToggleHolder" href="#"><i class="fas fa-bars" id="sidebarToggle"></i></a>
                     </div>
                 </li>
                 <!-- Dashboard Link -->
                 <li class="nav-item">
                     <a class="nav-link text-white py-1 px-0" href="#">
-                        <span class="m-3">Dashboard</span>
+                        <span class="m-4">Dashboard</span>
                     </a>
                 </li>
                 <!-- User Profile Link -->
                 <li class="nav-item">
                     <a class="nav-link text-white py-1 px-0" href="#">
-                        <span class="m-3">Home</span>
+                        <span class="m-4">Home</span>
                     </a>
                 </li>
                 <!-- Support Tickets Link -->
                 <li class="nav-item">
                     <a class="nav-link text-white py-1 px-0" href="#">
-                        <span class="m-3">About</span>
+                        <span class="m-4">About</span>
                     </a>
                 </li>
                 <!-- Archive Link -->
                 <li class="nav-item">
                     <a class="nav-link text-white py-1 px-0" href="#">
-                        <span class="m-3">Gallery</span>
+                        <span class="m-4">Gallery</span>
                     </a>
                 </li>
                 <!-- Statistics Link -->
                 <li class="nav-item">
                     <a class="nav-link text-white py-1 px-0" href="#">
-                        <span class="m-3">Services</span>
+                        <span class="m-4">Services</span>
                     </a>
                 </li>
-             
 
                 <!-- Settings Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-white py-1 px-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="m-3">Manage</span>
-                        <i class="bi bi-caret-right" id="settingsIcon"></i>
-                    </a>
-                    <ul class="dropdown-menu border-0">
+                <li class="nav-item dropdown ml-auto">
+                    <a class="nav-link text-white py-1 px-0 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" aria-expanded="false">
+                        <span class="m-4 pe-5">Manage</span>
+                        <i class="bi bi-caret-right pe-5" id="settings-icon"></i>
+                    </a>                   
+                    <ul class="dropdown-menu border-0" id="dropdownMenu" style="display: none;">
                         <!-- Added 'dropdown-menu-end' class -->
                         <li><a class="dropdown-item text-white" href="#">Room</a></li>
                         <li><a class="dropdown-item text-white" href="#">Room Number</a></li>
@@ -81,10 +81,9 @@
                 </li>
 
 
-
                 <li class="nav-item">
                     <a class="nav-link text-white py-1 px-0" href="#">
-                        <span class="m-3">Log out</span>
+                        <span class="m-4">Log out</span>
                     </a>
                 </li>
             </ul>

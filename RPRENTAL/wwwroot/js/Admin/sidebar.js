@@ -1,16 +1,18 @@
 $(document).ready(function () {
-    $('.dropdown-toggle').on('click', function () {
-        var icon = $('#settingsIcon');       
-
-        // Apply super slow transition
-        icon.css('transition', 'transform 3s ease');
-
-        // Toggle icon class
-        icon.toggleClass('bi-caret-right bi-caret-down');
-
-        // Remove transition after animation completes
-        setTimeout(function () {
-            icon.css('transition', '');
-        }, 3000); // Adjust the delay to match the transition duration
+    $('#dropdownSettings').click(function () {
+        // Toggle caret-right and caret-down classes with smooth transition
+        $('#settings-icon').animate({
+            transform: 'rotate(90deg)'
+        }, 100, function () {
+            $(this).toggleClass('bi-caret-right bi-caret-down');
+        });
     });
+
+
+    $('#dropdownMenuLink').click(function (e) {
+        e.preventDefault();
+        $('#dropdownMenu').slideToggle('slow'); // 'fast' for quick animation
+    });
+
+
 });
