@@ -30,25 +30,27 @@
                     <button id="navbar-toggler-btn" class="navbar-toggler fs-6" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-menu" aria-controls="offcanvas-menuLabel">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                </nav>               
+                    <span class="px-5 fw-bold pt-2 d-none d-sm-block">RP HOTEL</span>
+                </nav>
             </div>
         </div>
         <div class="row">
-            <div class="col d-flex position-fixed flex-no-wrap justify-content-end pt-3 end-0">    
+            <div class="col d-flex position-fixed flex-no-wrap justify-content-end pt-3 end-0">
                 @if (_SignInManager.IsSignedIn(User))
                 {
-                <a class="nav-link text-white px-0 d-none d-sm-block" href="#">
-                    <span class="m-4">Welcome, @User.Identity.Name</span>
-                </a>
-                
-                <span class="d-none d-sm-block">|</span>
-                <a class="nav-link text-white px-0" href="#">
-                    <span class="m-4 btn-logout">Logout</span>
-                </a>
+                    <a class="nav-link text-white px-0 d-none d-sm-block" href="#">
+                        <span class="m-4">Welcome, @User.Identity.Name</span>
+                    </a>
+
+                    <span class="d-none d-sm-block">|</span>
+                    <a class="nav-link text-white px-0" href="#">
+                        <span class="m-4 btn-logout">Logout</span>
+                    </a>
                 }
             </div>
         </div>
     </div>
+
 
 
     <!--Off Canvas-->
@@ -57,7 +59,7 @@
     <div class="offcanvas offcanvas-start bg-dark-subtle border-end border-1" tabindex="-1" id="offcanvas-menu" aria-labelledby="offcanvas-menuLabel">
 
         <div class="sidebar bg-dark-subtle">
-            <ul class="nav flex-column">
+            <ul class="nav flex-column border-top border-1">
                 <!-- Dashboard Link -->
                 <li class="nav-item">
                     <a class="nav-link text-white px-0" href="#">
