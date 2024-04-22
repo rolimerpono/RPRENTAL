@@ -1,4 +1,17 @@
-$(document).ready(function () { 
+$(document).ready(function () {
+
+    var screenWidth = $(window).width();
+
+    $(window).resize(function () {
+       
+        if ($(window).width() != screenWidth) {
+            location.reload(); // Refresh the page
+        }
+    });
+
+    $("#navbar-toggler-btn").click(function () {
+        $(".rotate-icon").toggleClass("rotate");
+    });
 
 
     $('#dropdown-settings').click(function (e) {
@@ -10,13 +23,13 @@ $(document).ready(function () {
             $(this).toggleClass('bi-caret-right bi-caret-down');
         });
 
-        $('#dropdownMenu').slideToggle('slow'); // 'fast' for quick animation
+        $('#settings-menu').slideToggle('slow'); // 'fast' for quick animation
 
 
     });
 
     $('#btn-toggler').click(function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
         $('#sidebarMenu').removeClass('collapse');
 
     });
