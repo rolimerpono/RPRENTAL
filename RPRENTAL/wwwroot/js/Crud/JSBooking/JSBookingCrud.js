@@ -1,4 +1,4 @@
-﻿function jQueryPost(url, data) {
+﻿function Post(url, data) {
     return $.ajax({
         type: 'POST',
         url: url,
@@ -8,7 +8,7 @@
     
 }
 
-function jQueryGet(url, data) {
+function Get(url, data) {
     return $.ajax({
         type: 'GET',
         url: url,
@@ -18,7 +18,7 @@ function jQueryGet(url, data) {
 }
 
 function showPayment(id) {
-    jQueryPost('/Booking/ShowPayment', { booking_id: id })
+    Post('/Booking/ShowPayment', { booking_id: id })
         .done(function (paymentResponse) {
             window.location.href = paymentResponse.redirectUrl;
         })
@@ -29,7 +29,7 @@ function showPayment(id) {
 
 function confirmBooking(room_id) {
     var serializedData = $('#checking_info').serialize();
-    jQueryPost('/Booking/ConfirmBooking', { ID: room_id, jsonData: serializedData })
+    Post('/Booking/ConfirmBooking', { ID: room_id, jsonData: serializedData })
         .done(function (response) {
             if (response.success) {
                 var responseData = JSON.parse(response.booking);
@@ -44,7 +44,7 @@ function confirmBooking(room_id) {
 
 function getBooking(room_id) {
     var objRoomData = $('#checking_info').serialize();    
-    jQueryGet('/Booking/CreateBooking', { ID: room_id, jsonData: objRoomData })
+    Get('/Booking/CreateBooking', { ID: room_id, jsonData: objRoomData })
         .done(function (result) {
             var modalContent = $('#modal-booking-content-' + room_id);
             modalContent.empty().html(result);
