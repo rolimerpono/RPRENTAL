@@ -28,8 +28,9 @@ $(document).ready(function () {
         $('#modal-delete').modal('show');
     });
 
-    $('.btn-delete').click(function () {
-        deleteRecord('#form-delete');
+    $('.btn-delete').click(function () { 
+        let email = $('#email').val();
+        deleteRecord(email);
     });
 
 });
@@ -112,26 +113,31 @@ function saveUser(url, formSelector) {
     }
 }
 
-function deleteRecord(formSelector) {
-   /* let email = $('#email').val()*/
-    var objData = $(formSelector).serialize();
-    $.post('/Account/Delete', objData.email)
-        .done(function (response) {
+function deleteRecord(email) {
+
+    $.ajax({
+        url: '/Account/Delete',
+        method: 'POST',
+        data: { email: email },
+        success: function (response) {
             if (response.success) {
-                objUsers.ajax.reload();
+                objDataTable.ajax.reload();
                 $('#modal-delete').modal('hide');
                 showToast('success', response.message);
             }
             else {
+                $('#modal-delete').modal('hide');
                 showToast('error', response.message);
             }
-
-        })
-        .fail(handleAjaxError);
+        },
+        error: function (xhr, status, error) {
+            $('#modal-delete').modal('hide');
+        }
+    });
 }
 
 function getRowData(btn) {
-    return objUsers.row(btn.closest('tr')).data();
+    return objDataTable.row(btn.closest('tr')).data();
 }
 
 function handleAjaxError(xhr, status, error) {

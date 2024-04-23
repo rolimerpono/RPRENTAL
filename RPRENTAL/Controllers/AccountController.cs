@@ -200,22 +200,35 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult Delete(string email)
+        public async Task<IActionResult> Delete(string email)
         {
-            var objUser = _IWorker.tbl_User.Get(fw => fw.Email.ToLower() == email.ToLower());
-
-            if (objUser != null)
+            try
             {
+
+                if (email == "rolimer_pono@yahoo.com") //Temporary
+                {
+                    return Json(new { success = false, message="This user not allowed to delete." });
+                }
+
+                var objUser = await _UserManager.FindByEmailAsync(email);
+                if (objUser == null)
+                    return Json(new { success = false, message = "User not found." });
+
+                var objUserRole = (await _UserManager.GetRolesAsync(objUser)).FirstOrDefault();
+                if (objUserRole != null)
+                    await _UserManager.RemoveFromRoleAsync(objUser, objUserRole);
+
+                await _UserManager.DeleteAsync(objUser);
                 _IWorker.tbl_User.Remove(objUser);
 
                 return Json(new { success = true, message = "Successfully deleted." });
             }
-            else
-            {
-                return Json(new { success = false, message = "Something went wrong." });
+            catch (Exception ex)
+            {             
+                return Json(new { success = false, message = "An error occurred while deleting the user." });
             }
-
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
