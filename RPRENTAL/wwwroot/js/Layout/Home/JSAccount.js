@@ -55,11 +55,17 @@ function registerUser(url) {
         return;
     }
 
-    $.post(url, registerForm)
-        .done(response => {
-            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
-        })
-        .fail(handleAjaxError);
+    if ($('#registerForm')[0].checkValidity()) {
+
+        $.post(url, registerForm)
+            .done(response => {
+                response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+            })
+            .fail(handleAjaxError);
+    }
+    else {
+
+    }
 }
 
 function validateEmail(email) {

@@ -100,8 +100,6 @@ function loadModal(url, modalContentSelector, data = null) {
 
 
 function saveUser(url, formSelector) {
-
-    
     
     var objUser = $(formSelector).serialize();
 
