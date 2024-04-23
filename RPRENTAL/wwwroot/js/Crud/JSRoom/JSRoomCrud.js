@@ -34,6 +34,15 @@ $(document).ready(function () {
     });
 });
 
+function displayImagePreview(event) {
+    let imageSrc = URL.createObjectURL(event.target.files[0]);
+    console.log(event.target.files[0]);
+    $('#image_preview').attr('src', imageSrc);
+    $('#image_url_input').val(imageSrc);
+
+}
+
+
 function InputBoxFocus(modal_name) {
     $(document).on('shown.bs.modal', modal_name, function () {
         var input = $('#room_name');

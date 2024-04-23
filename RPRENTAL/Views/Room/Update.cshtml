@@ -9,14 +9,18 @@
 
 <form id="form-edit">
     <div class="modal-body">
+
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+
+            <input asp-for="@Model.ROOM_ID" hidden />
+            <input id="image_url_input" asp-for="@Model.IMAGE_URL" hidden />
+
+            <div class="col-lg-6 col-md-12 form-group">
                 <div class="border" style="max-width: 100%; height: auto;">
-                    <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
+                    <img id="image_preview" src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
                 </div>
-                <div class="input-group pt-3">
-                    <input type="file" id="imageUpload" class="form-control" asp-for="@Model.IMAGE_URL" accept="image/*">
-                    <label class="input-group-text" for="imageUpload">Upload</label>
+                <div class="pt-3">
+                    <input id="image_upload" type="file" class="form-control" onchange="displayImagePreview(event)" asp-for="@Model.IMAGE_URL" accept="image/*">
                 </div>
             </div>
 

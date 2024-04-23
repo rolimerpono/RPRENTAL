@@ -4197,11 +4197,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL_LATEST\\StaticUtility\\StaticUtility.csproj",
       "projectName": "StaticUtility",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL_LATEST\\StaticUtility\\StaticUtility.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\obj\\",
+      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL_LATEST\\StaticUtility\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
