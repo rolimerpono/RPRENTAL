@@ -1,82 +1,85 @@
-﻿$(document).ready(() => {
-    $('.btn-login').click(() => loginUser('/Account/Login'));
-    $('.btn-register').click(() => registerUser('/Account/Register'));
-    $('.btn-logout').click(() => logoutUser('/Account/Logout'));
-    $('#modal-login').on('shown.bs.modal', () => focusAndSelectInput($('#email')));
-    $('#modal-register').on('shown.bs.modal', () => focusAndSelectInput($('#remail')));
+﻿$(document).ready(function () {
+    $('.btn-login').click(function () {
+        authenticateUser('/Account/Login');
+    });
+
+    $('.btn-register').click(function () {
+        registerUser('/Account/Register');
+    });
+
+    $('.btn-logout').click(function () {
+        logoutUser('/Account/Logout');
+    });
+
+    $('#modal-login').on('shown.bs.modal', function () {
+        $('#email').focus().select();
+    });
+
+    $('#modal-register').on('shown.bs.modal', function () {
+        $('#remail').focus().select();
+    });
 });
 
-function focusAndSelectInput(input) {
-    input.focus().select();
-}
-
-function handleAjaxError(xhr, status, error) {    
-    showToast('error', 'An error occurred. Please try again later.');
-}
-
-function showToast(type, message) {
-    const toaster = $('.toaster');
-    toaster.text(message).css({
+function showToast(message, type) {
+    $('.toaster').text(message).css({
         'display': 'block',
         'background-color': type === 'success' ? '#006400' : 'red',
         'opacity': 1
-    });
-
-    setTimeout(() => {
-        toaster.css('opacity', 0);
-        setTimeout(() => toaster.css('display', 'none').css('opacity', 1), 500);
-    }, 3000);
+    }).delay(3000).fadeOut();
 }
 
-function loginUser(url) {
-    const email = $('#email').val();
-    const password = $('#password').val();
-    const loginForm = { EMAIL: email, PASSWORD: password };
+function authenticateUser(url) {
+    var email = $('#email').val();
+    var password = $('#password').val();
+    var formData = { EMAIL: email, PASSWORD: password };
 
-    $.post(url, loginForm)
-        .done(response => {
-            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+    $.post(url, formData)
+        .done(function (response) {
+            response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
         })
-        .fail(handleAjaxError);
+        .fail(function () {
+            showToast('An error occurred. Please try again later.', 'error');
+        });
 }
 
-function registerUser(url) {    
-    const email = $('#remail').val();
-    const fullname = $('#rfullname').val();
-    const password = $('#rpassword').val();
-    const confirmpass = $('#rconfirmpass').val();
-    const phoneno = $('#rphoneno').val();
- 
-    const registerForm = { EMAIL: email, NAME: fullname, PASSWORD: password, CONFIRM_PASSWORD: confirmpass, PHONE_NUMBER: phoneno };
-   
+function registerUser(url) {
+    var formData = {
+        EMAIL: $('#remail').val(),
+        NAME: $('#rfullname').val(),
+        PASSWORD: $('#rpassword').val(),
+        CONFIRM_PASSWORD: $('#rconfirmpass').val(),
+        PHONE_NUMBER: $('#rphoneno').val()
+    };
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(formData.EMAIL)) {
         $('#email-validation').css('color', 'red').html('Please enter a valid email.');
         return;
     }
 
-    if ($('#registerForm')[0].checkValidity()) {
-
-        $.post(url, registerForm)
-            .done(response => {
-                response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+    if ($('#form-add')[0].checkValidity()) {
+        $.post(url, formData)
+            .done(function (response) {
+                response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
             })
-            .fail(handleAjaxError);
-    }
-    else {
-
+            .fail(function () {
+                showToast('An error occurred. Please try again later.', 'error');
+            });
+    } else {
+        $('#form-add').addClass('was-validated');
     }
 }
 
 function validateEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
 }
 
 function logoutUser(url) {
     $.post(url)
-        .done(response => {
-            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+        .done(function (response) {
+            response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
         })
-        .fail(handleAjaxError);
+        .fail(function () {
+            showToast('An error occurred. Please try again later.', 'error');
+        });
 }

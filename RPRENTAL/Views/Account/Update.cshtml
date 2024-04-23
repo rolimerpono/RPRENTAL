@@ -7,17 +7,18 @@
                 <div class="mb-3">
                     <input asp-for="@Model.EMAIL" hidden />
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" asp-for="@Model.EMAIL" id="email" name="email" placeholder="Enter email" disabled autofocus autocomplete="off">
-                    <span id="email-validation"></span>
-
+                    <input type="text" class="form-control" asp-for="@Model.EMAIL" id="email" name="email" placeholder="Enter email" disabled autofocus autocomplete="off" required>
+                    <span id="email-validation"></span>                 
                 </div>
                 <div class="mb-3">
                     <label for="fullname" class="form-label">Fullname</label>
-                    <input type="text" class="form-control" asp-for="@Model.NAME" id="name" name="name" placeholder="Enter fullname" autocomplete="off">
+                    <input type="text" class="form-control" asp-for="@Model.NAME" id="name" name="name" placeholder="Enter fullname" autocomplete="off" required>
+                    <div class="invalid-feedback">Please provide a name.</div>
                 </div>
                 <div class="mb-3">
                     <label for="phoneno" class="form-label">Phone Number</label>
-                    <input type="number" class="form-control" asp-for="@Model.PHONE_NUMBER" id="phone_number" name="phone_number" placeholder="Enter phone number" autocomplete="off">
+                    <input type="number" class="form-control" asp-for="@Model.PHONE_NUMBER" id="phone_number" name="phone_number" placeholder="Enter phone number" autocomplete="off" required>
+                    <div class="invalid-feedback">Please provide a phone number.</div>
                 </div>
 
                 <div class="mb-3">
@@ -31,9 +32,10 @@
 
                 <div class="mb-3">
                     <label for="confirmpass" class="form-label">Role</label>
-                    <select asp-for="@Model.ROLE" asp-items="@Model.ROLE_LIST" class="form-select">
-                        <option disabled selected>SELECT ROLE</option>
+                    <select asp-for="@Model.ROLE" asp-items="@Model.ROLE_LIST" class="form-select" required>
+                        <option disabled selected></option>
                     </select>
+                    <div class="invalid-feedback">Please provide a role.</div>
                 </div>
 
             </div>

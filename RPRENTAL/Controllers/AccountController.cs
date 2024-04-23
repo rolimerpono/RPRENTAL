@@ -198,6 +198,25 @@ namespace RPRENTAL.Controllers
 
         }
 
+
+        [HttpPost]
+        public IActionResult Delete(string email)
+        {
+            var objUser = _IWorker.tbl_User.Get(fw => fw.Email.ToLower() == email.ToLower());
+
+            if (objUser != null)
+            {
+                _IWorker.tbl_User.Remove(objUser);
+
+                return Json(new { success = true, message = "Successfully deleted." });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Something went wrong." });
+            }
+
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
