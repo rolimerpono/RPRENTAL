@@ -1,57 +1,80 @@
 ﻿@model Booking
 
-<div class="row justify-content-center pt-5">
-    <div class="col-lg-12 text-center">
-        <h2>Thank you for booking with us!</h2>
-    </div>
-</div>
+@{
+    var current_date = DateTime.Now.ToString("yyyy-MM-dd");
 
-<div class="container mt-5">
+}
+
+<div class="container pt-5">
+    <div class="row pt-5">
+        <div class="col-12">
+            <h1 class="text-center mb-4">RP HOTEL</h1>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-12 col-md-6">
+            <p>
+                14 Code Street<br>
+                .Net City<br>                
+                0212477440<br>
+                rolimerpono2010@gmail.com
+            </p>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+            <div class="invoice-details">
+                <p>
+                    <span class="fw-bold">Booking ID :</span> @Model.BOOKING_ID<br>
+                    <span class="fw-bold">Booking Date :</span> @Model.BOOKING_DATE.ToString("yyyy-MM-dd")<br>
+                    <span class="fw-bold">Customer Name :</span> @Model.USER_NAME<br>
+                    <span class="fw-bold">Contact No :</span> @Model.PHONE_NUMBER
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-3">Dear @Model.USER_NAME.ToUpperInvariant(),</h2>
+            <p>Thank you for choosing RP HOTEL! Your booking is confirmed. Kindly please see breakdown payment below. We're here for you if you need anything. Safe travels!</p>
+            <p>
+                Kind regards,<br>
+                Rolimer Pono,
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <table class="table table-bordered">
-                
-                <tbody>                  
+                <thead>
                     <tr>
-                        <td scope="col">Booking Date : </td>
-                        <td scope="col">04-15-2024</td>
-                        <td scope="col" colspan="2"></td>
-                        <td scope="col">Printed Date :</td>
-                        <td scope="col">04-15-2024</td>
-                    </tr>                    
-                    <tr>
-                        <td scope="col">Booking Date : </td>
-                        <td scope="col">04-15-2024</td>
-                        <td scope="col" colspan="2"></td>
-                        <td scope="col">Printed Date :</td>
-                        <td scope="col">04-15-2024</td>
+                        <th>Room Name</th>
+                        <th>Price</th>
+                        <th>Checkin Date</th>
+                        <th>Checkout Date</th>
+                        <th>No Of Stay</th>
+                        <th>Total</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td scope="col">Booking Date : </td>
-                        <td scope="col">04-15-2024</td>
-                        <td scope="col" colspan="2"></td>
-                        <td scope="col">Printed Date :</td>
-                        <td scope="col">04-15-2024</td>
-                    </tr>
+                        <td>@Model.ROOM.ROOM_NAME</td>
+                        <td>@Model.ROOM.ROOM_PRICE</td>
+                        <td>@Model.CHECK_IN_DATE</td>
+                        <td>@Model.CHECK_OUT_DATE</td>
+                        <td>@Model.NO_OF_STAY</td>
+                        <td>@Model.TOTAL_COST.ToString("c")</td>
+                    </tr>                   
+                                       
                     <tr>
-                        <td>Row 4, Column 1</td>
-                        <td>Row 4, Column 2</td>
-                        <td>Row 4, Column 3</td>
-                        <td>Row 4, Column 4</td>
-                        <td>Row 4, Column 5</td>
-                        <td>Row 4, Column 6</td>
-                    </tr>
-                    <tr>
-                        <td>Row 5, Column 1</td>
-                        <td>Row 5, Column 2</td>
-                        <td>Row 5, Column 3</td>
-                        <td>Row 5, Column 4</td>
-                        <td>Row 5, Column 5</td>
-                        <td>Row 5, Column 6</td>
+                        <td colspan="5" class="text-start fw-bold">Total</td>
+                        <td>@Model.TOTAL_COST.ToString("c")</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 text-end">
+            <p>Thank you for booking with us!</p>              
+        </div>
+    </div>
 </div>
-
