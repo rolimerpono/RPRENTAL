@@ -1,4 +1,5 @@
-﻿var objDataTable;
+﻿
+var objDataTable;
 
 $(document).ready(function () {
     initializeDataTable();
@@ -36,12 +37,10 @@ $(document).ready(function () {
 
 });
 
-//function displayImagePreview(event) {
-//    let imageSrc = URL.createObjectURL(event.target.files[0]);
-//    $('#image_preview').attr('src', imageSrc);
-//    $('#image_url_input').val(imageSrc);
-//}
-
+function displayImagePreview(event) {
+    let imageSrc = URL.createObjectURL(event.target.files[0]);
+    $('#image_preview').attr('src', imageSrc);
+}
 
 
 function InputBoxFocus(modal_name) {
@@ -107,8 +106,11 @@ function loadModal(url, modalContentSelector, data = null) {
         type: 'GET',
         url: url,
         data: data,
-        success: function (result) {
-            $(modalContentSelector).html(result);
+        success: function (response) {   
+  
+            $(modalContentSelector).html('');
+            $(modalContentSelector).html(response);    
+            console.log(response);
             $(modalContentSelector.replace('-content', '')).modal('show');
         },
         error: function (xhr, status, error) {
@@ -122,33 +124,53 @@ function loadModal(url, modalContentSelector, data = null) {
 }
 
 
-function saveRoom(url, formSelector) {
+function saveRoom(url, formSelector) {  
 
-    var objRoomData = $(formSelector).serialize();
+
+    var form_data = new FormData($(formSelector)[0]);   
+
+ 
+    debugger
+    $.ajax({
+        url: url,
+        type: 'POST',     
+        data: form_data,
+        contentType: false, // Ensure proper content type for file upload
+        processData: false, // Prevent jQuery from automatically processing the data
+        success: function (response) {
+            // Handle success
+        },
+        error: function (xhr, status, error) {
+            // Handle error
+        }
+    });
+
+
+    //var objRoomData = $(formSelector).serialize();
     
-    if ($(formSelector)[0].checkValidity()) {
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: objRoomData,
-            success: function (response) {
+    //if ($(formSelector)[0].checkValidity()) {
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: url,
+    //        data: objRoomData,
+    //        success: function (response) {
 
-                if (response.success) {
-                    objDataTable.ajax.reload();
-                    $(formSelector.replace('form', 'modal')).modal('hide');
-                    showToast('success', response.message);
-                } else {
-                    showToast('error', response.message);
-                }
+    //            if (response.success) {
+    //                objDataTable.ajax.reload();
+    //                $(formSelector.replace('form', 'modal')).modal('hide');
+    //                showToast('success', response.message);
+    //            } else {
+    //                showToast('error', response.message);
+    //            }
 
-            },
-            error: function (xhr, status, error) {
-                handleAjaxError(error);
-            }
-        });
-    } else {
-        $(formSelector).addClass('was-validated');
-    }
+    //        },
+    //        error: function (xhr, status, error) {
+    //            handleAjaxError(error);
+    //        }
+    //    });
+    //} else {
+    //    $(formSelector).addClass('was-validated');
+    //}
 }
 
 function deleteRoom(formSelector) {

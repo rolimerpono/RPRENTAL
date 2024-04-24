@@ -12,30 +12,17 @@
 
         <div class="row">
 
-            <input asp-for="@Model.ROOM_ID" hidden />
+            <input asp-for="@Model.ROOM_ID" hidden />            
+         
 
-
-
-            <div class="col-lg-6">
-                <input asp-for="@Model.IMAGE_URL" hidden class="form-control border shadow" />
-                <input asp-for="@Model.IMAGE" class="form-control border shadow" />
-                <label asp-for="@Model.IMAGE_URL" class="ms-2"></label>
-                <span asp-validation-for="@Model.IMAGE_URL" class="text-danger"></span>
-            </div>
-
-
-            
-           @*  <input id="image_url_input" asp-for="@Model.IMAGE_URL" hidden />   *@     
-           
-
-         @*    <div class="col-lg-6 col-md-12 form-group">
-                <div class="border" style="max-width: 100%; height: auto;">
-                    <img id="image_preview" src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
+          <div class="col-lg-6 col-md-12 form-group">
+                <div class="border">
+                    <img id="image_preview" src="@Model.IMAGE_URL" class="img-fluid" style="max-width: 100%; min-height:400px;max-height:400px;" alt="Room Image">
                 </div>
                 <div class="pt-3">
-                    <input type="file" class="form-control" asp-for="@Model.IMAGE" onchange="displayImagePreview(event)" accept="image/*">
+                    <input id="image_input" type="file" class="form-control" asp-for="@Model.IMAGE" onchange="displayImagePreview(event)" accept="image/*">
                 </div>
-            </div> *@
+            </div>
 
             <div class="col-lg-6 col-md-12 pt-md-0 pt-3">            
               

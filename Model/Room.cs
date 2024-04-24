@@ -14,8 +14,7 @@ namespace Model
             ROOM_PRICE = 0;
             MAX_OCCUPANCY = 0;
             IMAGE_URL = "https://placehold.co/600x400";
-            CREATED_DATE = DateTime.Now;
-           
+            CREATED_DATE = DateTime.Now;           
         }
 
 

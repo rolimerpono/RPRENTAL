@@ -5,7 +5,7 @@
     var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MAX_OCCUPANCY"), typeof(RangeAttribute));
 }
 
-<form id="form-add">
+<form id="form-add" enctype="multipart/form-data">
     <div class="modal-body">
         <div class="row">
             <div class="col-lg-6 col-md-12">
@@ -13,8 +13,7 @@
                     <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
                 </div>
                 <div class="input-group pt-3">
-                    <input type="file" id="imageUpload" class="form-control" accept="image/*">
-                    <label class="input-group-text">Upload</label>
+                    <input type="file" id="imageUpload" class="form-control" asp-for="IMAGE" name="IMAGE" accept="image/*">                   
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 pt-md-0 pt-3">

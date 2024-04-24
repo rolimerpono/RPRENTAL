@@ -4856,11 +4856,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL_LATEST\\Model\\Model.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj",
       "projectName": "Model",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL_LATEST\\Model\\Model.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL_LATEST\\Model\\obj\\",
+      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

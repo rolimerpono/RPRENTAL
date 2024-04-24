@@ -1,4 +1,5 @@
 ﻿using DataService.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace DataService.Implementation
             _iWorker = iWorker;
         }
 
+        [HttpPost]
         public void Create(Room objRoom)
         {
             try
