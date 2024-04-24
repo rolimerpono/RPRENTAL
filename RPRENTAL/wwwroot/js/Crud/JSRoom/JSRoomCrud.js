@@ -32,15 +32,16 @@ $(document).ready(function () {
     $('.btn-delete').click(function () {
         deleteRoom('#form-delete');
     });
+
+
 });
 
-function displayImagePreview(event) {
-    let imageSrc = URL.createObjectURL(event.target.files[0]);
-    console.log(event.target.files[0]);
-    $('#image_preview').attr('src', imageSrc);
-    $('#image_url_input').val(imageSrc);
+//function displayImagePreview(event) {
+//    let imageSrc = URL.createObjectURL(event.target.files[0]);
+//    $('#image_preview').attr('src', imageSrc);
+//    $('#image_url_input').val(imageSrc);
+//}
 
-}
 
 
 function InputBoxFocus(modal_name) {

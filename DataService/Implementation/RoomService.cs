@@ -113,9 +113,6 @@ namespace DataService.Implementation
         {
             try
             {
-
-
-
                 _iWorker.tbl_Rooms.Update(objRoom);
                 _iWorker.tbl_Rooms.Save();
                
