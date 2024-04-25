@@ -40,6 +40,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\css\Layout\Admin\" />
     <Folder Include="wwwroot\css\Layout\" />
+    <Folder Include="wwwroot\img\Room Images\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -58,16 +58,16 @@ function InputBoxFocus(modal_name) {
 
 function initializeDataTable() {
     objDataTable = $('#tbl_Rooms').DataTable({
-        'ajax': {
+        ajax: {
             url: '/Room/GetAll'
         },
-        'columns': [
+        columns: [
             { data: 'rooM_ID', visible: false },
-            { data: 'rooM_NAME', 'width': '15%' },
+            { data: 'rooM_NAME', width: '15%' },
             {
                 data: 'description',
-                'width': '35%',
-                'render': function (data, type, row) {
+                width: '35%',
+                render: function (data, type, row) {
                     if (type === 'display' && data.length > 100) {
                         return '<div style="max-height: 25px; overflow-x: auto;">' + data + '</div>';
                     } else {
@@ -76,20 +76,20 @@ function initializeDataTable() {
                 }
             },        
 
-            { data: 'rooM_PRICE', 'width': '5%' },
-            { data: 'maX_OCCUPANCY', 'width': '5%' },
-            { data: 'imagE_URL', 'width': '5%' },
+            { data: 'rooM_PRICE', width: '5%' },
+            { data: 'maX_OCCUPANCY', width: '5%' },
+            { data: 'imagE_URL', visible: false },
             {
                 data: 'rooM_ID',
-                'width': '5%',
-                'render': function (data, type, row) {
+                width: '5%',
+                render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'rooM_ID',
                 'width': '5%',
-                'render': function (data, type, row) {
+                render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }
             }
@@ -127,50 +127,33 @@ function loadModal(url, modalContentSelector, data = null) {
 function saveRoom(url, formSelector) {  
 
 
-    var form_data = new FormData($(formSelector)[0]);   
+    var form_data = new FormData($(formSelector)[0]);
 
- 
-    debugger
-    $.ajax({
-        url: url,
-        type: 'POST',     
-        data: form_data,
-        contentType: false, // Ensure proper content type for file upload
-        processData: false, // Prevent jQuery from automatically processing the data
-        success: function (response) {
-            // Handle success
-        },
-        error: function (xhr, status, error) {
-            // Handle error
-        }
-    });
+    if ($(formSelector)[0].checkValidity()) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form_data,
+            contentType: false, // Ensure proper content type for file upload
+            processData: false, // Prevent jQuery from automatically processing the data
+            success: function (response) {
 
+                if (response.success) {
+                    objDataTable.ajax.reload();
+                    $(formSelector.replace('form', 'modal')).modal('hide');
+                    showToast('success', response.message);
+                } else {
+                    showToast('error', response.message);
+                }
 
-    //var objRoomData = $(formSelector).serialize();
-    
-    //if ($(formSelector)[0].checkValidity()) {
-    //    $.ajax({
-    //        type: 'POST',
-    //        url: url,
-    //        data: objRoomData,
-    //        success: function (response) {
-
-    //            if (response.success) {
-    //                objDataTable.ajax.reload();
-    //                $(formSelector.replace('form', 'modal')).modal('hide');
-    //                showToast('success', response.message);
-    //            } else {
-    //                showToast('error', response.message);
-    //            }
-
-    //        },
-    //        error: function (xhr, status, error) {
-    //            handleAjaxError(error);
-    //        }
-    //    });
-    //} else {
-    //    $(formSelector).addClass('was-validated');
-    //}
+            },
+            error: function (xhr, status, error) {
+                handleAjaxError(error);
+            }
+        });
+    } else {
+        $(formSelector).addClass('was-validated');
+    }
 }
 
 function deleteRoom(formSelector) {

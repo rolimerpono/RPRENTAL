@@ -8,6 +8,7 @@
 <form id="form-add" enctype="multipart/form-data">
     <div class="modal-body">
         <div class="row">
+            
             <div class="col-lg-6 col-md-12">
                 <div class="border">
                     <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
@@ -16,6 +17,7 @@
                     <input type="file" id="imageUpload" class="form-control" asp-for="IMAGE" name="IMAGE" accept="image/*">                   
                 </div>
             </div>
+
             <div class="col-lg-6 col-md-12 pt-md-0 pt-3">
                 <input type="text" class="form-control" hidden asp-for="@Model.IMAGE_URL">
                 <div class="mb-3">

@@ -385,101 +385,101 @@ namespace DatabaseAccess.Migrations
                         new
                         {
                             ROOM_ID = 1,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1154),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7054),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 1,
                             ROOM_NAME = "Single Room",
                             ROOM_PRICE = 85.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1155)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7055)
                         },
                         new
                         {
                             ROOM_ID = 2,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1162),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7061),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 2,
                             ROOM_NAME = "Double Room",
                             ROOM_PRICE = 90.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1163)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7062)
                         },
                         new
                         {
                             ROOM_ID = 3,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1169),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7068),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 3,
                             ROOM_NAME = "Deluxed Room",
                             ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1170)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7069)
                         },
                         new
                         {
                             ROOM_ID = 4,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1177),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7075),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 4,
                             ROOM_NAME = "Queens Room",
                             ROOM_PRICE = 120.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1178)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7076)
                         },
                         new
                         {
                             ROOM_ID = 5,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1184),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7081),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 5,
                             ROOM_NAME = "Kings Room",
                             ROOM_PRICE = 130.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1185)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7082)
                         },
                         new
                         {
                             ROOM_ID = 6,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1191),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7088),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Executive Suite",
                             ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1192)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7090)
                         },
                         new
                         {
                             ROOM_ID = 7,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1197),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7095),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Super Deluxed",
                             ROOM_PRICE = 110.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1198)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7096)
                         },
                         new
                         {
                             ROOM_ID = 8,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1204),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7102),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Diamond Room",
                             ROOM_PRICE = 87.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1205)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7103)
                         },
                         new
                         {
                             ROOM_ID = 9,
-                            CREATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1210),
+                            CREATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7108),
                             DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                             IMAGE_URL = "https://placehold.co/600x400/png",
                             MAX_OCCUPANCY = 10,
                             ROOM_NAME = "Emerald Deluxed",
                             ROOM_PRICE = 98.0,
-                            UPDATED_DATE = new DateTime(2024, 4, 19, 15, 9, 30, 302, DateTimeKind.Local).AddTicks(1211)
+                            UPDATED_DATE = new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7109)
                         });
                 });
 

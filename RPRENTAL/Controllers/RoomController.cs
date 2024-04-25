@@ -96,36 +96,38 @@ namespace RPRENTAL.Controllers
         
         }
 
+
+
+
         [HttpPost]
         public IActionResult Update(Room objRoom, IFormFile Image)
         {
-            // Process the uploaded image here
+            try
+            {
+                if(objRoom.IMAGE == null)
+                {
+                    ModelState.Remove("Image");
+                }
+               
+                if (ModelState.IsValid && objRoom.ROOM_ID > 0)
+                {
+                    _IRoomService.Update(objRoom);
 
-            return Json(new { success = false, Message = "Something went wrong" });
+                    TempData["success"] = "Room updated successfully.";
+                    return Json(new { success = true, message = "Room updated successfully." });
+                }
+                else
+                {
+                    return Json(new { success = true, message = "Something went wrong" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+            return RedirectToAction("Index");
         }
 
-        #region working
-
-        //[HttpPost]
-        //public IActionResult Update(Room objRoom)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid && objRoom.ROOM_ID > 0)
-        //        {
-        //            _IRoomService.Update(objRoom);
-
-        //            TempData["success"] = "Room updated successfully.";
-        //            return Json(new { success = true, message = "Room updated successfully." });
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { success = false, message = ex.Message });
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-        #endregion
 
         [HttpPost]
         public IActionResult Delete(int ROOM_ID)

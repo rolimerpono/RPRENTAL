@@ -1947,7 +1947,10 @@
         },
         "runtime": {
           "bin/placeholder/DataService.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Model/1.0.0": {
         "type": "project",

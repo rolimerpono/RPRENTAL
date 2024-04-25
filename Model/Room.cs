@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace Model
 {
@@ -38,16 +40,18 @@ namespace Model
 
         public string? IMAGE_URL { get; set; }
 
-        [NotMapped]
-        public IFormFile? IMAGE { get; set; }
-
+ 
         public DateTime? CREATED_DATE { get; set; } = DateTime.Now;
 
         public DateTime? UPDATED_DATE { get; set; } = DateTime.Now;
 
         [ValidateNever]
-        public IEnumerable<RoomAmenity> ROOM_AMENITIES { get; set; }       
-      
+        public IEnumerable<RoomAmenity> ROOM_AMENITIES { get; set; }
+
+        [ValidateNever]
+        [NotMapped]
+        public IFormFile? IMAGE { get; set; }
+
         [NotMapped]
         public Boolean IS_ROOM_AVAILABLE { get; set; } = true;
 

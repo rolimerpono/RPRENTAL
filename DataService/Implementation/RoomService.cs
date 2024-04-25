@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DataService.Implementation
 {
     public class RoomService : IRoomService
     {
         private readonly IWorker _iWorker;
-        public RoomService(IWorker  iWorker)
+        private readonly IWebHostEnvironment _webHost;
+        public RoomService(IWorker  iWorker , IWebHostEnvironment webhost)
         {
             _iWorker = iWorker;
+            _webHost = webhost;
         }
 
         [HttpPost]
@@ -22,6 +25,20 @@ namespace DataService.Implementation
         {
             try
             {
+
+                if (objRoom.IMAGE != null)
+                {
+                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.IMAGE.FileName);
+                    string strImagePath = Path.Combine(_webHost.WebRootPath, @"img\Room Images");
+
+
+                    var filestream = new FileStream(Path.Combine(strImagePath, strFilename), FileMode.Create);
+                    objRoom.IMAGE.CopyTo(filestream);
+                    objRoom.IMAGE_URL = @"\img\Room Images\" + strFilename;
+
+                }
+            
+
                 _iWorker.tbl_Rooms.Add(objRoom);
                 _iWorker.tbl_Rooms.Save();
                
@@ -115,6 +132,30 @@ namespace DataService.Implementation
         {
             try
             {
+
+                if (objRoom.IMAGE != null)
+                {
+                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.IMAGE.FileName);
+                    string strImagePath = Path.Combine(_webHost.WebRootPath, @"img\Room Images");
+
+
+                    if (!String.IsNullOrEmpty(objRoom.IMAGE_URL))
+                    {
+                        string previous_image = strImagePath + "\\" + Path.GetFileName(objRoom.IMAGE_URL);
+
+                        if (System.IO.File.Exists(previous_image))
+                        {
+                            System.IO.File.Delete(previous_image);
+                        }
+                        
+                    }
+
+                    var filestream = new FileStream(Path.Combine(strImagePath, strFilename), FileMode.Create);
+                    objRoom.IMAGE.CopyTo(filestream);
+                    objRoom.IMAGE_URL = @"\img\Room Images\" + strFilename;
+                
+                }
+
                 _iWorker.tbl_Rooms.Update(objRoom);
                 _iWorker.tbl_Rooms.Save();
                
