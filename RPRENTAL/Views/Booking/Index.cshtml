@@ -103,7 +103,7 @@
                 </div>
                 }               
 
-                @if (status.ToString().ToLower() == SD.BookingStatus.CHECK_IN.ToString().ToLower())
+                @if (status.ToString().ToLower() == SD.BookingStatus.CHECK_IN.ToString().ToLower() && User.IsInRole(SD.UserRole.ADMIN.ToString()))
                 {
                 <div class="col-auto">
                     <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>

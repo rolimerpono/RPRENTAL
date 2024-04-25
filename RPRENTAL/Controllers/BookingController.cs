@@ -329,8 +329,17 @@ namespace RPRENTAL.Controllers
 
         public IActionResult BookingConfirmation(int booking_id)
         {
-            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id,IncludeProperties:"ROOM");
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "ROOM");
             objBooking.ROOM_AMENITY = _IWorker.tbl_RoomAmenity.GetAll(fw => fw.ROOM_ID == objBooking.ROOM_ID);
+
+
+            var iCounter = new Util(_IWorker).GetRoomsAvailableCount(objBooking.ROOM_ID, objBooking.CHECK_IN_DATE, objBooking.CHECK_OUT_DATE);
+
+            if (iCounter == 0)
+            {
+                return View("NotSuccess");
+            }                 
+
 
             if (objBooking.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
             {
