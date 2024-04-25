@@ -30,7 +30,7 @@ namespace Common
                 (CHECKIN_DATE >= tb.CHECK_IN_DATE && CHECKIN_DATE < tb.CHECK_OUT_DATE) || 
                 (CHECKOUT_DATE > tb.CHECK_IN_DATE && CHECKOUT_DATE <= tb.CHECK_OUT_DATE) ||
                 (CHECKIN_DATE <= tb.CHECK_IN_DATE && CHECKOUT_DATE >= tb.CHECK_OUT_DATE)
-            )).Count();
+            )).Where(fw => fw.ROOM_ID == ROOM_ID).Count();
 
             int total_count = room_number_count - booking_count;
 

@@ -2,7 +2,9 @@
 
 <form id="booking_detail">
 <div class="container">    
-    <input asp-for="@Model.BOOKING_ID" hidden />
+
+    <input id="booking_id" asp-for="@Model.BOOKING_ID" hidden />
+
     <div class="row pb-3">
         <partial name="Common/_RoomDetail" model="@Model.ROOM" />
     </div>

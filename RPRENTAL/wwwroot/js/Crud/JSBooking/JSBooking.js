@@ -17,8 +17,9 @@ $(document).ready(function () {
         CancelBooking();
     }); 
 
-
-
+    $('.btn-payment').click(function () {
+        ProceedPayment();
+    }); 
 
     const statusToButtonMap = {
         'all': '#all',
@@ -97,6 +98,32 @@ function checkOut() {
     });
 }
 
+function ProceedPayment() {
+
+    let id = $('#booking_id').val();
+
+    $.ajax({
+        url: '/Booking/ShowPayment',
+        method: 'POST',
+        data: {booking_id:id },
+        success: function (response) {
+            
+            if (response.success) {
+
+                window.location.href = response.redirectUrl;
+            }
+            else {
+                showToast('error', 'Somethign went wrong : ' + response.message);
+            }
+        },
+        error: function (xhr, status, error) {      
+            showToast('error', 'Something went wrong : ' + error);
+        }
+    });
+    
+}
+
+
 function CancelBooking() {
     data = $('#booking_detail').serialize();
     $.ajax({
@@ -164,7 +191,6 @@ function loadBookings(status) {
 }
 
 function loadModal(url, modalContentSelector, data = null) {
-
     $.ajax({
         type: 'GET',
         url: url,
