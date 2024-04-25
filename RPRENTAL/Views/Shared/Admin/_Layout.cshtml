@@ -93,10 +93,10 @@
                     </a>
                     <ul class="dropdown-menu border-0" id="settings-menu">
                         <!-- Added 'dropdown-menu-end' class -->
-                        <li><a class="dropdown-item text-white" asp-controller="Room" asp-action="Index">Room</a></li>
-                        <li><a class="dropdown-item text-white" asp-controller="RoomNumber" asp-action="Index">Room Number</a></li>
-                        <li><a class="dropdown-item text-white" asp-controller="Amenity" asp-action="Index">Amenity</a></li>
-                        <li><a class="dropdown-item text-white" asp-controller="RoomAmenity" asp-action="Index">Room Amenity</a></li>                      
+                        <li><a class="dropdown-item text-white" asp-controller="Room" asp-action="Index"><span class="mx-3">Room</span></a></li>
+                        <li><a class="dropdown-item text-white" asp-controller="RoomNumber" asp-action="Index"><span class="mx-3">Room Number</span></a></li>
+                        <li><a class="dropdown-item text-white" asp-controller="Amenity" asp-action="Index"><span class="mx-3">Amenity</span></a></li>
+                        <li><a class="dropdown-item text-white" asp-controller="RoomAmenity" asp-action="Index"><span class="mx-3">Room Amenity</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -109,13 +109,16 @@
                         <span class="m-4">Register User</span>
                     </a>
                 </li>
+              
 
 
                 <li class="nav-item position-absolute bottom-0 w-100">
-                    <a class="nav-link text-white px-0 btn-logout text-center">
+                    <a class="nav-link text-white px-0 btn-logout text-center" asp-controller="Home">
                         <span class="m-4">Logout</span>
-                    </a>
+                    </a>                   
                 </li>
+
+
               
             </ul>
         </div>
