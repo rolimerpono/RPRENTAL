@@ -73,9 +73,21 @@
 
     <div class="row pt-2">
 
+
         <div class="col-lg-6">
             <div class="card border-primary mb-3">
-                <div class="card-header fw-bold">Total Revenue</div>
+                <div class="card-header fw-bold">Current Month Transactions</div>
+                <div class="card-body" style="overflow:hidden">
+                    <div class="float-start" id="over_all_booking_status" data-colors='["--bs-warning","--bs-primary","--bs-info","--bs-success","--bs-danger"]'>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header fw-bold">New Members and Bookings in past 30 days</div>
                 <div class="card-body">
                     <span id="total_revenue_count" class="fs-2 fw-bold text-white"></span>
                     <div class="float-end">
@@ -86,7 +98,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>   
+
+
+   
 
 
     </div>
@@ -100,4 +115,5 @@
     <script src="~/js/Admin/Dashboard/getTotalRevenueRadialChart.js"></script>
     <script src="~/js/Admin/Dashboard/getCustomerBookingPieChart.js"></script>
     <script src="~/js/Admin/Dashboard/getCustomerAndBookingLineChart.js"></script>
+    <script src="~/js/Admin/Dashboard/getOverAllBookingPieChart.js"></script>
 }

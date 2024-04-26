@@ -1,6 +1,7 @@
 ﻿using DataService.Interface;
 using RPRENTAL.ViewModels;
 using StaticUtility;
+using Stripe.FinancialConnections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,18 +120,18 @@ namespace DataService.Implementation
 
         public async Task<RadialBarChartDTO> GetRegisteredUserRadialChartData()
         {
-            var totalUsers = _IWorker.tbl_User.GetAll();
+            var total_user = _IWorker.tbl_User.GetAll();
 
 
-            var countByCurrentMonth = totalUsers.Count(fw => fw.CREATED_DATE >= current_month_start_date &&
+            var count_current_month = total_user.Count(fw => fw.CREATED_DATE >= current_month_start_date &&
             fw.CREATED_DATE <= DateTime.Now);
 
 
-            var countByPreviousMonth = totalUsers.Count(fw => fw.CREATED_DATE >= current_month_start_date &&
+            var count_previous_month = total_user.Count(fw => fw.CREATED_DATE >= current_month_start_date &&
             fw.CREATED_DATE <= current_month_start_date);
 
 
-            return GetRadialBarChartDataModel(totalUsers.Count(), countByCurrentMonth, countByPreviousMonth);
+            return GetRadialBarChartDataModel(total_user.Count(), count_current_month, count_previous_month);
         }     
 
         public async Task<RadialBarChartDTO> GetRevenueRadialChartData()
@@ -153,6 +154,8 @@ namespace DataService.Implementation
             return GetRadialBarChartDataModel(total_revenue, count_current_month, count_previous_month);
         }
 
+     
+
         public async Task<RadialBarChartDTO> GetTotalBookingRadialChartData()
         {
             var total_booking = _IWorker.tbl_Booking.GetAll(
@@ -170,6 +173,37 @@ namespace DataService.Implementation
 
 
             return GetRadialBarChartDataModel(total_booking.Count(), count_current_month, count_previous_month);
+        }
+
+        public async Task<PieChartDTO> GetOverAllBokingsPieChartData()
+        {
+            var total_booking = _IWorker.tbl_Booking.GetAll();
+
+            int total_pending = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
+            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+
+            int total_approved = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString())
+            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+
+            int total_checkin = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.CHECK_IN.ToString())
+            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+
+            int total_checkout = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.CHECK_OUT.ToString())
+            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+
+            int total_cancelled = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.CANCELLED.ToString())
+            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+
+
+
+            PieChartDTO piechart_vm = new PieChartDTO()
+            {
+                labels = new string[] { "Pending", "Approved", "Check In", "Check Out", "Cancelled" },
+                series = new decimal[] { total_pending, total_approved, total_checkin, total_checkout, total_cancelled }
+
+            };
+
+            return piechart_vm;
         }
 
         public static RadialBarChartDTO GetRadialBarChartDataModel(int total_count, decimal current_month_count, decimal previous_month_count)
@@ -196,5 +230,7 @@ namespace DataService.Implementation
             return radialbarchar_dto;
 
         }
+
+      
     }
 }

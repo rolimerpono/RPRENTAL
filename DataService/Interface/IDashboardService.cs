@@ -14,9 +14,9 @@ namespace DataService.Interface
 
         Task<RadialBarChartDTO> GetTotalBookingRadialChartData();
         Task<RadialBarChartDTO> GetRegisteredUserRadialChartData();
-
         Task<RadialBarChartDTO> GetRevenueRadialChartData();
         Task<PieChartDTO> GetBookingPieChartData();
         Task<LineChartDTO> GetMemberAndBookingLineChartData();
+        Task<PieChartDTO> GetOverAllBokingsPieChartData();
     }
 }

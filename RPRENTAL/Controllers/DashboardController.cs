@@ -48,5 +48,10 @@ namespace RPRENTAL.Controllers
             return Json(await _IDashboardService.GetTotalBookingRadialChartData());
         }
 
+        public async Task<IActionResult> GetOverAllBookingPieChartData()
+        { 
+            return Json(await _IDashboardService.GetOverAllBokingsPieChartData());
+        }
+
     }
 }
