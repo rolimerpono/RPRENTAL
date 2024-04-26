@@ -15,7 +15,7 @@
         $('#email').focus().select();
     });
 
-    $('#modal-register').on('shown.bs.modal', function () {
+    $('#modal-register').on('shown.bs.modal', function () {      
         $('#remail').focus().select();
     });
 });
@@ -29,21 +29,27 @@ function showToast(message, type) {
 }
 
 function authenticateUser(url) {
-    var email = $('#email').val();
-    var password = $('#password').val();
-    var formData = { EMAIL: email, PASSWORD: password };
+  
+    let email = $('#email').val();
+    let password = $('#password').val();
+    let formData = { EMAIL: email, PASSWORD: password };
 
     $.post(url, formData)
-        .done(function (response) {
-            response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
+        .done(function (response) {   
+            if (response.role  == "ADMIN") {
+                response.success ? (window.location.href = '/Dashboard/Index') : showToast(response.message, 'error');
+            }
+            else {
+                response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
+            }
         })
         .fail(function () {
-            showToast('An error occurred. Please try again later.', 'error');
+            showToast('error', 'An error occurred. Please try again later.');
         });
 }
 
 function registerUser(url) {
-    var formData = {
+    let formData = {
         EMAIL: $('#remail').val(),
         NAME: $('#rfullname').val(),
         PASSWORD: $('#rpassword').val(),
@@ -62,7 +68,7 @@ function registerUser(url) {
                 response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
             })
             .fail(function () {
-                showToast('An error occurred. Please try again later.', 'error');
+                showToast('error', 'An error occurred. Please try again later.');
             });
     } else {
         $('#form-add').addClass('was-validated');
@@ -70,7 +76,7 @@ function registerUser(url) {
 }
 
 function validateEmail(email) {
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
 }
 
@@ -80,6 +86,6 @@ function logoutUser(url) {
             response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');
         })
         .fail(function () {
-            showToast('An error occurred. Please try again later.', 'error');
+            showToast('error', 'An error occurred. Please try again later.');
         });
 }

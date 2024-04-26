@@ -136,7 +136,7 @@ namespace RPRENTAL.Controllers
         {
             _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BOOKING_ID, SD.BookingStatus.CHECK_OUT.ToString(), objBooking.ROOM_NUMBER);
             _IWorker.tbl_Booking.Save();
-            return Json(new { success = true, message = SD.BookingTransaction.fail });
+            return Json(new { success = true, message = SD.BookingTransaction.success });
 
         }
 

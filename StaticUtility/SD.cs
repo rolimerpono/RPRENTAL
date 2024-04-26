@@ -1,4 +1,5 @@
-﻿namespace StaticUtility
+﻿
+namespace StaticUtility
 {
     public static class SD
     {
@@ -25,7 +26,9 @@
             public const string fail = "Transaction fail.";
 
         }
-       
+
+        
+
     }
       
 }

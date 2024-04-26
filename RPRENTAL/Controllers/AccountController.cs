@@ -241,11 +241,11 @@ namespace RPRENTAL.Controllers
 
                 if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.ADMIN.ToString()))
                 {
-                    return Json(new { success = true, message = "Successfully login" });
+                    return Json(new { success = true, message = "Successfully login" , role= SD.UserRole.ADMIN.ToString()});
                 }
                 else
                 {
-                    return Json(new { success = true, message = "Successfully login" });
+                    return Json(new { success = true, message = "Successfully login", role="" });
                 }
             }
             else

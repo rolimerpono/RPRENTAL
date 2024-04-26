@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel&amp;display=swap">
     <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/css/admin/sidebar.css" />
+    <link rel="stylesheet" href="~/css/apexcharts.css" />
 
 
 </head>
@@ -56,7 +57,7 @@
             <ul class="nav flex-column border-top border-1">
               
                 <li class="nav-item">
-                    <a class="nav-link text-white px-0" href="#">
+                    <a class="nav-link text-white px-0" asp-controller="Dashboard" asp-action="Index">
                         <span class="m-4">Dashboard</span>                      
                     </a>                 
                 </li>
@@ -146,6 +147,7 @@
     <script src="~/js/Layout/Home/JSAccount.js"></script>
     <script src="~/js/Crud/JSBooking/JSBookingCrud.js"></script>
     <script src="~/js/Admin/sidebar.js"></script>
+    <script src="~/js/apexcharts.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

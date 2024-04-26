@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 });
 
-function focusInput(inputSelector) {
+function focusInput(inputSelector) {  
     $(inputSelector).focus().select();
 }
 

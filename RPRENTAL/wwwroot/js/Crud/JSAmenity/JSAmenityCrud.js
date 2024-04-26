@@ -65,17 +65,15 @@ function initializeDataTable() {
             { data: 'amenitY_NAME', 'width': '25%' },
 
             {
-                data: 'amenitY_ID',
-                'width': '5%',
-                'render': function (data, type, row) {
-                    return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
+                data: 'amenitY_ID',              
+                render: function (data, type, row) {
+                    return '<button class="btn btn-primary btn-sm select-edit-btn w-25">Edit</button>';
                 }
             },
             {
-                data: 'amenitY_ID',
-                'width': '5%',
-                'render': function (data, type, row) {
-                    return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
+                data: 'amenitY_ID',               
+                render: function (data, type, row) {
+                    return '<button class="btn btn-danger btn-sm select-delete-btn w-25">Delete</button>';
                 }
             }
         ],

@@ -48,7 +48,7 @@ namespace DatabaseAccess
                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                 MAX_OCCUPANCY = 1,
                 ROOM_PRICE = 85,
-                IMAGE_URL = "https://placehold.co/600x400/png",
+                IMAGE_URL = @"\\img\\Rooms\\Single.jpg",
                 CREATED_DATE = DateTime.Now,
                 UPDATED_DATE = DateTime.Now
             },
@@ -59,7 +59,7 @@ namespace DatabaseAccess
                 DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                 MAX_OCCUPANCY = 2,
                 ROOM_PRICE = 90,
-                IMAGE_URL = "https://placehold.co/600x400/png",
+                IMAGE_URL = @"\\img\\Rooms\\Double.jpg",
                 CREATED_DATE = DateTime.Now,
                 UPDATED_DATE = DateTime.Now
 
@@ -72,7 +72,7 @@ namespace DatabaseAccess
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                     MAX_OCCUPANCY = 3,
                     ROOM_PRICE = 100,
-                    IMAGE_URL = "https://placehold.co/600x400/png",
+                    IMAGE_URL = @"\\img\\Rooms\\Deluxed.jpg",
                     CREATED_DATE = DateTime.Now,
                     UPDATED_DATE = DateTime.Now
                 },
@@ -84,7 +84,7 @@ namespace DatabaseAccess
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                     MAX_OCCUPANCY = 4,
                     ROOM_PRICE = 120,
-                    IMAGE_URL = "https://placehold.co/600x400/png",
+                    IMAGE_URL = @"\\img\\Rooms\\Queens.jpg",
                     CREATED_DATE = DateTime.Now,
                     UPDATED_DATE = DateTime.Now
 
@@ -97,7 +97,7 @@ namespace DatabaseAccess
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                     MAX_OCCUPANCY = 5,
                     ROOM_PRICE = 130,
-                    IMAGE_URL = "https://placehold.co/600x400/png",
+                    IMAGE_URL = @"\\img\\Rooms\\Kings.jpg",
                     CREATED_DATE = DateTime.Now,
                     UPDATED_DATE = DateTime.Now
 
@@ -109,7 +109,7 @@ namespace DatabaseAccess
                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                     MAX_OCCUPANCY = 10,
                     ROOM_PRICE = 100,
-                    IMAGE_URL = "https://placehold.co/600x400/png",
+                    IMAGE_URL = @"\\img\\Rooms\\Executive.jpg",
                     CREATED_DATE = DateTime.Now,
                     UPDATED_DATE = DateTime.Now
                 },
@@ -121,7 +121,7 @@ namespace DatabaseAccess
                      DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                      MAX_OCCUPANCY = 10,
                      ROOM_PRICE = 110,
-                     IMAGE_URL = "https://placehold.co/600x400/png",
+                     IMAGE_URL = @"\\img\\Rooms\\Super Deluxed.jpg",
                      CREATED_DATE = DateTime.Now,
                      UPDATED_DATE = DateTime.Now
 
@@ -133,7 +133,7 @@ namespace DatabaseAccess
                       DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                       MAX_OCCUPANCY = 10,
                       ROOM_PRICE = 87,
-                      IMAGE_URL = "https://placehold.co/600x400/png",
+                      IMAGE_URL = @"\\img\\Rooms\\Diamond Room.jpg",
                       CREATED_DATE = DateTime.Now,
                       UPDATED_DATE = DateTime.Now
 
@@ -145,7 +145,7 @@ namespace DatabaseAccess
                        DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
                        MAX_OCCUPANCY = 10,
                        ROOM_PRICE = 98,
-                       IMAGE_URL = "https://placehold.co/600x400/png",
+                       IMAGE_URL = @"\\img\\Rooms\\Emerald Room.jpg",
                        CREATED_DATE = DateTime.Now,
                        UPDATED_DATE = DateTime.Now
 
