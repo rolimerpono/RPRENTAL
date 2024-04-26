@@ -1,39 +1,75 @@
 ﻿function loadRadialBarChart(id, data) {
+
     let chartColors = getChartColor(id);
 
     let options = {
-        fill: {
-            colors: chartColors
-        },
         chart: {
-            height: 90,
-            width: 90,
-            type: "radialBar",           
-            sparkline: {
-                enabled: true
-            },
-
+            height: 180,
+            width: 180,
+            type: "radialBar",
         },
 
         series: data.series,
-
+        colors: chartColors,
         plotOptions: {
-            radialBar: {
-                dataLabels: {
+            radialBar: {            
+                dataLabels: {                    
                     value: {
-                        offsetY: -10,
+                        color: "#fff",
+                        fontSize: "12px",
+                        show: true,
+                        offsetY:-12
                     }
                 }
             }
-        },
-        labels: [""]
+        },        
+        labels: ['']
     };
 
-    let chart = new ApexCharts(document.querySelector("#" + id), options);
+    var chart = new ApexCharts(document.querySelector("#" + id), options);
+
     chart.render();
 
 
 }
+
+
+//function loadRadialBarChart(id, data) {
+//    let chartColors = getChartColor(id);
+
+//    let options = {
+//        fill: {
+//            colors: chartColors
+//        },
+//        chart: {
+//            height: 90,
+//            width: 90,
+//            type: "radialBar",           
+//            sparkline: {
+//                enabled: true
+//            },
+//        },
+       
+//        series: data.series,
+
+//        plotOptions: {
+//            radialBar: {
+//                dataLabels: {
+//                    value: {
+//                        offsetY: -10,
+//                    }
+//                }
+//            }
+//        },
+//        labels: [""],
+//        legend: {
+//            colors: '#fff'
+//        }
+//    };
+
+//    let chart = new ApexCharts(document.querySelector("#" + id), options);
+//    chart.render();
+//}
 
 function getChartColor(id) {
     if (document.getElementById(id) != null) {

@@ -5,28 +5,17 @@
         </div>
     </div>
     <div class="row pt-3">
-
-
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-            <div class="card border-primary mb-3">
-                <div class="card-header fw-bold">Customer Bookings</div>
-                <div class="card-body" style="overflow:hidden">                 
-                    <div class="float-start" id="customer_increase_decrease_status"  data-colors='["--bs-warning","--bs-primary"]'>
-                    </div> 
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 
             <div class="card border-warning mb-3">
-                <div class="card-header fw-bold">Total User[s]</div>
+                <div class="card-header fw-bold text-white">Total Users</div>
                 <div class="card-body">
                     <span id="total_user_count" class="fs-2 fw-bold text-white"></span>
                     <div class="float-end">
                         <div id="total_user_radial_chart" data-colors='["--bs-warning"]'></div>
                     </div>
-                    <div class="pt-3">
+                    <div class="pt-5">
                         <p id="user_increase_decrease_status"></p>
                     </div>
                 </div>
@@ -34,16 +23,16 @@
         </div>
 
 
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
 
             <div class="card border-info mb-3">
-                <div class="card-header fw-bold">Total Booking[s]</div>
+                <div class="card-header fw-bold text-white">Total Bookings</div>
                 <div class="card-body">
                     <span id="total_booking_count" class="fs-2 fw-bold text-white"></span>
                     <div class="float-end">
                         <div id="total_booking_radial_chart" data-colors='["--bs-info"]'></div>                     
                     </div>    
-                    <div class="pt-3">
+                    <div class="pt-5">
                         <p id="booking_increase_decrease_status"></p>
                     </div>
                 </div>
@@ -51,20 +40,31 @@
         </div>
 
 
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="card border-primary mb-3">
-                <div class="card-header fw-bold">Total Revenue</div>
+                <div class="card-header fw-bold text-white">Total Revenue</div>
                 <div class="card-body">
                     <span id="total_revenue_count" class="fs-2 fw-bold text-white"></span>
                     <div class="float-end">
                         <div id="total_revenue_radial_chart" data-colors='["--bs-primary"]'></div>                      
                     </div>
-                    <div class="pt-3">
+                    <div class="pt-5">
                         <p id="revenue_increase_decrease_status"></p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="card border-danger mb-3">
+                <div class="card-header fw-bold text-white">Customer Bookings</div>
+                <div class="card-body" style="overflow:hidden">
+                    <div class="float-start" id="customer_increase_decrease_status" data-colors='["--bs-warning","--bs-primary"]'>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
     <hr />
@@ -76,7 +76,7 @@
 
         <div class="col-lg-6">
             <div class="card border-primary mb-3">
-                <div class="card-header fw-bold">Current Month Transactions</div>
+                <div class="card-header fw-bold text-white">Current Month Transactions</div>
                 <div class="card-body" style="overflow:hidden">
                     <div class="float-start" id="over_all_booking_status" data-colors='["--bs-warning","--bs-primary","--bs-info","--bs-success","--bs-danger"]'>
                     </div>
@@ -87,15 +87,9 @@
 
         <div class="col-lg-6">
             <div class="card border-primary mb-3">
-                <div class="card-header fw-bold">New Members and Bookings in past 30 days</div>
-                <div class="card-body">
-                    <span id="total_revenue_count" class="fs-2 fw-bold text-white"></span>
-                    <div class="float-end">
-                        <div id="total_revenue_radial_chart" data-colors='["--bs-primary"]'></div>
-                    </div>
-                    <div class="pt-3">
-                        <p id="revenue_increase_decrease_status"></p>
-                    </div>
+                <div class="card-header fw-bold text-white">New Members and Bookings in past 30 days</div>
+                <div class="card-body">                  
+                    <div id="new_member_booking_and_customer_line_chart" data-colors='["--bs-primary","--bs-warning"]'></div>                              
                 </div>
             </div>
         </div>   

@@ -22,13 +22,13 @@ function loadPieChart(id, data) {
         series: data.series,
         colors: chartColors,
         chart: {
-            type: 'pie',
-            // Set fixed width and height
+            type: 'pie',      
             width: 345,
             height: 345,
             position: 'absolute',
-            left: 0,
+            left: 0,            
         },
+    
         stroke: {
             show: false
         },

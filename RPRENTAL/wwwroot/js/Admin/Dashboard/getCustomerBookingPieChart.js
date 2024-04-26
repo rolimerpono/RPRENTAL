@@ -21,17 +21,15 @@ function loadPieChart(id, data) {
         series: data.series,
         colors: chartColors,
         chart: {
-            type: 'pie',
-            // Set fixed width and height
-            width: 345,
-            height: 345,
-            position: 'absolute',
-            left:0,
-        },
-        stroke: {
-            show: false
-        },
+            type: 'pie',            
+            width: 900,
+            height: 900,
+           /* position: 'absolute',*/
+            left: 0
+        },          
         labels: data.labels
+      
+
     
     };
 
