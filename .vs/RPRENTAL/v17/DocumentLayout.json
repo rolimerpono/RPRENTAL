@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\admin\\dashboard\\getcustomerbookingpiechart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\admin\\dashboard\\getcustomerbookingpiechart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\admin\\dashboard\\getoverallbookingpiechart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\admin\\dashboard\\getoverallbookingpiechart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\admin\\dashboard\\getcustomerandbookinglinechart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\admin\\dashboard\\getcustomerandbookinglinechart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\admin\\dashboard\\radialchart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -23,16 +27,16 @@
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|c:\\users\\rolly\\source\\repos\\rprental\\dataservice\\implementation\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|solutionrelative:dataservice\\implementation\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\css\\apexcharts.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\css\\apexcharts.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\css\\apexcharts.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\css\\apexcharts.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|c:\\users\\rolly\\source\\repos\\rprental\\dataservice\\implementation\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|solutionrelative:dataservice\\implementation\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,20 +66,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "apexcharts.css",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\apexcharts.css",
-              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\css\\apexcharts.css",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\apexcharts.css",
-              "RelativeToolTip": "RPRENTAL\\wwwroot\\css\\apexcharts.css",
-              "ViewState": "AQIAAOgBAAAAAAAAAAAAABkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-28T05:05:17.369Z",
+              "DocumentIndex": 2,
+              "Title": "getCustomerAndBookingLineChart.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingLineChart.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingLineChart.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingLineChart.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingLineChart.js",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-28T08:07:47.089Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
@@ -83,12 +87,11 @@
               "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
               "ViewState": "AQIAAHMAAAAAAAAAAAAAAIYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-28T05:03:54.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-28T05:03:54.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "DashboardService.cs",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Implementation\\DashboardService.cs",
               "RelativeDocumentMoniker": "DataService\\Implementation\\DashboardService.cs",
@@ -96,25 +99,24 @@
               "RelativeToolTip": "DataService\\Implementation\\DashboardService.cs",
               "ViewState": "AQIAABQAAAAAAAAAAAAAAC4AAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T04:48:54.779Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-28T04:48:54.779Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "radialChart.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\radialChart.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\radialChart.js",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\radialChart.js",
               "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\radialChart.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAbAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-04-28T04:33:52.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "styles.css",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\styles.css",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\css\\styles.css",
@@ -127,42 +129,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Dashboard\\Index.cshtml",
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\Dashboard\\Index.cshtml",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Dashboard\\Index.cshtml",
               "RelativeToolTip": "RPRENTAL\\Views\\Dashboard\\Index.cshtml",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAAFMAAAApAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-28T04:34:34.894Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "getOverAllBookingPieChart.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getOverAllBookingPieChart.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getOverAllBookingPieChart.js",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getOverAllBookingPieChart.js",
               "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getOverAllBookingPieChart.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAZAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-04-28T04:34:01.497Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "getCustomerBookingPieChart.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerBookingPieChart.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerBookingPieChart.js",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerBookingPieChart.js",
               "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerBookingPieChart.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAXAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAIwBoAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-04-28T04:33:32.651Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "apexcharts.css",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\apexcharts.css",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\css\\apexcharts.css",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\apexcharts.css",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\css\\apexcharts.css",
+              "ViewState": "AQIAAOgBAAAAAAAAAAAAABkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-28T05:05:17.369Z"
             }
           ]
         }

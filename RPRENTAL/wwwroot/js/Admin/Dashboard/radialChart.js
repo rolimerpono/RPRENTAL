@@ -5,8 +5,8 @@
   
     let options = {
         chart: {
-            height: 190,
-            width: 190,
+            height: 200,
+            width: 200,
             type: 'radialBar',
             left:0,
             position: 'absolute'

@@ -16,27 +16,31 @@ function LoadCutomerBookings() {
 }
 
 function loadPieChart(id, data) {
-
     let chartColors = getChartColor(id);
 
-    let options = {
+    var options = {
         series: data.series,
-        colors: chartColors,
         chart: {
+            height: 480,
             type: 'pie',
-            width: 300,
-            height: 300,
-            position: 'absolute',
-            left: 0,
-        },      
-        labels: data.labels
-
+        },
+        labels: data.series,
+        legend: {
+            position: 'bottom',
+            fontSize: '24px',
+            fontWeight: 600,
+        },
+        colors: chartColors,
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+            }
+        }]
     };
-
     var chart = new ApexCharts(document.querySelector("#" + id), options);
     chart.render();
+
 }
-
-
-
-

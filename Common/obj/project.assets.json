@@ -5729,9 +5729,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Common\\Common.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj",
       "projectName": "Common",
-      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Common\\Common.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Common\\Common.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Common\\obj\\",
       "projectStyle": "PackageReference",
@@ -5755,11 +5755,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataService\\DataService.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataService\\DataService.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
             }
           }
         }

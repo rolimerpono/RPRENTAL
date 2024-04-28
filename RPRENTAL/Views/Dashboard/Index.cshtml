@@ -4,17 +4,18 @@
             <span class="fs-3">Dashboard</span>
         </div>
     </div>
-    <div class="row pt-3">
+    <div class="row pt-3 align-items-stretch">
 
-      
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card border-info h-100">
                 <div class="card-header fw-bold text-white">Total Users</div>
                 <div class="card-body">
-                    <span id="total_user_count" class="fs-2 fw-bold text-white"></span>                            
-                    <div class="float-end dashboard-charts" id="total_user_radial_chart" data-colors='["--bs-info"]'></div>
-                    <div class="pt-5">
-                        <p class="pt-4 text-white float-start" id="user_increase_decrease_status"></p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="h-50" id="total_user_radial_chart" data-colors='["--bs-info"]'></span>
+                    </div>
+                    <span id="total_user_count" class="fs-2 fw-bold text-white"></span>
+                    <div>
+                        <p class="pt-2 text-white float-start" id="user_increase_decrease_status"></p>
                     </div>
                 </div>
             </div>
@@ -24,10 +25,14 @@
             <div class="card border-primary h-100">
                 <div class="card-header fw-bold text-white">Total Bookings</div>
                 <div class="card-body">
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="h-50" id="total_booking_radial_chart" data-colors='["--bs-primary"]'></span>
+                    </div>
+
                     <span id="total_booking_count" class="fs-2 fw-bold text-white"></span>
-                    <div class="float-end dashboard-charts" id="total_booking_radial_chart" data-colors='["--bs-primary"]'></div>
-                    <div class="pt-5">
-                        <p class="pt-4 text-white float-start" id="booking_increase_decrease_status"></p>
+                    <div>
+                        <p class="pt-2 text-white float-start" id="booking_increase_decrease_status"></p>
                     </div>
                 </div>
             </div>
@@ -37,29 +42,30 @@
             <div class="card border-warning h-100">
                 <div class="card-header fw-bold text-white">Total Revenue</div>
                 <div class="card-body">
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="h-50" id="total_revenue_radial_chart" data-colors='["--bs-warning"]'></span>
+                    </div>
+
                     <span id="total_revenue_count" class="fs-2 fw-bold text-white"></span>
-                    <div class="float-end dashboard-charts" id="total_revenue_radial_chart" data-colors='["--bs-warning"]'></div>
-                    <div class="pt-5">
-                        <p class="pt-4 text-white float-start" id="revenue_increase_decrease_status"></p>
+                    <div>
+                        <p class="pt-2 text-white float-start" id="revenue_increase_decrease_status"></p>
                     </div>
                 </div>
             </div>
-        </div>       
-      
-
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-
-
-            <div class="card border-danger mb-3 h-100">
-                <div class="card-header fw-bold text-white">Customer Bookings</div>
-                <div class="card-body dashboard-cards" style="overflow:hidden">
-                    <div class="dashboard-charts" id="customer_increase_decrease_status" data-colors='["--bs-warning","--bs-primary"]'>
-                    </div>
-                </div>
-            </div>            
-
         </div>
 
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card border-danger mb-3 h-100">
+                <div class="card-header fw-bold text-white">Customer Bookings</div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div id="customer_increase_decrease_status" data-colors='["--bs-success","--bs-primary"]'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <hr />
@@ -70,28 +76,32 @@
 
 
         <div class="col-lg-6">
+
             <div class="card border-light mb-3">
                 <div class="card-header fw-bold text-white">Current Month Transactions</div>
-                <div class="card-body dashboard-cards" style="overflow:hidden">
-                    <div class="float-start" id="over_all_booking_status" data-colors='["--bs-warning","--bs-primary","--bs-info","--bs-success","--bs-danger"]'>
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="h-50" id="over_all_booking_status" data-colors='["--bs-warning","--bs-primary","--bs-info","--bs-success","--bs-danger"]'></span>
                     </div>
+                    
                 </div>
-            </div>
+            </div>   
+
         </div>
 
 
         <div class="col-lg-6">
+
             <div class="card border-light mb-3">
-                <div class="card-header fw-bold text-white">New Members and Bookings in past 30 days</div>
-                <div class="card-body dashboard-cards">
-                    <div id="new_member_booking_and_customer_line_chart" data-colors='["--bs-primary","--bs-warning"]'></div>                              
+                <div class="card-header fw-bold text-white">New members and Bookings in pas 30 days</div>
+                <div class="card-body">                 
+                    <div class="d-flex justify-content-center align-items-center h-50" id="new_member_booking_and_customer_line_chart" data-colors='["--bs-primary","--bs-warning"]'>
+                    </div>                   
                 </div>
-            </div>
+            </div>  
+            
         </div>   
-
-
-   
-
 
     </div>
 </div>
