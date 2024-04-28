@@ -4997,9 +4997,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
       "projectName": "DatabaseAccess",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DatabaseAccess\\obj\\",
       "projectStyle": "PackageReference",
@@ -5023,8 +5023,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
             }
           }
         }
