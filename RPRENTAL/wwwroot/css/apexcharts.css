@@ -44,9 +44,10 @@
   opacity: .2
 }
 
-.apexcharts-legend-text {
+.apexcharts-legend-text { 
   padding-left: 15px;
   margin-left: -15px;
+
 }
 
 .apexcharts-series-collapsed {

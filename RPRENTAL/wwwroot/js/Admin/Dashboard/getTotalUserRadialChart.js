@@ -15,12 +15,12 @@ function loadTotalUserRadialChart() {
 
             let sectionCurrentCount = document.createElement("span");
             if (data.hasRationIncreased) {
-                sectionCurrentCount.className = "text-success me-2";
-                sectionCurrentCount.innerHTML = '<i class="bi bi-arrow-up-right-circle me-2"></i> <span> ' + data.countInCurrentMonth + '</span>';
+                sectionCurrentCount.className = "text-success me-1";
+                sectionCurrentCount.innerHTML = '<i class="bi bi-arrow-up-right-circle me-1"></i> ' + data.countInCurrentMonth;
             }
             else {
-                sectionCurrentCount.className = "text-danger me-2";
-                sectionCurrentCount.innerHTML = '<i class="bi bi-arrow-down-right-circle me-2"></i> <span> ' + data.countInCurrentMonth + '</span>';
+                sectionCurrentCount.className = "text-danger me-1";
+                sectionCurrentCount.innerHTML = '<i class="bi bi-arrow-down-right-circle me-1"></i> ' + data.countInCurrentMonth;
             }
 
             $('#user_increase_decrease_status').append(sectionCurrentCount);

@@ -1,0 +1,103 @@
+
+
+:root {
+    --offcanvas-width: 200px;
+    --topNavbarHeight: 55px;
+}
+
+#offcanvas-menu {
+    width: var(--offcanvas-width);
+}
+
+@media (min-width: 992px) {
+
+    body {
+        overflow: auto !important;
+    }
+
+    main {
+        margin-left: var(--offcanvas-width);
+    }
+
+    .offcanvas-backdrop::before {
+        display: none;
+    }
+
+    #offcanvas-menu {
+        transform: none;
+        visibility: visible !important;
+        top: var(--topNavbarHeight);
+        height: calc(100% - var(--topNavbarHeight));
+    }
+}
+
+@media (min-width: 100px) and (max-width: 992px) {
+
+    body {
+        overflow: auto !important;
+    }
+
+    #offcanvas-menu {
+        top: var(--topNavbarHeight);
+        height: calc(100% - var(--topNavbarHeight));
+    }
+
+    .room_list_pagination {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .page-item:last-child .page-link {
+        border-radius: 0px !important;
+    }
+
+    .page-item:first-child .page-link {
+        border-radius: 0px !important;
+    } 
+}
+
+
+
+/* Sidebar */
+
+.sidebar {
+    width: var(--offcanvas-width);
+    min-height: 100vh;
+    background-color: #2f323b;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background-color: #2f323b;
+    opacity: 1;
+}
+
+/*.sidebar .dropdown-toggle:after {
+    display: none;
+}*/
+
+.sidebar .dropdown-menu {
+    position: relative !important;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #202334;
+    border-radius: 0 !important;
+}
+
+.sidebar .dropdown-item {
+    padding: 12.8px 0 12.8px 24px;
+    margin: 0;
+}
+
+.sidebar .dropdown-item:hover, .sidebar .dropdown-item:active, .dropdown-item:focus {
+    background-color: #2f323b;
+}
+
+.sidebar .nav-link {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    font-size: 16px;
+    position: relative;
+    opacity: 0.9;
+}

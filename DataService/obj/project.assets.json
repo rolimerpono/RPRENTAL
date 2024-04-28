@@ -5711,7 +5711,7 @@
       "projectName": "DataService",
       "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DataService.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\obj\\",
+      "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\DataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

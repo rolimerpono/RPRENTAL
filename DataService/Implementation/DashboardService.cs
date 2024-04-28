@@ -24,7 +24,7 @@ namespace DataService.Implementation
             _IWorker = Iworker;
         }
 
-        public async Task<PieChartDTO> GetBookingPieChartData()
+        public async Task<PieChartDTO> GetCustomerBookingPieChart()
         {
         
             var total_booking = _IWorker.tbl_Booking.GetAll(
@@ -39,7 +39,7 @@ namespace DataService.Implementation
 
             PieChartDTO piechart_vm = new PieChartDTO()
             {
-                labels = new string[] { "New customer booking", "Returning customer booking" },
+                labels = new string[] { "New Customer", "Returning Customer" },
                 series = new decimal[] { new_customer_booking, returning_customer_booking}
 
             };

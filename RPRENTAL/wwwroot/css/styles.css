@@ -89,6 +89,7 @@
     margin-left:10px;
 }
 
-
-
+.apexcharts-legend-text {
+    color: white !important;
+}
 

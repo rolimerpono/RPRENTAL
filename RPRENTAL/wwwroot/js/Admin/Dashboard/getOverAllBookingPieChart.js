@@ -17,14 +17,13 @@ function LoadOverAllBookingPieChartData() {
 
 function loadPieChart(id, data) {
     let chartColors = getChartColor(id);
-
     let options = {
         series: data.series,
         colors: chartColors,
         chart: {
             type: 'pie',      
-            width: 345,
-            height: 345,
+            width: 300,
+            height: 300,
             position: 'absolute',
             left: 0,            
         },

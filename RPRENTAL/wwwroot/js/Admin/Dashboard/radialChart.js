@@ -2,11 +2,14 @@
 
     let chartColors = getChartColor(id);
 
+  
     let options = {
         chart: {
-            height: 180,
-            width: 180,
-            type: "radialBar",
+            height: 190,
+            width: 190,
+            type: 'radialBar',
+            left:0,
+            position: 'absolute'
         },
 
         series: data.series,
@@ -15,8 +18,8 @@
             radialBar: {            
                 dataLabels: {                    
                     value: {
-                        color: "#fff",
-                        fontSize: "12px",
+                        color: '#fff',
+                        fontSize: '12px',
                         show: true,
                         offsetY:-12
                     }
@@ -32,44 +35,6 @@
 
 
 }
-
-
-//function loadRadialBarChart(id, data) {
-//    let chartColors = getChartColor(id);
-
-//    let options = {
-//        fill: {
-//            colors: chartColors
-//        },
-//        chart: {
-//            height: 90,
-//            width: 90,
-//            type: "radialBar",           
-//            sparkline: {
-//                enabled: true
-//            },
-//        },
-       
-//        series: data.series,
-
-//        plotOptions: {
-//            radialBar: {
-//                dataLabels: {
-//                    value: {
-//                        offsetY: -10,
-//                    }
-//                }
-//            }
-//        },
-//        labels: [""],
-//        legend: {
-//            colors: '#fff'
-//        }
-//    };
-
-//    let chart = new ApexCharts(document.querySelector("#" + id), options);
-//    chart.render();
-//}
 
 function getChartColor(id) {
     if (document.getElementById(id) != null) {
