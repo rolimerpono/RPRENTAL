@@ -19,8 +19,5 @@ namespace Repository.Interface
         bool Any(Expression<Func<T, Boolean>>? Filter);
 
         void Remove(T objEntity);
-
-
-
     }
 }
