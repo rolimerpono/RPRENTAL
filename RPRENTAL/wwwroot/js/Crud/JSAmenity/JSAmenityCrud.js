@@ -72,7 +72,7 @@ function initializeDataTable() {
             },
             {
                 data: 'amenitY_ID',
-                'width': '5%',
+                width: '5%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }

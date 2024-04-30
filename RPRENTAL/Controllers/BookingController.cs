@@ -1,16 +1,15 @@
 ﻿using Common;
-using DataService.Implementation;
 using DataService.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient.DataClassification;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using PayPal.Api;
 using StaticUtility;
 using Stripe;
 using Stripe.Checkout;
+using System;
 using System.Security.Claims;
 using static StaticUtility.SD;
 using static System.Net.WebRequestMethods;
@@ -25,16 +24,23 @@ namespace RPRENTAL.Controllers
         private readonly IWorker _IWorker;
         private readonly IRoomAmenityService _IRoomAmenityService;
         private readonly IWebHostEnvironment _webHost;
-        public BookingController(IWorker IWorker, IRoomAmenityService iRoomAmenityService , IWebHostEnvironment webhost)
+        private readonly IHelper _helper;
+        private readonly ICompositeViewEngine _viewEngine;
+
+
+
+        public BookingController(IWorker IWorker, IRoomAmenityService iRoomAmenityService, IWebHostEnvironment webhost, IHelper helper, ICompositeViewEngine viewengine)
         {
-            _IWorker = IWorker; 
+            _IWorker = IWorker;
             _IRoomAmenityService = iRoomAmenityService;
-            _webHost  = webhost;
+            _webHost = webhost;
+            _helper = helper;
+            _viewEngine = viewengine;
         }
 
         public IActionResult Index()
         {
-            return View();         
+            return View();
         }
 
         public IActionResult Test()
@@ -48,7 +54,7 @@ namespace RPRENTAL.Controllers
 
             IEnumerable<Booking> objBookings;
 
-           
+
             if (User.IsInRole(SD.UserRole.ADMIN.ToString()))
             {
                 objBookings = _IWorker.tbl_Booking.GetAll();
@@ -57,22 +63,22 @@ namespace RPRENTAL.Controllers
             else
             {
                 var user_id = (User.Identity as ClaimsIdentity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                objBookings = _IWorker.tbl_Booking.GetAll(fw => fw.USER_ID ==user_id);
-            }          
+                objBookings = _IWorker.tbl_Booking.GetAll(fw => fw.USER_ID == user_id);
+            }
 
             if (!string.IsNullOrEmpty(status) && status != "null")
-            {            
-                objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == status.ToLower());                      
+            {
+                objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == status.ToLower());
             }
             else
             {
                 objBookings = objBookings.Where(fw => fw.BOOKING_STATUS.ToLower() == SD.BookingStatus.PENDING.ToString().ToLower());
-            }          
+            }
 
 
             return Json(new { data = objBookings });
         }
-    
+
 
         [HttpGet]
         public IActionResult CreateBooking(int ID, string jsonData)
@@ -96,7 +102,7 @@ namespace RPRENTAL.Controllers
 
             Common.Util objUtil = new Common.Util(_IWorker);
 
-            if (objUtil.GetRoomsAvailableCount(ID, checkin_date, checkout_date) <=0)
+            if (objUtil.GetRoomsAvailableCount(ID, checkin_date, checkout_date) <= 0)
             {
                 return View();
             }
@@ -104,14 +110,14 @@ namespace RPRENTAL.Controllers
 
             Booking objBooking = new()
             {
-                ROOM_ID         = ID,
-                ROOM            = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == ID, IncludeProperties:"ROOM_AMENITIES"),
-                CHECK_IN_DATE   = checkin_date,
-                CHECK_OUT_DATE  = checkout_date,
-                USER_ID         = user.Id,
-                PHONE_NUMBER    = user.PhoneNumber,
-                USER_EMAIL      = user.Email,
-                USER_NAME       = user.USER_NAME,
+                ROOM_ID = ID,
+                ROOM = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == ID, IncludeProperties: "ROOM_AMENITIES"),
+                CHECK_IN_DATE = checkin_date,
+                CHECK_OUT_DATE = checkout_date,
+                USER_ID = user.Id,
+                PHONE_NUMBER = user.PhoneNumber,
+                USER_EMAIL = user.Email,
+                USER_NAME = user.USER_NAME,
             };
 
 
@@ -155,24 +161,24 @@ namespace RPRENTAL.Controllers
 
             Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id, IncludeProperties: "USERS,ROOM");
             objBooking.ROOM.ROOM_AMENITIES = _IRoomAmenityService.GetAll().Where(fw => fw.ROOM_ID == objBooking.ROOM_ID);
-            
 
-            if (objBooking !=null)
+
+            if (objBooking != null)
             {
                 if (objBooking.ROOM_NUMBER == 0 && objBooking.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString())
                 {
-                    List<string> objList = objUtil.GetRoomNumberAvailable(objBooking.ROOM_ID,objBooking.CHECK_IN_DATE,objBooking.CHECK_OUT_DATE).ToList();
+                    List<string> objList = objUtil.GetRoomNumberAvailable(objBooking.ROOM_ID, objBooking.CHECK_IN_DATE, objBooking.CHECK_OUT_DATE).ToList();
 
                     objBooking.ROOM_NUMBER_LIST = objList;
                 }
                 else
-                { 
+                {
                     objBooking.ROOM_NUMBER_LIST = new List<string>();
                 }
             }
 
             return PartialView("Common/_BookingDetail", objBooking);
-        
+
         }
 
 
@@ -193,7 +199,7 @@ namespace RPRENTAL.Controllers
                 DateOnly checkout_date = DateOnly.Parse(objData["CHECKOUT_DATE"]);
                 int room_id = ID;
 
-              
+
 
                 var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == room_id);
 
@@ -221,12 +227,12 @@ namespace RPRENTAL.Controllers
                 _IWorker.tbl_Booking.Save();
                 return Json(new { success = true, message = SD.BookingTransaction.success, booking = JsonConvert.SerializeObject(objBooking) });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(new { success = false, message = SD.BookingTransaction.fail, booking = JsonConvert.SerializeObject(objBooking) });
             }
 
-         
+
 
         }
 
@@ -235,17 +241,17 @@ namespace RPRENTAL.Controllers
         {
 
 
-                var objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id);
+            var objBooking = _IWorker.tbl_Booking.Get(fw => fw.BOOKING_ID == booking_id);
 
-                var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID);
+            var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == objBooking.ROOM_ID);
 
-                var domain = Request.Scheme + "://" + Request.Host.Value + "/";
+            var domain = Request.Scheme + "://" + Request.Host.Value + "/";
 
-                var options = new SessionCreateOptions
-                {
+            var options = new SessionCreateOptions
+            {
 
-                    LineItems = new List<SessionLineItemOptions>(),
-                    CustomFields = new List<SessionCustomFieldOptions>
+                LineItems = new List<SessionLineItemOptions>(),
+                CustomFields = new List<SessionCustomFieldOptions>
                 {
                     new SessionCustomFieldOptions
                     {
@@ -258,7 +264,7 @@ namespace RPRENTAL.Controllers
                         },
                         Type = "dropdown",
                         Optional = true,
-                       
+
                         Dropdown = new SessionCustomFieldDropdownOptions
                         {
 
@@ -288,68 +294,68 @@ namespace RPRENTAL.Controllers
                 },
 
 
-                    Mode = "payment",
-                    SuccessUrl = domain + $"Booking/BookingConfirmation?booking_id={objBooking.BOOKING_ID}",
-                    CancelUrl = domain,
-                    ClientReferenceId = "rolimer_pono@yahoo.com",
-                    
-                    
+                Mode = "payment",
+                SuccessUrl = domain + $"Booking/BookingConfirmation?booking_id={objBooking.BOOKING_ID}",
+                CancelUrl = domain,
+                ClientReferenceId = "rolimer_pono@yahoo.com",
 
-                    ConsentCollection = new SessionConsentCollectionOptions
-                    {
-                        TermsOfService = "required",
-                    },
-                    CustomText = new SessionCustomTextOptions
-                    {
-                        TermsOfServiceAcceptance = new SessionCustomTextTermsOfServiceAcceptanceOptions
-                        {
-                            Message = "I agree to the [Terms of Service]",
-                        },
 
+
+                ConsentCollection = new SessionConsentCollectionOptions
+                {
+                    TermsOfService = "required",
+                },
+                CustomText = new SessionCustomTextOptions
+                {
+                    TermsOfServiceAcceptance = new SessionCustomTextTermsOfServiceAcceptanceOptions
+                    {
+                        Message = "I agree to the [Terms of Service]",
                     },
 
+                },
 
-                };
 
-         
+            };
 
-                options.LineItems.Add(new SessionLineItemOptions
+
+
+            options.LineItems.Add(new SessionLineItemOptions
+            {
+
+                PriceData = new SessionLineItemPriceDataOptions
                 {
-                    
-                        PriceData = new SessionLineItemPriceDataOptions
-                        {
-                       
-                            UnitAmount = (long)(objBooking.TOTAL_COST * 100),
-                            Currency = "nzd",                       
-                        
-                            ProductData = new SessionLineItemPriceDataProductDataOptions
-                            {
-                                Name = objRoom.ROOM_NAME,
-                                Description = objRoom.DESCRIPTION,                            
-                                //Images = new List<string> { "https://placehold.co/600x400" } 
-                     
-                            }      
-                        
-                        },
-                        Quantity = 1,                    
 
-                });
+                    UnitAmount = (long)(objBooking.TOTAL_COST * 100),
+                    Currency = "nzd",
+
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = objRoom.ROOM_NAME,
+                        Description = objRoom.DESCRIPTION,
+                        //Images = new List<string> { "https://placehold.co/600x400" } 
+
+                    }
+
+                },
+                Quantity = 1,
+
+            });
 
 
-                var service = new SessionService();
-                Session session = service.Create(options);
+            var service = new SessionService();
+            Session session = service.Create(options);
 
-                _IWorker.tbl_Booking.UpdateStripePaymentID(objBooking.BOOKING_ID, session.Id, session.PaymentIntentId);
-                _IWorker.tbl_Booking.Save();
+            _IWorker.tbl_Booking.UpdateStripePaymentID(objBooking.BOOKING_ID, session.Id, session.PaymentIntentId);
+            _IWorker.tbl_Booking.Save();
 
-             
 
-                if (!String.IsNullOrEmpty(session.Id))
-                {
-                    return Json( new { success = true, redirectUrl = session.Url ,message=SD.BookingTransaction.success });
-                }
 
-            return Json(new { success = false, redirectUrl = session.Url, message = SD.BookingTransaction.fail  + ' ' + session.StripeResponse});
+            if (!String.IsNullOrEmpty(session.Id))
+            {
+                return Json(new { success = true, redirectUrl = session.Url, message = SD.BookingTransaction.success });
+            }
+
+            return Json(new { success = false, redirectUrl = session.Url, message = SD.BookingTransaction.fail + ' ' + session.StripeResponse });
 
         }
 
@@ -361,15 +367,17 @@ namespace RPRENTAL.Controllers
 
             var iCounter = new Util(_IWorker).GetRoomsAvailableCount(objBooking.ROOM_ID, objBooking.CHECK_IN_DATE, objBooking.CHECK_OUT_DATE);
 
-         
+
             if (iCounter == 0)
             {
-                return View("NotSuccess",objBooking);
-            }                 
+                return View("NotSuccess", objBooking);
+            }
 
 
             if (objBooking.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
             {
+
+
                 var service = new SessionService();
                 Session session = service.Get(objBooking.STRIPE_SESSION_ID);
 
@@ -382,16 +390,35 @@ namespace RPRENTAL.Controllers
                         _IWorker.tbl_Booking.UpdateStripePaymentID(objBooking.BOOKING_ID, session.Id, session.PaymentIntentId);
                         _IWorker.tbl_Booking.Save();
 
+                        Email objEmail = new Email();
+                        objEmail.SenderMail = "sycopons2010@gmail.com";
+                        objEmail.SenderName = "THE KWANO";
+                        objEmail.RecieverName = objBooking.USER_NAME;
+                        objEmail.RecieverEmail = objBooking.USER_EMAIL;
+                        objEmail.Subject = "THE KWANO BOOKING";
+                      
+
+                        PartialViewResult pvr = PartialView("BookingConfirmation", objBooking);
+
+                        string s = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+                        objEmail.Content = s;
+
+                        Boolean is_success = SD.MailSend(objEmail);
+
+                                   
                         return View(objBooking);
-                    }                   
-    
+                    }
+
                 }
                 return View("NotSuccess", objBooking);
 
             }
-            return View("NotSucces",objBooking);
+            return View("NotSucces", objBooking);
         }
-     
+
+      
 
     }
+
 }
