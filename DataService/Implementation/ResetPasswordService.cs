@@ -24,7 +24,6 @@ namespace DataService.Implementation
         {
             try
             {              
-
                 _iWorker.tbl_ResetPassword.Add(objResetPassword);
                 _iWorker.tbl_ResetPassword.Save();
 
@@ -37,17 +36,17 @@ namespace DataService.Implementation
         }
 
         public ResetPassword Get(ResetPassword objData)
-        {
-            ResetPassword objResetPassword;
+        {           
             try
             {
-                var objReset = _iWorker.tbl_ResetPassword.Get(fw => fw.OTP == objData.OTP && fw.Email == objData.Email);
+                var objReset = _iWorker.tbl_ResetPassword.Get(fw => fw.Token == objData.Token && fw.OTP == objData.OTP && fw.Email == objData.Email);
                
                 if (objReset != null)
                 {
                     return objReset;
                 }
-                return null;
+
+                return null!;
 
             }
             catch (Exception ex)

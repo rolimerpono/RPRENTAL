@@ -363,7 +363,7 @@ namespace RPRENTAL.Controllers
                 objResetPassword.Email = user.Email!;
                 objResetPassword.Token = token_generated;
                 objResetPassword.OTP = otp_generated;
-                objResetPassword.ExpirationDate = DateTime.Now.AddMinutes(3);
+                objResetPassword.ExpirationDate = DateTime.Now.AddMinutes(5);
                 objResetPassword.CreatedDate = DateTime.Now;
 
                 _IResetPasswordService.Create(objResetPassword);
@@ -383,28 +383,28 @@ namespace RPRENTAL.Controllers
 
             if (objUser != null)
             {
-                if(Password_Authentication.Email == objReset.Email
-                    && Password_Authentication.OTP == objReset.OTP
-                    && Password_Authentication.Token == objReset.Token) 
-                { 
-                    if(objReset.Password != objReset.ConfirmPassword 
-                        || (string.IsNullOrEmpty(objReset.Password) 
-                        || string.IsNullOrEmpty(objReset.ConfirmPassword))) 
+                if (Password_Authentication != null)
+                {
+                   
+                    if (objReset.Password != objReset.ConfirmPassword
+                        || (string.IsNullOrEmpty(objReset.Password)
+                        || string.IsNullOrEmpty(objReset.ConfirmPassword)))
                     {
                         return Json(new { success = false, message = "The password you entered was invalid" });
                     }
-                    
+
                     if (DateTime.Now > Password_Authentication.ExpirationDate)
                     {
                         return Json(new { success = false, message = "OTP already expired. Please login within 3 minutes. Thank you." });
-                    
+
                     }
 
+                    string user_role  = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault()!.ToString().ToLower();
                     await _UserManager.ResetPasswordAsync(objUser, objReset.Token, objReset.Password);
                     await _SignInManager.SignInAsync(objUser, isPersistent: false);
 
-                    return Json(new { success = true, message = "Password successfully changed."});
-
+                    return Json(new { success = true, message = "Password successfully changed.", Role = user_role});
+                    
                 }
 
                 return Json(new { success = false, message = "Credentials input are not valid", data = objReset });

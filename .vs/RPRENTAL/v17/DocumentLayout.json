@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\layout\\home\\jsaccount.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\layout\\home\\jsaccount.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|c:\\users\\rolly\\source\\repos\\rprental\\dataservice\\implementation\\resetpasswordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|solutionrelative:dataservice\\implementation\\resetpasswordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +43,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAAAIAAAABoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-01T03:48:57.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JSAccount.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSAccount.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSAccount.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSAccount.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Layout\\Home\\JSAccount.js",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAwwHMAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-01T03:45:18.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "RPRENTAL\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAHkBAAAAAAAAAAAAAIUBAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T03:41:46.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResetPasswordService.cs",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Implementation\\ResetPasswordService.cs",
+              "RelativeDocumentMoniker": "DataService\\Implementation\\ResetPasswordService.cs",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Implementation\\ResetPasswordService.cs",
+              "RelativeToolTip": "DataService\\Implementation\\ResetPasswordService.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAqwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T03:41:46.155Z",
+              "EditorCaption": ""
             }
           ]
         }
