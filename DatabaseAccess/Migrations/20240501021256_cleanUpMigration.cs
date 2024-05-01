@@ -68,6 +68,23 @@ namespace DatabaseAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "tbl_ResetPassword",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OTP = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_ResetPassword", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tbl_Rooms",
                 columns: table => new
                 {
@@ -297,15 +314,15 @@ namespace DatabaseAccess.Migrations
                 columns: new[] { "ROOM_ID", "CREATED_DATE", "DESCRIPTION", "IMAGE_URL", "MAX_OCCUPANCY", "ROOM_NAME", "ROOM_PRICE", "UPDATED_DATE" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7054), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 1, "Single Room", 85.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7055) },
-                    { 2, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7061), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 2, "Double Room", 90.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7062) },
-                    { 3, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7068), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 3, "Deluxed Room", 100.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7069) },
-                    { 4, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7075), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 4, "Queens Room", 120.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7076) },
-                    { 5, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7081), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 5, "Kings Room", 130.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7082) },
-                    { 6, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7088), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Executive Suite", 100.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7090) },
-                    { 7, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7095), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Super Deluxed", 110.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7096) },
-                    { 8, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7102), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Diamond Room", 87.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7103) },
-                    { 9, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7108), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "https://placehold.co/600x400/png", 10, "Emerald Deluxed", 98.0, new DateTime(2024, 4, 25, 12, 22, 13, 321, DateTimeKind.Local).AddTicks(7109) }
+                    { 1, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6681), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Single.jpg", 1, "Single Room", 85.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6682) },
+                    { 2, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6690), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Double.jpg", 2, "Double Room", 90.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6691) },
+                    { 3, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6698), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Deluxed.jpg", 3, "Deluxed Room", 100.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6699) },
+                    { 4, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6705), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Queens.jpg", 4, "Queens Room", 120.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6706) },
+                    { 5, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6712), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Kings.jpg", 5, "Kings Room", 130.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6713) },
+                    { 6, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6718), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Executive.jpg", 10, "Executive Suite", 100.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6719) },
+                    { 7, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6725), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Super Deluxed.jpg", 10, "Super Deluxed", 110.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6726) },
+                    { 8, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6732), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Diamond Room.jpg", 10, "Diamond Room", 87.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6733) },
+                    { 9, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6739), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Emerald Room.jpg", 10, "Emerald Deluxed", 98.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6740) }
                 });
 
             migrationBuilder.InsertData(
@@ -437,6 +454,9 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_Booking");
+
+            migrationBuilder.DropTable(
+                name: "tbl_ResetPassword");
 
             migrationBuilder.DropTable(
                 name: "tbl_RoomAmenity");

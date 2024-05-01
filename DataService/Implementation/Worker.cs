@@ -26,6 +26,8 @@ namespace DataService.Implementation
 
         public IApplicationUserRepository tbl_User { get; private set; }
 
+        public IResetPasswordRepository tbl_ResetPassword { get;private set; }
+
         public Worker(ApplicationDBContext db)
         {
             _db = db;
@@ -35,6 +37,7 @@ namespace DataService.Implementation
             tbl_User  = new  ApplicationRepository(_db);
             tbl_Amenity = new AmenityRepository(_db);
             tbl_RoomAmenity = new RoomAmenityRepository(_db);
+            tbl_ResetPassword = new ResetPasswordRepository(_db);
             
         }
 

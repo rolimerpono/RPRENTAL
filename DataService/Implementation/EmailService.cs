@@ -23,7 +23,7 @@ namespace DataService.Implementation
 
             try
             {
-                var sendSmtpEmail = new SendSmtpEmail(Email, To, null, null, null, email.Content, email.Subject);
+                var sendSmtpEmail = new SendSmtpEmail(Email, To, null, null, email.HtmlContent, email.TextContent, email.Subject);
                 CreateSmtpEmail result = apiInstance.SendTransacEmail(sendSmtpEmail);
                 return true;
                 

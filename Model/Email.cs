@@ -17,6 +17,8 @@ namespace Model
 
         public string Subject { get; set; }
 
-        public string Content { get; set; }
+        public string HtmlContent { get; set; }
+
+        public string TextContent { get; set; }
     }
 }

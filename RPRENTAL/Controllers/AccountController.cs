@@ -1,6 +1,8 @@
-﻿using DataService.Implementation;
+﻿using DataService.DTO;
+using DataService.Implementation;
 using DataService.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +10,8 @@ using Model;
 using RPRENTAL.ViewModels;
 using StaticUtility;
 using Stripe.Treasury;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Helpers;
 
 namespace RPRENTAL.Controllers
 {
@@ -17,14 +21,15 @@ namespace RPRENTAL.Controllers
         private readonly UserManager<ApplicationUser> _UserManager;
         private readonly SignInManager<ApplicationUser> _SignInManager;
         private readonly RoleManager<IdentityRole> _RoleManager;
+        private readonly IResetPasswordService _IResetPasswordService;
 
-        public AccountController(IWorker IWorker, UserManager<ApplicationUser> ApplicationUser, SignInManager<ApplicationUser> SignInManager, RoleManager<IdentityRole> RoleManager)
+        public AccountController(IWorker IWorker, UserManager<ApplicationUser> ApplicationUser, SignInManager<ApplicationUser> SignInManager, RoleManager<IdentityRole> RoleManager, IResetPasswordService iResetPasswordService)
         {
             _IWorker = IWorker;
             _UserManager = ApplicationUser;
             _SignInManager = SignInManager;
             _RoleManager = RoleManager;
-
+            _IResetPasswordService = iResetPasswordService; 
         }
 
         public IActionResult Index()
@@ -314,6 +319,100 @@ namespace RPRENTAL.Controllers
             return Json(new { success = true, message = "Successfully logout" });
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword([Required, EmailAddress] string email)
+        {
+            if (_SignInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Email = email;
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.EmailError = ModelState["email"]?.Errors.First().ErrorMessage ?? "Invalid Email Address";
+                return View();
+            }
+
+            var user = await _UserManager.FindByEmailAsync(email);
+
+            if (user != null)
+            {
+               
+                string token_generated = await _UserManager.GeneratePasswordResetTokenAsync(user);            
+                string otp_generated = SD.GenerateOTP();
+                ResetPassword objResetPassword = new ResetPassword();
+               
+
+                Email objEmail = new Email();
+                objEmail.SenderMail = "sycopons2010@gmail.com";
+                objEmail.SenderName = "THE KWANO";
+                objEmail.RecieverName = user.UserName!;
+                objEmail.RecieverEmail = user.Email!;
+                objEmail.Subject = "Password Reset";
+                objEmail.TextContent = "Dear " + user.UserName + ",\n\n" +
+                                        "Please find the OTP below:\n\n" +
+                                        "<strong>" + otp_generated + "</strong>\n\n" +
+                                        "Kind Regards";
+
+
+                Boolean is_success = SD.MailSend(objEmail);
+
+                objResetPassword.Email = user.Email!;
+                objResetPassword.Token = token_generated;
+                objResetPassword.OTP = otp_generated;
+                objResetPassword.ExpirationDate = DateTime.Now.AddMinutes(3);
+                objResetPassword.CreatedDate = DateTime.Now;
+
+                _IResetPasswordService.Create(objResetPassword);
+                return Json(new { success = true, message = "Please check your email for the OTP.", data = objResetPassword.Token });
+
+            }
+
+            return Json(new { sucess = false, message = "Something went wrong" });
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPassword objReset)
+        {
+            var Password_Authentication = _IResetPasswordService.Get(objReset);    
+            var objUser = await _UserManager.FindByEmailAsync(objReset.Email);
+
+            if (objUser != null)
+            {
+                if(Password_Authentication.Email == objReset.Email
+                    && Password_Authentication.OTP == objReset.OTP
+                    && Password_Authentication.Token == objReset.Token) 
+                { 
+                    if(objReset.Password != objReset.ConfirmPassword 
+                        || (string.IsNullOrEmpty(objReset.Password) 
+                        || string.IsNullOrEmpty(objReset.ConfirmPassword))) 
+                    {
+                        return Json(new { success = false, message = "The password you entered was invalid" });
+                    }
+                    
+                    if (DateTime.Now > Password_Authentication.ExpirationDate)
+                    {
+                        return Json(new { success = false, message = "OTP already expired. Please login within 3 minutes. Thank you." });
+                    
+                    }
+
+                    await _UserManager.ResetPasswordAsync(objUser, objReset.Token, objReset.Password);
+                    await _SignInManager.SignInAsync(objUser, isPersistent: false);
+
+                    return Json(new { success = true, message = "Password successfully changed."});
+
+                }
+
+                return Json(new { success = false, message = "Credentials input are not valid", data = objReset });
+
+            }           
+
+            return Json(new { success = false, message = "Email entered not found.", data = objReset });
+        }       
 
         public IActionResult AccessDenied()
         {

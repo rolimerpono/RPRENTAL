@@ -395,18 +395,15 @@ namespace RPRENTAL.Controllers
                         objEmail.SenderName = "THE KWANO";
                         objEmail.RecieverName = objBooking.USER_NAME;
                         objEmail.RecieverEmail = objBooking.USER_EMAIL;
-                        objEmail.Subject = "THE KWANO BOOKING";
-                      
+                        objEmail.Subject = "THE KWANO BOOKING";                      
 
                         PartialViewResult pvr = PartialView("BookingConfirmation", objBooking);
-
-                        string s = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
-
-                        objEmail.Content = s;
+                        string result_content = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+                        objEmail.HtmlContent = result_content;
 
                         Boolean is_success = SD.MailSend(objEmail);
+                        
 
-                                   
                         return View(objBooking);
                     }
 

@@ -44,7 +44,7 @@ namespace StaticUtility
 
             try
             {
-                var sendSmtpEmail = new SendSmtpEmail(Email, To, null, null, null, email.Content, email.Subject);
+                var sendSmtpEmail = new SendSmtpEmail(Email, To, null, null, email.HtmlContent,email.TextContent, email.Subject);
                 CreateSmtpEmail result = apiInstance.SendTransacEmail(sendSmtpEmail);
                 return true;
 
@@ -56,7 +56,14 @@ namespace StaticUtility
             return false;
         }
 
-        
+        public static string GenerateOTP()
+        {
+            Random rnd = new Random();
+            int otp = rnd.Next(100000, 999999);
+            return otp.ToString();
+        }
+
+
     }
       
 }

@@ -78,6 +78,7 @@
             </div>
         </div>
     </nav>
+ 
 
     <!-- Login Modal -->
     <div class="modal fade" id="modal-login" role="dialog" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -98,15 +99,48 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-login" style="width:100px;">Login</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>                    
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                    <div class="forgot-password">                   
+                        <a href="#" class="forgot-password fw-bold" data-bs-toggle="modal" data-bs-target="#modal-forgot-password" style="text-decoration:none;">Forgot Password?</a>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-login" style="width:100px;">Login</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!--End Login Modal -->
+
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="modal-forgot-password" role="dialog" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white fw-bold" id="forgotModalLabel">FORGOT PASSWORD</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm">
+                        <div class="mb-3">
+                            <label class="form-label">Enter email address for recovery:</label>
+                            <input type="text" class="form-control" id="femail" name="femail" placeholder="Enter email" autofocus autocomplete="off">
+                        </div>                  
+                    </form>
+                </div>
+                <div class="modal-footer">                 
+                    <div>
+                        <button type="button" class="btn btn-primary btn-forgotpassword" style="width:100px;">Reset</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Forgot Password Modal -->
 
     <!-- Register Modal -->
     <div class="modal fade" id="modal-register" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -150,6 +184,47 @@
         </div>
     </div>
     <!--End Register Modal -->
+
+
+    <!-- Reset Password Modal -->
+    <div class="modal fade" id="modal-reset-password" role="dialog" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white fw-bold" id="forgotModalLabel">RESET PASSWORD</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="resetPasswordForm">
+                        <input id="reset-token" name="reset-token" hidden />
+                        <div class="mb-3">
+                            <label class="form-label">Enter email</label>
+                            <input type="text" class="form-control" id="reset-email" name="reset-email" placeholder="Email" autofocus autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <input type="text" class="form-control" id="reset-password" name="reset-password" placeholder="Password" autofocus autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="text" class="form-control" id="reset-con-password" name="reset-con-password" placeholder="Password" autofocus autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Enter OTP</label>
+                            <input type="text" class="form-control" id="reset-OTP" name="reset-OTP" placeholder="OTP" autofocus autocomplete="off">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-primary btn-resetpassword" style="width:100px;">Confirm</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Reset Password Modal -->
 
     <div class="container-fluid">
         <main role="main" class="pb-3 min-vh-100">               

@@ -33,6 +33,8 @@ namespace DatabaseAccess
 
         public DbSet<ApplicationUser> tbl_User { get; set; }
 
+        public DbSet<ResetPassword> tbl_ResetPassword { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

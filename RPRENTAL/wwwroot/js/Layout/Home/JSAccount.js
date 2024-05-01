@@ -18,6 +18,18 @@
     $('#modal-register').on('shown.bs.modal', function () {      
         $('#remail').focus().select();
     });
+
+    $('.btn-forgotpassword').click(function () {
+        forgotPassword('/Account/ForgotPassword');
+        debugger
+    });
+
+    $('.btn-resetpassword').click(function () {
+        ResetPassword('/Account/ResetPassword');
+        debugger
+    });   
+
+
 });
 
 function showToast(message, type) {
@@ -47,6 +59,75 @@ function authenticateUser(url) {
             showToast('error', 'An error occurred. Please try again later.');
         });
 }
+
+
+function forgotPassword(url) {
+    let formData = {
+        EMAIL: $('#femail').val()       
+    };
+
+    if (!validateEmail(formData.EMAIL)) {
+        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
+        return;
+    }
+    debugger
+
+    if ($('#forgotPasswordForm')[0].checkValidity()) {
+        $.post(url, formData)
+            .done(function (response) {
+                debugger
+               /* response.success ? (window.location.href = '/Home/Index') : showToast(response.message, 'error');*/
+                if (response.success) {
+                    $('#modal-forgot-password').modal('hide');
+                    $('#modal-reset-password').modal('show');
+                    debugger
+                    $('#reset-token').val(response.data);                   
+                }
+                else {
+                    showToast(response.message, 'error');
+                }
+            })
+            .fail(function () {
+                showToast('error', 'An error occurred. Please try again later.');
+            });
+    } else {
+        $('#form-add').addClass('was-validated');
+    }
+}
+
+function ResetPassword(url) {
+    let formData = {
+        Email: $('#reset-email').val(),
+        Password: $('#reset-password').val(),
+        ConfirmPassword: $('#reset-con-password').val(),
+        OTP: $('#reset-OTP').val(),
+        Token: $('#reset-token').val()
+    };
+
+    if (!validateEmail(formData.Email)) {
+        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
+        return;
+    }
+
+    if ($('#resetPasswordForm')[0].checkValidity()) {
+        $.post(url, formData)
+            .done(function (response) {  
+                if (response.success) {
+                    $('#reset-token').val('');
+                    window.location.href = '/Home/Index'
+                }
+                else {
+                    showToast('error', response.message);
+                }                     
+            })
+            .fail(function () {
+                showToast('error', 'An error occurred. Please try again later.');
+            });
+    } else {
+        $('#form-add').addClass('was-validated');
+    }
+}
+
 
 function registerUser(url) {
     let formData = {
@@ -89,3 +170,4 @@ function logoutUser(url) {
             showToast('error', 'An error occurred. Please try again later.');
         });
 }
+
