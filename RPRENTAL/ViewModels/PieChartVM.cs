@@ -2,8 +2,8 @@
 {
     public class PieChartVM
     {
-        public decimal[] series { get; set; }
-        public string[] labels { get; set; }
+        public decimal[] Series { get; set; }
+        public string[] Labels { get; set; }
 
 
     }

@@ -25,16 +25,17 @@ $(document).ready(function () {
 
     $('#tbl_Amenity').on('click', '.select-delete-btn', function () {
         var rowData = getRowData($(this));
-        $('#id').val(rowData.amenitY_ID);
+        
+        $('#AmenityId').val(rowData.amenityId);
         $('#modal-delete').modal('show');
     });
 
     $('.btn-delete').click(function () {
-        deleteRoom('#form-delete');
+        deleteAmenity();
     });
 
     $('#btn-close').click(function () {
-        deleteRoom('#form-delete');
+        deleteAmenity();
     });
 
 
@@ -44,7 +45,7 @@ $(document).ready(function () {
 function InputBoxFocus(modal_name) {
     $(document).on('shown.bs.modal', modal_name, function () {
         var input = $('#amenity_name');
-        input.focus();
+        input.focus().select();
 
 
         if (input.val().trim() !== '') {
@@ -61,17 +62,17 @@ function initializeDataTable() {
             url: '/Amenity/GetAll'
         },
         columns: [
-            { data: 'amenitY_ID', visible: false },
-            { data: 'amenitY_NAME', 'width': '50%' },           
+            { data: 'amenityId', visible: false },
+            { data: 'amenityName', 'width': '50%' },           
             {
-                data: 'amenitY_ID',
+                data: 'amenityId',
                 width: '5%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
-                data: 'amenitY_ID',
+                data: 'amenityId',
                 width: '5%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
@@ -134,12 +135,14 @@ function saveRoom(url, formSelector) {
     }
 }
 
-function deleteRoom(formSelector) {
-    var objRoomData = $(formSelector).serialize();
+function deleteAmenity() {
+    let amenityId = $('#AmenityId').val();
+
+    
     $.ajax({
         type: 'POST',
         url: '/Amenity/Delete',
-        data: objRoomData,
+        data: {AmenityId : amenityId},
         success: function (response) {
             objDataTable.ajax.reload();
             $('#modal-delete').modal('hide');

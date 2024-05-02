@@ -8,10 +8,10 @@ namespace RPRENTAL.ViewModels
     public class RoomNumberVM
     {
         [ValidateNever]
-        public RoomNumber? tbl_RoomNumber { get;set; }
+        public RoomNumber? RoomNumber { get;set; }
 
         [ValidateNever]
-        public IEnumerable<SelectListItem>? ROOM_LIST { get; set; }
+        public IEnumerable<SelectListItem>? RoomList { get; set; }
 
     }
 }

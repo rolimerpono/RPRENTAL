@@ -6,17 +6,17 @@
             <div class="col-md-12 pt-md-0 pt-3">             
                 <div class="mb-3">
                     <label for="description" class="form-label fw-bold">Room Number:</label>
-                    <input id="room_number" type="number" class="form-control" asp-for="@Model.tbl_RoomNumber.ROOM_NUMBER" placeholder="Enter Room Number" required autocomplete="off" style="-moz-appearance: textfield;">
+                    <input id="RoomNo" type="number" class="form-control" asp-for="@Model.RoomNumber!.RoomNo" placeholder="Enter Room Number" required autocomplete="off" style="-moz-appearance: textfield;">
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label fw-bold">Select Room:</label>
-                    <select class="form-select form-control border shadow" aria-label="Select Room" asp-for="@Model.tbl_RoomNumber.ROOM_ID" asp-items="@Model.ROOM_LIST" required>
+                    <select class="form-select form-control border shadow" aria-label="Select Room" asp-for="@Model.RoomNumber!.RoomId" asp-items="@Model.RoomList" required>
                         <option selected></option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Description:</label>
-                    <input type="text" class="form-control" asp-for="@Model.tbl_RoomNumber.DESCRIPTION" placeholder="Enter Description" autocomplete="off">
+                    <input type="text" class="form-control" asp-for="@Model.RoomNumber!.Description" placeholder="Enter Description" autocomplete="off">
                 </div>              
             </div>
         </div>

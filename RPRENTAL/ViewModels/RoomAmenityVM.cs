@@ -10,9 +10,9 @@ namespace RPRENTAL.ViewModels
 
         public RoomAmenityVM()
         {
-            ROOM_ID = 0;
-            ROOM_NAME = string.Empty;
-            AMENITIES = new List<Amenity>();
+            RoomId = 0;
+            RoomName = string.Empty;
+            Amenities = new List<Amenity>();
 
 
         }
@@ -20,14 +20,12 @@ namespace RPRENTAL.ViewModels
  
 
         [ValidateNever]
-        public int ROOM_ID { get; set; }
-        public string ROOM_NAME { get; set; }
-
+        public int RoomId { get; set; }
+        public string RoomName { get; set; }
        
-        public List<Amenity> AMENITIES { get; set; }
-        public List<Room> ROOM_LIST { get; set; }
-
-        public List<RoomAmenity> ROOM_AMENITY { get; set; }
+        public List<Amenity> Amenities { get; set; }
+        public List<Room> RoomList { get; set; }
+        public List<RoomAmenity> RoomAmenity { get; set; }
 
 
 

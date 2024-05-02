@@ -101,11 +101,12 @@ function checkOut() {
 function ProceedPayment() {
 
     let id = $('#booking_id').val();
+    
 
     $.ajax({
         url: '/Booking/ShowPayment',
         method: 'POST',
-        data: {booking_id:id },
+        data: { BookingId:id },
         success: function (response) {
             
             if (response.success) {
@@ -160,22 +161,22 @@ function loadBookings(status) {
             url: '/Booking/GetAll?status=' + status
         },
         'columns': [
-            { data: 'bookinG_ID', visible: false },
-            { data: 'useR_NAME', 'width': '5%' },
-            { data: 'useR_EMAIL', 'width': '5%' },
-            { data: 'bookinG_STATUS', 'width': '5%' },
-            { data: 'checK_IN_DATE', 'width': '5%' },
-            { data: 'checK_OUT_DATE', 'width': '5%' },
-            { data: 'nO_OF_STAY', 'width': '5%' },
+            { data: 'bookingId', visible: false },
+            { data: 'userName', 'width': '5%' },
+            { data: 'userEmail', 'width': '5%' },
+            { data: 'bookingStatus', 'width': '5%' },
+            { data: 'checkinDate', 'width': '5%' },
+            { data: 'checkoutDate', 'width': '5%' },
+            { data: 'noOfStay', 'width': '5%' },
             {
-                data: 'totaL_COST',
+                data: 'totalCost',
                 'width': '5%',
                 render: function (data, type, row) {                   
                     return '$' + parseFloat(data).toFixed(2); 
                 }
             },
             {
-                data: 'bookinG_ID',
+                data: 'bookingId',
                 'width': '5%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-view-btn w-100">View Details</button>';

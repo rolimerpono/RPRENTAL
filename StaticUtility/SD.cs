@@ -11,19 +11,19 @@ namespace StaticUtility
     {
         public enum UserRole
         { 
-            ADMIN,
-            CUSTOMER           
+            Admin,
+            Customer           
         }
 
         public enum BookingStatus
         { 
-            ALL,
-            APPROVED,
-            PENDING,
-            CHECK_IN,
-            CHECK_OUT,
-            CANCELLED,
-            REFUNDED        
+            All,
+            Approved,
+            Pending,
+            Checkin,
+            Checkout,
+            Cancelled,
+            Refunded        
         }
 
         public struct BookingTransaction 

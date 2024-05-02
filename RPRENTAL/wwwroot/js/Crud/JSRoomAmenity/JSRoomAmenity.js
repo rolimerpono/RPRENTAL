@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
         rowData = objDataTable.row($(this).closest('tr')).data();
         if (rowData) {
-            DisplayRoomAmenities('/RoomAmenity/DisplayRoomAmenities', rowData.rooM_ID);
+            DisplayRoomAmenities('/RoomAmenity/DisplayRoomAmenities', rowData.roomId);
         }
     });
 
@@ -14,14 +14,15 @@ $(document).ready(function () {
         const checkItems = $('input[type="checkbox"]:checked').map(function () {
             const id = $(this).attr('id').replace('selected-item-', '');
             const name = $(this).siblings('label').text();
-            return { AMENITY_ID : id, AMENITY_NAME: name, IS_CHECK: true };
+            return { AmenityId : id, AmenityName: name, IsCheck: true };
         }).get();
         
      
-        const serializedData = JSON.stringify(checkItems);      
+        const serializedData = JSON.stringify(checkItems);     
+       
         console.log(checkItems);
         if (rowData != null) {
-            ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.rooM_ID, serializedData);
+            ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.roomId, serializedData);
         }
         else {
             showToast('error','Please select a record.');
@@ -37,10 +38,10 @@ function initializeDataTable() {
             url: '/RoomAmenity/GetRoomList'
         },
         columns: [
-            { data: 'rooM_ID', visible: false },
-            { data: 'rooM_NAME', width: '60%' },
+            { data: 'roomId', visible: false },
+            { data: 'roomName', width: '60%' },
             {
-                data: 'rooM_ID',
+                data: 'roomId',
                 width: '5%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-edit-btn w-100">Select</button>';
@@ -55,11 +56,11 @@ function initializeDataTable() {
     });
 }
 
-function DisplayRoomAmenities(path, roomId) {
+function DisplayRoomAmenities(path, RoomId) {
     $.ajax({
         url: path,
         type: 'POST',
-        data: { ID: roomId },
+        data: { Id: RoomId },
         success: function (response) {
             if (response) {
                 $('#selected_room').html(response);
@@ -71,12 +72,12 @@ function DisplayRoomAmenities(path, roomId) {
     });
 }
 
-function ApplyRoomAmenities(path, roomId, serializedData) {
+function ApplyRoomAmenities(path, RoomId, serializedData) {
     
     $.ajax({
         url: path,
         type: 'POST',
-        data: { ID: roomId, jsonData: serializedData },
+        data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {           
             console.log(response);
             if (response) {                

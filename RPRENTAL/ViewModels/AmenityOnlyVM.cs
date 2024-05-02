@@ -6,11 +6,11 @@ namespace RPRENTAL.ViewModels
     {
         public AmenityVM()
         {
-            ID = 0;
-            AMENITY_NAME = string.Empty;
+            Id = 0;
+            AmenityName = string.Empty;
         }
-        public int ID { get; set; }
-        public String AMENITY_NAME { get; set; }
+        public int Id { get; set; }
+        public String AmenityName { get; set; }
 
       
 

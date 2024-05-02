@@ -26,9 +26,9 @@ namespace DataService.Implementation
             _IWorker.tbl_RoomAmenity.Save();
         }
 
-        public void Delete(int ID)
+        public void Delete(int Id)
         {
-            IEnumerable<RoomAmenity> objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(fw => fw.ROOM_ID == ID);
+            IEnumerable<RoomAmenity> objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(fw => fw.RoomId == Id);
             if (objRoomAmenity != null)
             {
                 foreach (var roomAmenity in objRoomAmenity)
@@ -40,16 +40,16 @@ namespace DataService.Implementation
             }
         }
 
-        public RoomAmenity Get(int ID)
+        public RoomAmenity Get(int Id)
         {
-            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.ID == ID,IncludeProperties: "ROOMS , AMENITY");
+            RoomAmenity objRoomAmenity = _IWorker.tbl_RoomAmenity.Get(fw => fw.Id == Id,IncludeProperties: "Room , Amenity");
             return objRoomAmenity;
         }
 
         public IEnumerable<RoomAmenity> GetAll()
         {
             IEnumerable<RoomAmenity> objRoomAmenity;
-            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "ROOMS,AMENITY");
+            objRoomAmenity = _IWorker.tbl_RoomAmenity.GetAll(IncludeProperties: "Room,Amenity");
             return objRoomAmenity;
         }
 

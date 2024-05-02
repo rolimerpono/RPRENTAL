@@ -16,7 +16,7 @@
     });
 
     $('#modal-register').on('shown.bs.modal', function () {      
-        $('#remail').focus().select();
+        $('#reg-email').focus().select();
     });
 
     $('.btn-forgotpassword').click(function () {
@@ -43,11 +43,11 @@ function authenticateUser(url) {
   
     let email = $('#email').val();
     let password = $('#password').val();
-    let formData = { EMAIL: email, PASSWORD: password };
+    let formData = { Email: email, Password: password };
 
     $.post(url, formData)
         .done(function (response) {   
-            if (response.role  == "ADMIN") {
+            if (response.role  == 'Admin') {
                 response.success ? (window.location.href = '/Dashboard/Index') : showToast('error', response.message);
             }
             else {
@@ -114,7 +114,7 @@ function ResetPassword(url) {
                     $('#reset-token').val('');   
                     $('#modal-reset-password').modal('hide');                     
                     showToast('success', response.message);                    
-                    if (response.role == 'admin')
+                    if (response.role == 'Admin')
                     {
                         window.location.href = '/Dashboard/Index';
                     }
@@ -135,23 +135,31 @@ function ResetPassword(url) {
 
 
 function registerUser(url) {
+    
     let formData = {
-        EMAIL: $('#remail').val(),
-        NAME: $('#rfullname').val(),
-        PASSWORD: $('#rpassword').val(),
-        CONFIRM_PASSWORD: $('#rconfirmpass').val(),
-        PHONE_NUMBER: $('#rphoneno').val()
+        Email: $('#reg-email').val(),
+        Fullname: $('#reg-fullname').val(),
+        PhoneNumber: $('#reg-phoneno').val(),
+        Password: $('#reg-password').val(),
+        ConfirmPassword: $('#reg-confirmpassword').val()       
     };
 
-    if (!validateEmail(formData.EMAIL)) {
+    if (!validateEmail(formData.Email)) {
         $('#email-validation').css('color', 'red').html('Please enter a valid email.');
         return;
     }
 
     if ($('#form-add')[0].checkValidity()) {
+        
         $.post(url, formData)
-            .done(function (response) {
-                response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
+            .done(function (response) {            
+                if (response.success) {                   
+                    window.location.href = '/Home/Index';
+                    showToast('success', response.message);
+                }
+                else {
+                    showToast('error', response.message);
+                }
             })
             .fail(function () {
                 showToast('error', 'An error occurred. Please try again later.');

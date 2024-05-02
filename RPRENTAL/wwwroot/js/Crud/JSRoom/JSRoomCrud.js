@@ -25,13 +25,13 @@ $(document).ready(function () {
     });
 
     $('#tbl_Rooms').on('click', '.select-delete-btn', function () {
-        var rowData = getRowData($(this));
-        $('#room_id').val(rowData.rooM_ID);
+        var rowData = getRowData($(this));        
+        $('#room_id').val(rowData.roomId);
         $('#modal-delete').modal('show');
     });
 
     $('.btn-delete').click(function () {
-        deleteRoom('#form-delete');
+        deleteRoom();
     });
 
 
@@ -62,8 +62,8 @@ function initializeDataTable() {
             url: '/Room/GetAll'
         },
         columns: [
-            { data: 'rooM_ID', visible: false },
-            { data: 'rooM_NAME', width: '15%' },
+            { data: 'roomId', visible: false },
+            { data: 'roomName', width: '15%' },
             {
                 data: 'description',
                 width: '35%',
@@ -76,18 +76,18 @@ function initializeDataTable() {
                 }
             },        
 
-            { data: 'rooM_PRICE', width: '5%' },
-            { data: 'maX_OCCUPANCY', width: '5%' },
-            { data: 'imagE_URL', visible: false },
+            { data: 'roomPrice', width: '5%' },
+            { data: 'maxOccupancy', width: '5%' },
+            { data: 'imageUrl', visible: false },
             {
-                data: 'rooM_ID',
+                data: 'roomId',
                 width: '5%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
-                data: 'rooM_ID',
+                data: 'roomId',
                 'width': '5%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
@@ -156,12 +156,12 @@ function saveRoom(url, formSelector) {
     }
 }
 
-function deleteRoom(formSelector) {
-    var objRoomData = $(formSelector).serialize();
+function deleteRoom() { 
+    let roomId = $('#room_id').val();    
     $.ajax({
         type: 'POST',
         url: '/Room/Delete',
-        data: objRoomData,
+        data: { RoomId: roomId },
         success: function (response) {
             objDataTable.ajax.reload();
             $('#modal-delete').modal('hide');

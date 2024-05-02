@@ -40,7 +40,7 @@
                     @if (_SignInManager.IsSignedIn(User))
                     {
                         <a class="nav-link text-white px-0 d-none d-sm-block">
-                            <span class="m-4">Welcome, @User.Identity.Name.ToLower()</span>
+                            <span class="m-4">Welcome, @User.Identity!.Name!.ToLower()</span>
                         </a>                 
                     }
                 </div>

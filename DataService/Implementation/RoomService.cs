@@ -26,15 +26,15 @@ namespace DataService.Implementation
             try
             {
 
-                if (objRoom.IMAGE != null)
+                if (objRoom.Image != null)
                 {
-                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.IMAGE.FileName);
+                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.Image.FileName);
                     string strImagePath = Path.Combine(_webHost.WebRootPath, @"img\Room Images");
 
 
                     var filestream = new FileStream(Path.Combine(strImagePath, strFilename), FileMode.Create);
-                    objRoom.IMAGE.CopyTo(filestream);
-                    objRoom.IMAGE_URL = @"\img\Room Images\" + strFilename;
+                    objRoom.Image.CopyTo(filestream);
+                    objRoom.ImageUrl = @"\img\Room Images\" + strFilename;
 
                 }
             
@@ -50,11 +50,11 @@ namespace DataService.Implementation
             }
         }
 
-        public void Delete(int ROOM_ID)
+        public void Delete(int RoomId)
         {
             try
             {
-                Room objRoom = _iWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == ROOM_ID);
+                Room objRoom = _iWorker.tbl_Rooms.Get(fw => fw.RoomId == RoomId);
 
                 if (objRoom != null)
                 {
@@ -70,13 +70,13 @@ namespace DataService.Implementation
           
         }
 
-        public Room Get(int ROOM_ID)
+        public Room Get(int RoomId)
         {
             Room objRoom;
             try
             {
               
-                objRoom = _iWorker.tbl_Rooms.Get(fw => fw.ROOM_ID == ROOM_ID,IncludeProperties: "ROOM_AMENITIES");
+                objRoom = _iWorker.tbl_Rooms.Get(fw => fw.RoomId == RoomId,IncludeProperties: "RoomAmenities");
                 if (objRoom != null)
                 {
                     return objRoom;
@@ -96,7 +96,7 @@ namespace DataService.Implementation
             try
             {
 
-                objRoom = _iWorker.tbl_Rooms.GetAll(IncludeProperties: "ROOM_AMENITIES");
+                objRoom = _iWorker.tbl_Rooms.GetAll(IncludeProperties: "RoomAmenities");
                 if (objRoom != null)
                 {
                     return objRoom;
@@ -115,7 +115,7 @@ namespace DataService.Implementation
             Room objRoomResult;
             try
             {
-                objRoomResult = _iWorker.tbl_Rooms.Get(fw => fw.ROOM_NAME == objRoom.ROOM_NAME);
+                objRoomResult = _iWorker.tbl_Rooms.Get(fw => fw.RoomName == objRoom.RoomName);
                 if (objRoomResult != null)
                 {
                     return true;      
@@ -133,15 +133,15 @@ namespace DataService.Implementation
             try
             {
 
-                if (objRoom.IMAGE != null)
+                if (objRoom.Image != null)
                 {
-                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.IMAGE.FileName);
+                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.Image.FileName);
                     string strImagePath = Path.Combine(_webHost.WebRootPath, @"img\Room Images");
 
 
-                    if (!String.IsNullOrEmpty(objRoom.IMAGE_URL))
+                    if (!String.IsNullOrEmpty(objRoom.ImageUrl))
                     {
-                        string previous_image = strImagePath + "\\" + Path.GetFileName(objRoom.IMAGE_URL);
+                        string previous_image = strImagePath + "\\" + Path.GetFileName(objRoom.ImageUrl);
 
                         if (System.IO.File.Exists(previous_image))
                         {
@@ -151,8 +151,8 @@ namespace DataService.Implementation
                     }
 
                     var filestream = new FileStream(Path.Combine(strImagePath, strFilename), FileMode.Create);
-                    objRoom.IMAGE.CopyTo(filestream);
-                    objRoom.IMAGE_URL = @"\img\Room Images\" + strFilename;
+                    objRoom.Image.CopyTo(filestream);
+                    objRoom.ImageUrl = @"\img\Room Images\" + strFilename;
                 
                 }
 

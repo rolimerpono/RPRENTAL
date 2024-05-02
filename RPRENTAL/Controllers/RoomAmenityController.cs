@@ -32,9 +32,9 @@ namespace RPRENTAL.Controllers
 
             RoomAmenityVM objData = new RoomAmenityVM();
 
-            objData.ROOM_LIST = objRoomList.ToList();
-            objData.AMENITIES = objAmenityList.ToList();
-            objData.ROOM_AMENITY = objRoomAmenities.ToList();           
+            objData.RoomList = objRoomList.ToList();
+            objData.Amenities = objAmenityList.ToList();
+            objData.RoomAmenity = objRoomAmenities.ToList();           
             
 
             return View("Index", objData);
@@ -44,21 +44,21 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult DisplayRoomAmenities(int ID)
+        public IActionResult DisplayRoomAmenities(int Id)
         {           
 
             var objRoomList = _IRoomService.GetAll();
 
             var objRoomAmenities = _IRoomService.GetAll()
-                .Where(room => room.ROOM_ID == ID) // Filter based on the desired Room ID
+                .Where(room => room.RoomId == Id) 
                 .GroupJoin(
                     _IRoomAmenityService.GetAll(),
-                    room => room.ROOM_ID,
-                    roomAmenity => roomAmenity.ROOM_ID,
+                    room => room.RoomId,
+                    roomAmenity => roomAmenity.RoomId,
                     (room, roomAmenityGroup) => new
                     {
-                        RoomId = room.ROOM_ID,
-                        RoomName = room.ROOM_NAME,
+                        RoomId = room.RoomId,
+                        RoomName = room.RoomName,
                         Amenities = roomAmenityGroup.ToList()
                     })
                 .Select(grouped => new
@@ -68,11 +68,11 @@ namespace RPRENTAL.Controllers
                     RoomAmenities = _IAmenityService.GetAll()
                         .Select(amenity =>
                         {
-                            var roomAmenity = grouped.Amenities.FirstOrDefault(ra => ra.AMENITY_ID == amenity.AMENITY_ID);
+                            var roomAmenity = grouped.Amenities.FirstOrDefault(ra => ra.AmenityId == amenity.AmenityId);
                             return new
                             {
                                 Amenity = amenity,
-                                IS_CHECK = roomAmenity != null ? true : false
+                                IsCheck = roomAmenity != null ? true : false
                             };
                         })
                         .ToList()
@@ -80,10 +80,10 @@ namespace RPRENTAL.Controllers
                 .FirstOrDefault(); 
 
             RoomAmenityVM objData = new RoomAmenityVM();
-            objData.ROOM_AMENITY = new List<RoomAmenity>();
-            objData.ROOM_LIST = new List<Room>();
-            objData.ROOM_ID = objRoomAmenities.RoomId;
-            objData.ROOM_NAME = objRoomAmenities.RoomName;
+            objData.RoomAmenity = new List<RoomAmenity>();
+            objData.RoomList = new List<Room>();
+            objData.RoomId = objRoomAmenities!.RoomId;
+            objData.RoomName = objRoomAmenities.RoomName;
           
            
             foreach (var oAmenity in objRoomAmenities.RoomAmenities.ToList())
@@ -92,13 +92,13 @@ namespace RPRENTAL.Controllers
                 var newAmenity = new Amenity
                 {
 
-                    AMENITY_ID = oAmenity.Amenity.AMENITY_ID,
-                    AMENITY_NAME = oAmenity.Amenity.AMENITY_NAME,
-                    IS_CHECK = oAmenity.IS_CHECK,
+                    AmenityId = oAmenity.Amenity.AmenityId,
+                    AmenityName = oAmenity.Amenity.AmenityName,
+                    IsCheck = oAmenity.IsCheck,
                    
                 };
               
-                objData.AMENITIES.Add(newAmenity);
+                objData.Amenities.Add(newAmenity);
             }
 
             return PartialView("Common/_RoomAmenity",objData);
@@ -113,16 +113,15 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult ApplyRoomAmenities(int ID, string jsonData)
+        public IActionResult ApplyRoomAmenities(int Id, string jsonData)
         {
             try
             {
-                if(ID != 0) {
-                    _IRoomAmenityService.Delete(ID);
+                if(Id != 0) {
+                    _IRoomAmenityService.Delete(Id);
                 }
 
                 var objAmenityList = JsonConvert.DeserializeObject<List<Amenity>>(jsonData);
-
 
 
                 if (objAmenityList != null)
@@ -132,7 +131,7 @@ namespace RPRENTAL.Controllers
                     foreach (var item in objAmenityList)
                     {
 
-                        var objAmenity = new RoomAmenity { ID = 0, ROOM_ID = ID, AMENITY_ID = item.AMENITY_ID };
+                        var objAmenity = new RoomAmenity { Id = 0, RoomId = Id, AmenityId = item.AmenityId };
                         _IRoomAmenityService.Create(objAmenity);
                     }
                    

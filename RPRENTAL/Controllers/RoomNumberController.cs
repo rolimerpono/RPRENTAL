@@ -38,10 +38,10 @@ namespace RPRENTAL.Controllers
             RoomNumberVM objRoomNumberVM = new RoomNumberVM()
             {
                 
-                ROOM_LIST = _IRoomService.GetAll().Select(fw => new SelectListItem
+                RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
                 {
-                    Text = fw.ROOM_NAME,
-                    Value = fw.ROOM_ID.ToString()
+                    Text = fw.RoomName,
+                    Value = fw.RoomId.ToString()
                    
                 })
                 .OrderBy(fw => fw.Text)
@@ -57,18 +57,18 @@ namespace RPRENTAL.Controllers
         [HttpPost]
         public IActionResult Create(RoomNumberVM objRoomNumberVM)
         {
-            Boolean IsRoomNumberExists = _IRoomNumberService.IsRoomNumberExists(objRoomNumberVM.tbl_RoomNumber.ROOM_NUMBER);
+            Boolean IsRoomNumberExists = _IRoomNumberService.IsRoomNumberExists(objRoomNumberVM.RoomNumber!.RoomNo);
 
 
             if (IsRoomNumberExists)
             {             
 
-                objRoomNumberVM.ROOM_LIST = new List<SelectListItem>();
+                objRoomNumberVM.RoomList = new List<SelectListItem>();
 
-                objRoomNumberVM.ROOM_LIST = _IRoomService.GetAll().Select(fw => new SelectListItem
+                objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
                 {
-                    Text = fw.ROOM_NAME,
-                    Value = fw.ROOM_ID.ToString() 
+                    Text = fw.RoomName,
+                    Value = fw.RoomId.ToString() 
                 })
                 .OrderBy(fw => fw.Text)
                 .GroupBy(fw => fw.Text)
@@ -81,7 +81,7 @@ namespace RPRENTAL.Controllers
 
             if (ModelState.IsValid && !IsRoomNumberExists)
             {
-                _IRoomNumberService.Create(objRoomNumberVM.tbl_RoomNumber);
+                _IRoomNumberService.Create(objRoomNumberVM.RoomNumber);
                 return Json(new { success = true, message = "Room number created successfully." });
             }
             else
@@ -92,23 +92,22 @@ namespace RPRENTAL.Controllers
 
 
         [HttpGet]
-        public IActionResult Update(int ROOM_NUMBER)
+        public IActionResult Update(int RoomNo)
         {
 
-            RoomNumberVM objRoomNumberVM = new RoomNumberVM()
-            {
+            RoomNumberVM objRoomNumberVM = new RoomNumberVM()            {
 
-                ROOM_LIST = _IRoomService.GetAll().Select(fw => new SelectListItem
+                RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
                 {
-                    Text = fw.ROOM_NAME,
-                    Value = fw.ROOM_ID.ToString()
+                    Text = fw.RoomName,
+                    Value = fw.RoomId.ToString()
 
                 })
                 .OrderBy(fw => fw.Text)
                  .GroupBy(fw => fw.Text)
                  .Select(fw => fw.First()),
                 
-                tbl_RoomNumber = _IRoomNumberService.Get(ROOM_NUMBER)
+                RoomNumber = _IRoomNumberService.Get(RoomNo)
             };
             
 
@@ -122,17 +121,17 @@ namespace RPRENTAL.Controllers
 
             if (ModelState.IsValid)
             {
-                _IRoomNumberService.Update(objRoomNumberVM.tbl_RoomNumber);
+                _IRoomNumberService.Update(objRoomNumberVM.RoomNumber!);
                 return Json(new { success = true, message = "Room number updated successfully." });
             }
             else
             {
-                objRoomNumberVM.ROOM_LIST = new List<SelectListItem>();
+                objRoomNumberVM.RoomList = new List<SelectListItem>();
 
-                objRoomNumberVM.ROOM_LIST = _IRoomService.GetAll().Select(fw => new SelectListItem
+                objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
                 {
-                    Text = fw.ROOM_NAME,
-                    Value = fw.ROOM_ID.ToString()
+                    Text = fw.RoomName,
+                    Value = fw.RoomId.ToString()
                 })
                 .OrderBy(fw => fw.Text)
                 .GroupBy(fw => fw.Text)
@@ -156,14 +155,13 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
-        public IActionResult Delete(int ROOM_NUMBER)
+        public IActionResult Delete(int RoomNo)
         {
             try
             {
-                if (ROOM_NUMBER != 0)
+                if (RoomNo != 0)
                 {
-                    _IRoomNumberService.Delete(ROOM_NUMBER);
-                    TempData["success"] = "Room deleted successfully.";
+                    _IRoomNumberService.Delete(RoomNo);                 
                     return Json(new { success = true, message = "Room number deleted successfully." });
                 }
                 return Json(new { success = false, message = "Something went wrong." });

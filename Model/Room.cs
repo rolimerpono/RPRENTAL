@@ -11,55 +11,52 @@ namespace Model
     {
         public Room()
         {          
-            DESCRIPTION = "";
-            ROOM_NAME = "";
-            ROOM_PRICE = 0;
-            MAX_OCCUPANCY = 0;
-            IMAGE_URL = "https://placehold.co/600x400";      
-            CREATED_DATE = DateTime.Now;           
+            Description = "";
+            RoomName = "";
+            RoomPrice = 0;
+            MaxOccupancy = 0;
+            ImageUrl = "https://placehold.co/600x400";      
+            CreatedDate = DateTime.Now;           
         }
 
 
         [Key]
-        public int ROOM_ID { get; set; }      
- 
-        [Display(Name = "ROOM NAME")]
-        [Required(ErrorMessage = "Please provide a room name.")]
-        public string ROOM_NAME { get; set; }
+        public int RoomId { get; set; }   
 
-        public string? DESCRIPTION { get; set; } = "";
+        [Required]
+        public string RoomName { get; set; }
 
-        [Display(Name = "PRICE")]
+        public string? Description { get; set; } = "";
+
         [Range(10,150)]
-        public required double ROOM_PRICE { get; set; }
+        public required double RoomPrice { get; set; }
 
-
-        [Display(Name = "OCCUPANCY")]
+     
         [Range(1,10)]
-        public required int MAX_OCCUPANCY { get; set; }
+        public required int MaxOccupancy { get; set; }
 
-        public string? IMAGE_URL { get; set; }
+        public string? ImageUrl { get; set; }
 
  
-        public DateTime? CREATED_DATE { get; set; } = DateTime.Now;
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
 
-        public DateTime? UPDATED_DATE { get; set; } = DateTime.Now;
-
-        [ValidateNever]
-        public IEnumerable<RoomAmenity> ROOM_AMENITIES { get; set; }
+        public DateTime? UpdatedDate { get; set; } = DateTime.Now;
 
         [ValidateNever]
+        public IEnumerable<RoomAmenity> RoomAmenities { get; set; }
+
+        [ValidateNever]
         [NotMapped]
-        public IFormFile? IMAGE { get; set; }
+        public IFormFile? Image { get; set; }
 
         [NotMapped]
-        public Boolean IS_ROOM_AVAILABLE { get; set; } = true;
+        public Boolean IsRoomAvailable { get; set; } = true;
 
         [NotMapped]
-        public DateOnly? CHECKIN_DATE { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly? CheckinDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
         [NotMapped]
-        public DateOnly? CHECKOUT_DATE { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly? CheckoutDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
      
     }

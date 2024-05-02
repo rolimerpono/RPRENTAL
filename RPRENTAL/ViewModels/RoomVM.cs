@@ -6,7 +6,7 @@ namespace RPRENTAL.ViewModels
     public class RoomVM
     {
         [ValidateNever]
-        public Room? ROOM { get; set; }       
+        public Room? Room { get; set; }      
 
         
     }

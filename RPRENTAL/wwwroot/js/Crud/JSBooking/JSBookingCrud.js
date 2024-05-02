@@ -1,9 +1,9 @@
-﻿function showPayment(id) {
+﻿function showPayment(Id) {
 
     $.ajax({
         url: '/Booking/ShowPayment',
         method: 'POST',
-        data: { booking_id: id },
+        data: { BookingId: Id },
         success: function (response) {
 
             if (response.success) {
@@ -21,20 +21,20 @@
 
 }
 
-function confirmBooking(room_id) {
+function confirmBooking(RoomId) {
     var serializedData = $('#checking_info').serialize();
-
+    
 
     $.ajax({
         url: '/Booking/ConfirmBooking',
         method: 'POST',
-        data: { ID: room_id, jsonData: serializedData },
+        data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {
             if (response.success) {
                 let response_data = JSON.parse(response.booking);
 
-                $('#modal-booking-' + room_id).modal('hide');
-                showPayment(response_data.BOOKING_ID);
+                $('#modal-booking-' + RoomId).modal('hide');
+                showPayment(response_data.BookingId);
             }
             else {
                 showToast('error', 'Somethign went wrong : ' + response.message);
@@ -49,18 +49,18 @@ function confirmBooking(room_id) {
 
 }
 
-function getBooking(room_id) {
+function getBooking(RoomId) {
     var serializedData = $('#checking_info').serialize();  
   
     $.ajax({
         url: '/Booking/CreateBooking',
         method: 'GET',
-        data: { ID: room_id, jsonData: serializedData },
+        data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {
           
-            let modalContent = $('#modal-booking-content-' + room_id);           
+            let modalContent = $('#modal-booking-content-' + RoomId);           
             modalContent.empty().html(response);
-            $('#modal-booking-' + room_id).modal('show');   
+            $('#modal-booking-' + RoomId).modal('show');   
 
         },
         error: function (xhr, status, error) {

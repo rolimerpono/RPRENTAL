@@ -13,72 +13,74 @@ namespace Model
     {
         public Booking()
         {
-            NO_OF_STAY = (CHECK_IN_DATE.AddDays(1 - CHECK_OUT_DATE.DayNumber).DayNumber);
+            NoOfStay = (CheckinDate.AddDays(1 - CheckoutDate.DayNumber).DayNumber);
         }
 
         [Key]
-        public int  BOOKING_ID { get;set; } 
+        public int  BookingId { get;set; }
+
+
+
+        [ForeignKey("User")]
+        [Required]
+        public string UserId { get; set; }
+
+        public ApplicationUser? User { get; set; }
+
+
+        [ForeignKey("Room")]
+        [Required]
+        public int RoomId { get;set; }    
+        public Room? Room { get;set; }      
+
+        public int RoomNo { get; set; }
 
         [Required]
-        public string USER_ID { get;set; }
-
-        [ForeignKey("USER_ID")]
-        public ApplicationUser? USERS { get; set; }
+        public string UserName { get; set; }
 
         [Required]
-        public int ROOM_ID { get;set; }
+        public string UserEmail { get; set;}
 
-        [ForeignKey("ROOM_ID")]
-        public Room? ROOM { get;set; }      
-
-        public int ROOM_NUMBER { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Required]
-        public string USER_NAME { get; set; }
+        public double TotalCost { get; set; }      
+
+        public string? BookingStatus { get; set; }
 
         [Required]
-        public string USER_EMAIL { get; set;}
-
-        public string? PHONE_NUMBER { get; set; }
-
-        [Required]
-        public double TOTAL_COST { get; set; }      
-
-        public string? BOOKING_STATUS { get; set; }
-
-        [Required]
-        public  DateTime BOOKING_DATE { get; set; } = DateTime.Now;
+        public  DateTime BookingDate { get; set; } = DateTime.Now;
 
 
         [Required]
-        public DateOnly CHECK_IN_DATE { get; set; }
+        public DateOnly CheckinDate { get; set; }
 
         [Required]
-        public  DateOnly CHECK_OUT_DATE { get; set; }
+        public  DateOnly CheckoutDate { get; set; }
 
         [ValidateNever]
-        public int NO_OF_STAY { get; set; }
+        public int NoOfStay { get; set; }
 
-        public Boolean IS_PAYMENT_SUCCESSFULL { get; set; } = false;
+        public Boolean IsPaymentSuccessfull { get; set; } = false;
 
-        public DateTime PAYMENT_DATE { get; set; } 
+        public DateTime PaymentDate { get; set; } 
 
-        public string? STRIPE_SESSION_ID { get; set; }
+        public string? StripeSessionId { get; set; }
 
-        public string? STRIPE_PAYEMENT_INTENT_ID { get; set; }
+        public string? StripePaymentIntentId { get; set; }
 
-        public DateTime ACTUAL_CHECK_IN_DATE { get; set; }
+        public DateTime ActualCheckinDate { get; set; }
 
-        public DateTime ACTUAL_CHECK_OUT_DATE { get; set; }
+        public DateTime ActualCheckoutDate { get; set; }
 
-        public DateTime ACTUAL_CANCELLED_DATE { get; set; }
+        public DateTime ActualCancelledDate { get; set; }
       
         [NotMapped]
-        public IEnumerable<RoomAmenity> ROOM_AMENITY { get; set; }
+        public IEnumerable<RoomAmenity> RoomAmenity { get; set; }
 
         [ValidateNever]
         [NotMapped]
-        public List<string> ROOM_NUMBER_LIST { get; set; }
+        public List<string> RoomNumberList { get; set; }
 
      
 

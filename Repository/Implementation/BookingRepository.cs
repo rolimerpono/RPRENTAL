@@ -33,32 +33,32 @@ namespace Repository.Implementation
 
         public void UpdateBookingStatus(int BookingID, string BookingStatus, int room_number)
         {
-            var objBooking = _db.tbl_Booking.FirstOrDefault(fw => fw.BOOKING_ID == BookingID);
+            var objBooking = _db.tbl_Booking.FirstOrDefault(fw => fw.BookingId == BookingID);
 
             SD.BookingStatus objStatus;
             objStatus = (SD.BookingStatus)Enum.Parse(typeof(SD.BookingStatus), BookingStatus);
 
             switch (objStatus) 
             {
-                case SD.BookingStatus.CHECK_IN:
-                    objBooking.ROOM_NUMBER = room_number;
-                    objBooking.ACTUAL_CHECK_IN_DATE = DateTime.Now;
-                    objBooking.BOOKING_STATUS = BookingStatus;
+                case SD.BookingStatus.Checkin:
+                    objBooking.RoomNo = room_number;
+                    objBooking.ActualCheckinDate = DateTime.Now;
+                    objBooking.BookingStatus = BookingStatus;
                     break;
 
-                case SD.BookingStatus.CHECK_OUT:
-                    objBooking.ACTUAL_CHECK_OUT_DATE = DateTime.Now;
-                    objBooking.BOOKING_STATUS = BookingStatus;
+                case SD.BookingStatus.Checkout:
+                    objBooking.ActualCheckoutDate = DateTime.Now;
+                    objBooking.BookingStatus = BookingStatus;
                     break;
 
-                case SD.BookingStatus.APPROVED:
-                    objBooking.BOOKING_DATE = DateTime.Now;
-                    objBooking.BOOKING_STATUS = BookingStatus;
+                case SD.BookingStatus.Approved:
+                    objBooking.BookingDate = DateTime.Now;
+                    objBooking.BookingStatus = BookingStatus;
                     break;
 
-                case SD.BookingStatus.CANCELLED:
-                    objBooking.BOOKING_STATUS = BookingStatus;
-                    objBooking.ACTUAL_CANCELLED_DATE = DateTime.Now;
+                case SD.BookingStatus.Cancelled:
+                    objBooking.BookingStatus = BookingStatus;
+                    objBooking.ActualCheckinDate = DateTime.Now;
 
                     break;            
             
@@ -66,28 +66,28 @@ namespace Repository.Implementation
             
         }
       
-        public void UpdateStripePaymentID(int BookingID, string SessionID, string StripePaymentID)
+        public void UpdateStripePaymentID(int BookingId, string SessionId, string StripePaymentId)
         {
-            var objBooking = _db.tbl_Booking.FirstOrDefault(fw => fw.BOOKING_ID ==BookingID);
+            var objBooking = _db.tbl_Booking.FirstOrDefault(fw => fw.BookingId ==BookingId);
 
             if (objBooking != null) { 
-                if(!string.IsNullOrEmpty(SessionID))
+                if(!string.IsNullOrEmpty(SessionId))
                 {
-                    objBooking.STRIPE_SESSION_ID = SessionID;
+                    objBooking.StripeSessionId = SessionId;
                 }
 
-                if (!string.IsNullOrEmpty(StripePaymentID))
+                if (!string.IsNullOrEmpty(StripePaymentId))
                 {
-                    objBooking.STRIPE_PAYEMENT_INTENT_ID = StripePaymentID;
-                    objBooking.PAYMENT_DATE = DateTime.Now;
-                    objBooking.IS_PAYMENT_SUCCESSFULL = true;
+                    objBooking.StripePaymentIntentId = StripePaymentId;
+                    objBooking.PaymentDate = DateTime.Now;
+                    objBooking.IsPaymentSuccessfull = true;
 
                 }
             
             }
         }
 
-        public void UpdatePaypalPaymentID(int BookingID, string SessionID, string PaypalPaymentID)
+        public void UpdatePaypalPaymentID(int BookingId, string SessionId, string PaypalPaymentId)
         {
             throw new NotImplementedException();
         }

@@ -26,23 +26,23 @@ namespace RPRENTAL.Controllers
             var pageSize = 6;
 
             var objRoomList = _iWorker.tbl_Rooms
-             .GetAll(IncludeProperties: "ROOM_AMENITIES")
-             .Select(roomItem => new HomeVM
+             .GetAll(IncludeProperties: "RoomAmenities")
+             .Select(room_item => new HomeVM
              {
-                 ROOM_ID = roomItem.ROOM_ID,
-                 ROOM_NAME = roomItem.ROOM_NAME,
-                 DESCRIPTION = roomItem.DESCRIPTION,
-                 ROOM_PRICE = roomItem.ROOM_PRICE,
-                 ROOM_AMENITIES = roomItem.ROOM_AMENITIES?.Select(item => new RoomAmenity
+                 RoomId = room_item.RoomId,
+                 RoomName = room_item.RoomName,
+                 Description = room_item.Description,
+                 RoomPrice = room_item.RoomPrice,
+                 RoomAmenities = room_item.RoomAmenities?.Select(item => new RoomAmenity
                  {
-                     ID= item.ID,
-                     ROOM_ID = item.ROOM_ID,
-                     AMENITY_ID = item.AMENITY_ID,
-                     AMENITY_NAME = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == item.AMENITY_ID)?.AMENITY_NAME,
-                     ROOMS = item.ROOMS
+                     Id= item.Id,
+                     RoomId = item.RoomId,
+                     AmenityId = item.AmenityId,
+                     Amenity = _iWorker.tbl_Amenity.Get(fw => fw.AmenityId == item.AmenityId),
+                     Room = item.Room
                  }).ToList(),
-                 MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
-                 IMAGE_URL = roomItem.IMAGE_URL
+                 MaxOccupancy = room_item.MaxOccupancy,
+                 ImageUrl = room_item.ImageUrl,
              }).ToList();
 
             return View("Index", PaginatedList<HomeVM>.Create(objRoomList.AsQueryable(), pageNumber, pageSize));
@@ -50,35 +50,35 @@ namespace RPRENTAL.Controllers
            
 
         [HttpPost]
-        public IActionResult GetRoomAvailable(DateOnly CHECKIN_DATE, DateOnly CHECKOUT_DATE, int? iPage)
+        public IActionResult GetRoomAvailable(DateOnly CheckinDate, DateOnly CheckoutDate, int? iPage)
         {
             var objRoomList = _iWorker.tbl_Rooms
-                .GetAll(IncludeProperties: "ROOM_AMENITIES")
-                .AsEnumerable() // Load into memory to perform further operations
-                .Select(roomItem =>
+                .GetAll(IncludeProperties: "RoomAmenities")
+                .AsEnumerable()
+                .Select(room_item =>
                 {
-                    var iCounter = new Util(_iWorker).GetRoomsAvailableCount(roomItem.ROOM_ID, CHECKIN_DATE, CHECKOUT_DATE);
+                    var iCounter = new Util(_iWorker).GetRoomsAvailableCount(room_item.RoomId, CheckinDate, CheckoutDate);
 
                     return new HomeVM
                     {
-                        ROOM_ID = roomItem.ROOM_ID,
-                        ROOM_NAME = roomItem.ROOM_NAME,
-                        DESCRIPTION = roomItem.DESCRIPTION,
-                        ROOM_PRICE = roomItem.ROOM_PRICE,
-                        ROOM_AMENITIES = roomItem.ROOM_AMENITIES.Select(item => new RoomAmenity
+                        RoomId = room_item.RoomId,
+                        RoomName = room_item.RoomName,
+                        Description = room_item.Description,
+                        RoomPrice = room_item.RoomPrice,
+                        RoomAmenities = room_item.RoomAmenities.Select(item => new RoomAmenity
                         {
-                            ID = item.ID,
-                            ROOM_ID = item.ROOM_ID,
-                            AMENITY_ID = item.AMENITY_ID,
-                            AMENITY_NAME = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == item.AMENITY_ID).AMENITY_NAME,
-                            ROOMS = item.ROOMS
+                            Id = item.Id,
+                            RoomId = item.RoomId,
+                            AmenityId = item.AmenityId,
+                            Amenity = _iWorker.tbl_Amenity.Get(fw => fw.AmenityId == item.AmenityId),
+                            Room = item.Room
                         }).ToList(),
 
-                        MAX_OCCUPANCY = roomItem.MAX_OCCUPANCY,
-                        IS_ROOM_AVAILABLE = iCounter > 0 ? true : false,
-                        IMAGE_URL = roomItem.IMAGE_URL,
-                        CHECKIN_DATE = CHECKIN_DATE,
-                        CHECKOUT_DATE = CHECKOUT_DATE
+                        MaxOccupancy = room_item.MaxOccupancy,
+                        IsRoomAvailable = iCounter > 0 ? true : false,
+                        ImageUrl = room_item.ImageUrl,
+                        CheckinDate = CheckinDate,
+                        CheckoutDate = CheckoutDate
                     };
                 }).ToList();
 

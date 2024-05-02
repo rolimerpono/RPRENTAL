@@ -157,45 +157,45 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("Model.Amenity", b =>
                 {
-                    b.Property<int>("AMENITY_ID")
+                    b.Property<int>("AmenityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AMENITY_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AmenityId"));
 
-                    b.Property<string>("AMENITY_NAME")
+                    b.Property<string>("AmenityName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AMENITY_ID");
+                    b.HasKey("AmenityId");
 
                     b.ToTable("tbl_Amenity");
 
                     b.HasData(
                         new
                         {
-                            AMENITY_ID = 1,
-                            AMENITY_NAME = "Washing Machine"
+                            AmenityId = 1,
+                            AmenityName = "Washing Machine"
                         },
                         new
                         {
-                            AMENITY_ID = 2,
-                            AMENITY_NAME = "Electric Fan"
+                            AmenityId = 2,
+                            AmenityName = "Electric Fan"
                         },
                         new
                         {
-                            AMENITY_ID = 3,
-                            AMENITY_NAME = "TV"
+                            AmenityId = 3,
+                            AmenityName = "TV"
                         },
                         new
                         {
-                            AMENITY_ID = 4,
-                            AMENITY_NAME = "Internet Wifi"
+                            AmenityId = 4,
+                            AmenityName = "Internet Wifi"
                         },
                         new
                         {
-                            AMENITY_ID = 5,
-                            AMENITY_NAME = "Microwave"
+                            AmenityId = 5,
+                            AmenityName = "Microwave"
                         });
                 });
 
@@ -207,12 +207,12 @@ namespace DatabaseAccess.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CREATED_DATE")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -220,6 +220,9 @@ namespace DatabaseAccess.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Fullname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -250,8 +253,8 @@ namespace DatabaseAccess.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("USER_NAME")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -272,77 +275,77 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("Model.Booking", b =>
                 {
-                    b.Property<int>("BOOKING_ID")
+                    b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BOOKING_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
 
-                    b.Property<DateTime>("ACTUAL_CANCELLED_DATE")
+                    b.Property<DateTime>("ActualCancelledDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ACTUAL_CHECK_IN_DATE")
+                    b.Property<DateTime>("ActualCheckinDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ACTUAL_CHECK_OUT_DATE")
+                    b.Property<DateTime>("ActualCheckoutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("BOOKING_DATE")
+                    b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("BOOKING_STATUS")
+                    b.Property<string>("BookingStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("CHECK_IN_DATE")
+                    b.Property<DateOnly>("CheckinDate")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly>("CHECK_OUT_DATE")
+                    b.Property<DateOnly>("CheckoutDate")
                         .HasColumnType("date");
 
-                    b.Property<bool>("IS_PAYMENT_SUCCESSFULL")
+                    b.Property<bool>("IsPaymentSuccessfull")
                         .HasColumnType("bit");
 
-                    b.Property<int>("NO_OF_STAY")
+                    b.Property<int>("NoOfStay")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("PAYMENT_DATE")
+                    b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PHONE_NUMBER")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ROOM_ID")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ROOM_NUMBER")
+                    b.Property<int>("RoomNo")
                         .HasColumnType("int");
 
-                    b.Property<string>("STRIPE_PAYEMENT_INTENT_ID")
+                    b.Property<string>("StripePaymentIntentId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("STRIPE_SESSION_ID")
+                    b.Property<string>("StripeSessionId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("TOTAL_COST")
+                    b.Property<double>("TotalCost")
                         .HasColumnType("float");
 
-                    b.Property<string>("USER_EMAIL")
+                    b.Property<string>("UserEmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("USER_ID")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("USER_NAME")
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BOOKING_ID");
+                    b.HasKey("BookingId");
 
-                    b.HasIndex("ROOM_ID");
+                    b.HasIndex("RoomId");
 
-                    b.HasIndex("USER_ID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("tbl_Booking");
                 });
@@ -380,362 +383,362 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("Model.Room", b =>
                 {
-                    b.Property<int>("ROOM_ID")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ROOM_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
 
-                    b.Property<DateTime?>("CREATED_DATE")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DESCRIPTION")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IMAGE_URL")
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MAX_OCCUPANCY")
+                    b.Property<int>("MaxOccupancy")
                         .HasColumnType("int");
 
-                    b.Property<string>("ROOM_NAME")
+                    b.Property<string>("RoomName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ROOM_PRICE")
+                    b.Property<double>("RoomPrice")
                         .HasColumnType("float");
 
-                    b.Property<DateTime?>("UPDATED_DATE")
+                    b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ROOM_ID");
+                    b.HasKey("RoomId");
 
                     b.ToTable("tbl_Rooms");
 
                     b.HasData(
                         new
                         {
-                            ROOM_ID = 1,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6681),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Single.jpg",
-                            MAX_OCCUPANCY = 1,
-                            ROOM_NAME = "Single Room",
-                            ROOM_PRICE = 85.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6682)
+                            RoomId = 1,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4039),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Single.jpg",
+                            MaxOccupancy = 1,
+                            RoomName = "Single Room",
+                            RoomPrice = 85.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4040)
                         },
                         new
                         {
-                            ROOM_ID = 2,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6690),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Double.jpg",
-                            MAX_OCCUPANCY = 2,
-                            ROOM_NAME = "Double Room",
-                            ROOM_PRICE = 90.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6691)
+                            RoomId = 2,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4047),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Double.jpg",
+                            MaxOccupancy = 2,
+                            RoomName = "Double Room",
+                            RoomPrice = 90.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4048)
                         },
                         new
                         {
-                            ROOM_ID = 3,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6698),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Deluxed.jpg",
-                            MAX_OCCUPANCY = 3,
-                            ROOM_NAME = "Deluxed Room",
-                            ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6699)
+                            RoomId = 3,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4053),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Deluxed.jpg",
+                            MaxOccupancy = 3,
+                            RoomName = "Deluxed Room",
+                            RoomPrice = 100.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4054)
                         },
                         new
                         {
-                            ROOM_ID = 4,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6705),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Queens.jpg",
-                            MAX_OCCUPANCY = 4,
-                            ROOM_NAME = "Queens Room",
-                            ROOM_PRICE = 120.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6706)
+                            RoomId = 4,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4099),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Queens.jpg",
+                            MaxOccupancy = 4,
+                            RoomName = "Queens Room",
+                            RoomPrice = 120.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4100)
                         },
                         new
                         {
-                            ROOM_ID = 5,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6712),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Kings.jpg",
-                            MAX_OCCUPANCY = 5,
-                            ROOM_NAME = "Kings Room",
-                            ROOM_PRICE = 130.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6713)
+                            RoomId = 5,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4106),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Kings.jpg",
+                            MaxOccupancy = 5,
+                            RoomName = "Kings Room",
+                            RoomPrice = 130.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4107)
                         },
                         new
                         {
-                            ROOM_ID = 6,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6718),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Executive.jpg",
-                            MAX_OCCUPANCY = 10,
-                            ROOM_NAME = "Executive Suite",
-                            ROOM_PRICE = 100.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6719)
+                            RoomId = 6,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4113),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Executive.jpg",
+                            MaxOccupancy = 10,
+                            RoomName = "Executive Suite",
+                            RoomPrice = 100.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4114)
                         },
                         new
                         {
-                            ROOM_ID = 7,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6725),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Super Deluxed.jpg",
-                            MAX_OCCUPANCY = 10,
-                            ROOM_NAME = "Super Deluxed",
-                            ROOM_PRICE = 110.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6726)
+                            RoomId = 7,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4119),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Super Deluxed.jpg",
+                            MaxOccupancy = 10,
+                            RoomName = "Super Deluxed",
+                            RoomPrice = 110.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4120)
                         },
                         new
                         {
-                            ROOM_ID = 8,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6732),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Diamond Room.jpg",
-                            MAX_OCCUPANCY = 10,
-                            ROOM_NAME = "Diamond Room",
-                            ROOM_PRICE = 87.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6733)
+                            RoomId = 8,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4126),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Diamond Room.jpg",
+                            MaxOccupancy = 10,
+                            RoomName = "Diamond Room",
+                            RoomPrice = 87.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4127)
                         },
                         new
                         {
-                            ROOM_ID = 9,
-                            CREATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6739),
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                            IMAGE_URL = "\\\\img\\\\Rooms\\\\Emerald Room.jpg",
-                            MAX_OCCUPANCY = 10,
-                            ROOM_NAME = "Emerald Deluxed",
-                            ROOM_PRICE = 98.0,
-                            UPDATED_DATE = new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6740)
+                            RoomId = 9,
+                            CreatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4133),
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                            ImageUrl = "\\img\\Rooms\\Emerald Room.jpg",
+                            MaxOccupancy = 10,
+                            RoomName = "Emerald Deluxed",
+                            RoomPrice = 98.0,
+                            UpdatedDate = new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4134)
                         });
                 });
 
             modelBuilder.Entity("Model.RoomAmenity", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AMENITY_ID")
+                    b.Property<int>("AmenityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ROOM_ID")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AMENITY_ID");
+                    b.HasIndex("AmenityId");
 
-                    b.HasIndex("ROOM_ID");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("tbl_RoomAmenity");
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
-                            AMENITY_ID = 1,
-                            ROOM_ID = 1
+                            Id = 1,
+                            AmenityId = 1,
+                            RoomId = 1
                         },
                         new
                         {
-                            ID = 2,
-                            AMENITY_ID = 2,
-                            ROOM_ID = 1
+                            Id = 2,
+                            AmenityId = 2,
+                            RoomId = 1
                         },
                         new
                         {
-                            ID = 3,
-                            AMENITY_ID = 3,
-                            ROOM_ID = 1
+                            Id = 3,
+                            AmenityId = 3,
+                            RoomId = 1
                         },
                         new
                         {
-                            ID = 4,
-                            AMENITY_ID = 4,
-                            ROOM_ID = 1
+                            Id = 4,
+                            AmenityId = 4,
+                            RoomId = 1
                         },
                         new
                         {
-                            ID = 5,
-                            AMENITY_ID = 5,
-                            ROOM_ID = 1
+                            Id = 5,
+                            AmenityId = 5,
+                            RoomId = 1
                         },
                         new
                         {
-                            ID = 6,
-                            AMENITY_ID = 3,
-                            ROOM_ID = 2
+                            Id = 6,
+                            AmenityId = 3,
+                            RoomId = 2
                         },
                         new
                         {
-                            ID = 7,
-                            AMENITY_ID = 1,
-                            ROOM_ID = 2
+                            Id = 7,
+                            AmenityId = 1,
+                            RoomId = 2
                         },
                         new
                         {
-                            ID = 8,
-                            AMENITY_ID = 5,
-                            ROOM_ID = 3
+                            Id = 8,
+                            AmenityId = 5,
+                            RoomId = 3
                         },
                         new
                         {
-                            ID = 9,
-                            AMENITY_ID = 3,
-                            ROOM_ID = 4
+                            Id = 9,
+                            AmenityId = 3,
+                            RoomId = 4
                         },
                         new
                         {
-                            ID = 10,
-                            AMENITY_ID = 5,
-                            ROOM_ID = 5
+                            Id = 10,
+                            AmenityId = 5,
+                            RoomId = 5
                         });
                 });
 
             modelBuilder.Entity("Model.RoomNumber", b =>
                 {
-                    b.Property<int>("ROOM_NUMBER")
+                    b.Property<int>("RoomNo")
                         .HasColumnType("int");
 
-                    b.Property<string>("DESCRIPTION")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ROOM_ID")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.HasKey("ROOM_NUMBER");
+                    b.HasKey("RoomNo");
 
-                    b.HasIndex("ROOM_ID");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("tbl_RoomNumber");
 
                     b.HasData(
                         new
                         {
-                            ROOM_NUMBER = 101,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 1
+                            RoomNo = 101,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor.",
+                            RoomId = 1
                         },
                         new
                         {
-                            ROOM_NUMBER = 102,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 1
+                            RoomNo = 102,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 1
                         },
                         new
                         {
-                            ROOM_NUMBER = 103,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 1
+                            RoomNo = 103,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 1
                         },
                         new
                         {
-                            ROOM_NUMBER = 104,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 1
+                            RoomNo = 104,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 1
                         },
                         new
                         {
-                            ROOM_NUMBER = 201,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 2
+                            RoomNo = 201,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 2
                         },
                         new
                         {
-                            ROOM_NUMBER = 202,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 2
+                            RoomNo = 202,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 2
                         },
                         new
                         {
-                            ROOM_NUMBER = 203,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 2
+                            RoomNo = 203,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 2
                         },
                         new
                         {
-                            ROOM_NUMBER = 204,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 2
+                            RoomNo = 204,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 2
                         },
                         new
                         {
-                            ROOM_NUMBER = 301,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 3
+                            RoomNo = 301,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 3
                         },
                         new
                         {
-                            ROOM_NUMBER = 302,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 3
+                            RoomNo = 302,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 3
                         },
                         new
                         {
-                            ROOM_NUMBER = 303,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 3
+                            RoomNo = 303,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 3
                         },
                         new
                         {
-                            ROOM_NUMBER = 304,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 3
+                            RoomNo = 304,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 3
                         },
                         new
                         {
-                            ROOM_NUMBER = 401,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 4
+                            RoomNo = 401,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 4
                         },
                         new
                         {
-                            ROOM_NUMBER = 402,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 4
+                            RoomNo = 402,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 4
                         },
                         new
                         {
-                            ROOM_NUMBER = 403,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 4
+                            RoomNo = 403,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 4
                         },
                         new
                         {
-                            ROOM_NUMBER = 501,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 5
+                            RoomNo = 501,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 5
                         },
                         new
                         {
-                            ROOM_NUMBER = 502,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 5
+                            RoomNo = 502,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 5
                         },
                         new
                         {
-                            ROOM_NUMBER = 503,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 5
+                            RoomNo = 503,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 5
                         },
                         new
                         {
-                            ROOM_NUMBER = 601,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 6
+                            RoomNo = 601,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 6
                         },
                         new
                         {
-                            ROOM_NUMBER = 602,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
-                            ROOM_ID = 6
+                            RoomNo = 602,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor.",
+                            RoomId = 6
                         });
                 });
 
@@ -792,56 +795,56 @@ namespace DatabaseAccess.Migrations
 
             modelBuilder.Entity("Model.Booking", b =>
                 {
-                    b.HasOne("Model.Room", "ROOM")
+                    b.HasOne("Model.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("ROOM_ID")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.ApplicationUser", "USERS")
+                    b.HasOne("Model.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("USER_ID")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ROOM");
+                    b.Navigation("Room");
 
-                    b.Navigation("USERS");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Model.RoomAmenity", b =>
                 {
-                    b.HasOne("Model.Amenity", "AMENITY")
+                    b.HasOne("Model.Amenity", "Amenity")
                         .WithMany()
-                        .HasForeignKey("AMENITY_ID")
+                        .HasForeignKey("AmenityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Room", "ROOMS")
-                        .WithMany("ROOM_AMENITIES")
-                        .HasForeignKey("ROOM_ID")
+                    b.HasOne("Model.Room", "Room")
+                        .WithMany("RoomAmenities")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AMENITY");
+                    b.Navigation("Amenity");
 
-                    b.Navigation("ROOMS");
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Model.RoomNumber", b =>
                 {
-                    b.HasOne("Model.Room", "ROOM")
+                    b.HasOne("Model.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("ROOM_ID")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ROOM");
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Model.Room", b =>
                 {
-                    b.Navigation("ROOM_AMENITIES");
+                    b.Navigation("RoomAmenities");
                 });
 #pragma warning restore 612, 618
         }

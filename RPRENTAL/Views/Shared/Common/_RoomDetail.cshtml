@@ -4,21 +4,21 @@
     <div class="row">
         <div class="col-md-5">
             <div></div>
-            <img class="img-fluid border border-dark border-1" src="@Model.IMAGE_URL" alt="Room Image">
+            <img class="img-fluid border border-dark border-1" src="@Model.ImageUrl" alt="Room Image">
         </div>
     
         <div class="col-md-7">
-            <div class="pt-2"><h3 class="text-uppercase text-primary fw-bold">@Model.ROOM_NAME</h3></div>
+            <div class="pt-2"><h3 class="text-uppercase text-primary fw-bold">@Model.RoomName</h3></div>
             <div style="min-height:70px;max-height:70px; overflow-y:auto;">
-                <p>@Model.DESCRIPTION</p>
+                <p>@Model.Description</p>
             </div>
             <div class="pt-2"><h4 class="text-primary fw-bold">ROOM AMENITIES:</h4></div>
 
             <div class="row" style="min-height:50px;max-height:50px;">
-                @foreach (var objAmenity in Model.ROOM_AMENITIES)
+                @foreach (var objAmenity in Model.RoomAmenities)
                 {
                     <div class="col-lg-4">
-                        <div class="fw-bold">@objAmenity.AMENITY.AMENITY_NAME</div>
+                        <div class="fw-bold">@objAmenity.Amenity!.AmenityName</div>
                     </div>
                 }
             </div>
@@ -30,7 +30,7 @@
             <span class="text-primary fw-bold">OCCUPANCY:</span>
         </div>
         <div class="col-6 col-md-10 text-end">
-            <span class="fw-bold">@Model.MAX_OCCUPANCY Person</span>
+            <span class="fw-bold">@Model.MaxOccupancy Person</span>
         </div>
     </div>
     <div class="row pt-1">
@@ -38,7 +38,7 @@
             <span class="text-primary fw-bold">PRICE:</span>
         </div>
         <div class="col-6 col-md-10 text-end">
-            <span class="fw-bold">@Model.ROOM_PRICE.ToString("c")</span>
+            <span class="fw-bold">@Model.RoomPrice.ToString("c")</span>
         </div>
     </div>
 </div>

@@ -1,8 +1,8 @@
 ﻿@model Room
 
 @{
-    var priceRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("ROOM_PRICE"), typeof(RangeAttribute));
-    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MAX_OCCUPANCY"), typeof(RangeAttribute));
+    var priceRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("RoomPrice"), typeof(RangeAttribute));
+    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MaxOccupancy"), typeof(RangeAttribute));
 
 }
 
@@ -11,37 +11,37 @@
     <div class="modal-body">
         <div class="row">
 
-                <input asp-for="@Model.ROOM_ID" hidden />            
-                <input asp-for="@Model.IMAGE_URL" hidden />             
+                <input asp-for="@Model.RoomId" hidden />            
+                <input asp-for="@Model.ImageUrl" hidden />             
 
               <div class="col-lg-6 col-md-12 form-group">
                     <div class="border">
-                        <img id="image_preview" src="@Model.IMAGE_URL" class="img-fluid" style="max-width: 100%; min-height:400px;max-height:400px;" alt="Room Image">
+                        <img id="image_preview" src="@Model.ImageUrl" class="img-fluid" style="max-width: 100%; min-height:400px;max-height:400px;" alt="Room Image">
                     </div>
                     <div class="pt-3">
-                        <input type="file" class="form-control" asp-for="@Model.IMAGE" onchange="displayImagePreview(event)" accept="image/*">
+                        <input type="file" class="form-control" asp-for="@Model.Image" onchange="displayImagePreview(event)" accept="image/*">
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-12 pt-md-0 pt-3">            
               
                     <div class="mb-3">
-                        <label asp-for="@Model.ROOM_NAME" class="form-label fw-bold">Room Name:</label>
-                        <input id="room_name" type="text" class="form-control" asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name" required autocomplete="off"> 
+                        <label asp-for="@Model.RoomName" class="form-label fw-bold">Room Name:</label>
+                        <input id="room_name" type="text" class="form-control" asp-for="@Model.RoomName" placeholder="Enter Room Name" required autocomplete="off"> 
                         <div class="invalid-feedback">Please provide a room name.</div>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="@Model.DESCRIPTION" class="form-label fw-bold">Description:</label>
-                        <input type="text" class="form-control" asp-for="@Model.DESCRIPTION" autocomplete="off" placeholder="Enter Description">
+                        <label asp-for="@Model.Description" class="form-label fw-bold">Description:</label>
+                        <input type="text" class="form-control" asp-for="@Model.Description" autocomplete="off" placeholder="Enter Description">
                     </div>
                     <div class="mb-3">
-                        <label asp-for="@Model.ROOM_PRICE" class="form-label fw-bold">Price:</label>
-                        <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" autocomplete="off" required min="@priceRange.Minimum" max="@priceRange.Maximum" style="-moz-appearance: textfield;">
+                        <label asp-for="@Model.RoomPrice" class="form-label fw-bold">Price:</label>
+                        <input type="number" class="form-control" asp-for="@Model.RoomPrice" placeholder="Enter Price" autocomplete="off" required min="@priceRange!.Minimum" max="@priceRange.Maximum" style="-moz-appearance: textfield;">
                         <div class="invalid-feedback">Please provide a range price of $ @priceRange.Minimum - $ @priceRange.Maximum</div>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="@Model.MAX_OCCUPANCY" class="form-label fw-bold">Occupancy:</label>
-                        <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" autocomplete="off" required min="@occupancyRange.Minimum" max="@occupancyRange.Maximum" style="-moz-appearance: textfield;">
+                        <label asp-for="@Model.MaxOccupancy" class="form-label fw-bold">Occupancy:</label>
+                        <input type="number" class="form-control" asp-for="@Model.MaxOccupancy" placeholder="Enter Occupancy" autocomplete="off" required min="@occupancyRange!.Minimum" max="@occupancyRange.Maximum" style="-moz-appearance: textfield;">
                         <div class="invalid-feedback">Please provide a range occupancy of @occupancyRange.Minimum - @occupancyRange.Maximum.</div>
                     </div>
                 </div>

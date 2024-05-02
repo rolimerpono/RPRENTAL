@@ -45,9 +45,9 @@ function initializeDataTable() {
             url: '/Account/GetAll'
         },
         columns: [
-            { data: 'name', width: '15%' },
+            { data: 'fullname', width: '15%' },
             { data: 'email', width: '15%' },
-            { data: 'phonE_NUMBER', width: '5%' },
+            { data: 'phoneNumber', width: '5%' },
             { data: 'role', width: '5%' },
             {
                 data: 'email',
@@ -88,8 +88,8 @@ function validateEmail(email) {
 }
 
 function saveUser(url, formSelector) {
-    let email = $('#email').val()
-    let objUser = $(formSelector).serialize();
+    let email = $('#Email').val()
+    let objUser = $(formSelector).serialize();    
 
     if (!validateEmail(email)) {
         $('#email-validation').css('color', 'red').html('Please enter a valid email.');

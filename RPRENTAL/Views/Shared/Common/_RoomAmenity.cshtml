@@ -3,19 +3,19 @@
 <div id="selected_room">
     <div class="row">
         <div class="col-12">
-            <span class="fs-4 fw-bold text-danger-emphasis pb-2">@Model.ROOM_NAME.ToUpper()</span>
+            <span class="fs-4 fw-bold text-danger-emphasis pb-2">@Model.RoomName.ToUpper()</span>
         </div>
     </div>
     <div class="border p-5" style="max-height:250px; overflow-y:auto;">        
         <div class="row">
           
-                <input asp-for="@Model.ROOM_ID" hidden />
-                @foreach (var item in @Model.AMENITIES)
+                <input asp-for="@Model.RoomId" hidden />
+                @foreach (var item in @Model.Amenities)
                 {
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pt-md-0">
                         <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="selected-item-@item.AMENITY_ID" @(item.IS_CHECK ? "checked" : "") />
-                        <label class="form-check-label" for="selected-item-@item.AMENITY_ID">@item.AMENITY_NAME</label>
+                            <input class="form-check-input" type="checkbox" id="selected-item-@item.AmenityId" @(item.IsCheck ? "checked" : "") />
+                            <label class="form-check-label" for="selected-item-@item.AmenityId">@item.AmenityName</label>
                         </div>
                     </div>
                 } 

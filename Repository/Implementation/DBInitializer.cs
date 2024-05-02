@@ -34,26 +34,26 @@ namespace Repository.Implementation
                 {
                     _db.Database.Migrate();
                 }
-                if (!_roleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult())
+                if (!_roleManager.RoleExistsAsync(SD.UserRole.Admin.ToString()).GetAwaiter().GetResult())
                 {
-                    _roleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
-                    _roleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
+                    _roleManager.CreateAsync(new IdentityRole(SD.UserRole.Customer.ToString())).Wait();
+                    _roleManager.CreateAsync(new IdentityRole(SD.UserRole.Admin.ToString())).Wait();
 
                     _userManager.CreateAsync(new ApplicationUser
                     {
                         UserName = "rolimer_pono@yahoo.com",
                         Email = "rolimer_pono@yahoo.com",
-                        USER_NAME = "Rolimer Pono",
+                        Fullname = "Rolimer Pono",
                         NormalizedUserName = "rolimer_pono@yahoo.com",
                         NormalizedEmail = "rolimer_pono@yahoo.com",
                         PhoneNumber = "0212477440",
-                        CREATED_DATE = DateTime.Now,
+                        CreatedDate = DateTime.Now,
                         EmailConfirmed = true,
                     },"Admin@123").GetAwaiter().GetResult();
 
 
-                    ApplicationUser objUser = _db.tbl_User.Where(fw => fw.Email == "rolimer_pono@yahoo.com").FirstOrDefault();
-                    _userManager.AddToRoleAsync(objUser, SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult();
+                    ApplicationUser objUser = _db.tbl_User.Where(fw => fw.Email == "rolimer_pono@yahoo.com").FirstOrDefault()!;
+                    _userManager.AddToRoleAsync(objUser, SD.UserRole.Admin.ToString()).GetAwaiter().GetResult();
                    
                 }
             }

@@ -27,7 +27,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     @* <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li> *@
                     <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
-                    @if (_SignInManager.IsSignedIn(User) && User.IsInRole(SD.UserRole.ADMIN.ToString()))
+                    @if (_SignInManager.IsSignedIn(User) && User.IsInRole(SD.UserRole.Admin.ToString()))
                     {
                         <li class="nav-item dropdown">                     
                             <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Management</a>
@@ -45,7 +45,7 @@
                             </div>
                         </li>
                     }
-                     @if (_SignInManager.IsSignedIn(User) && User.IsInRole(SD.UserRole.CUSTOMER.ToString()))
+                     @if (_SignInManager.IsSignedIn(User) && User.IsInRole(SD.UserRole.Customer.ToString()))
                     {
                         <li class="nav-item"><a class="nav-link" asp-controller="Booking" asp-action="Index">Booking List</a></li>
                     }
@@ -58,7 +58,7 @@
                     @if (_SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Welcome, @User.Identity.Name</a>
+                            <a class="nav-link" href="#">Welcome, @User.Identity!.Name</a>
                         </li>
                         <li class="nav-item">                       
                             <a class="nav-link btn-logout" href="#">Logout</a>                   
@@ -153,25 +153,25 @@
                     <form id="form-add">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="remail" name="remail" placeholder="Enter email" autofocus autocomplete="off" required>
+                            <input type="text" class="form-control" id="reg-email" name="reg-email" placeholder="Enter email" autofocus autocomplete="off" required>
                             <span id="email-validation"></span>
                           
                         </div>
                         <div class="mb-3">
                             <label for="fullname" class="form-label">Fullname</label>
-                            <input type="text" class="form-control" id="rfullname" name="rfullname" placeholder="Enter fullname" autocomplete="off" required>
+                            <input type="text" class="form-control" id="reg-fullname" name="reg-fullname" placeholder="Enter fullname" autocomplete="off" required>
                         </div>
                         <div class="mb-3">
                             <label for="phoneno" class="form-label">Phone Number</label>
-                            <input type="number" class="form-control" id="rphoneno" name="rphoneno" placeholder="Enter phone number" autocomplete="off" required>
+                            <input type="number" class="form-control" id="reg-phoneno" name="reg-phoneno" placeholder="Enter phone number" autocomplete="off" required>
                         </div>
                          <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="rpassword" name="rpassword" placeholder="Enter password" autocomplete="new-password" required>
+                            <input type="password" class="form-control" id="reg-password" name="reg-password" placeholder="Enter password" autocomplete="new-password" required>
                         </div>
                          <div class="mb-3">
                             <label for="confirmpass" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="rconfirmpass" name="rconfirmpass" placeholder="Re-enter password" autocomplete="new-password" required> 
+                            <input type="password" class="form-control" id="reg-confirmpassword" name="reg-confirmpassword" placeholder="Re-enter password" autocomplete="new-password" required> 
                         </div>                      
                      
                     </form>
@@ -202,11 +202,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">New Password</label>
-                            <input type="text" class="form-control" id="reset-password" name="reset-password" placeholder="Password" autofocus autocomplete="off">
+                            <input type="password" class="form-control" id="reset-password" name="reset-password" placeholder="Password" autofocus autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Confirm Password</label>
-                            <input type="text" class="form-control" id="reset-con-password" name="reset-con-password" placeholder="Password" autofocus autocomplete="off">
+                            <input type="password" class="form-control" id="reset-con-password" name="reset-con-password" placeholder="Password" autofocus autocomplete="off">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Enter OTP</label>

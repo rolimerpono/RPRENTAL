@@ -6,34 +6,34 @@
             <div class="col-lg-12">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="text" class="form-control" asp-for="@Model.EMAIL" id="email" name="email" placeholder="Enter email" autofocus autocomplete="off" required>
+                    <input type="text" class="form-control" asp-for="@Model.Email" id="Email" name="Email" placeholder="Enter email" autofocus autocomplete="off" required>
                     <span id="email-validation"></span>                   
                 </div>
                 <div class="mb-3">
                     <labelclass="form-label">Fullname</label>
-                    <input type="text" class="form-control" asp-for="@Model.NAME" id="name" name="name" placeholder="Enter fullname" autocomplete="off" required>
+                        <input type="text" class="form-control" asp-for="@Model.Fullname" id="Fullname" name="Fullname" placeholder="Enter fullname" autocomplete="off" required>
                     <div class="invalid-feedback">Please provide a name.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Phone Number</label>
-                    <input type="number" class="form-control" asp-for="@Model.PHONE_NUMBER" id="phone_number" name="phone_number" placeholder="Enter phone number" autocomplete="off" required>
+                    <input type="number" class="form-control" asp-for="@Model.PhoneNumber" id="PhoneNumber" name="PhoneNumber" placeholder="Enter phone number" autocomplete="off" required>
                     <div class="invalid-feedback">Please provide a phone number.</div>
                 </div>              
 
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" asp-for="@Model.PASSWORD" id="password" name="password" placeholder="Enter password" autocomplete="new-password" required>
+                    <input type="password" class="form-control" asp-for="@Model.Password" id="Password" name="Password" placeholder="Enter password" autocomplete="new-password" required>
                     <div class="invalid-feedback">Please provide a password.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" asp-for="@Model.CONFIRM_PASSWORD" id="confirm_password" name="confirm_password" placeholder="Re-enter password" autocomplete="new-password" required>
+                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" placeholder="Re-enter password" autocomplete="new-password" required>
                     <div class="invalid-feedback">Please provide a password.</div>
                 </div>    
 
                 <div class="mb-3">
                     <label class="form-label">Role</label>
-                    <select asp-for="@Model.ROLE" asp-items="@Model.ROLE_LIST" class="form-select" required>
+                    <select asp-for="@Model.Role" asp-items="@Model.RoleList" class="form-select" required>
                         <option disabled selected></option>
                     </select>
                     <div class="invalid-feedback">Please provide a role.</div>

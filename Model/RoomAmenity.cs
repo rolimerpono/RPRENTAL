@@ -14,24 +14,21 @@ namespace Model
     {
       
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
-        [ForeignKey("ROOMS")]
-        public int ROOM_ID { get; set; }
+        [ForeignKey("Room")]
+        public int RoomId { get; set; }
 
         [ValidateNever]
-        public Room? ROOMS { get; set; }
+        public Room? Room { get; set; }
 
 
-        [ForeignKey("AMENITY")]
+        [ForeignKey("Amenity")]
         [Required]
-        public int AMENITY_ID { get; set; }
+        public int AmenityId { get; set; }
      
-        public Amenity? AMENITY { get; set; }
+        public Amenity? Amenity { get; set; }
 
-        [ValidateNever]
-        [NotMapped]
-        public string? AMENITY_NAME { get; set; }
 
 
       

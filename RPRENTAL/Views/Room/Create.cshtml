@@ -1,8 +1,8 @@
 ﻿@model Room
 
 @{
-    var priceRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("ROOM_PRICE"), typeof(RangeAttribute));
-    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MAX_OCCUPANCY"), typeof(RangeAttribute));
+    var priceRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("RoomPrice"), typeof(RangeAttribute));
+    var occupancyRange = (RangeAttribute)Attribute.GetCustomAttribute(typeof(Room).GetProperty("MaxOccupancy"), typeof(RangeAttribute));
 }
 
 <form id="form-add" enctype="multipart/form-data">
@@ -11,32 +11,32 @@
             
             <div class="col-lg-6 col-md-12">
                 <div class="border">
-                    <img src="@Model.IMAGE_URL" class="img-fluid" alt="Room Image">
+                    <img src="@Model.ImageUrl" class="img-fluid" alt="Room Image">
                 </div>
                 <div class="input-group pt-3">
-                    <input type="file" id="imageUpload" class="form-control" asp-for="IMAGE" name="IMAGE" accept="image/*">                   
+                    <input type="file" id="imageUpload" class="form-control" asp-for="@Model.Image" name="IMAGE" accept="image/*">                   
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-12 pt-md-0 pt-3">
-                <input type="text" class="form-control" hidden asp-for="@Model.IMAGE_URL">
+                <input type="text" class="form-control" hidden asp-for="@Model.ImageUrl">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Room Name:</label>
-                    <input id="room_name" type="text" class="form-control" asp-for="@Model.ROOM_NAME" placeholder="Enter Room Name" required autocomplete="off">
+                    <input id="RoomName" type="text" class="form-control" asp-for="@Model.RoomName" placeholder="Enter Room Name" required autocomplete="off">
                     <div class="invalid-feedback">Please provide a room name.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold" for="description">Description:</label>
-                    <input type="text" class="form-control" asp-for="@Model.DESCRIPTION" placeholder="Enter Description" autocomplete="off">
+                    <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Enter Description" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price:</label>
-                    <input type="number" class="form-control" asp-for="@Model.ROOM_PRICE" placeholder="Enter Price" required autocomplete="off" min="@priceRange.Minimum" max="@priceRange.Maximum">
+                    <input type="number" class="form-control" asp-for="@Model.RoomPrice" placeholder="Enter Price" required autocomplete="off" min="@priceRange!.Minimum" max="@priceRange.Maximum">
                     <div class="invalid-feedback">Please provide a price between $@priceRange.Minimum and $@priceRange.Maximum.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Occupancy:</label>
-                    <input type="number" class="form-control" asp-for="@Model.MAX_OCCUPANCY" placeholder="Enter Occupancy" required autocomplete="off" min="@occupancyRange.Minimum" max="@occupancyRange.Maximum">
+                    <input type="number" class="form-control" asp-for="@Model.MaxOccupancy" placeholder="Enter Occupancy" required autocomplete="off" min="@occupancyRange!.Minimum" max="@occupancyRange.Maximum">
                     <div class="invalid-feedback">Please provide an occupancy between @occupancyRange.Minimum and @occupancyRange.Maximum.</div>
                 </div>
             </div>

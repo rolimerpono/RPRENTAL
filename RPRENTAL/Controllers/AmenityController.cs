@@ -54,7 +54,7 @@ namespace RPRENTAL.Controllers
         {
             
 
-            Boolean isAmenityExists = _IAmenityService.IsAmenityExists(objAmenity.AMENITY_NAME);
+            Boolean isAmenityExists = _IAmenityService.IsAmenityExists(objAmenity.AmenityName);
 
             if (isAmenityExists)
             {
@@ -64,7 +64,7 @@ namespace RPRENTAL.Controllers
 
             try
             {
-                if (ModelState.IsValid && objAmenity.AMENITY_ID == 0)
+                if (ModelState.IsValid && objAmenity.AmenityId == 0)
                 {
                     _IAmenityService.Create(objAmenity);
                     TempData["success"] = "Amenity created successfully.";
@@ -81,10 +81,10 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Update(int amenitY_ID)
+        public IActionResult Update(int AmenityId)
         {
             Amenity objAmenity;
-            objAmenity = _IAmenityService.Get(amenitY_ID);
+            objAmenity = _IAmenityService.Get(AmenityId);
             if (objAmenity != null)
             {
                 return PartialView("Update", objAmenity);
@@ -97,7 +97,7 @@ namespace RPRENTAL.Controllers
         {
             try
             {
-                if (ModelState.IsValid && objAmenity.AMENITY_ID > 0)
+                if (ModelState.IsValid && objAmenity.AmenityId > 0)
                 {
                     _IAmenityService.Update(objAmenity);
 
@@ -113,13 +113,13 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int AmenityId)
         {
             try
             {
-                if (id != 0)
+                if (AmenityId != 0)
                 {
-                    _IAmenityService.Delete(id);
+                    _IAmenityService.Delete(AmenityId);
                     TempData["success"] = "Amenity deleted successfully.";
                     return Json(new { success = true, message = "Amenity deleted successfully." });
                 }

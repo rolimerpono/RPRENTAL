@@ -48,16 +48,16 @@ function InputBoxFocus(modal_name) {
 
 function initializeDataTable() {
     objDataTable = $('#tbl_RoomNumber').DataTable({
-        'ajax': {
+        ajax: {
             url: '/RoomNumber/GetAll'
         },
-        'columns': [
-            { data: 'rooM_NUMBER', 'width': '10%' },
-            { data: '.room.rooM_NAME', 'width': '15%' },
+        columns: [
+            { data: 'roomNo', width: '10%' },
+            { data: 'room.roomName', width: '15%' },
             {
                 data: 'description',
-                'width': '35%',
-                'render': function (data, type, row) {
+                width: '35%',
+                render: function (data, type, row) {
                     if (type === 'display' && data.length > 100) {
                         return '<div style="max-height: 25px; overflow-x: auto;">' + data + '</div>';
                     } else {
@@ -66,15 +66,15 @@ function initializeDataTable() {
                 }
             },        
             {
-                data: 'rooM_NUMBER',
-                'width': '5%',
+                data: 'roomNo',
+                width: '5%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
-                data: 'rooM_NUMBER',
-                'width': '5%',
+                data: 'roomNo',
+                width: '5%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }

@@ -11,26 +11,30 @@
 
             <div class="col">
                 <div class="card h-100">
-                    <img src="@objRoom.IMAGE_URL" class="card-img-top" alt="...">
+                   
+                    <div class="border">
+                      @*   <img src="@Model.ImageUrl" class="img-fluid" alt="Room Image"> *@
+                        <img src="@objRoom.ImageUrl" class="img-fluid h-100" alt="...">
+                    </div>
                     <div class="card-body" style="height:250px;overflow-x:auto">
-                        <h5 class="card-title fw-bold">@objRoom.ROOM_NAME</h5>
-                        <p class="card-text">@objRoom.DESCRIPTION</p>
+                        <h5 class="card-title fw-bold">@objRoom.RoomName</h5>
+                        <p class="card-text">@objRoom.Description</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><span class="fw-bold text-primary">Price :</span> <span class="fw-bold">@objRoom.ROOM_PRICE.ToString("c")</span></li>
-                        <li class="list-group-item"><span class="fw-bold text-primary">Max Occupancy :</span> <span class="fw-bold">@objRoom.MAX_OCCUPANCY</span></li>
+                        <li class="list-group-item"><span class="fw-bold text-primary">Price :</span> <span class="fw-bold">@objRoom.RoomPrice.ToString("c")</span></li>
+                        <li class="list-group-item"><span class="fw-bold text-primary">Max Occupancy :</span> <span class="fw-bold">@objRoom.MaxOccupancy</span></li>
 
                     </ul>
                     <div class="card-body d-flex flex-column flex-md-row justify-content-md-between">
                         <div class="mb-2 mb-md-0">
-                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target="#room_detail_modal-@(objRoom.ROOM_ID)">DETAILS</button>
+                            <button class="btn btn-outline-success rounded-2 w-100 w-md-auto showDetails" type="button" data-bs-toggle="modal" data-bs-target="#room_detail_modal-@(objRoom.RoomId)">DETAILS</button>
                         </div>
-                        @if (objRoom.CHECKIN_DATE > DateOnly.FromDateTime(DateTime.Now))
+                        @if (objRoom.CheckinDate > DateOnly.FromDateTime(DateTime.Now))
                         {
-                            @if (objRoom.IS_ROOM_AVAILABLE)
+                            @if (objRoom.IsRoomAvailable)
                             {
                                 <div>
-                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" onclick="getBooking(@objRoom.ROOM_ID)">BOOK NOW</button>
+                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" onclick="getBooking(@objRoom.RoomId)">BOOK NOW</button>
                                 </div>
 
                             }
@@ -49,7 +53,7 @@
 
             //DISPLAY MODAL BOOKING DETAIL
 
-            <div class="modal fade" id="modal-booking-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal fade" id="modal-booking-@(objRoom.RoomId)" tabindex="-1" aria-labelledby="modal-booking" aria-hidden="true" data-bs-backdrop="static">
 
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
@@ -60,12 +64,12 @@
                             <div class="row pb-3">
                                 <partial name="Common/_RoomDetails" model="@objRoom" />
                             </div>
-                            <div id="modal-booking-content-@(objRoom.ROOM_ID)"></div>
+                            <div id="modal-booking-content-@(objRoom.RoomId)"></div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
-                            <button type="button" onclick="confirmBooking(@objRoom.ROOM_ID)" class="btn btn-outline-success" style="width:100px;">Payment</button>
+                            <button type="button" onclick="confirmBooking(@objRoom.RoomId)" class="btn btn-outline-success" style="width:100px;">Payment</button>
                         </div>
 
                     </div>
@@ -76,7 +80,7 @@
 
             //DISPLAY MODAL ROOM DETAIL
 
-            <div class="modal fade" id="room_detail_modal-@(objRoom.ROOM_ID)" tabindex="-1" aria-labelledby="room_detail_modal" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal fade" id="room_detail_modal-@(objRoom.RoomId)" tabindex="-1" aria-labelledby="room_detail_modal" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-xl border border-secondary rounded">
                     <div class="modal-content">
                         <div class="modal-header bg-primary">
@@ -134,10 +138,6 @@
     </div>
 
 </div>
-
-
-
-
 
 <div id="toaster" class="toaster"></div>
 

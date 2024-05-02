@@ -45,7 +45,7 @@ namespace RPRENTAL.Controllers
             Room objRoom;
             try
             {
-                objRoom = new Room { ROOM_ID = 0, DESCRIPTION = "", ROOM_NAME = "", ROOM_PRICE = 0, MAX_OCCUPANCY = 0, IMAGE_URL = "https://placehold.co/600x400", CREATED_DATE = DateTime.Now };
+                objRoom = new Room { RoomId = 0, Description = "", RoomName = "", RoomPrice = 0, MaxOccupancy = 0, ImageUrl = "https://placehold.co/600x400", CreatedDate = DateTime.Now };
 
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace RPRENTAL.Controllers
         {
             try
             {
-                if (ModelState.IsValid && objRoom.ROOM_ID == 0)
+                if (ModelState.IsValid && objRoom.RoomId == 0)
                 {
                     _IRoomService.Create(objRoom);
                     TempData["success"] = "Room created successfully.";
@@ -81,12 +81,12 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Update(int ROOM_ID)
+        public IActionResult Update(int RoomId)
         {
             try
             {
                 Room objRoom;
-                objRoom = _IRoomService.Get(ROOM_ID);
+                objRoom = _IRoomService.Get(RoomId);
                 return PartialView("Update", objRoom);
             }
             catch (Exception ex)
@@ -104,12 +104,12 @@ namespace RPRENTAL.Controllers
         {
             try
             {
-                if(objRoom.IMAGE == null)
+                if(objRoom.Image == null)
                 {
                     ModelState.Remove("Image");
                 }
                
-                if (ModelState.IsValid && objRoom.ROOM_ID > 0)
+                if (ModelState.IsValid && objRoom.RoomId > 0)
                 {
                     _IRoomService.Update(objRoom);
 
@@ -125,19 +125,19 @@ namespace RPRENTAL.Controllers
             {
                 return Json(new { success = false, message = ex.Message });
             }
-            return RedirectToAction("Index");
+            
         }
 
 
         [HttpPost]
-        public IActionResult Delete(int ROOM_ID)
+        public IActionResult Delete(int RoomId)
         {
             try
             {
-                if (ROOM_ID != 0)
+                if (RoomId != 0)
                 {
 
-                    _IRoomService.Delete(ROOM_ID);
+                    _IRoomService.Delete(RoomId);
                     TempData["success"] = "Room deleted successfully.";
                     return Json(new { success = true, message = "Room deleted successfully." });
                 }

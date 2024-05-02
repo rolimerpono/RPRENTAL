@@ -28,10 +28,10 @@ namespace DataService.Implementation
         {
         
             var total_booking = _IWorker.tbl_Booking.GetAll(
-              fw => fw.BOOKING_STATUS != SD.BookingStatus.PENDING.ToString() ||
-              fw.BOOKING_STATUS == SD.BookingStatus.CANCELLED.ToString() && (fw.BOOKING_DATE >= DateTime.Now.AddDays(-30)));
+              fw => fw.BookingStatus != SD.BookingStatus.Pending.ToString() ||
+              fw.BookingStatus == SD.BookingStatus.Cancelled.ToString() && (fw.BookingDate >= DateTime.Now.AddDays(-30)));
 
-            var customer_with_one_booking = total_booking.GroupBy(fw => fw.USER_ID).Where(fw => fw.Count() == 1).Select(fw => fw.Key).ToList();
+            var customer_with_one_booking = total_booking.GroupBy(fw => fw.UserId).Where(fw => fw.Count() == 1).Select(fw => fw.Key).ToList();
 
             int new_customer_booking = customer_with_one_booking.Count();
             int returning_customer_booking = total_booking.Count() - new_customer_booking;
@@ -49,8 +49,8 @@ namespace DataService.Implementation
 
         public async Task<LineChartDTO> GetMemberAndBookingLineChartData()
         {
-            var booking_data = _IWorker.tbl_Booking.GetAll(fw => fw.BOOKING_DATE >= DateTime.Now.AddDays(-30) && fw.BOOKING_DATE.Date <= DateTime.Now)
-               .GroupBy(fw => fw.BOOKING_DATE.Date)
+            var booking_data = _IWorker.tbl_Booking.GetAll(fw => fw.BookingDate >= DateTime.Now.AddDays(-30) && fw.BookingDate.Date <= DateTime.Now)
+               .GroupBy(fw => fw.BookingDate.Date)
                .Select(f => new
                {
                    DateTime = f.Key,
@@ -58,8 +58,8 @@ namespace DataService.Implementation
                });
 
 
-            var customer_data = _IWorker.tbl_User.GetAll(fw => fw.CREATED_DATE >= DateTime.Now.AddDays(-30) && fw.CREATED_DATE.Value.Date <= DateTime.Now)
-                .GroupBy(fw => fw.CREATED_DATE.Value.Date)
+            var customer_data = _IWorker.tbl_User.GetAll(fw => fw.CreatedDate >= DateTime.Now.AddDays(-30) && fw.CreatedDate.Value.Date <= DateTime.Now)
+                .GroupBy(fw => fw.CreatedDate.Value.Date)
                 .Select(f => new
                 {
                     DateTime = f.Key,
@@ -123,12 +123,12 @@ namespace DataService.Implementation
             var total_user = _IWorker.tbl_User.GetAll();
 
 
-            var count_current_month = total_user.Count(fw => fw.CREATED_DATE >= current_month_start_date &&
-            fw.CREATED_DATE <= DateTime.Now);
+            var count_current_month = total_user.Count(fw => fw.CreatedDate >= current_month_start_date &&
+            fw.CreatedDate <= DateTime.Now);
 
 
-            var count_previous_month = total_user.Count(fw => fw.CREATED_DATE >= current_month_start_date &&
-            fw.CREATED_DATE <= current_month_start_date);
+            var count_previous_month = total_user.Count(fw => fw.CreatedDate >= current_month_start_date &&
+            fw.CreatedDate <= current_month_start_date);
 
 
             return GetRadialBarChartDataModel(total_user.Count(), count_current_month, count_previous_month);
@@ -137,18 +137,18 @@ namespace DataService.Implementation
         public async Task<RadialBarChartDTO> GetRevenueRadialChartData()
         {
             var total_booking = _IWorker.tbl_Booking.GetAll(
-              fw => fw.BOOKING_STATUS != SD.BookingStatus.PENDING.ToString() ||
-              fw.BOOKING_STATUS == SD.BookingStatus.CANCELLED.ToString());
+              fw => fw.BookingStatus != SD.BookingStatus.Pending.ToString() ||
+              fw.BookingStatus == SD.BookingStatus.Cancelled.ToString());
 
 
-            var total_revenue = (Int32)total_booking.Sum(fw => fw.TOTAL_COST);
+            var total_revenue = (Int32)total_booking.Sum(fw => fw.TotalCost);
 
-            var count_current_month = (decimal)total_booking.Where(fw => fw.BOOKING_DATE >= current_month_start_date &&
-            fw.BOOKING_DATE <= DateTime.Now).Sum(fw => fw.TOTAL_COST);
+            var count_current_month = (decimal)total_booking.Where(fw => fw.BookingDate >= current_month_start_date &&
+            fw.BookingDate <= DateTime.Now).Sum(fw => fw.TotalCost);
 
 
-            var count_previous_month = (decimal)total_booking.Where(fw => fw.BOOKING_DATE >= current_month_start_date &&
-            fw.BOOKING_DATE <= current_month_start_date).Sum(fw => fw.TOTAL_COST);
+            var count_previous_month = (decimal)total_booking.Where(fw => fw.BookingDate >= current_month_start_date &&
+            fw.BookingDate <= current_month_start_date).Sum(fw => fw.TotalCost);
 
 
             return GetRadialBarChartDataModel(total_revenue, count_current_month, count_previous_month);
@@ -159,16 +159,16 @@ namespace DataService.Implementation
         public async Task<RadialBarChartDTO> GetTotalBookingRadialChartData()
         {
             var total_booking = _IWorker.tbl_Booking.GetAll(
-              fw => fw.BOOKING_STATUS != SD.BookingStatus.PENDING.ToString() ||
-              fw.BOOKING_STATUS == SD.BookingStatus.CANCELLED.ToString());
+              fw => fw.BookingStatus != SD.BookingStatus.Pending.ToString() ||
+              fw.BookingStatus == SD.BookingStatus.Cancelled.ToString());
 
 
-            var count_current_month = total_booking.Count(fw => fw.BOOKING_DATE >= current_month_start_date &&
-            fw.BOOKING_DATE <= DateTime.Now);
+            var count_current_month = total_booking.Count(fw => fw.BookingDate >= current_month_start_date &&
+            fw.BookingDate <= DateTime.Now);
 
 
-            var count_previous_month = total_booking.Count(fw => fw.BOOKING_DATE >= current_month_start_date &&
-            fw.BOOKING_DATE <= current_month_start_date);
+            var count_previous_month = total_booking.Count(fw => fw.BookingDate >= current_month_start_date &&
+            fw.BookingDate <= current_month_start_date);
 
 
 
@@ -179,20 +179,20 @@ namespace DataService.Implementation
         {
             var total_booking = _IWorker.tbl_Booking.GetAll();
 
-            int total_pending = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.PENDING.ToString())
-            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+            int total_pending = total_booking.Where(fw => (fw.BookingStatus == SD.BookingStatus.Pending.ToString())
+            && (fw.BookingDate >= current_month_start_date) && (fw.BookingDate <= DateTime.Now)).Count();
 
-            int total_approved = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.APPROVED.ToString())
-            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+            int total_approved = total_booking.Where(fw => (fw.BookingStatus == SD.BookingStatus.Approved.ToString())
+            && (fw.BookingDate >= current_month_start_date) && (fw.BookingDate <= DateTime.Now)).Count();
 
-            int total_checkin = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.CHECK_IN.ToString())
-            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+            int total_checkin = total_booking.Where(fw => (fw.BookingStatus == SD.BookingStatus.Checkin.ToString())
+            && (fw.BookingDate >= current_month_start_date) && (fw.BookingDate <= DateTime.Now)).Count();
 
-            int total_checkout = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.CHECK_OUT.ToString())
-            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+            int total_checkout = total_booking.Where(fw => (fw.BookingStatus == SD.BookingStatus.Checkout.ToString())
+            && (fw.BookingDate >= current_month_start_date) && (fw.BookingDate <= DateTime.Now)).Count();
 
-            int total_cancelled = total_booking.Where(fw => (fw.BOOKING_STATUS == SD.BookingStatus.CANCELLED.ToString())
-            && (fw.BOOKING_DATE >= current_month_start_date) && (fw.BOOKING_DATE <= DateTime.Now)).Count();
+            int total_cancelled = total_booking.Where(fw => (fw.BookingStatus == SD.BookingStatus.Cancelled.ToString())
+            && (fw.BookingDate >= current_month_start_date) && (fw.BookingDate <= DateTime.Now)).Count();
 
 
 

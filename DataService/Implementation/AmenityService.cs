@@ -32,11 +32,11 @@ namespace DataService.Implementation
            
         }
 
-        public void Delete(int Amenity_ID)
+        public void Delete(int AmenityId)
         {
             try
             {
-                Amenity objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == Amenity_ID);
+                Amenity objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AmenityId == AmenityId);
 
                 if (objAmenity != null)
                 {
@@ -52,12 +52,12 @@ namespace DataService.Implementation
          
         }
 
-        public Amenity Get(int Amenity_ID)
+        public Amenity Get(int AmenityId)
         {
             try
             {
                 Amenity objAmenity;
-                objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AMENITY_ID == Amenity_ID);
+                objAmenity = _iWorker.tbl_Amenity.Get(fw => fw.AmenityId == AmenityId);
                 return objAmenity;
 
             }
@@ -72,7 +72,7 @@ namespace DataService.Implementation
             try
             {
                 IEnumerable<Amenity> objAmenity;
-                objAmenity = _iWorker.tbl_Amenity.GetAll().OrderBy(fw => fw.AMENITY_NAME);
+                objAmenity = _iWorker.tbl_Amenity.GetAll().OrderBy(fw => fw.AmenityName);
                 return objAmenity;
             }
             catch (Exception ex)
@@ -86,7 +86,7 @@ namespace DataService.Implementation
             try
             {
                 //CHECK IF AMENITY NAME ALREADY EXISTS
-                var objResult = _iWorker.tbl_Amenity.Any(fw => fw.AMENITY_NAME == AmenityName);
+                var objResult = _iWorker.tbl_Amenity.Any(fw => fw.AmenityName == AmenityName);
 
                 return objResult;
 

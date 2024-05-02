@@ -44,12 +44,12 @@ namespace RPRENTAL.Controllers
 
             IEnumerable<RegisterVM> objUserList = objUsers.Select(user => new RegisterVM
             {
-                NAME = user.USER_NAME,
-                PASSWORD = user.PasswordHash,
-                CONFIRM_PASSWORD = user.PasswordHash,
-                EMAIL = user.Email,
-                PHONE_NUMBER = user.PhoneNumber,
-                ROLE = _UserManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault()
+                Fullname = user.Fullname!,
+                Password = user.PasswordHash!,
+                ConfirmPassword = user.PasswordHash!,
+                Email = user.Email!,
+                PhoneNumber = user.PhoneNumber,
+                Role = _UserManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault()
 
             });
 
@@ -70,10 +70,10 @@ namespace RPRENTAL.Controllers
         {
             var returnURL = Url.Content("~/");
 
-            if (!_RoleManager.RoleExistsAsync(SD.UserRole.ADMIN.ToString()).GetAwaiter().GetResult())
+            if (!_RoleManager.RoleExistsAsync(SD.UserRole.Admin.ToString()).GetAwaiter().GetResult())
             {
-                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.ADMIN.ToString())).Wait();
-                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.CUSTOMER.ToString())).Wait();
+                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.Admin.ToString())).Wait();
+                _RoleManager.CreateAsync(new IdentityRole(SD.UserRole.Customer.ToString())).Wait();
             }
 
             RegisterVM objUser = new RegisterVM();
@@ -82,12 +82,12 @@ namespace RPRENTAL.Controllers
 
                 objUser = new RegisterVM()
                 {
-                    ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
+                    RoleList = _RoleManager.Roles.Select(fw => new SelectListItem
                     {
                         Text = fw.Name,
                         Value = fw.Name
                     }),
-                    REDIRECT_URL = returnURL
+                    RedirectUrl = returnURL
 
                 };
 
@@ -108,44 +108,47 @@ namespace RPRENTAL.Controllers
             {
                 ApplicationUser objUser = new ApplicationUser()
                 {
-                    USER_NAME = objData.NAME,
-                    Email = objData.EMAIL,
-                    PhoneNumber = objData.PHONE_NUMBER,
-                    NormalizedEmail = objData.EMAIL.ToUpper(),
+                    Fullname = objData.Fullname,
+                    Email = objData.Email,
+                    PhoneNumber = objData.PhoneNumber,
+                    NormalizedEmail = objData.Email.ToUpper(),
                     EmailConfirmed = true,
-                    UserName = objData.EMAIL,
-                    CREATED_DATE = DateTime.Now,
+                    UserName = objData.Email,
+                    CreatedDate = DateTime.Now,
 
                 };
 
-                if (objData.PASSWORD != objData.CONFIRM_PASSWORD)
+                if (objData.Password != objData.ConfirmPassword)
                 {
                     return Json(new { success = false, message = "The password you entered did not matched." });
                 }              
 
-                var objUserManager = await _UserManager.CreateAsync(objUser, objData.PASSWORD);
+                var objUserManager = await _UserManager.CreateAsync(objUser, objData.Password);
 
                 if (objUserManager.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(objData.ROLE))
+                    if (!string.IsNullOrEmpty(objData.Role))
                     {
-                        await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
+                        await _UserManager.AddToRoleAsync(objUser, objData.Role);
                     }
                     else
                     {
-                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.CUSTOMER.ToString());
+                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.Customer.ToString());
                     }
+
 
                     return Json(new { success = true, message = "Successfully registered" });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "The email or password entered was invalid. Please try again." });
+                    var objError = objUserManager.Errors.Select(error => error.Description).ToList();
+                    return Json(new { success = false, message = objError }); ;
                 }
 
             }
 
-            return Json(new { success = false, message = "Something went wrong" });
+            var modelStateError = ModelState.Values.SelectMany( error => error.Errors).Select(e => e.ErrorMessage).ToList();
+            return Json(new { success = false, message = modelStateError });
 
         }
 
@@ -155,11 +158,11 @@ namespace RPRENTAL.Controllers
 
             RegisterVM objRegister = new RegisterVM();
 
-            objRegister.EMAIL = objUser.Email;
-            objRegister.NAME = objUser.USER_NAME;
-            objRegister.PHONE_NUMBER = objUser.PhoneNumber;
-            objRegister.ROLE = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
-            objRegister.ROLE_LIST = _RoleManager.Roles.Select(fw => new SelectListItem
+            objRegister.Email = objUser.Email!;
+            objRegister.Fullname = objUser.Fullname!;
+            objRegister.PhoneNumber = objUser.PhoneNumber;
+            objRegister.Role = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+            objRegister.RoleList = _RoleManager.Roles.Select(fw => new SelectListItem
             {
                 Text = fw.Name,
                 Value = fw.Name
@@ -172,7 +175,7 @@ namespace RPRENTAL.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(RegisterVM objData)
         {
-            var objUser = await _UserManager.FindByEmailAsync(objData.EMAIL);
+            var objUser = await _UserManager.FindByEmailAsync(objData.Email);
             var objUserRole = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
 
 
@@ -180,15 +183,15 @@ namespace RPRENTAL.Controllers
             {
 
                 await _UserManager.RemoveFromRoleAsync(objUser, objUserRole);
-                await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
+                await _UserManager.AddToRoleAsync(objUser, objData.Role);
 
-                objUser.USER_NAME = objData.NAME;
-                objUser.PhoneNumber = objData.PHONE_NUMBER;
+                objUser.Fullname = objData.Fullname;
+                objUser.PhoneNumber = objData.PhoneNumber;
 
-                if (!String.IsNullOrEmpty(objData.PASSWORD))
+                if (!String.IsNullOrEmpty(objData.Password))
                 {
                     var token = await _UserManager.GeneratePasswordResetTokenAsync(objUser);
-                    await _UserManager.ResetPasswordAsync(objUser, token, objData.PASSWORD);
+                    await _UserManager.ResetPasswordAsync(objUser, token, objData.Password);
                 }
 
                 await _UserManager.UpdateAsync(objUser);
@@ -209,6 +212,13 @@ namespace RPRENTAL.Controllers
         {
             try
             {
+
+                var objBooking  = _IWorker.tbl_Booking.Get(fw => fw.UserEmail == email);
+
+                if (objBooking != null)
+                {
+                    return Json(new { success = false, message = "The user have current transaction, unable to delete. Thank you." });
+                }
 
                 if (email == "rolimer_pono@yahoo.com") //Temporary
                 {
@@ -238,15 +248,15 @@ namespace RPRENTAL.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.EMAIL, loginVM.PASSWORD, loginVM.IS_REMEMBER, lockoutOnFailure: false);
+            var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
 
             if (objSignIn.Succeeded)
             {
-                var objUser = await _UserManager.FindByEmailAsync(loginVM.EMAIL);
+                var objUser = await _UserManager.FindByEmailAsync(loginVM.Email);
 
-                if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.ADMIN.ToString()))
+                if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.Admin.ToString()))
                 {
-                    return Json(new { success = true, message = "Successfully login" , role= SD.UserRole.ADMIN.ToString()});
+                    return Json(new { success = true, message = "Successfully login" , role= SD.UserRole.Admin.ToString()});
                 }
                 else
                 {
@@ -264,36 +274,39 @@ namespace RPRENTAL.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM objData)
         {
+          
             if (ModelState.IsValid)
             {
                 ApplicationUser objUser = new ApplicationUser()
                 {
-                    USER_NAME = objData.NAME,
-                    Email = objData.EMAIL,
-                    PhoneNumber = objData.PHONE_NUMBER,
-                    NormalizedEmail = objData.EMAIL.ToUpper(),
+                    Fullname = objData.Fullname,
+                    Email = objData.Email,
+                    PhoneNumber = objData.PhoneNumber,
+                    NormalizedEmail = objData.Email.ToUpper(),
                     EmailConfirmed = true,
-                    UserName = objData.EMAIL,
-                    CREATED_DATE = DateTime.Now,
+                    UserName = objData.Email,
+                    CreatedDate = DateTime.Now,
 
                 };
 
-                if (objData.PASSWORD != objData.CONFIRM_PASSWORD)
+                
+                if (objData.Password != objData.ConfirmPassword)
                 {
                     return Json(new { success = false, message = "The password you entered did not matched." });
                 }
 
-                var objUserManager = await _UserManager.CreateAsync(objUser, objData.PASSWORD);
+                var objUserManager = await _UserManager.CreateAsync(objUser, objData.Password);
 
                 if (objUserManager.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(objData.ROLE))
+                    if (!string.IsNullOrEmpty(objData.Role))
                     {
-                        await _UserManager.AddToRoleAsync(objUser, objData.ROLE);
+                        await _UserManager.AddToRoleAsync(objUser, objData.Role);
                     }
                     else
                     {
-                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.CUSTOMER.ToString());
+                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.Customer.ToString());
+                        
                     }
 
                     await _SignInManager.SignInAsync(objUser, isPersistent: false);
@@ -302,7 +315,8 @@ namespace RPRENTAL.Controllers
                 }
                 else
                 {
-                    return Json(new { success = false, message = "The email or password entered was invalid. Please try again." });
+                    var objError = objUserManager.Errors.Select(error => error.Description).ToList();
+                    return Json(new { success = false, message = objError }); ;
                 }
 
             }

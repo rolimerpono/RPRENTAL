@@ -12,22 +12,16 @@ namespace Model
     public  class RoomNumber
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ROOM_NUMBER { get; set; }
+        public int RoomNo { get; set; }
 
-        public string? DESCRIPTION { get; set; }
-
-        //RELATIONSHIP//
-
-        public int ROOM_ID { get; set; }
+        public string? Description { get; set; }
 
 
-        [ForeignKey("ROOM_ID")]
+        [ForeignKey("Room")]     
+        public int RoomId { get; set; }
+
         [ValidateNever]
-        public Room? ROOM { get;set; }
-
-
-        //          
-
+        public Room? Room { get;set; }        
 
     }
 }

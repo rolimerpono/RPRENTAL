@@ -33,11 +33,11 @@ namespace DataService.Implementation
             }
         }
 
-        public void Delete(int ROOM_NUMBER)
+        public void Delete(int RoomNo)
         {
             try
             { 
-                var objRoomNumber = _IWorker.tbl_RoomNumber.Get(fw => fw.ROOM_NUMBER == ROOM_NUMBER);
+                var objRoomNumber = _IWorker.tbl_RoomNumber.Get(fw => fw.RoomNo == RoomNo);
 
                 if(objRoomNumber != null)
                 {
@@ -53,11 +53,11 @@ namespace DataService.Implementation
             }
         }
 
-        public RoomNumber Get(int ROOM_NUMBER)
+        public RoomNumber Get(int RoomNo)
         {
             try
             {
-                var objRoomNumber = _IWorker.tbl_RoomNumber.Get(fw => fw.ROOM_NUMBER == ROOM_NUMBER, IncludeProperties: "ROOM");
+                var objRoomNumber = _IWorker.tbl_RoomNumber.Get(fw => fw.RoomNo == RoomNo, IncludeProperties: "Room");
 
                 if (objRoomNumber != null)
                 {
@@ -77,7 +77,7 @@ namespace DataService.Implementation
         {
             try
             {
-                var objRoomNumber = _IWorker.tbl_RoomNumber.GetAll(IncludeProperties: "ROOM");
+                var objRoomNumber = _IWorker.tbl_RoomNumber.GetAll(IncludeProperties: "Room");
 
                 if (objRoomNumber != null)
                 {
@@ -92,10 +92,10 @@ namespace DataService.Implementation
         }
             
 
-        public bool IsRoomNumberExists(int ROOM_NUMBER)
+        public bool IsRoomNumberExists(int RoomNo)
         {
            
-            var objRoomNumber = _IWorker.tbl_RoomNumber.Get(fw => fw.ROOM_NUMBER == ROOM_NUMBER);
+            var objRoomNumber = _IWorker.tbl_RoomNumber.Get(fw => fw.RoomNo == RoomNo);
 
             if (objRoomNumber != null)
             {

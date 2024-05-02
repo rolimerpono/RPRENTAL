@@ -13,20 +13,20 @@ namespace Model
     {
         public Amenity()
         {
-            AMENITY_ID = 0;
-            AMENITY_NAME = string.Empty;
-            IS_CHECK = false;
+            AmenityId = 0;
+            AmenityName = string.Empty;
+            IsCheck = false;
        
         }
 
         [Key]       
-        public int AMENITY_ID { get; set; }
+        public int AmenityId { get; set; }
 
-        public string AMENITY_NAME { get; set; }
+        public string AmenityName { get; set; }
 
         [NotMapped]
         [ValidateNever]
-        public Boolean IS_CHECK { get; set; }
+        public Boolean IsCheck { get; set; }
 
 
     }

@@ -45,115 +45,113 @@ namespace DatabaseAccess
             builder.Entity<Room>().HasData(
             new Room
             {  
-                ROOM_ID = 1,
-                ROOM_NAME = "Single Room",
-                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                MAX_OCCUPANCY = 1,
-                ROOM_PRICE = 85,
-                IMAGE_URL = @"\\img\\Rooms\\Single.jpg",
-                CREATED_DATE = DateTime.Now,
-                UPDATED_DATE = DateTime.Now
+                RoomId              = 1,
+                RoomName            = "Single Room",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 1,
+                RoomPrice           = 85,
+                ImageUrl            = @"\img\Rooms\Single.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
             },
             new Room
             {
-                ROOM_ID = 2,
-                ROOM_NAME = "Double Room",
-                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                MAX_OCCUPANCY = 2,
-                ROOM_PRICE = 90,
-                IMAGE_URL = @"\\img\\Rooms\\Double.jpg",
-                CREATED_DATE = DateTime.Now,
-                UPDATED_DATE = DateTime.Now
+                RoomId              = 2,
+                RoomName            = "Double Room",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 2,
+                RoomPrice           = 90,
+                ImageUrl            = @"\img\Rooms\Double.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
 
 
             },
-                new Room
-                {
-                    ROOM_ID = 3,
-                    ROOM_NAME = "Deluxed Room",
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                    MAX_OCCUPANCY = 3,
-                    ROOM_PRICE = 100,
-                    IMAGE_URL = @"\\img\\Rooms\\Deluxed.jpg",
-                    CREATED_DATE = DateTime.Now,
-                    UPDATED_DATE = DateTime.Now
-                },
+            new Room
+            {
+                RoomId              = 3,
+                RoomName            = "Deluxed Room",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 3,
+                RoomPrice           = 100,
+                ImageUrl            = @"\img\Rooms\Deluxed.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
+            },
 
-                new Room
-                {
-                    ROOM_ID = 4,
-                    ROOM_NAME = "Queens Room",
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                    MAX_OCCUPANCY = 4,
-                    ROOM_PRICE = 120,
-                    IMAGE_URL = @"\\img\\Rooms\\Queens.jpg",
-                    CREATED_DATE = DateTime.Now,
-                    UPDATED_DATE = DateTime.Now
+            new Room
+            {
+                RoomId              = 4,
+                RoomName            = "Queens Room",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 4,
+                RoomPrice           = 120,
+                ImageUrl            = @"\img\Rooms\Queens.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
 
-                },
+            },
 
-                new Room
-                {
-                    ROOM_ID = 5,
-                    ROOM_NAME = "Kings Room",
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                    MAX_OCCUPANCY = 5,
-                    ROOM_PRICE = 130,
-                    IMAGE_URL = @"\\img\\Rooms\\Kings.jpg",
-                    CREATED_DATE = DateTime.Now,
-                    UPDATED_DATE = DateTime.Now
+            new Room
+            {
+                RoomId              = 5,
+                RoomName            = "Kings Room",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 5,
+                RoomPrice           = 130,
+                ImageUrl            = @"\img\Rooms\Kings.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
 
-                },
-                new Room
-                {
-                    ROOM_ID = 6,
-                    ROOM_NAME = "Executive Suite",
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                    MAX_OCCUPANCY = 10,
-                    ROOM_PRICE = 100,
-                    IMAGE_URL = @"\\img\\Rooms\\Executive.jpg",
-                    CREATED_DATE = DateTime.Now,
-                    UPDATED_DATE = DateTime.Now
-                },
+            },
+            new Room
+            {
+                RoomId              = 6,
+                RoomName            = "Executive Suite",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 10,
+                RoomPrice           = 100,
+                ImageUrl            = @"\img\Rooms\Executive.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
+            },
 
-                 new Room
-                 {
-                     ROOM_ID = 7,
-                     ROOM_NAME = "Super Deluxed",
-                     DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                     MAX_OCCUPANCY = 10,
-                     ROOM_PRICE = 110,
-                     IMAGE_URL = @"\\img\\Rooms\\Super Deluxed.jpg",
-                     CREATED_DATE = DateTime.Now,
-                     UPDATED_DATE = DateTime.Now
+            new Room
+            {
+                RoomId              = 7,
+                RoomName            = "Super Deluxed",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 10,
+                RoomPrice           = 110,
+                ImageUrl            = @"\img\Rooms\Super Deluxed.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
 
-                 },
-                  new Room
-                  {
-                      ROOM_ID = 8,
-                      ROOM_NAME = "Diamond Room",
-                      DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                      MAX_OCCUPANCY = 10,
-                      ROOM_PRICE = 87,
-                      IMAGE_URL = @"\\img\\Rooms\\Diamond Room.jpg",
-                      CREATED_DATE = DateTime.Now,
-                      UPDATED_DATE = DateTime.Now
+            },
+            new Room
+            {
+                RoomId              = 8,
+                RoomName            = "Diamond Room",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 10,
+                RoomPrice           = 87,
+                ImageUrl            = @"\img\Rooms\Diamond Room.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
 
-                  },
-                   new Room
-                   {
-                       ROOM_ID = 9,
-                       ROOM_NAME = "Emerald Deluxed",
-                       DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
-                       MAX_OCCUPANCY = 10,
-                       ROOM_PRICE = 98,
-                       IMAGE_URL = @"\\img\\Rooms\\Emerald Room.jpg",
-                       CREATED_DATE = DateTime.Now,
-                       UPDATED_DATE = DateTime.Now
+            },
+            new Room
+            {
+                RoomId = 9,
+                RoomName            = "Emerald Deluxed",
+                Description         = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.",
+                MaxOccupancy        = 10,
+                RoomPrice           = 98,
+                ImageUrl            = @"\img\Rooms\Emerald Room.jpg",
+                CreatedDate         = DateTime.Now,
+                UpdatedDate         = DateTime.Now
 
-                   }
-
-            );
+            });
 
             #endregion
 
@@ -161,174 +159,170 @@ namespace DatabaseAccess
             builder.Entity<RoomNumber>().HasData(           
             new RoomNumber
             { 
-                ROOM_NUMBER = 101,
-                ROOM_ID = 1,
-                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor."
+                RoomNo      = 101,
+                RoomId      = 1,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor."
             },
-                new RoomNumber
-                {
-                    ROOM_NUMBER = 102,
-                    ROOM_ID = 1,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                },
-                new RoomNumber
-                {
-                    ROOM_NUMBER = 103,
-                    ROOM_ID = 1,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                },
-                new RoomNumber
-                {
-                    ROOM_NUMBER = 104,
-                    ROOM_ID = 1,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                },
-                new RoomNumber
-                {
-                    ROOM_NUMBER = 201,
-                    ROOM_ID = 2,
-                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                },
-                    new RoomNumber
-                    {
-                        ROOM_NUMBER = 202,
-                        ROOM_ID = 2,
-                        DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                    },
-                    new RoomNumber
-                    {
-                        ROOM_NUMBER = 203,
-                        ROOM_ID = 2,
-                        DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                    },
-                    new RoomNumber
-                    {
-                        ROOM_NUMBER = 204,
-                        ROOM_ID = 2,
-                        DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                    },
-                    new RoomNumber
-                    {
-                        ROOM_NUMBER = 301,
-                        ROOM_ID = 3,
-                        DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                    },
-                        new RoomNumber
-                        {
-                            ROOM_NUMBER = 302,
-                            ROOM_ID = 3,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                        },
-                        new RoomNumber
-                        {
-                            ROOM_NUMBER = 303,
-                            ROOM_ID = 3,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                        },
-                        new RoomNumber
-                        {
-                            ROOM_NUMBER = 304,
-                            ROOM_ID = 3,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                        },
-                        new RoomNumber
-                        {
-                            ROOM_NUMBER = 401,
-                            ROOM_ID = 4,
-                            DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                        },
-                            new RoomNumber
-                            {
-                                ROOM_NUMBER = 402,
-                            ROOM_ID = 4,
-                                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                            },
-                            new RoomNumber
-                            {
-                                ROOM_NUMBER = 403,
-                                ROOM_ID = 4,
-                                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                            },
-                            new RoomNumber
-                            {
-                                ROOM_NUMBER = 501,
-                                ROOM_ID = 5,
-                                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                            },
-                            new RoomNumber
-                            {
-                                ROOM_NUMBER = 502,
-                                ROOM_ID = 5,
-                                DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                            },
-                                new RoomNumber
-                                {
-                                    ROOM_NUMBER = 503,
-                                    ROOM_ID = 5,
-                                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                                },
-                                new RoomNumber
-                                {
-                                    ROOM_NUMBER = 601,
-                                    ROOM_ID = 6,
-                                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                                },
-                                new RoomNumber
-                                {
-                                    ROOM_NUMBER = 602,
-                                    ROOM_ID = 6,
-                                    DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
-                                }
-            );
-
-
+            new RoomNumber
+            {
+                RoomNo      = 102,
+                RoomId      = 1,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo      = 103,
+                RoomId      = 1,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 104,
+                RoomId = 1,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo      = 201,
+                RoomId      = 2,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 202,
+                RoomId = 2,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 203,
+                RoomId = 2,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 204,
+                RoomId = 2,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 301,
+                RoomId = 3,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 302,
+                RoomId = 3,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 303,
+                RoomId = 3,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 304,
+                RoomId = 3,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 401,
+                RoomId = 4,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 402,
+                RoomId = 4,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 403,
+                RoomId = 4,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 501,
+                RoomId = 5,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 502,
+                RoomId = 5,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 503,
+                RoomId = 5,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 601,
+                RoomId = 6,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            },
+            new RoomNumber
+            {
+                RoomNo = 602,
+                RoomId = 6,
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed finibus sed purus consequat porta.Praesent vitae tincidunt dolor."
+            });
             #endregion
 
             #region Amenity Only
-            builder.Entity<Amenity>().HasData(
-                new Amenity
-                {
-                    AMENITY_ID = 1,
-                    AMENITY_NAME = "Washing Machine",
-                },
-                new Amenity
-                {
-                    AMENITY_ID = 2,
-                    AMENITY_NAME = "Electric Fan",
+            builder.Entity<Amenity>().HasData(                
+            new Amenity
+            {
+                AmenityId = 1,
+                AmenityName = "Washing Machine",
+            },
+            new Amenity
+            {
+                AmenityId = 2,
+                AmenityName = "Electric Fan",
 
-                },
-                new Amenity
-                {
-                    AMENITY_ID = 3,
-                    AMENITY_NAME = "TV",
-                },
-                new Amenity
-                {
-                    AMENITY_ID = 4,
-                    AMENITY_NAME = "Internet Wifi",
-                },
-                new Amenity
-                {
-                    AMENITY_ID = 5,
-                    AMENITY_NAME = "Microwave",
+            },
+            new Amenity
+            {
+                AmenityId = 3,
+                AmenityName = "TV",
+            },
+            new Amenity
+            {
+                AmenityId = 4,
+                AmenityName = "Internet Wifi",
+            },
+            new Amenity
+            {
+                AmenityId = 5,
+                AmenityName = "Microwave",
 
-                }
-             );
+            });
 
             #endregion  
 
             #region Room Amenity
                 builder.Entity<RoomAmenity>().HasData(
-                new RoomAmenity { ID = 1, ROOM_ID = 1, AMENITY_ID = 1 },
-                new RoomAmenity { ID = 2, ROOM_ID = 1, AMENITY_ID = 2 },
-                new RoomAmenity { ID = 3, ROOM_ID = 1, AMENITY_ID = 3 },
-                new RoomAmenity { ID = 4, ROOM_ID = 1, AMENITY_ID = 4 },
-                new RoomAmenity { ID = 5, ROOM_ID = 1, AMENITY_ID = 5 },
-                new RoomAmenity { ID = 6, ROOM_ID = 2, AMENITY_ID = 3 },
-                new RoomAmenity { ID = 7, ROOM_ID = 2, AMENITY_ID = 1 },
-                new RoomAmenity { ID = 8, ROOM_ID = 3, AMENITY_ID = 5 },
-                new RoomAmenity { ID = 9, ROOM_ID = 4, AMENITY_ID = 3 },
-                new RoomAmenity { ID = 10, ROOM_ID = 5, AMENITY_ID = 5 });       
+                new RoomAmenity { Id  = 1,  RoomId = 1, AmenityId = 1 },
+                new RoomAmenity { Id  = 2,  RoomId = 1, AmenityId = 2 },
+                new RoomAmenity { Id  = 3,  RoomId = 1, AmenityId = 3 },
+                new RoomAmenity { Id  = 4,  RoomId = 1, AmenityId = 4 },
+                new RoomAmenity { Id  = 5,  RoomId = 1, AmenityId = 5 },
+                new RoomAmenity { Id  = 6,  RoomId = 2, AmenityId = 3 },
+                new RoomAmenity { Id  = 7,  RoomId = 2, AmenityId = 1 },
+                new RoomAmenity { Id  = 8,  RoomId = 3, AmenityId = 5 },
+                new RoomAmenity { Id  = 9,  RoomId = 4, AmenityId = 3 },
+                new RoomAmenity { Id  = 10, RoomId = 5, AmenityId = 5 });       
             #endregion
 
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class cleanUpMigration : Migration
+    public partial class cleanUpDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,8 +32,9 @@ namespace DatabaseAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    USER_NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CREATED_DATE = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Fullname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -58,13 +59,13 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_Amenity",
                 columns: table => new
                 {
-                    AMENITY_ID = table.Column<int>(type: "int", nullable: false)
+                    AmenityId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AMENITY_NAME = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AmenityName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_Amenity", x => x.AMENITY_ID);
+                    table.PrimaryKey("PK_tbl_Amenity", x => x.AmenityId);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,19 +89,19 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_Rooms",
                 columns: table => new
                 {
-                    ROOM_ID = table.Column<int>(type: "int", nullable: false)
+                    RoomId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ROOM_NAME = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DESCRIPTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ROOM_PRICE = table.Column<double>(type: "float", nullable: false),
-                    MAX_OCCUPANCY = table.Column<int>(type: "int", nullable: false),
-                    IMAGE_URL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CREATED_DATE = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UPDATED_DATE = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    RoomName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomPrice = table.Column<double>(type: "float", nullable: false),
+                    MaxOccupancy = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_Rooms", x => x.ROOM_ID);
+                    table.PrimaryKey("PK_tbl_Rooms", x => x.RoomId);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,68 +214,68 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_Booking",
                 columns: table => new
                 {
-                    BOOKING_ID = table.Column<int>(type: "int", nullable: false)
+                    BookingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ROOM_ID = table.Column<int>(type: "int", nullable: false),
-                    ROOM_NUMBER = table.Column<int>(type: "int", nullable: false),
-                    USER_NAME = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    USER_EMAIL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PHONE_NUMBER = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TOTAL_COST = table.Column<double>(type: "float", nullable: false),
-                    BOOKING_STATUS = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BOOKING_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CHECK_IN_DATE = table.Column<DateOnly>(type: "date", nullable: false),
-                    CHECK_OUT_DATE = table.Column<DateOnly>(type: "date", nullable: false),
-                    NO_OF_STAY = table.Column<int>(type: "int", nullable: false),
-                    IS_PAYMENT_SUCCESSFULL = table.Column<bool>(type: "bit", nullable: false),
-                    PAYMENT_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    STRIPE_SESSION_ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    STRIPE_PAYEMENT_INTENT_ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ACTUAL_CHECK_IN_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ACTUAL_CHECK_OUT_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ACTUAL_CANCELLED_DATE = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    RoomNo = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalCost = table.Column<double>(type: "float", nullable: false),
+                    BookingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CheckinDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    CheckoutDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    NoOfStay = table.Column<int>(type: "int", nullable: false),
+                    IsPaymentSuccessfull = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StripeSessionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StripePaymentIntentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ActualCheckinDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActualCheckoutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActualCancelledDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_Booking", x => x.BOOKING_ID);
+                    table.PrimaryKey("PK_tbl_Booking", x => x.BookingId);
                     table.ForeignKey(
-                        name: "FK_tbl_Booking_AspNetUsers_USER_ID",
-                        column: x => x.USER_ID,
+                        name: "FK_tbl_Booking_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_tbl_Booking_tbl_Rooms_ROOM_ID",
-                        column: x => x.ROOM_ID,
+                        name: "FK_tbl_Booking_tbl_Rooms_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "tbl_Rooms",
-                        principalColumn: "ROOM_ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoomId",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
                 name: "tbl_RoomAmenity",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ROOM_ID = table.Column<int>(type: "int", nullable: false),
-                    AMENITY_ID = table.Column<int>(type: "int", nullable: false)
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    AmenityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_RoomAmenity", x => x.ID);
+                    table.PrimaryKey("PK_tbl_RoomAmenity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tbl_RoomAmenity_tbl_Amenity_AMENITY_ID",
-                        column: x => x.AMENITY_ID,
+                        name: "FK_tbl_RoomAmenity_tbl_Amenity_AmenityId",
+                        column: x => x.AmenityId,
                         principalTable: "tbl_Amenity",
-                        principalColumn: "AMENITY_ID",
+                        principalColumn: "AmenityId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tbl_RoomAmenity_tbl_Rooms_ROOM_ID",
-                        column: x => x.ROOM_ID,
+                        name: "FK_tbl_RoomAmenity_tbl_Rooms_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "tbl_Rooms",
-                        principalColumn: "ROOM_ID",
+                        principalColumn: "RoomId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -282,24 +283,24 @@ namespace DatabaseAccess.Migrations
                 name: "tbl_RoomNumber",
                 columns: table => new
                 {
-                    ROOM_NUMBER = table.Column<int>(type: "int", nullable: false),
-                    DESCRIPTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ROOM_ID = table.Column<int>(type: "int", nullable: false)
+                    RoomNo = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbl_RoomNumber", x => x.ROOM_NUMBER);
+                    table.PrimaryKey("PK_tbl_RoomNumber", x => x.RoomNo);
                     table.ForeignKey(
-                        name: "FK_tbl_RoomNumber_tbl_Rooms_ROOM_ID",
-                        column: x => x.ROOM_ID,
+                        name: "FK_tbl_RoomNumber_tbl_Rooms_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "tbl_Rooms",
-                        principalColumn: "ROOM_ID",
+                        principalColumn: "RoomId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "tbl_Amenity",
-                columns: new[] { "AMENITY_ID", "AMENITY_NAME" },
+                columns: new[] { "AmenityId", "AmenityName" },
                 values: new object[,]
                 {
                     { 1, "Washing Machine" },
@@ -311,23 +312,23 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "tbl_Rooms",
-                columns: new[] { "ROOM_ID", "CREATED_DATE", "DESCRIPTION", "IMAGE_URL", "MAX_OCCUPANCY", "ROOM_NAME", "ROOM_PRICE", "UPDATED_DATE" },
+                columns: new[] { "RoomId", "CreatedDate", "Description", "ImageUrl", "MaxOccupancy", "RoomName", "RoomPrice", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6681), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Single.jpg", 1, "Single Room", 85.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6682) },
-                    { 2, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6690), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Double.jpg", 2, "Double Room", 90.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6691) },
-                    { 3, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6698), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Deluxed.jpg", 3, "Deluxed Room", 100.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6699) },
-                    { 4, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6705), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Queens.jpg", 4, "Queens Room", 120.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6706) },
-                    { 5, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6712), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Kings.jpg", 5, "Kings Room", 130.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6713) },
-                    { 6, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6718), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Executive.jpg", 10, "Executive Suite", 100.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6719) },
-                    { 7, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6725), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Super Deluxed.jpg", 10, "Super Deluxed", 110.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6726) },
-                    { 8, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6732), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Diamond Room.jpg", 10, "Diamond Room", 87.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6733) },
-                    { 9, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6739), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\\\img\\\\Rooms\\\\Emerald Room.jpg", 10, "Emerald Deluxed", 98.0, new DateTime(2024, 5, 1, 14, 12, 56, 428, DateTimeKind.Local).AddTicks(6740) }
+                    { 1, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4039), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Single.jpg", 1, "Single Room", 85.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4040) },
+                    { 2, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4047), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Double.jpg", 2, "Double Room", 90.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4048) },
+                    { 3, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4053), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Deluxed.jpg", 3, "Deluxed Room", 100.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4054) },
+                    { 4, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4099), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Queens.jpg", 4, "Queens Room", 120.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4100) },
+                    { 5, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4106), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Kings.jpg", 5, "Kings Room", 130.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4107) },
+                    { 6, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4113), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Executive.jpg", 10, "Executive Suite", 100.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4114) },
+                    { 7, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4119), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Super Deluxed.jpg", 10, "Super Deluxed", 110.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4120) },
+                    { 8, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4126), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Diamond Room.jpg", 10, "Diamond Room", 87.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4127) },
+                    { 9, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4133), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor, bibendum lacinia urna.", "\\img\\Rooms\\Emerald Room.jpg", 10, "Emerald Deluxed", 98.0, new DateTime(2024, 5, 2, 17, 28, 5, 919, DateTimeKind.Local).AddTicks(4134) }
                 });
 
             migrationBuilder.InsertData(
                 table: "tbl_RoomAmenity",
-                columns: new[] { "ID", "AMENITY_ID", "ROOM_ID" },
+                columns: new[] { "Id", "AmenityId", "RoomId" },
                 values: new object[,]
                 {
                     { 1, 1, 1 },
@@ -344,7 +345,7 @@ namespace DatabaseAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "tbl_RoomNumber",
-                columns: new[] { "ROOM_NUMBER", "DESCRIPTION", "ROOM_ID" },
+                columns: new[] { "RoomNo", "Description", "RoomId" },
                 values: new object[,]
                 {
                     { 101, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus sed purus consequat porta. Praesent vitae tincidunt dolor.", 1 },
@@ -409,29 +410,29 @@ namespace DatabaseAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_Booking_ROOM_ID",
+                name: "IX_tbl_Booking_RoomId",
                 table: "tbl_Booking",
-                column: "ROOM_ID");
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_Booking_USER_ID",
+                name: "IX_tbl_Booking_UserId",
                 table: "tbl_Booking",
-                column: "USER_ID");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_RoomAmenity_AMENITY_ID",
+                name: "IX_tbl_RoomAmenity_AmenityId",
                 table: "tbl_RoomAmenity",
-                column: "AMENITY_ID");
+                column: "AmenityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_RoomAmenity_ROOM_ID",
+                name: "IX_tbl_RoomAmenity_RoomId",
                 table: "tbl_RoomAmenity",
-                column: "ROOM_ID");
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbl_RoomNumber_ROOM_ID",
+                name: "IX_tbl_RoomNumber_RoomId",
                 table: "tbl_RoomNumber",
-                column: "ROOM_ID");
+                column: "RoomId");
         }
 
         /// <inheritdoc />

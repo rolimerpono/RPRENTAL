@@ -47,13 +47,13 @@
             <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
                 <div class="form-group text-light">
                     CHECK IN DATE
-                    <input id="CheckInDate" class="bg-dark-subtle form-control" type="date" asp-for="@Model.ITEMS.FirstOrDefault().CHECKIN_DATE">
+                    <input id="CheckInDate" class="bg-dark-subtle form-control" type="date" asp-for="@Model.ITEMS.FirstOrDefault()!.CheckinDate">
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
                 <div class="form-group text-light">
                     CHECKOUT DATE
-                    <input id="CheckOutDate" class="bg-dark-subtle form-control" type="date" asp-for="@Model.ITEMS.FirstOrDefault().CHECKOUT_DATE">
+                    <input id="CheckOutDate" class="bg-dark-subtle form-control" type="date" asp-for="@Model.ITEMS.FirstOrDefault()!.CheckoutDate">
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 mt-2">
