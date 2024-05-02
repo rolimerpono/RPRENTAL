@@ -61,10 +61,17 @@ namespace RPRENTAL.Controllers
         {
             try
             {
+
+                bool is_exists = _IRoomService.IsRoomNameExists(objRoom);
+
+                if (is_exists)
+                {
+                    return Json(new { success = false, message = "Room name already exists." });
+                }
+
                 if (ModelState.IsValid && objRoom.RoomId == 0)
                 {
-                    _IRoomService.Create(objRoom);
-                    TempData["success"] = "Room created successfully.";
+                    _IRoomService.Create(objRoom);                 
                     return Json(new { success = true, message = "Room created successfully." });
                 }
                 else

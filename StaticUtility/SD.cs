@@ -3,6 +3,7 @@ using System.IO;
 using sib_api_v3_sdk.Api;
 using sib_api_v3_sdk.Model;
 using System.Web.Mvc;
+using Microsoft.Identity.Client;
 
 
 namespace StaticUtility
@@ -26,10 +27,21 @@ namespace StaticUtility
             Refunded        
         }
 
+
+        public struct CrudTransactions
+        {
+            public const string Save = "Record was successfully saved.";
+            public const string Edit = "Record was successfully updated.";
+            public const string Delete = "Record was successfully deleted.";
+            public const string RecordExists = "Record is already exists!";
+            public const string EmptyField = "Please fill all required fields";
+            public const string InvalidInput = "Please make sure the input you entered was valid.";        
+        }
+
         public struct BookingTransaction 
         {
-            public const string success = "Transaction completed.";
-            public const string fail = "Transaction fail.";
+            public const string Success = "Transaction completed.";
+            public const string Fail = "Transaction fail.";
 
         }
 

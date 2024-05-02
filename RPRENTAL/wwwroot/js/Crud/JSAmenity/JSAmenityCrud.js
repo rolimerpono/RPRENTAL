@@ -137,7 +137,6 @@ function saveRoom(url, formSelector) {
 
 function deleteAmenity() {
     let amenityId = $('#AmenityId').val();
-
     
     $.ajax({
         type: 'POST',

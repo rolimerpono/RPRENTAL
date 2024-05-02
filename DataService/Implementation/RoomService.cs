@@ -22,7 +22,8 @@ namespace DataService.Implementation
 
         [HttpPost]
         public void Create(Room objRoom)
-        {
+        {           
+
             try
             {
 
@@ -112,15 +113,12 @@ namespace DataService.Implementation
 
         public bool IsRoomNameExists(Room objRoom)
         {
-            Room objRoomResult;
+            bool is_record_exists = false;
             try
             {
-                objRoomResult = _iWorker.tbl_Rooms.Get(fw => fw.RoomName == objRoom.RoomName);
-                if (objRoomResult != null)
-                {
-                    return true;      
-                }
-                return false;
+                    
+            
+             return is_record_exists = _iWorker.tbl_Rooms.Any(fw => fw.RoomName.ToLower().Trim() == objRoom.RoomName.ToLower().Trim());              
 
             }
             catch (Exception ex) {

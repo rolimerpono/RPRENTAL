@@ -6,12 +6,15 @@ $(document).ready(function () {
 
     $('.btn-add').click(function () {
         loadModal('/Room/Create', '#modal-add-content');
-        InputBoxFocus('#modal-add');
+        InputBoxFocus('#modal-add');       
+     
         
     });
 
     $('.btn-save').click(function () {
         saveRoom('/Room/Create', '#form-add');
+        
+        ShowToaster('', '', '');
     });
 
     $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
@@ -21,7 +24,8 @@ $(document).ready(function () {
     });
 
     $('.btn-edit').click(function () {
-        saveRoom('/Room/Update', '#form-edit');
+        saveRoom('/Room/Update', '#form-edit');     
+       
     });
 
     $('#tbl_Rooms').on('click', '.select-delete-btn', function () {
@@ -107,14 +111,15 @@ function loadModal(url, modalContentSelector, data = null) {
         url: url,
         data: data,
         success: function (response) {   
-  
-            $(modalContentSelector).html('');
-            $(modalContentSelector).html(response);    
-            console.log(response);
-            $(modalContentSelector.replace('-content', '')).modal('show');
+            if (response)
+            {
+                $(modalContentSelector).html('');
+                $(modalContentSelector).html(response);
+                $(modalContentSelector.replace('-content', '')).modal('show');
+            }
         },
         error: function (xhr, status, error) {
-            handleAjaxError(error);
+            ShowToaster('error', 'Room', error);
         }
     });
 
@@ -125,7 +130,6 @@ function loadModal(url, modalContentSelector, data = null) {
 
 
 function saveRoom(url, formSelector) {  
-
 
     var form_data = new FormData($(formSelector)[0]);
 
@@ -141,18 +145,19 @@ function saveRoom(url, formSelector) {
                 if (response.success) {
                     objDataTable.ajax.reload();
                     $(formSelector.replace('form', 'modal')).modal('hide');
-                    showToast('success', response.message);
+                    ShowToaster('success', 'Room', response.message);
                 } else {
-                    showToast('error', response.message);
+                    ShowToaster('error', 'Room', response.message);
                 }
 
             },
-            error: function (xhr, status, error) {
-                handleAjaxError(error);
+            error: function (xhr, status, error) {             
+                ShowToaster('error', 'Room', error);
             }
         });
     } else {
         $(formSelector).addClass('was-validated');
+        ShowToaster('error', 'Room', 'Please make sure all fields input are valid.');
     }
 }
 
@@ -164,31 +169,15 @@ function deleteRoom() {
         data: { RoomId: roomId },
         success: function (response) {
             objDataTable.ajax.reload();
-            $('#modal-delete').modal('hide');
-            showToast('success', response.message);
+            $('#modal-delete').modal('hide');           
+            ShowToaster('success', 'Room', response.message);
         },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
+        error: function (xhr, status, error) {           
+            ShowToaster('error', 'Room', error);
         }
     });
 }
 
 function getRowData(btn) {
     return objDataTable.row(btn.closest('tr')).data();
-}
-
-function handleAjaxError(error) {
-    console.log('Error: ' + error);
-}
-
-function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
-    setTimeout(function () {
-        toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
-    }, 3000);
 }

@@ -88,7 +88,7 @@ namespace RPRENTAL.Controllers
 
             if (Id == 0 || String.IsNullOrEmpty(jsonData))
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail });
             }
 
             var userID = (User.Identity as ClaimsIdentity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -143,13 +143,13 @@ namespace RPRENTAL.Controllers
 
             if (objBooking == null)
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail });
             }
 
 
             _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BookingId, SD.BookingStatus.Checkin.ToString(), objBooking.RoomNo);
             _IWorker.tbl_Booking.Save();
-            return Json(new { success = true, message = SD.BookingTransaction.success });
+            return Json(new { success = true, message = SD.BookingTransaction.Success });
 
         }
 
@@ -160,13 +160,13 @@ namespace RPRENTAL.Controllers
 
             if (objBooking == null)
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail });
             }
 
 
             _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BookingId, SD.BookingStatus.Checkout.ToString(), objBooking.RoomNo);
             _IWorker.tbl_Booking.Save();
-            return Json(new { success = true, message = SD.BookingTransaction.success });
+            return Json(new { success = true, message = SD.BookingTransaction.Success });
 
         }
 
@@ -176,12 +176,12 @@ namespace RPRENTAL.Controllers
 
             if (objBooking == null)
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail });
             }
             
             _IWorker.tbl_Booking.UpdateBookingStatus(objBooking.BookingId, SD.BookingStatus.Cancelled.ToString(), objBooking.RoomNo);
             _IWorker.tbl_Booking.Save();
-            return Json(new { success = true, message = SD.BookingTransaction.success });
+            return Json(new { success = true, message = SD.BookingTransaction.Success });
 
         }
 
@@ -193,7 +193,7 @@ namespace RPRENTAL.Controllers
 
             if (BookingId == 0)
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail, booking = JsonConvert.SerializeObject(objBooking) });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail, booking = JsonConvert.SerializeObject(objBooking) });
             }
 
             objBooking.Room!.RoomAmenities = _IRoomAmenityService.GetAll().Where(fw => fw.RoomId == objBooking.RoomId);
@@ -226,7 +226,7 @@ namespace RPRENTAL.Controllers
 
             if (Id == 0 || string.IsNullOrEmpty(jsonData))
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail, booking = JsonConvert.SerializeObject(objBooking) });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail, booking = JsonConvert.SerializeObject(objBooking) });
             }
 
             try
@@ -265,11 +265,12 @@ namespace RPRENTAL.Controllers
 
                 _IWorker.tbl_Booking.Add(objBooking);
                 _IWorker.tbl_Booking.Save();
-                return Json(new { success = true, message = SD.BookingTransaction.success, booking = JsonConvert.SerializeObject(objBooking) });
+
+                return Json(new { success = true, message = SD.BookingTransaction.Success, booking = JsonConvert.SerializeObject(objBooking) });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = SD.BookingTransaction.fail, booking = JsonConvert.SerializeObject(objBooking) });
+                return Json(new { success = false, message = SD.BookingTransaction.Fail, booking = JsonConvert.SerializeObject(objBooking) });
             }
 
 
@@ -396,10 +397,10 @@ namespace RPRENTAL.Controllers
 
             if (!String.IsNullOrEmpty(session.Id))
             {
-                return Json(new { success = true, redirectUrl = session.Url, message = SD.BookingTransaction.success });
+                return Json(new { success = true, redirectUrl = session.Url, message = SD.BookingTransaction.Success });
             }
 
-            return Json(new { success = false, redirectUrl = session.Url, message = SD.BookingTransaction.fail + ' ' + session.StripeResponse });
+            return Json(new { success = false, redirectUrl = session.Url, message = SD.BookingTransaction.Fail + ' ' + session.StripeResponse });
 
         }
 

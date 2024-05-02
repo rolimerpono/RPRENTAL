@@ -1,5 +1,4 @@
-﻿const room_list_div = document.getElementById('room_list');
- 
+﻿const room_list_div = document.getElementById('room_list'); 
 
 function GetRoomAvailable(PageId = '') {
 

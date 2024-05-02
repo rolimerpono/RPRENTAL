@@ -18,9 +18,8 @@ $(document).ready(function () {
         }).get();
         
      
-        const serializedData = JSON.stringify(checkItems);     
-       
-        console.log(checkItems);
+        const serializedData = JSON.stringify(checkItems);   
+
         if (rowData != null) {
             ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.roomId, serializedData);
         }

@@ -43,7 +43,6 @@ $(document).ready(function () {
         var rowData = getRowData($(this));
         loadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
     });
-
   
 
 });
@@ -100,8 +99,7 @@ function checkOut() {
 
 function ProceedPayment() {
 
-    let id = $('#booking_id').val();
-    
+    let id = $('#booking_id').val();    
 
     $.ajax({
         url: '/Booking/ShowPayment',
@@ -127,6 +125,7 @@ function ProceedPayment() {
 
 function CancelBooking() {
     data = $('#booking_detail').serialize();
+
     $.ajax({
         type: 'POST',
         url: 'Booking/CancelBooking',
@@ -157,27 +156,27 @@ function getRowData(btn) {
 function loadBookings(status) {
     
     objDataTable = $('#tbl_Bookings').DataTable({
-        'ajax': {
+        ajax: {
             url: '/Booking/GetAll?status=' + status
         },
-        'columns': [
+        columns: [
             { data: 'bookingId', visible: false },
-            { data: 'userName', 'width': '5%' },
-            { data: 'userEmail', 'width': '5%' },
-            { data: 'bookingStatus', 'width': '5%' },
-            { data: 'checkinDate', 'width': '5%' },
-            { data: 'checkoutDate', 'width': '5%' },
-            { data: 'noOfStay', 'width': '5%' },
+            { data: 'userName', width: '5%' },
+            { data: 'userEmail', width: '5%' },
+            { data: 'bookingStatus', width: '5%' },
+            { data: 'checkinDate', width: '5%' },
+            { data: 'checkoutDate', width: '5%' },
+            { data: 'noOfStay', width: '5%' },
             {
                 data: 'totalCost',
-                'width': '5%',
+                width: '5%',
                 render: function (data, type, row) {                   
                     return '$' + parseFloat(data).toFixed(2); 
                 }
             },
             {
                 data: 'bookingId',
-                'width': '5%',
+                width: '5%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-view-btn w-100">View Details</button>';
                 }
@@ -186,8 +185,7 @@ function loadBookings(status) {
         fixedColumns: true,
         scrollY: true,        
         
-    });
-    
+    });    
 
 }
 

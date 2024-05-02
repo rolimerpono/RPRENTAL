@@ -69,17 +69,32 @@ function initializeDataTable() {
     });
 }
 
-function loadModal(url, modalContentSelector, data = null) {
-    $.get(url, data)
-        .done(function (result) {
-            $(modalContentSelector).html(result);
-            $(modalContentSelector.replace('-content', '')).modal('show');
-        })
-        .fail(handleAjaxError);
 
+
+
+function loadModal(url, modalContentSelector, data = null) {
+    
+    $.ajax({
+        url: url,
+        type: 'Get',
+        data: data,
+        success: function (response) {
+            if (response) {
+                
+                $(modalContentSelector).html(response);
+                $(modalContentSelector.replace('-content', '')).modal('show');
+            }
+        },
+        error: function (xhr, status, error) {
+
+        }
+        
+    });
     $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
         $(modalContentSelector).html('');
     });
+ 
+
 }
 
 function validateEmail(email) {
@@ -96,19 +111,30 @@ function saveUser(url, formSelector) {
         return;
     }
 
-    if ($(formSelector)[0].checkValidity()) {
-        $.post(url, objUser)
-            .done(function (response) {
-                if (response.success) {
+    if ($(formSelector)[0].checkValidity()) {       
 
-                    $(formSelector.replace('form', 'modal')).modal('hide');
+        $.ajax({
+            url: url,
+            type: 'Post',
+            data: objUser,
+            success: function (response) {
+                if (response) {
+
                     objDataTable.ajax.reload();
-                } else {
+                    $(formSelector.replace('form', 'modal')).modal('hide');
+                }
+                else {
                     showToast('error', response.message);
                 }
-            })
-            .fail(handleAjaxError);
-    } else {
+            },
+            error: function (xhr, status, error) {
+                showToast('error', response.message);
+            }
+        });
+
+    }
+    else
+    {
         $(formSelector).addClass('was-validated');
     }
 }
