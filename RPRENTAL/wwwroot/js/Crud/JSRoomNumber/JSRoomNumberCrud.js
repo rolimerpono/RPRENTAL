@@ -52,29 +52,25 @@ function initializeDataTable() {
             url: '/RoomNumber/GetAll'
         },
         columns: [
-            { data: 'roomNo', width: '10%' },
+            { data: 'roomNo', width: '15%' },
             { data: 'room.roomName', width: '15%' },
             {
                 data: 'description',
-                width: '35%',
+                width: '25%',
                 render: function (data, type, row) {
-                    if (type === 'display' && data.length > 100) {
-                        return '<div style="max-height: 25px; overflow-x: auto;">' + data + '</div>';
-                    } else {
-                        return data;
-                    }
+                    return '<div class="truncated-text" style="max-height: 25px;">' + data + '</div>';        
                 }
             },        
             {
                 data: 'roomNo',
-                width: '5%',
+                width: '10%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'roomNo',
-                width: '5%',
+                width: '10%',
                 'render': function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }

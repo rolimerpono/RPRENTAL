@@ -1,9 +1,9 @@
 ﻿//Toaster Notification
 function ShowToaster(Type, Header, Message)
 {  
-	toastr.options.hideDuration = 3000;
-	toastr.options.preventDuplicates = 1;
-	toastr.options.closeButton = 1;
+	toastr.options.hideDuration = 2000;
+	toastr.options.preventDuplicates = true;
+	toastr.options.closeButton = true;
 	toastr.options.positionClass = 'toast-bottom-right';
 
 	

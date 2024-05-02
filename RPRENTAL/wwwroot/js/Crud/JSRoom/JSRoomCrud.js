@@ -71,12 +71,8 @@ function initializeDataTable() {
             {
                 data: 'description',
                 width: '35%',
-                render: function (data, type, row) {
-                    if (type === 'display' && data.length > 100) {
-                        return '<div style="max-height: 25px; overflow-x: auto;">' + data + '</div>';
-                    } else {
-                        return data;
-                    }
+                render: function (data, type, row) {                   
+                    return '<div class="truncated-text" style="max-height: 25px;">' + data + '</div>';                    
                 }
             },        
 
@@ -85,14 +81,14 @@ function initializeDataTable() {
             { data: 'imageUrl', visible: false },
             {
                 data: 'roomId',
-                width: '5%',
+                width: '10%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'roomId',
-                'width': '5%',
+                width: '10%',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }
