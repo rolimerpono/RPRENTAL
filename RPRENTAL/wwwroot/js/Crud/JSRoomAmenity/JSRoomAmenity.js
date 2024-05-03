@@ -38,10 +38,10 @@ function initializeDataTable() {
         },
         columns: [
             { data: 'roomId', visible: false },
-            { data: 'roomName', width: '60%' },
+            { data: 'roomName', width: '800px' },
             {
                 data: 'roomId',
-                width: '5%',
+                width: '100px',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-edit-btn w-100">Select</button>';
                 }

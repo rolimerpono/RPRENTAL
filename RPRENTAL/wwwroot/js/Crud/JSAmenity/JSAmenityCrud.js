@@ -63,17 +63,17 @@ function initializeDataTable() {
         },
         columns: [
             { data: 'amenityId', visible: false },
-            { data: 'amenityName', 'width': '50%' },           
+            { data: 'amenityName', 'width': '400px' },           
             {
                 data: 'amenityId',
-                width: '5%',
+                width: '100px',
                 render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'amenityId',
-                width: '5%',
+                width: '100px',
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }

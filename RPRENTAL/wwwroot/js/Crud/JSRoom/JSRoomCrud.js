@@ -67,28 +67,30 @@ function initializeDataTable() {
         },
         columns: [
             { data: 'roomId', visible: false },
-            { data: 'roomName', width: '15%' },
+            { data: 'roomName', width: '100px' }, 
             {
-                data: 'description',
-                width: '35%',
-                render: function (data, type, row) {                   
-                    return '<div class="truncated-text" style="max-height: 25px;">' + data + '</div>';                    
-                }
-            },        
 
-            { data: 'roomPrice', width: '5%' },
-            { data: 'maxOccupancy', width: '5%' },
+                data: 'description',
+                width: '400px',
+                render: function (data, type, row) {
+                    return '<span title="' + data + '" >' + (data.length > 80 ? data.substr(0, 80 - 3) + '....' : data) + '</span>';
+                }
+
+
+            },  
+            { data: 'roomPrice', className: 'text-center', width: '100px' }, 
+            { data: 'maxOccupancy', className: 'text-center', width: '100px' },
             { data: 'imageUrl', visible: false },
             {
                 data: 'roomId',
-                width: '10%',
+                width: '100px', 
                 render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'roomId',
-                width: '10%',
+                width: '100px', 
                 render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }
@@ -96,9 +98,10 @@ function initializeDataTable() {
         ],
         fixedColumns: true,
         scrollY: true
-
     });
 }
+
+
 
 function loadModal(url, modalContentSelector, data = null) {
 

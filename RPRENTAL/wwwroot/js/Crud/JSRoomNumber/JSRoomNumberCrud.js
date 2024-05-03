@@ -52,26 +52,29 @@ function initializeDataTable() {
             url: '/RoomNumber/GetAll'
         },
         columns: [
-            { data: 'roomNo', width: '15%' },
-            { data: 'room.roomName', width: '15%' },
+            { data: 'roomNo', width: '20px', className: 'text-start' },
+            { data: 'room.roomName', width: '100px' },
             {
+
                 data: 'description',
-                width: '25%',
+                width: '400px',
                 render: function (data, type, row) {
-                    return '<div class="truncated-text" style="max-height: 25px;">' + data + '</div>';        
+                    return '<span title="' + data + '" >' + (data.length > 80 ? data.substr(0, 80 - 3) + '....' : data) + '</span>';
+                
                 }
-            },        
+
+            },  
             {
                 data: 'roomNo',
-                width: '10%',
-                'render': function (data, type, row) {
+                width: '100px',
+                render: function (data, type, row) {
                     return '<button class="btn btn-primary btn-sm select-edit-btn w-100">Edit</button>';
                 }
             },
             {
                 data: 'roomNo',
-                width: '10%',
-                'render': function (data, type, row) {
+                width: '100px',
+                render: function (data, type, row) {
                     return '<button class="btn btn-danger btn-sm select-delete-btn w-100">Delete</button>';
                 }
             }
