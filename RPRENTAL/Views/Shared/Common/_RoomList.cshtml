@@ -34,7 +34,7 @@
                             @if (objRoom.IsRoomAvailable)
                             {
                                 <div>
-                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" onclick="getBooking(@objRoom.RoomId)">BOOK NOW</button>
+                                    <button class="btn btn-primary rounded-2 w-100 w-md-auto btn-booknow" type="button" onclick="GetBooking(@objRoom.RoomId)">BOOK NOW</button>
                                 </div>
 
                             }
@@ -69,7 +69,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="width:100px;">Close</button>
-                            <button type="button" onclick="confirmBooking(@objRoom.RoomId)" class="btn btn-outline-success" style="width:100px;">Payment</button>
+                            <button type="button" onclick="ConfirmBooking(@objRoom.RoomId)" class="btn btn-outline-success" style="width:100px;">Payment</button>
                         </div>
 
                     </div>

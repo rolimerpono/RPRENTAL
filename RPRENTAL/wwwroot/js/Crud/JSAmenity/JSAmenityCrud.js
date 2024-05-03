@@ -1,69 +1,48 @@
 ﻿var objDataTable;
 
 $(document).ready(function () {
-    initializeDataTable();
+    InitializedDataTable();
 
     $('.btn-add').click(function () {
-        loadModal('/Amenity/Create', '#modal-add-content');
-        InputBoxFocus('#modal-add');
+        LoadModal('/Amenity/Create', '#modal-add-content');      
+        InputBoxFocus('#AmenityName', '#modal-add')
     });
 
     $('.btn-save').click(function () {
-        saveRoom('/Amenity/Create', '#form-add');
+        SaveAmenity('/Amenity/Create', '#form-add');
     });
 
     $('#tbl_Amenity').on('click', '.select-edit-btn', function () {
-        var rowData = getRowData($(this));
-        loadModal('/Amenity/Update', '#modal-edit-content', rowData);
-        InputBoxFocus('#modal-edit');
+        var rowData = GetRowData(objDataTable,$(this));
+        LoadModal('/Amenity/Update', '#modal-edit-content', rowData);       
+        InputBoxFocus('#AmenityName', '#modal-edit')
 
     });
 
     $('.btn-edit').click(function () {
-        saveRoom('/Amenity/Update', '#form-edit');
+        SaveAmenity('/Amenity/Update', '#form-edit');
     });
 
     $('#tbl_Amenity').on('click', '.select-delete-btn', function () {
-        var rowData = getRowData($(this));
-        
+        var rowData = GetRowData(objDataTable, $(this));        
         $('#AmenityId').val(rowData.amenityId);
         $('#modal-delete').modal('show');
     });
 
     $('.btn-delete').click(function () {
-        deleteAmenity();
-    });
-
-    $('#btn-close').click(function () {
-        deleteAmenity();
-    });
-
-
+        DeleteAmenity();
+    });  
 
 });
 
-function InputBoxFocus(modal_name) {
-    $(document).on('shown.bs.modal', modal_name, function () {
-        var input = $('#amenity_name');
-        input.focus().select();
-
-
-        if (input.val().trim() !== '') {
-            var inputLength = input.val().length;
-            input[0].setSelectionRange(inputLength, inputLength);
-        }
-    });
-}
-
-
-function initializeDataTable() {
+function InitializedDataTable() {
     objDataTable = $('#tbl_Amenity').DataTable({
         ajax: {
             url: '/Amenity/GetAll'
         },
         columns: [
             { data: 'amenityId', visible: false },
-            { data: 'amenityName', 'width': '400px' },           
+            { data: 'amenityName', 'width': '500px' },           
             {
                 data: 'amenityId',
                 width: '100px',
@@ -85,57 +64,42 @@ function initializeDataTable() {
     });
 }
 
-function loadModal(url, modalContentSelector, data = null) {
+
+
+function SaveAmenity(url, formSelector) {
+
+    let objRoomData = $(formSelector).serialize();  
+    let is_true = false;
+
+    is_true = IsFieldValid(formSelector); 
+     
+    if (!is_true)
+    {
+        return;
+    }
 
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: url,
-        data: data,
-        success: function (result) {
-            $(modalContentSelector).html(result);
-            $(modalContentSelector.replace('-content', '')).modal('show');
+        data: objRoomData,
+        success: function (response) {
+
+            if (response.success) {            
+                ReloadDataTable(objDataTable);
+                HideModal(formSelector.replace('form', 'modal'));
+                ShowToaster('success', 'AMENITY', response.message);
+            } else {
+                ShowToaster('error', 'AMENITY', response.message);
+            }
+
         },
         error: function (xhr, status, error) {
-            handleAjaxError(error);
+            ShowToaster('error', 'AMENITY', error);
         }
-    });
-
-    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
-        $(modalContentSelector).html('');
-    });
-
+    });   
 }
 
-function saveRoom(url, formSelector) {
-
-    var objRoomData = $(formSelector).serialize();
-
-    if ($(formSelector)[0].checkValidity()) {
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: objRoomData,
-            success: function (response) {
-
-                if (response.success) {
-                    objDataTable.ajax.reload();
-                    $(formSelector.replace('form', 'modal')).modal('hide');
-                    showToast('success', response.message);
-                } else {
-                    showToast('error', response.message);
-                }
-
-            },
-            error: function (xhr, status, error) {
-                handleAjaxError(error);
-            }
-        });
-    } else {
-        $(formSelector).addClass('was-validated');
-    }
-}
-
-function deleteAmenity() {
+function DeleteAmenity() {
     let amenityId = $('#AmenityId').val();
     
     $.ajax({
@@ -145,30 +109,14 @@ function deleteAmenity() {
         success: function (response) {
             objDataTable.ajax.reload();
             $('#modal-delete').modal('hide');
-            showToast('success', response.message);
+            ShowToaster('success', 'AMENITY', response.message);
         },
         error: function (xhr, status, error) {
-            handleAjaxError(error);
+            ShowToaster('success', 'AMENITY', error);
         }
     });
 }
 
-function getRowData(btn) {
-    return objDataTable.row(btn.closest('tr')).data();
-}
 
-function handleAjaxError(error) {
-    console.log('Error: ' + error);
-}
 
-function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
-    setTimeout(function () {
-        toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
-    }, 3000);
-}
+

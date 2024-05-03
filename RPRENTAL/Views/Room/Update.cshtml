@@ -19,7 +19,7 @@
                         <img id="image_preview" src="@Model.ImageUrl" class="img-fluid" style="max-width: 100%; min-height:400px;max-height:400px;" alt="Room Image">
                     </div>
                     <div class="pt-3">
-                        <input type="file" class="form-control" asp-for="@Model.Image" onchange="displayImagePreview(event)" accept="image/*">
+                        <input type="file" class="form-control" asp-for="@Model.Image" onchange="DisplayImagePreview(event)" accept="image/*">
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
               
                     <div class="mb-3">
                         <label asp-for="@Model.RoomName" class="form-label fw-bold">Room Name:</label>
-                        <input id="room_name" type="text" class="form-control" asp-for="@Model.RoomName" placeholder="Enter Room Name" required autocomplete="off"> 
+                        <input id="RoomName" type="text" class="form-control" asp-for="@Model.RoomName" placeholder="Enter Room Name" required autocomplete="off"> 
                         <div class="invalid-feedback">Please provide a room name.</div>
                     </div>
                     <div class="mb-3">

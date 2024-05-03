@@ -1,4 +1,4 @@
-﻿function showPayment(Id) {
+﻿function ShowPayment(Id) {
 
     $.ajax({
         url: '/Booking/ShowPayment',
@@ -10,19 +10,20 @@
 
                 window.location.href = response.redirectUrl;
             }
-            else {
-                showToast('error', 'Somethign went wrong : ' + response.message);
+            else {            
+                ShowToaster('error', 'PAYMENT', response.message);
             }
         },
         error: function (xhr, status, error) {
-            showToast('error', 'Something went wrong : ' + error);
+            ShowToaster('error', 'PAYMENT', error);
         }
     });
 
 }
 
-function confirmBooking(RoomId) {
-    var serializedData = $('#checking_info').serialize();
+function ConfirmBooking(RoomId) {
+
+    let serializedData = $('#checking_info').serialize();
     
 
     $.ajax({
@@ -32,24 +33,20 @@ function confirmBooking(RoomId) {
         success: function (response) {
             if (response.success) {
                 let response_data = JSON.parse(response.booking);
-
                 $('#modal-booking-' + RoomId).modal('hide');
-                showPayment(response_data.BookingId);
+                ShowPayment(response_data.BookingId);
             }
             else {
-                showToast('error', 'Somethign went wrong : ' + response.message);
+                ShowToaster('success', 'CONFIRM BOOKING', respons.message);
             }
         },
         error: function (xhr, status, error) {
             showToast('error', 'Something went wrong : ' + error);
         }
     });
-
-
-
 }
 
-function getBooking(RoomId) {
+function GetBooking(RoomId) {
     var serializedData = $('#checking_info').serialize();  
   
     $.ajax({
@@ -63,25 +60,8 @@ function getBooking(RoomId) {
             $('#modal-booking-' + RoomId).modal('show');   
 
         },
-        error: function (xhr, status, error) {
-            showToast('error', 'Something went wrong : ' + error);
+        error: function (xhr, status, error) {         
+            ShowToaster('error', 'PAYMENT', error);
         }
     });
-}
-
-// Function to show toast messages
-function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css({
-        'display': 'block',
-        'background-color': type === 'success' ? '#006400' : 'red',
-        'opacity': 1
-    });
-    setTimeout(function () {
-        toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
-    }, 3000);
 }

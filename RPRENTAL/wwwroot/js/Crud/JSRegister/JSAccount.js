@@ -1,14 +1,14 @@
 ﻿$(document).ready(function () {
     $('.btn-login').click(function () {
-        authenticateUser('/Account/Login');
+        LoginUser('/Account/Login');
     });
 
     $('.btn-register').click(function () {
-        registerUser('/Account/Register');
+        RegisterUser('/Account/Register');
     });
 
     $('.btn-logout').click(function () {
-        logoutUser('/Account/Logout');
+        LogoutUser('/Account/Logout');
     });
 
     $('#modal-login').on('shown.bs.modal', function () {
@@ -20,7 +20,7 @@
     });
 
     $('.btn-forgotpassword').click(function () {
-        forgotPassword('/Account/ForgotPassword');
+        ForgotPassword('/Account/ForgotPassword');
         
     });
 
@@ -31,87 +31,79 @@
 
 });
 
-function showToast(message, type) {
-    $('.toaster').text(message).css({
-        'display': 'block',
-        'background-color': type === 'success' ? '#006400' : 'red',
-        'opacity': 1
-    }).delay(3000).fadeOut();
-}
-
-function authenticateUser(url) {
+function LoginUser(url) {
 
     let email = $('#email').val();
     let password = $('#password').val();
-    let objData = { Email: email, Password: password };
+    let data = { Email: email, Password: password };
 
     $.ajax({
         url: url,
         type: 'POST',
-        data: objData,
+        data: data,
         success: function (response) {
             if (response.success) {
-                if (response.role == 'Admin') {
-                    window.location.href = '/Dashboard/Index'
+                 if (response.role == 'Admin') {
+                    window.location.href = '/Dashboard/Index';   
                 }
                 else {
                     window.location.href = '/Home/Index'
                 }
+                ShowToaster('success', 'LOGIN USER', response.message);
+               
             }
             else {
-                showToast('error', response.message)
+              
+                ShowToaster('error', 'LOGIN USER', response.message);
             }
         },
         error: function (xhr, status, error) {
-
+            ShowToaster('error', 'LOGIN USER', response.message);
         }
     });
 }
 
 
-function forgotPassword(url) {
-    let objData = {
+function ForgotPassword(url) {
+    let data = {
         Email: $('#forgot-email').val()       
     };
+  
+    ValidateEmail(formdata.Email);
 
-    if (!validateEmail(formData.Email)) {
-        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
+    let is_true = false;
+
+    is_true = IsFieldValid('#forgotPasswordForm');
+
+    if (!is_true) {
         return;
-    } 
+    }
 
-    if ($('#forgotPasswordForm')[0].checkValidity()) {
-
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: objData,
-            success: function (response) {
-                if (response.success) {
-
-                    $('#modal-forgot-password').modal('hide');
-                    $('#modal-reset-password').modal('show');
-                    $('#reset-token').val(response.data);
-                    showToast('success', response.message);
-                }
-                else {
-                    showToast('error', response.message)
-                }
-            },
-            error: function (xhr, status, error) {
-
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            if (response.success) {
+               
+                HideModal('#modal-forgot-password');
+                $('#modal-reset-password').modal('show');
+                $('#reset-token').val(response.data);               
+                ShowToaster('success', 'FORGOT PASSWORD', response.message);
             }
-        });
-
-
-    }
-    else
-    {
-        $('#form-add').addClass('was-validated');
-    }
+            else {            
+                ShowToaster('error', 'FORGOT PASSWORD', response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'FORGOT PASSWORD', response.message);
+        }
+    });
+ 
 }
 
 function ResetPassword(url) {
-    let formData = {
+   let data = {
         Email: $('#reset-email').val(),
         Password: $('#reset-password').val(),
         ConfirmPassword: $('#reset-con-password').val(),
@@ -119,42 +111,46 @@ function ResetPassword(url) {
         Token: $('#reset-token').val()
     };
 
-    if (!validateEmail(formData.Email)) {
-        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
+    ValidateEmail(formdata.Email);
+
+    let is_true = false;
+
+    is_true = IsFieldValid('#forgotPasswordForm');
+
+    if (!is_true) {
         return;
     }
 
-    if ($('#resetPasswordForm')[0].checkValidity()) {
-        $.post(url, formData)
-            .done(function (response) {  
-                if (response.success)
-                {                         
-                    $('#reset-token').val('');   
-                    $('#modal-reset-password').modal('hide');                     
-                    showToast('success', response.message);                    
-                    if (response.role == 'Admin')
-                    {
-                        window.location.href = '/Dashboard/Index';
-                    }
-                    window.location.href = '/Home/Index';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            if (response.success) {
+                $('#reset-token').val('');
+                $('#modal-reset-password').modal('hide');
+                
+                if (response.role == 'Admin') {
+                    window.location.href = '/Dashboard/Index';
                 }
-                else {
-                    showToast('error', response.message);
-                    $('#modal-reset-password').modal('show'); 
-                }                     
-            })
-            .fail(function () {
-                showToast('error', 'An error occurred. Please try again later.');
-            });
-    } else {
-        $('#form-add').addClass('was-validated');
-    }
+                window.location.href = '/Home/Index';
+                ShowToaster('success', 'RESET PASSWORD', response.message);
+            }
+            else {               
+                ShowToaster('error', 'RESET PASSWORD', response.message);
+                $('#modal-reset-password').modal('show');
+            }  
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'RESET PASSWORD', error);
+        }
+    });   
 }
 
 
-function registerUser(url) {
+function RegisterUser(url) {
     
-    let formData = {
+    let data = {
         Email: $('#reg-email').val(),
         Fullname: $('#reg-fullname').val(),
         PhoneNumber: $('#reg-phoneno').val(),
@@ -162,43 +158,54 @@ function registerUser(url) {
         ConfirmPassword: $('#reg-confirmpassword').val()       
     };
 
-    if (!validateEmail(formData.Email)) {
-        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
+    ValidateEmail(formdata.Email);
+
+    let is_true = false;
+
+    is_true = IsFieldValid('#form-add');
+
+    if (!is_true) {
         return;
     }
 
-    if ($('#form-add')[0].checkValidity()) {
-        
-        $.post(url, formData)
-            .done(function (response) {            
-                if (response.success) {                   
-                    window.location.href = '/Home/Index';
-                    showToast('success', response.message);
-                }
-                else {
-                    showToast('error', response.message);
-                }
-            })
-            .fail(function () {
-                showToast('error', 'An error occurred. Please try again later.');
-            });
-    } else {
-        $('#form-add').addClass('was-validated');
-    }
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            if (response.success) {
+                window.location.href = '/Home/Index';
+                ShowToaster('success','REGISTER USER', response.message);
+            }
+            else {
+                ShowToaster('error', 'REGISTER USER', response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'REGISTER USER', error);
+        }
+    });   
+  
 }
 
-function validateEmail(email) {
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
+function LogoutUser(url) {  
 
-function logoutUser(url) {
-    $.post(url)
-        .done(function (response) {
-            response.success ? (window.location.href = '/Home/Index') : showToast('error', response.message);
-        })
-        .fail(function () {
-            showToast('error', 'An error occurred. Please try again later.');
-        });
+    $.ajax({
+        url: url,
+        type: 'POST',
+       
+        success: function (response) {
+            if (response.success) {
+                window.location.href = '/Home/Index';
+                ShowToaster('success', 'LOGOUT USER', response.message);
+            }
+            else {
+                ShowToaster('error', 'LOGOUT USER', response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'LOGOUT USER', error);
+        }
+    });
 }
 

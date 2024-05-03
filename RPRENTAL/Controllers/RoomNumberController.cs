@@ -164,7 +164,7 @@ namespace RPRENTAL.Controllers
                     _IRoomNumberService.Delete(RoomNo);                 
                     return Json(new { success = true, message = "Room number deleted successfully." });
                 }
-                return Json(new { success = false, message = "Something went wrong." });
+                return Json(new { success = false, message = "The Room number value is null or empty. Kindly contact system administrator." });
 
             }
             catch (Exception ex)

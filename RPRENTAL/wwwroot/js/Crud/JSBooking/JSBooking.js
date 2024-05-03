@@ -6,11 +6,11 @@ $(document).ready(function () {
     let status = urlParams.get('status') ?? 'Pending';
 
     $('.btn-checkin').click(function () {    
-        checkIn();
+        CheckIn();
     }); 
 
     $('.btn-checkout').click(function () {
-        checkOut();
+        CheckOut();
     }); 
 
     $('.btn-cancel').click(function () {
@@ -30,40 +30,42 @@ $(document).ready(function () {
         'cancelled': '#cancelled'
     };
 
-    const updateButtonColor = status => {
+    const UpdateButtonColor = status => {
         const buttonId = statusToButtonMap[status.toLowerCase()];
         if (buttonId) $(buttonId).toggleClass('btn-primary btn-success');
     };
 
-    updateButtonColor(status);  
+    UpdateButtonColor(status);  
 
-    loadBookings(status);
+    LoadBookings(status);
 
     $('#tbl_Bookings').on('click', '.select-view-btn', function () {     
-        var rowData = getRowData($(this));
-        loadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
+        var rowData = GetRowData(objDataTable, $(this));
+        LoadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
     });
   
 
 });
 
-function checkIn() {
-    data = $('#booking_detail').serialize();    
+function CheckIn() {
+    let data = $('#booking_detail').serialize();  
+
+
         $.ajax({
             type: 'POST',
             url: 'Booking/CheckIn',
             data: data,
             success: function (response) {
                 if (response.success) {
-                    objDataTable.ajax.reload();
-                    $('#modal-booking').modal('hide');
-                    showToast('success', response.message);
+                    ReloadDataTable(objDataTable);                 
+                    HideModal('#modal-booking');                    
+                    ShowToaster('success', 'CHECKIN', response.message);
                 } else {
-                    showToast('error', response.message);
+                    ShowToaster('error', 'CHECKIN', response.message);
                 }
             },
-            error: function (xhr, status, error) {
-                handleAjaxError(error);
+            error: function (xhr, status, error) {            
+                ShowToaster('error', 'CHECKIN', error);
             }
         });
 
@@ -72,23 +74,25 @@ function checkIn() {
         });
 }
 
-function checkOut() {
-    data = $('#booking_detail').serialize();
+function CheckOut() {
+
+    let data = $('#booking_detail').serialize();
+
     $.ajax({
         type: 'POST',
         url: 'Booking/CheckOut',
         data: data,
         success: function (response) {
-            if (response.success) {
-                objDataTable.ajax.reload();
-                $('#modal-booking').modal('hide');
-                showToast('success', response.message);
+            if (response.success) {              
+                ReloadDataTable(objDataTable);               
+                HideModal('#modal-booking');
+                ShowToaster('success','CHECKOUT', response.message);
             } else {
-                showToast('error', response.message);
+                ShowToaster('error','CHECKOUT', response.message);
             }
         },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
+        error: function (xhr, status, error) {          
+            ShowToaster('error', 'CHECKOUT', error);
         }
     });
 
@@ -108,15 +112,14 @@ function ProceedPayment() {
         success: function (response) {
             
             if (response.success) {
-
                 window.location.href = response.redirectUrl;
             }
-            else {
-                showToast('error', 'Somethign went wrong : ' + response.message);
+            else {               
+                ShowToaster('error', 'PAYMENT', response.message);
             }
         },
         error: function (xhr, status, error) {      
-            showToast('error', 'Something went wrong : ' + error);
+            ShowToaster('error', 'PAYMENT', error);
         }
     });
     
@@ -133,14 +136,15 @@ function CancelBooking() {
         success: function (response) {
             if (response.success) {
                 objDataTable.ajax.reload();
-                $('#modal-booking').modal('hide');
-                showToast('success', response.message);
-            } else {
-                showToast('error', response.message);
+                ReloadDataTable(objDataTable);               
+                HideModal('#modal-booking');
+                ShowToaster('success', 'CANCEL BOOKING', response.message);
+            } else {              
+                ShowToaster('error', 'CANCEL BOOKING', response.message);
             }
         },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
+        error: function (xhr, status, error) {           
+            ShowToaster('error', 'CANCEL BOOKING', error);
         }
     });
 
@@ -148,12 +152,7 @@ function CancelBooking() {
         $(modalContentSelector).html('');
     });
 }
-
-function getRowData(btn) {
-    return objDataTable.row(btn.closest('tr')).data();
-}
-
-function loadBookings(status) {
+function LoadBookings(status) {
     
     objDataTable = $('#tbl_Bookings').DataTable({
         ajax: {
@@ -187,41 +186,4 @@ function loadBookings(status) {
         
     });    
 
-}
-
-function loadModal(url, modalContentSelector, data = null) {
-    $.ajax({
-        type: 'GET',
-        url: url,
-        data: data,
-        success: function (response) {           
-            $(modalContentSelector).empty().html(response);
-            $(modalContentSelector.replace('-content', '')).modal('show');
-        },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
-        }
-    });
-
-    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
-        $(modalContentSelector).html('');
-    });
-}
-
-function handleAjaxError(xhr, status, error) {
-    showToast('error', 'An error occurred. Please try again later.');
-}
-
-function showToast(type, message) {
-    const toaster = $('.toaster');
-    toaster.text(message).css({
-        'display': 'block',
-        'background-color': type === 'success' ? '#006400' : 'red',
-        'opacity': 1
-    });
-
-    setTimeout(() => {
-        toaster.css('opacity', 0);
-        setTimeout(() => toaster.css('display', 'none').css('opacity', 1), 500);
-    }, 3000);
 }

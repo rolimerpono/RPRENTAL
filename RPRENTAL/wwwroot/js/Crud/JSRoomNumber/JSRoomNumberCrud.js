@@ -1,52 +1,39 @@
-﻿var objDataTable;
+﻿let objDataTable;
 
 $(document).ready(function () {
-    initializeDataTable();
+    InitializeDataTable();
 
     $('.btn-add').click(function () {
-        loadModal('/RoomNumber/Create', '#modal-add-content');
-        InputBoxFocus('#modal-add');
+        LoadModal('/RoomNumber/Create', '#modal-add-content');
+        InputBoxFocus('#RoomNo','#modal-add');
     });
 
     $('.btn-save').click(function () {
-        saveRoom('/RoomNumber/Create', '#form-add');
+        SaveRoomNumber('/RoomNumber/Create', '#form-add');
     });
 
     $('#tbl_RoomNumber').on('click', '.select-edit-btn', function () {
-        var rowData = getRowData($(this));
-        loadModal('/RoomNumber/Update', '#modal-edit-content', rowData);
-        InputBoxFocus('#modal-edit');
+        let rowData = GetRowData(objDataTable , $(this));
+        LoadModal('/RoomNumber/Update', '#modal-edit-content', rowData);
+        InputBoxFocus('#Description','#modal-edit');
     });
 
     $('.btn-edit').click(function () {
-        saveRoom('/RoomNumber/Update', '#form-edit');
+        SaveRoomNumber('/RoomNumber/Update', '#form-edit');
     });
 
     $('#tbl_RoomNumber').on('click', '.select-delete-btn', function () {
-        var rowData = getRowData($(this));
-        $('#room_number').val(rowData.rooM_NUMBER);        
+        let rowData = GetRowData(objDataTable, $(this));        
+        $('#RoomNo').val(rowData.roomNo);    
         $('#modal-delete').modal('show');
     });
 
     $('.btn-delete').click(function () {
-        deleteRoom('#form-delete');
+        DeleteRoomNumber();
     });
 });
 
-function InputBoxFocus(modal_name) {
-    $(document).on('shown.bs.modal', modal_name, function () {
-        var input = $('#room_number');
-        input.focus();
-
-
-        if (input.val().trim() !== '') {
-            var inputLength = input.val().length;
-            input[0].setSelectionRange(inputLength, inputLength);
-        }
-    });
-}
-
-function initializeDataTable() {
+function InitializeDataTable() {
     objDataTable = $('#tbl_RoomNumber').DataTable({
         ajax: {
             url: '/RoomNumber/GetAll'
@@ -85,90 +72,59 @@ function initializeDataTable() {
     });
 }
 
-function loadModal(url, modalContentSelector, data = null) {
+function SaveRoomNumber(url, formSelector) {
+
+    var data = $(formSelector).serialize();   
+
+    let is_true = false;
+
+    is_true = IsFieldValid(formSelector);
+
+    if (!is_true) {
+        return;
+    }
 
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: url,
         data: data,
-        success: function (result) {
-            $(modalContentSelector).html(result);
-            $(modalContentSelector.replace('-content', '')).modal('show');
+            
+        success: function (response) {
+
+            if (response.success) {             
+                ReloadDataTable(objDataTable);
+                HideModal(formSelector.replace('form', 'modal'));
+               
+                ShowToaster('success', 'ROOM NUMBER', response.message);
+            } else {
+               
+                ShowToaster('error', 'ROOM NUMBER', response.message);
+            }
+
         },
-        error: function (xhr, status, error) {
-            handleAjaxError(error);
+        error: function (xhr, status, error) {           
+            ShowToaster('success', 'ROOM NUMBER', error);
         }
     });
 
-    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
-        $(modalContentSelector).html('');
-    });
-
 }
 
-
-function saveRoom(url, formSelector) {
-
-    var objRoomNumberData = $(formSelector).serialize();    
-    if ($(formSelector)[0].checkValidity()) {
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: objRoomNumberData,
-            
-            success: function (response) {
-
-                if (response.success) {
-                    objDataTable.ajax.reload();
-                    $(formSelector.replace('form', 'modal')).modal('hide');
-                    showToast('success', response.message);
-                } else {
-                    showToast('error', response.message);
-                }
-
-            },
-            error: function (xhr, status, error) {
-                handleAjaxError(error);
-            }
-        });
-    } else {
-        $(formSelector).addClass('was-validated');
-    }
-}
-
-function deleteRoom(formSelector) {
-    var objRoomNumberData = $(formSelector).serialize();
+function DeleteRoomNumber() {
+    
+    let data = $('#RoomNo').val();  
+    
     $.ajax({
         type: 'POST',
         url: '/RoomNumber/Delete',
-        data: objRoomNumberData,
-        success: function (response) {
-            objDataTable.ajax.reload();
-            $('#modal-delete').modal('hide');
-            showToast('success', response.message);
+        data: { RoomNo: data },
+        success: function (response) {            
+            ReloadDataTable(objDataTable);     
+            HideModal('#modal-delete');           
+            ShowToaster('success', 'ROOM NUMBER', response.message);
         },
         error: function (xhr, status, error) {
-            handleAjaxError(error);
+            ShowToaster('error', 'ROOM NUMBER', response.message);
         }
     });
 }
 
-function getRowData(btn) {
-    return objDataTable.row(btn.closest('tr')).data();
-}
-
-function handleAjaxError(error) {
-    console.log('Error: ' + error);
-}
-
-function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
-    setTimeout(function () {
-        toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
-    }, 3000);
-}

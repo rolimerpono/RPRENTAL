@@ -1,45 +1,43 @@
 ﻿let objDataTable;
 
 $(document).ready(function () {
-    initializeDataTable();
+    InitializeDataTable();
 
     $('.btn-add').click(function () {
-        loadModal('/Account/Create', '#modal-add-content');
-        focusInput('#email');
+        LoadModal('/Account/Create', '#modal-add-content');       
+        InputBoxFocus('#Email', '#modal-add');
     });
 
     $('.btn-save').click(function () {
-        saveUser('/Account/Create', '#form-add');
+        SaveUser('/Account/Create', '#form-add');
     });
 
     $('#tbl_Users').on('click', '.select-edit-btn', function () {
-        var row_data = getRowData($(this));
-        loadModal('/Account/Update', '#modal-edit-content', row_data);
-        focusInput('#email');
+        var rowData = GetRowData(objDataTable , $(this));
+        LoadModal('/Account/Update', '#modal-edit-content', rowData);       
+        InputBoxFocus('#Fullname', '#modal-edit');
     });
 
     $('.btn-edit').click(function () {
-        saveUser('/Account/Update', '#form-edit');
+        SaveUser('/Account/Update', '#form-edit');
+        
     });
 
     $('#tbl_Users').on('click', '.select-delete-btn', function () {
-        var row_data = getRowData($(this));        
-        $('#email').val(row_data.email);
+        var rowData = GetRowData(objDataTable ,$(this));        
+        $('#email').val(rowData.email);
         $('#modal-delete').modal('show');
     });
 
     $('.btn-delete').click(function () { 
         let email = $('#email').val();
-        deleteRecord(email);
+        DeleteRecord(email);
     });
 
 });
 
-function focusInput(inputSelector) {  
-    $(inputSelector).focus().select();
-}
+function InitializeDataTable() {
 
-function initializeDataTable() {
     objDataTable = $('#tbl_Users').DataTable({
         ajax: {
             url: '/Account/GetAll'
@@ -69,115 +67,61 @@ function initializeDataTable() {
     });
 }
 
+function SaveUser(url, formSelector) {
 
+    let email = $('#Email').val()
+    let data = $(formSelector).serialize();  
 
+    ValidateEmail(email);
+    let is_true = false;
 
-function loadModal(url, modalContentSelector, data = null) {
-    
+    is_true = IsFieldValid(formSelector);
+
+    if (!is_true) {
+        return;
+    }    
+
     $.ajax({
         url: url,
-        type: 'Get',
+        type: 'POST',
         data: data,
         success: function (response) {
             if (response) {
-                
-                $(modalContentSelector).html(response);
-                $(modalContentSelector.replace('-content', '')).modal('show');
+                ReloadDataTable(objDataTable);               
+                HideModal(formSelector.replace('form', 'modal'));
+                ShowToaster('success', 'REGISTER USER', response.message);
+            }
+            else {
+                ShowToaster('error','REGISTER USER', response.message);
             }
         },
         error: function (xhr, status, error) {
-
+            ShowToaster('error', 'REGISTER USER', error);
         }
-        
     });
-    $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
-        $(modalContentSelector).html('');
-    });
- 
-
+  
 }
 
-function validateEmail(email) {
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
-
-function saveUser(url, formSelector) {
-    let email = $('#Email').val()
-    let objUser = $(formSelector).serialize();    
-
-    if (!validateEmail(email)) {
-        $('#email-validation').css('color', 'red').html('Please enter a valid email.');
-        return;
-    }
-
-    if ($(formSelector)[0].checkValidity()) {       
-
-        $.ajax({
-            url: url,
-            type: 'Post',
-            data: objUser,
-            success: function (response) {
-                if (response) {
-
-                    objDataTable.ajax.reload();
-                    $(formSelector.replace('form', 'modal')).modal('hide');
-                }
-                else {
-                    showToast('error', response.message);
-                }
-            },
-            error: function (xhr, status, error) {
-                showToast('error', response.message);
-            }
-        });
-
-    }
-    else
-    {
-        $(formSelector).addClass('was-validated');
-    }
-}
-
-function deleteRecord(email) {
+function DeleteRecord(email) {
 
     $.ajax({
         url: '/Account/Delete',
         method: 'POST',
         data: { email: email },
         success: function (response) {
-            if (response.success) {
-                objDataTable.ajax.reload();
-                $('#modal-delete').modal('hide');
-                showToast('success', response.message);
+            if (response.success) {               
+                ReloadDataTable(objDataTable);
+                HideModal('#modal-delete');
+                ShowToaster('success', 'DELETE USER', response.message);
             }
             else {
-                $('#modal-delete').modal('hide');
-                showToast('error', response.message);
+                HideModal('#modal-delete');              
+                ShowToaster('error', 'DELETE USER', response.message);
             }
         },
         error: function (xhr, status, error) {
-            $('#modal-delete').modal('hide');
+            HideModal('#modal-delete');
+            ShowToaster('error', 'DELETE USER', response.message);
         }
     });
-}
-
-function getRowData(btn) {
-    return objDataTable.row(btn.closest('tr')).data();
-}
-
-function handleAjaxError(xhr, status, error) {
-    console.log('Error: ' + error);
-}
-
-function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
-    setTimeout(function () {
-        toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
-    }, 3000);
 }

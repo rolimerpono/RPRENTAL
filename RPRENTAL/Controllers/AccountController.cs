@@ -176,7 +176,8 @@ namespace RPRENTAL.Controllers
         public async Task<IActionResult> Update(RegisterVM objData)
         {
             var objUser = await _UserManager.FindByEmailAsync(objData.Email);
-            var objUserRole = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+
+            var objUserRole = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault() ?? "CUSTOMER";
 
 
             try

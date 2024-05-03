@@ -1,10 +1,10 @@
 ﻿let objDataTable;
 
 $(document).ready(function () {
-    initializeDataTable();
-    let rowData = '';
-    $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
-        rowData = objDataTable.row($(this).closest('tr')).data();
+    InitializeDataTable();
+    let rowData = 0;
+    $('#tbl_Rooms').on('click', '.select-edit-btn', function () {       
+        rowData = GetRowData(objDataTable, $(this));       
         if (rowData) {
             DisplayRoomAmenities('/RoomAmenity/DisplayRoomAmenities', rowData.roomId);
         }
@@ -15,23 +15,23 @@ $(document).ready(function () {
             const id = $(this).attr('id').replace('selected-item-', '');
             const name = $(this).siblings('label').text();
             return { AmenityId : id, AmenityName: name, IsCheck: true };
-        }).get();
-        
+        }).get();        
      
         const serializedData = JSON.stringify(checkItems);   
 
         if (rowData != null) {
             ApplyRoomAmenities('/RoomAmenity/ApplyRoomAmenities', rowData.roomId, serializedData);
         }
-        else {
-            showToast('error','Please select a record.');
+        else {           
+            ShowToaster('error','AMENITIES', 'Please select a record.')
+            
         }
        
     });
 });
 
 
-function initializeDataTable() {
+function InitializeDataTable() {
     objDataTable = $('#tbl_Rooms').DataTable({
         ajax: {
             url: '/RoomAmenity/GetRoomList'
@@ -66,7 +66,7 @@ function DisplayRoomAmenities(path, RoomId) {
             }
         },
         error: function (xhr, status, error) {
-            console.error(error);
+            ShowToaster('error', 'AMENITEIS', error);
         }
     });
 }
@@ -78,29 +78,18 @@ function ApplyRoomAmenities(path, RoomId, serializedData) {
         type: 'POST',
         data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {           
-            console.log(response);
             if (response) {                
-                showToast('success', response.message);
-                objDataTable.ajax.reload();
+                ShowToaster('success','AMENITIES', response.message);
+                ReloadDataTable(objDataTable);
             }
             else {
-                showToast('error', response.message);
+              
+                ShowToaster('error', 'AMENITIES', response.message);
             }
         },
         error: function (xhr, status, error) {
-            console.error(error);
+            ShowToaster('error', 'AMENITIES', error);
         }
     });
 }
 
-function showToast(type, message) {
-    var toaster = $('.toaster');
-    toaster.text(message);
-    toaster.css('display', 'block').css('backgroundColor', type === 'success' ? '#006400' : 'red').css('opacity', 1);
-    setTimeout(function () {
-        toaster.css('opacity', 0);
-        setTimeout(function () {
-            toaster.css('display', 'none').css('opacity', 1);
-        }, 500);
-    }, 3000);
-}
