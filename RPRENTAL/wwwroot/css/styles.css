@@ -93,12 +93,12 @@
     color: white !important;
 }
 
-/*Truncated Text */
-
-.truncated-text {
-    width: 100%;
+.text-truncate-vertical {
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /*define how many line you want to show */
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 

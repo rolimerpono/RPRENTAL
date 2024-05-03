@@ -99,18 +99,3 @@ function GetRowData(objDataTable, btn) {
 
 
 
-
-
-$(document).ready(function () {
-
-	let span = document.getElementById('#description-span');
-
-	if (span.scrollHeight > 70) {
-		span.style.display = '-webkit-box';
-		span.style.webkitBoxOrient = 'vertical';
-		span.style.webkitLineClamp = '100'; // Number of lines to show before truncating
-		span.style.overflow = 'hidden';
-	}
-
-
-});

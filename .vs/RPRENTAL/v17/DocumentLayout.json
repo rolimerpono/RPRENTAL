@@ -7,32 +7,36 @@
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_roomdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_bookingdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_bookingdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_roomdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\common\\common.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\common\\common.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_roomdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_roomdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_roomdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\crud\\jsamenity\\jsamenitycrud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\crud\\jsamenity\\jsamenitycrud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_bookingdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\common\\_bookingdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\common\\_bookingdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -66,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,80 +90,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Common.js",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Common\\Common.js",
-              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Common\\Common.js",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Common\\Common.js",
-              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Common\\Common.js",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAswG4AAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-03T09:44:55.575Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_RoomDetail.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T09:32:30.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T09:26:42.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T09:26:38.741Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "styles.css",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\styles.css",
-              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\css\\styles.css",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\styles.css",
-              "RelativeToolTip": "RPRENTAL\\wwwroot\\css\\styles.css",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAAGUAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-05-03T09:25:36.967Z",
+              "Title": "JSAmenityCrud.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSAmenity\\JSAmenityCrud.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSAmenity\\JSAmenityCrud.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSAmenity\\JSAmenityCrud.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Crud\\JSAmenity\\JSAmenityCrud.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-03T22:31:20.839Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_RoomDetails.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T09:25:03.666Z",
+              "Title": "Common.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Common\\Common.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Common\\Common.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Common\\Common.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Common\\Common.js",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAAAGMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-03T21:57:54.262Z",
               "EditorCaption": ""
             },
             {
@@ -170,14 +122,79 @@
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
               "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomList.cshtml",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAUwBQAAAArAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-03T09:24:49.89Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_RoomDetail.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetail.cshtml",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAsAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T09:32:30.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Admin\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T09:26:42.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T09:26:38.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\styles.css",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\css\\styles.css",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\css\\styles.css",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\css\\styles.css",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAAAGIAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-03T09:25:36.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_RoomDetails.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\Common\\_RoomDetails.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T09:25:03.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "_BookingDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_BookingDetails.cshtml",
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_BookingDetails.cshtml",
@@ -190,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "_BookingDetail.cshtml",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\Common\\_BookingDetail.cshtml",
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\Common\\_BookingDetail.cshtml",
@@ -203,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Booking\\Index.cshtml",
               "RelativeDocumentMoniker": "RPRENTAL\\Views\\Booking\\Index.cshtml",
@@ -216,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "JSRoomAvailable.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Common\\JSRoomAvailable.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Common\\JSRoomAvailable.js",
@@ -229,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "JSRegister.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSRegister.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSRegister.js",
@@ -242,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "JSAccount.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
@@ -255,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\AccountController.cs",
