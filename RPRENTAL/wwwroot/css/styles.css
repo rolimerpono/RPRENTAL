@@ -93,7 +93,16 @@
     color: white !important;
 }
 
-.text-truncate-vertical {
+.text-truncate-main {
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /*define how many line you want to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-truncate-modal {
     text-align: left;
     display: -webkit-box;
     -webkit-line-clamp: 6; /*define how many line you want to show */
