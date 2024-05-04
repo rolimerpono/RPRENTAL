@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     let status = urlParams.get('status') ?? 'Pending';
-
     $('.btn-checkin').click(function () {    
         CheckIn();
     }); 
@@ -25,18 +24,17 @@ $(document).ready(function () {
         'all': '#all',
         'pending': '#pending',
         'approved': '#approved',
-        'check_in': '#checkin',
-        'check_out': '#checkout',
+        'checkin': '#checkin',
+        'checkout': '#checkout',
         'cancelled': '#cancelled'
     };
 
     const UpdateButtonColor = status => {
-        const buttonId = statusToButtonMap[status.toLowerCase()];
+        const buttonId = statusToButtonMap[status.toLowerCase()];        
         if (buttonId) $(buttonId).toggleClass('btn-primary btn-success');
-    };
+    };   
 
-    UpdateButtonColor(status);  
-
+    UpdateButtonColor(status); 
     LoadBookings(status);
 
     $('#tbl_Bookings').on('click', '.select-view-btn', function () {     
@@ -77,6 +75,7 @@ function CheckIn() {
 function CheckOut() {
 
     let data = $('#booking_detail').serialize();
+
 
     $.ajax({
         type: 'POST',
@@ -152,8 +151,7 @@ function CancelBooking() {
         $(modalContentSelector).html('');
     });
 }
-function LoadBookings(status) {
-    
+function LoadBookings(status) { 
     objDataTable = $('#tbl_Bookings').DataTable({
         ajax: {
             url: '/Booking/GetAll?status=' + status
@@ -182,7 +180,7 @@ function LoadBookings(status) {
             },
         ],
         fixedColumns: true,
-        scrollY: true,        
+        scrollY: true        
         
     });    
 

@@ -1,10 +1,8 @@
 ﻿@model Booking
 
-<form id="booking_detail">
-<div class="container">    
-
+<div class="container">
+    <form id="booking_detail">
     <input id="booking_id" asp-for="@Model.BookingId" hidden />
-
     <div class="row pb-3">
         <partial name="Common/_RoomDetail" model="@Model.Room" />
     </div>
@@ -110,6 +108,7 @@
             }
         </div>       
     </div>
+    </form>
 </div>
-</form>
+
 
