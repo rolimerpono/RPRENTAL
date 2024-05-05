@@ -13,11 +13,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Users').on('click', '.select-edit-btn', function () {
-
-
-        var rowData = GetRowData(objRegisterTable, $(this));
-
-        debugger
+        var rowData = GetRowData(objRegisterTable, $(this));        
         LoadModal('/Account/Update', '#modal-edit-content', rowData);       
         InputBoxFocus('#Fullname', '#modal-edit');
     });
@@ -42,7 +38,7 @@ $(document).ready(function () {
 
 function InitializeDataTable() {
 
-    objDataRegisterTable = $('#tbl_Users').DataTable({
+    objRegisterTable = $('#tbl_Users').DataTable({
         ajax: {
             url: '/Account/GetAll'
         },
@@ -72,7 +68,7 @@ function InitializeDataTable() {
 }
 
 function SaveUser(url, formSelector) {
-
+    debugger
     let email = $('#Email').val()
     let data = $(formSelector).serialize();  
     

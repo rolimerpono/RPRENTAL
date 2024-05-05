@@ -329,10 +329,18 @@ namespace RPRENTAL.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _SignInManager.SignOutAsync();
+            try
+            {
+                await _SignInManager.SignOutAsync();
 
-            return Json(new { success = true, message = "Successfully logout" });
-
+                return Json(new { success = true, message = "Successfully logout" });
+            }
+            catch(Exception ex)            
+            {
+            
+            
+            }
+            return Json(new { success = false, message = "Something went wrong." });
         }
 
         [HttpPost]

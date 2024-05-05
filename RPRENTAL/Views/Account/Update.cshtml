@@ -17,7 +17,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="phoneno" class="form-label">Phone Number</label>
-                    <input type="number" class="form-control" asp-for="@Model.PhoneNumber" id="PhoneNumber" name="PhoneNumber" placeholder="Enter phone number" autocomplete="off" required>
+                    <input type="number" class="form-control" asp-for="@Model.PhoneNumber" id="PhoneNumber" name="PhoneNumber" maxlength="12" placeholder="Enter phone number" autocomplete="off" required>
                     <div class="invalid-feedback">Please provide a phone number.</div>
                 </div>
 

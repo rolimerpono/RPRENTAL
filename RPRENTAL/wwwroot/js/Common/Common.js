@@ -97,7 +97,8 @@ function ValidateEmail(email)
 }
 
 function GetRowData(objTable, btn) {	
-return objTable.row(btn.closest('tr')).data();
+
+	return objTable.row(btn.closest('tr')).data();
 }
 
 

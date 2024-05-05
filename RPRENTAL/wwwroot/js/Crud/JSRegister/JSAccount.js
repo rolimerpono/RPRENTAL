@@ -189,15 +189,15 @@ function RegisterUser(url) {
 }
 
 function LogoutUser(url) {  
-
+    debugger
     $.ajax({
         url: url,
         type: 'POST',
        
         success: function (response) {
             if (response.success) {
-                window.location.href = '/Home/Index';
                 ShowToaster('success', 'LOGOUT USER', response.message);
+                window.location.href = '/Home/Index';              
             }
             else {
                 ShowToaster('error', 'LOGOUT USER', response.message);
