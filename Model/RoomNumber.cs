@@ -14,6 +14,8 @@ namespace Model
         [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RoomNo { get; set; }
 
+
+        [MaxLength(500)]
         public string? Description { get; set; }
 
 

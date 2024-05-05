@@ -9630,9 +9630,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
       "projectName": "StaticUtility",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\StaticUtility\\obj\\",
       "projectStyle": "PackageReference",
@@ -9656,8 +9656,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Model\\Model.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Model\\Model.csproj"
             }
           }
         }

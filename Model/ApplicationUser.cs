@@ -13,6 +13,7 @@ namespace Model
     public class ApplicationUser : IdentityUser
     {
 
+        [MaxLength(50)]
         public string? Fullname { get; set; }
         public DateTime? CreatedDate { get; set; } 
         public DateTime? UpdatedDate { get; set; }      

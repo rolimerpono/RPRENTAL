@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using PayPal.Api;
 using System.Configuration;
+using Microsoft.AspNetCore.Identity;
 
 
 
@@ -22,9 +23,8 @@ namespace DatabaseAccess
 
         public DbSet<Room> tbl_Rooms { get; set; }
 
-        public DbSet<RoomNumber> tbl_RoomNumber { get; set; }       
+        public DbSet<RoomNumber> tbl_RoomNumber { get; set; }      
        
-
         public DbSet<RoomAmenity> tbl_RoomAmenity { get; set; }
 
         public DbSet<Amenity> tbl_Amenity { get; set; }     
@@ -39,6 +39,16 @@ namespace DatabaseAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            #region Rename Identity default table name    
+            builder.Entity<IdentityRole>().ToTable("tbl_Roles");
+            builder.Entity<IdentityUserRole<string>>().ToTable("tbl_UserRoles");
+            builder.Entity<ApplicationUser>().ToTable("tbl_Users");
+            builder.Entity<IdentityUserClaim<string>>().ToTable("tbl_UserClaims");
+            builder.Entity<IdentityUserLogin<string>>().ToTable("tbl_UserLogins");
+            builder.Entity<IdentityUserToken<string>>().ToTable("tbl_UserTokens");
+            builder.Entity<IdentityRoleClaim<string>>().ToTable("tbl_RoleClaims");
+            #endregion
 
             #region tbl_Rooms
 

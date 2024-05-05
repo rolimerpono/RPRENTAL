@@ -24,15 +24,17 @@ namespace Model
         public int RoomId { get; set; }   
 
         [Required]
+        [MaxLength(50)]
         public string RoomName { get; set; }
 
+        [MaxLength(500)]
         public string? Description { get; set; } = "";
 
         [Range(10,150)]
         public required double RoomPrice { get; set; }
 
      
-        [Range(1,10)]
+        [Range(1,20)]
         public required int MaxOccupancy { get; set; }
 
         public string? ImageUrl { get; set; }
@@ -49,12 +51,15 @@ namespace Model
         [NotMapped]
         public IFormFile? Image { get; set; }
 
+        [ValidateNever]
         [NotMapped]
         public Boolean IsRoomAvailable { get; set; } = true;
 
+        [ValidateNever]
         [NotMapped]
         public DateOnly? CheckinDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
+        [ValidateNever]
         [NotMapped]
         public DateOnly? CheckoutDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 

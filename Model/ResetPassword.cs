@@ -16,6 +16,7 @@ namespace Model
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress,ErrorMessage = "The email you entered was invalid.")]
         public string Email { get; set; }
 
 

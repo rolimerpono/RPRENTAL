@@ -36,14 +36,19 @@ namespace Model
         public int RoomNo { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string UserName { get; set; }
 
         [Required]
+        [MaxLength(50)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "The email you entered was invalid.")]
         public string UserEmail { get; set;}
 
+        [MaxLength(12)]
         public string? PhoneNumber { get; set; }
 
         [Required]
+        [MaxLength(12)]
         public double TotalCost { get; set; }      
 
         public string? BookingStatus { get; set; }
@@ -74,7 +79,8 @@ namespace Model
         public DateTime ActualCheckoutDate { get; set; }
 
         public DateTime ActualCancelledDate { get; set; }
-      
+
+        [ValidateNever]
         [NotMapped]
         public IEnumerable<RoomAmenity> RoomAmenity { get; set; }
 
