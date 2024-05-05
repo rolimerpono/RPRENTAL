@@ -67,7 +67,8 @@ namespace RPRENTAL.Controllers
                 if (ModelState.IsValid && objAmenity.AmenityId == 0)
                 {
                     _IAmenityService.Create(objAmenity);
-                    TempData["success"] = "Amenity created successfully.";
+                  
+
                     return Json(new { success = true, message = "Amenity created successfully." });
                 }
                 return Json(new { success = false, message = "Something went wrong." });
@@ -100,8 +101,8 @@ namespace RPRENTAL.Controllers
                 if (ModelState.IsValid && objAmenity.AmenityId > 0)
                 {
                     _IAmenityService.Update(objAmenity);
+                    
 
-                    TempData["success"] = "Amenity updated successfully.";
                     return Json(new { success = true, message = "Amenity updated successfully." });
                 }
             }
@@ -109,7 +110,7 @@ namespace RPRENTAL.Controllers
             {
                 return Json(new { success = false, message = ex.Message });
             }
-            return RedirectToAction("Index");
+            return Json(new { success = false, message = "Something went wrong." });
         }
 
         [HttpPost]
@@ -119,8 +120,7 @@ namespace RPRENTAL.Controllers
             {
                 if (AmenityId != 0)
                 {
-                    _IAmenityService.Delete(AmenityId);
-                    TempData["success"] = "Amenity deleted successfully.";
+                    _IAmenityService.Delete(AmenityId);                  
                     return Json(new { success = true, message = "Amenity deleted successfully." });
                 }
                 else

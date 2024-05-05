@@ -1,4 +1,4 @@
-﻿let objDataTable;
+﻿let objRoomNumberTable;
 
 $(document).ready(function () {
     InitializeDataTable();
@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_RoomNumber').on('click', '.select-edit-btn', function () {
-        let rowData = GetRowData(objDataTable , $(this));
+        let rowData = GetRowData(objRoomNumberTable , $(this));
         LoadModal('/RoomNumber/Update', '#modal-edit-content', rowData);
         InputBoxFocus('#Description','#modal-edit');
     });
@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_RoomNumber').on('click', '.select-delete-btn', function () {
-        let rowData = GetRowData(objDataTable, $(this));        
+        let rowData = GetRowData(objRoomNumberTable, $(this));        
         $('#RoomNo').val(rowData.roomNo);    
         $('#modal-delete').modal('show');
     });
@@ -34,7 +34,7 @@ $(document).ready(function () {
 });
 
 function InitializeDataTable() {
-    objDataTable = $('#tbl_RoomNumber').DataTable({
+    objRoomNumberTable = $('#tbl_RoomNumber').DataTable({
         ajax: {
             url: '/RoomNumber/GetAll'
         },
@@ -92,7 +92,7 @@ function SaveRoomNumber(url, formSelector) {
         success: function (response) {
 
             if (response.success) {             
-                ReloadDataTable(objDataTable);
+                ReloadDataTable(objRoomNumberTable);
                 HideModal(formSelector.replace('form', 'modal'));
                
                 ShowToaster('success', 'ROOM NUMBER', response.message);

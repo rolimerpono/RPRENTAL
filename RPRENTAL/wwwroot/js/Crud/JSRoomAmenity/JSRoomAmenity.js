@@ -1,10 +1,10 @@
-﻿let objDataTable;
+﻿let objRoomAmenityTable;
 
 $(document).ready(function () {
     InitializeDataTable();
     let rowData = 0;
     $('#tbl_Rooms').on('click', '.select-edit-btn', function () {       
-        rowData = GetRowData(objDataTable, $(this));       
+        rowData = GetRowData(objRoomAmenityTable, $(this));       
         if (rowData) {
             DisplayRoomAmenities('/RoomAmenity/DisplayRoomAmenities', rowData.roomId);
         }
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 
 function InitializeDataTable() {
-    objDataTable = $('#tbl_Rooms').DataTable({
+    objRoomAmenityTable = $('#tbl_Rooms').DataTable({
         ajax: {
             url: '/RoomAmenity/GetRoomList'
         },
@@ -80,7 +80,7 @@ function ApplyRoomAmenities(path, RoomId, serializedData) {
         success: function (response) {           
             if (response) {                
                 ShowToaster('success','AMENITIES', response.message);
-                ReloadDataTable(objDataTable);
+                ReloadDataTable(objRoomAmenityTable);
             }
             else {
               

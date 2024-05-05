@@ -137,9 +137,10 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult CheckIn(Booking objBooking)
+        public IActionResult CheckIn(int BookingId, int RoomNo)
         {
-
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BookingId == BookingId);
+            objBooking.RoomNo = RoomNo; ;
 
             if (objBooking == null)
             {
@@ -154,9 +155,10 @@ namespace RPRENTAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult CheckOut(Booking objBooking)
+        public IActionResult CheckOut(int BookingId)
         {
-
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BookingId == BookingId);
+           
 
             if (objBooking == null)
             {
@@ -170,9 +172,10 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult CancelBooking(Booking objBooking)
+        public IActionResult CancelBooking(int BookingId)
         {
+            Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BookingId == BookingId);
+
 
             if (objBooking == null)
             {

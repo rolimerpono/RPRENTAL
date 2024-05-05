@@ -1,5 +1,5 @@
 ﻿
-var objDataTable;
+let objRoomTable;
 
 $(document).ready(function () {
     InitializeDataTable();
@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
-        var rowData = GetRowData(objDataTable , $(this));
+        var rowData = GetRowData(objRoomTable , $(this));
         LoadModal('/Room/Update', '#modal-edit-content', rowData);
         InputBoxFocus('#RoomName','#modal-edit');
     });
@@ -26,7 +26,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Rooms').on('click', '.select-delete-btn', function () {
-        var rowData = GetRowData(objDataTable, $(this));   
+        var rowData = GetRowData(objRoomTable, $(this));   
         $('#RoomId').val(rowData.roomId);
         $('#modal-delete').modal('show');
     });
@@ -39,7 +39,7 @@ $(document).ready(function () {
 });
 
 function InitializeDataTable() {
-    objDataTable = $('#tbl_Rooms').DataTable({
+    objRoomTable = $('#tbl_Rooms').DataTable({
         ajax: {
             url: '/Room/GetAll'
         },
@@ -100,7 +100,7 @@ function SaveRoom(url, formSelector) {
         success: function (response) {
 
             if (response.success) {
-                ReloadDataTable(objDataTable);            
+                ReloadDataTable(objRoomTable);            
                 HideModal(formSelector.replace('form', 'modal'));
                 ShowToaster('success', 'Room', response.message);                
             } else {
@@ -124,7 +124,7 @@ function DeleteRoom() {
         url: '/Room/Delete',
         data: { RoomId: roomId },
         success: function (response) {
-            ReloadDataTable(objDataTable);           
+            ReloadDataTable(objRoomTable);           
             HideModal('#modal-delete');
             ShowToaster('success', 'Room', response.message);
         },

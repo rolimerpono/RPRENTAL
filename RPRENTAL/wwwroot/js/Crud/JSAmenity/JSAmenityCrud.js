@@ -1,4 +1,4 @@
-﻿var objDataTable;
+﻿let objAmenityTable;
 
 $(document).ready(function () {
     InitializedDataTable();
@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Amenity').on('click', '.select-edit-btn', function () {
-        var rowData = GetRowData(objDataTable,$(this));
+        var rowData = GetRowData(objAmenityTable,$(this));
         LoadModal('/Amenity/Update', '#modal-edit-content', rowData);       
         InputBoxFocus('#AmenityName', '#modal-edit')
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Amenity').on('click', '.select-delete-btn', function () {
-        var rowData = GetRowData(objDataTable, $(this));        
+        var rowData = GetRowData(objAmenityTable, $(this));        
         $('#AmenityId').val(rowData.amenityId);
         $('#modal-delete').modal('show');
     });
@@ -36,7 +36,7 @@ $(document).ready(function () {
 });
 
 function InitializedDataTable() {
-    objDataTable = $('#tbl_Amenity').DataTable({
+    objAmenityTable = $('#tbl_Amenity').DataTable({
         ajax: {
             url: '/Amenity/GetAll'
         },
@@ -68,7 +68,7 @@ function InitializedDataTable() {
 
 function SaveAmenity(url, formSelector) {
 
-    let objRoomData = $(formSelector).serialize();  
+    let data = $(formSelector).serialize();  
     let is_true = false;
 
     is_true = IsFieldValid(formSelector); 
@@ -81,11 +81,11 @@ function SaveAmenity(url, formSelector) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: objRoomData,
+        data: data,
         success: function (response) {
-
+            debugger
             if (response.success) {            
-                ReloadDataTable(objDataTable);
+                ReloadDataTable(objAmenityTable);
                 HideModal(formSelector.replace('form', 'modal'));
                 ShowToaster('success', 'AMENITY', response.message);
             } else {
@@ -106,9 +106,9 @@ function DeleteAmenity() {
         type: 'POST',
         url: '/Amenity/Delete',
         data: {AmenityId : amenityId},
-        success: function (response) {
-            objDataTable.ajax.reload();
-            $('#modal-delete').modal('hide');
+        success: function (response) {        
+            ReloadDataTable(objAmenityTable);      
+            HideModal('#modal-delete');
             ShowToaster('success', 'AMENITY', response.message);
         },
         error: function (xhr, status, error) {

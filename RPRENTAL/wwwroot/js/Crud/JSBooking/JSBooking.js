@@ -1,5 +1,4 @@
-﻿let objDataTable;
-
+﻿let objBookingTable;
 $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -38,7 +37,7 @@ $(document).ready(function () {
     LoadBookings(status);
 
     $('#tbl_Bookings').on('click', '.select-view-btn', function () {     
-        var rowData = GetRowData(objDataTable, $(this));
+        var rowData = GetRowData(objBookingTable, $(this));
         LoadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
     });
   
@@ -46,44 +45,46 @@ $(document).ready(function () {
 });
 
 function CheckIn() {
-    let data = $('#booking_detail').serialize();  
 
+    let data = {
+        BookingId   : $('#BookingId').val(),
+        RoomNo      : $('#RoomNo').val()
+    }
+  
+    $.ajax({
+        type: 'POST',
+        url: '/Booking/CheckIn',
+        data: {BookingId: data.BookingId , RoomNo : data.RoomNo},
+        success: function (response) {
 
-        $.ajax({
-            type: 'POST',
-            url: 'Booking/CheckIn',
-            data: data,
-            success: function (response) {
-                if (response.success) {
-                    ReloadDataTable(objDataTable);                 
-                    HideModal('#modal-booking');                    
-                    ShowToaster('success', 'CHECKIN', response.message);
-                } else {
-                    ShowToaster('error', 'CHECKIN', response.message);
-                }
-            },
-            error: function (xhr, status, error) {            
-                ShowToaster('error', 'CHECKIN', error);
+            if (response.success) {              
+                ReloadDataTable(objBookingTable);
+                HideModal('#modal-booking');
+                ShowToaster('success', 'CHECKIN', response.message);
+            } else {
+                ShowToaster('error', 'CHECKIN', response.message);
             }
-        });
 
-        $(document).on('hidden.bs.modal', modalContentSelector.replace('-content', ''), function () {
-            $(modalContentSelector).html('');
-        });
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'CHECKIN', error);
+        }
+    });   
+   
 }
 
 function CheckOut() {
 
-    let data = $('#booking_detail').serialize();
 
+    let BookingId = $('#BookingId').val()    
 
     $.ajax({
         type: 'POST',
-        url: 'Booking/CheckOut',
-        data: data,
+        url: '/Booking/CheckOut',
+        data: { BookingId: BookingId },
         success: function (response) {
             if (response.success) {              
-                ReloadDataTable(objDataTable);               
+                ReloadDataTable(objBookingTable);               
                 HideModal('#modal-booking');
                 ShowToaster('success','CHECKOUT', response.message);
             } else {
@@ -102,12 +103,12 @@ function CheckOut() {
 
 function ProceedPayment() {
 
-    let id = $('#booking_id').val();    
+    let BookingId = $('#BookingId').val();    
 
     $.ajax({
         url: '/Booking/ShowPayment',
         method: 'POST',
-        data: { BookingId:id },
+        data: { BookingId: BookingId },
         success: function (response) {
             
             if (response.success) {
@@ -126,16 +127,17 @@ function ProceedPayment() {
 
 
 function CancelBooking() {
-    data = $('#booking_detail').serialize();
+
+    let BookingId = $('#BookingId').val()    
 
     $.ajax({
         type: 'POST',
-        url: 'Booking/CancelBooking',
-        data: data,
+        url: '/Booking/CancelBooking',
+        data: { BookingId: BookingId },
+
         success: function (response) {
-            if (response.success) {
-                objDataTable.ajax.reload();
-                ReloadDataTable(objDataTable);               
+            if (response.success) {           
+                ReloadDataTable(objBookingTable);               
                 HideModal('#modal-booking');
                 ShowToaster('success', 'CANCEL BOOKING', response.message);
             } else {              
@@ -152,7 +154,7 @@ function CancelBooking() {
     });
 }
 function LoadBookings(status) { 
-    objDataTable = $('#tbl_Bookings').DataTable({
+    objBookingTable = $('#tbl_Bookings').DataTable({
         ajax: {
             url: '/Booking/GetAll?status=' + status
         },

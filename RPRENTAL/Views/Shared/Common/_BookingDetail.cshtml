@@ -1,114 +1,117 @@
 ﻿@model Booking
 
-<div class="container">
-    <form id="booking_detail">
-    <input id="booking_id" asp-for="@Model.BookingId" hidden />
-    <div class="row pb-3">
-        <partial name="Common/_RoomDetail" model="@Model.Room" />
-    </div>
+<form id="booking_detail">
+    <div class="container">
+   
+        <input id="BookingId" asp-for="@Model.BookingId" hidden />
 
-    <div class="row pt-3 border-top border-1"> 
-            <div class="col-lg-6">      
-            <div class="mb-3">
-                <label for="formName" class="form-label">NAME</label>
-                <input type="text" class="form-control" id="formName" asp-for="@Model.UserName" disabled>
-            </div>
-
-            <div class="mb-3">
-                <label for="formPhone" class="form-label">PHONE</label>
-                <input type="text" class="form-control" id="formPhone" asp-for="@Model.PhoneNumber" disabled>
-            </div>
-
-            <div class="mb-3">
-                <label for="formEmail" class="form-label">EMAIL</label>
-                <input type="text" class="form-control" id="formEmail" asp-for="@Model.UserEmail" disabled>
-            </div>
-
-            <div class="mb-3">
-                <label for="formBookingStatus" class="form-label">BOOKING STATUS</label>
-                <input type="text" class="form-control" id="formBookingStatus" asp-for="@Model.BookingStatus" disabled>
-            </div>
-
-            <div class="mb-3">
-                <label for="formCheckinDate" class="form-label">BOOKING DATE</label>
-                <input type="text" class="form-control" id="formBookingDate" asp-for="@Model.BookingDate" disabled>
-            </div>
-               
+        <div class="row pb-3">
+            <partial name="Common/_RoomDetail" model="@Model.Room" />
         </div>
+
+        <div class="row pt-3 border-top border-1"> 
+                <div class="col-lg-6">      
+                <div class="mb-3">
+                    <label for="formName" class="form-label">NAME</label>
+                    <input type="text" class="form-control" id="Username" asp-for="@Model.UserName" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formPhone" class="form-label">PHONE</label>
+                    <input type="text" class="form-control" id="PhoneNumber" asp-for="@Model.PhoneNumber" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formEmail" class="form-label">EMAIL</label>
+                    <input type="text" class="form-control" id="Email" asp-for="@Model.UserEmail" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formBookingStatus" class="form-label">BOOKING STATUS</label>
+                    <input type="text" class="form-control" id="BookingStatus" asp-for="@Model.BookingStatus" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formCheckinDate" class="form-label">BOOKING DATE</label>
+                    <input type="text" class="form-control" id="BookingDate" asp-for="@Model.BookingDate" disabled>
+                </div>
+               
+            </div>
       
-        <div class="col-lg-6">
+            <div class="col-lg-6">
 
-             @if (Model.IsPaymentSuccessfull && User.IsInRole(SD.UserRole.Admin.ToString()) && Model.BookingStatus == SD.BookingStatus.Checkin.ToString())
-            {
+                 @if (Model.IsPaymentSuccessfull && User.IsInRole(SD.UserRole.Admin.ToString()) && Model.BookingStatus == SD.BookingStatus.Checkin.ToString())
+                {
+                    <div class="mb-3">
+                        <label for="formCheckInDate" class="form-label">STRIPE PAYMENT ID</label>
+                        <input type="text" class="form-control" id="StripePaymentIntentId" asp-for="@Model.StripePaymentIntentId" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formCheckoutDate" class="form-label">STRIPE SESSION ID</label>
+                        <input type="text" class="form-control" id="StripeSessionId" asp-for="@Model.StripeSessionId" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formNoOfStay" class="form-label">PAYMENT DATE</label>
+                        <input type="text" class="form-control" id="PaymentDate" value="@Model.PaymentDate" disabled>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="mb-3">
+                        <label for="formCheckInDate" class="form-label">ACTUAL CHECKIN DATE</label>
+                        <input type="text" class="form-control" id="ActualCheckinDate" asp-for="@Model.ActualCheckinDate" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formCheckoutDate" class="form-label">ACTUAL CHECKOUT DATE</label>
+                        <input type="text" class="form-control" id="ActualCheckoutDate" asp-for="@Model.ActualCheckoutDate" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formNoOfStay" class="form-label">NUMBER OF STAY</label>
+                        <input type="text" class="form-control" id="NoOfStay" value="@Model.NoOfStay" disabled>
+                    </div>
+                }
+
+
                 <div class="mb-3">
-                    <label for="formCheckInDate" class="form-label">STRIPE PAYMENT ID</label>
-                    <input type="text" class="form-control" id="formCheckInDate" asp-for="@Model.StripePaymentIntentId" disabled>
-                </div>
-
-                <div class="mb-3">
-                    <label for="formCheckoutDate" class="form-label">STRIPE SESSION ID</label>
-                    <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.StripeSessionId" disabled>
-                </div>
-
-                <div class="mb-3">
-                    <label for="formNoOfStay" class="form-label">PAYMENT DATE</label>
-                    <input type="text" class="form-control" id="formNoOfStay" value="@Model.PaymentDate" disabled>
-                </div>
-            }
-            else
-            {
-
-                <div class="mb-3">
-                    <label for="formCheckInDate" class="form-label">ACTUAL CHECKIN DATE</label>
-                    <input type="text" class="form-control" id="formCheckInDate" asp-for="@Model.ActualCheckinDate" disabled>
-                </div>
-
-                <div class="mb-3">
-                    <label for="formCheckoutDate" class="form-label">ACTUAL CHECKOUT DATE</label>
-                    <input type="text" class="form-control" id="formCheckoutDate" asp-for="@Model.ActualCheckoutDate" disabled>
-                </div>
-
-                <div class="mb-3">
-                    <label for="formNoOfStay" class="form-label">NUMBER OF STAY</label>
-                    <input type="text" class="form-control" id="formNoOfStay" value="@Model.NoOfStay" disabled>
-                </div>
-            }
-
-
-            <div class="mb-3">
-                <label for="formNoOfStay" class="form-label">Total Cost</label>
-                <input type="text" class="form-control" id="formNoOfStay" value="@Model.TotalCost.ToString("c")" disabled>
-            </div>     
+                    <label for="formNoOfStay" class="form-label">Total Cost</label>
+                    <input type="text" class="form-control" id="TotalCost" value="@Model.TotalCost.ToString("c")" disabled>
+                </div>     
             
 
 
-            @if (Model.BookingStatus == SD.BookingStatus.Approved.ToString() && User.IsInRole(SD.UserRole.Admin.ToString()))
-            {
-                <div class="mb-3">                   
-                    <label for="ROOM_NUMBER" class="form-label">ROOM NUMBER</label>
-
-                    <select class="form-select" asp-for="@Model.RoomNo">
-                        @foreach (var rooms in Model.RoomNumberList)
-                        {
-                            <option value="@rooms">@rooms</option>
-
-                        }
-                    </select>
-                </div>
-            }
-            else
-            {
-                @if (Model.BookingStatus == SD.BookingStatus.Checkin.ToString() || Model.BookingStatus == SD.BookingStatus.Checkout.ToString())
+                @if (Model.BookingStatus == SD.BookingStatus.Approved.ToString() && User.IsInRole(SD.UserRole.Admin.ToString()))
                 {
-                    <div class="mb-3">
-                        <label for="ROOM_NUMBER" class="form-label">ROOM NUMBER</label>                       
-                        <input type="text" class="form-control" id="RoomNo" asp-for="@Model.RoomNo" disabled>
+                    <div class="mb-3">                   
+                        <label for="ROOM_NUMBER" class="form-label">ROOM NUMBER</label>
+
+                        <select class="form-select" asp-for="@Model.RoomNo">
+                            @foreach (var rooms in Model.RoomNumberList)
+                            {
+                                <option value="@rooms">@rooms</option>
+
+                            }
+                        </select>
                     </div>
                 }
-            }
-        </div>       
+                else
+                {
+                    @if (Model.BookingStatus == SD.BookingStatus.Checkin.ToString() || Model.BookingStatus == SD.BookingStatus.Checkout.ToString())
+                    {
+                        <div class="mb-3">
+                            <label for="ROOM_NUMBER" class="form-label">ROOM NUMBER</label>                       
+                            <input type="text" class="form-control" id="RoomNo" asp-for="@Model.RoomNo" disabled>
+                        </div>
+                    }
+                }
+            </div>       
+        </div>
+  
     </div>
-    </form>
-</div>
+</form>
 
 

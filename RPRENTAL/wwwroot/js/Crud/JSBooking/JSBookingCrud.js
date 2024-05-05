@@ -23,8 +23,7 @@
 
 function ConfirmBooking(RoomId) {
 
-    let serializedData = $('#checking_info').serialize();
-    
+    let serializedData = $('#checking_info').serialize();    
 
     $.ajax({
         url: '/Booking/ConfirmBooking',
@@ -47,6 +46,7 @@ function ConfirmBooking(RoomId) {
 }
 
 function GetBooking(RoomId) {
+    
     var serializedData = $('#checking_info').serialize();  
   
     $.ajax({
@@ -55,7 +55,7 @@ function GetBooking(RoomId) {
         data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {
           
-            let modalContent = $('#modal-booking-content-' + RoomId);           
+            let modalContent = $('#modal-booking-content-' + RoomId);        
             modalContent.empty().html(response);
             $('#modal-booking-' + RoomId).modal('show');   
 

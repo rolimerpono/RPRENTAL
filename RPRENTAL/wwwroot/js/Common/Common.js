@@ -30,11 +30,12 @@ function DisplayImagePreview(event) {
 }
 
 
-function ReloadDataTable(objDataTable) {
-	objDataTable.ajax.reload();
+function ReloadDataTable(objMainTable) {
+	objMainTable.ajax.reload();
 }
 
 function LoadModal(url, modalContent, data = null) {
+	
 
 	$.ajax({
 		type: 'GET',
@@ -54,7 +55,7 @@ function LoadModal(url, modalContent, data = null) {
 	});
 }
 
-function HideModal(modalContent) {
+function HideModal(modalContent) {	
 	$(modalContent).modal('hide');
 }
 
@@ -73,6 +74,7 @@ function InputBoxFocus(input_name, modal_name) {
 
 function IsFieldValid(formSelector) {
 	
+	
 	if (!$(formSelector)[0].checkValidity()) {
 		$(formSelector).addClass('was-validated');
 		return false;
@@ -82,6 +84,7 @@ function IsFieldValid(formSelector) {
 
 function ValidateEmail(email)
 {	
+	
 
 	let is_valid = false;	
 	let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -93,8 +96,8 @@ function ValidateEmail(email)
 	}
 }
 
-function GetRowData(objDataTable, btn) {
-	return objDataTable.row(btn.closest('tr')).data();
+function GetRowData(objTable, btn) {	
+return objTable.row(btn.closest('tr')).data();
 }
 
 

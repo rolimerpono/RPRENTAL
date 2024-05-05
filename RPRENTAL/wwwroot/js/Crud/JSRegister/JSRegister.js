@@ -1,4 +1,4 @@
-﻿let objDataTable;
+﻿let objRegisterTable;
 
 $(document).ready(function () {
     InitializeDataTable();
@@ -13,7 +13,11 @@ $(document).ready(function () {
     });
 
     $('#tbl_Users').on('click', '.select-edit-btn', function () {
-        var rowData = GetRowData(objDataTable , $(this));
+
+
+        var rowData = GetRowData(objRegisterTable, $(this));
+
+        debugger
         LoadModal('/Account/Update', '#modal-edit-content', rowData);       
         InputBoxFocus('#Fullname', '#modal-edit');
     });
@@ -24,7 +28,7 @@ $(document).ready(function () {
     });
 
     $('#tbl_Users').on('click', '.select-delete-btn', function () {
-        var rowData = GetRowData(objDataTable ,$(this));        
+        var rowData = GetRowData(objRegisterTable ,$(this));        
         $('#email').val(rowData.email);
         $('#modal-delete').modal('show');
     });
@@ -38,7 +42,7 @@ $(document).ready(function () {
 
 function InitializeDataTable() {
 
-    objDataTable = $('#tbl_Users').DataTable({
+    objDataRegisterTable = $('#tbl_Users').DataTable({
         ajax: {
             url: '/Account/GetAll'
         },
@@ -71,6 +75,7 @@ function SaveUser(url, formSelector) {
 
     let email = $('#Email').val()
     let data = $(formSelector).serialize();  
+    
 
     ValidateEmail(email);
     let is_true = false;
@@ -87,7 +92,8 @@ function SaveUser(url, formSelector) {
         data: data,
         success: function (response) {
             if (response) {
-                ReloadDataTable(objDataTable);               
+
+                ReloadDataTable(objRegisterTable);               
                 HideModal(formSelector.replace('form', 'modal'));
                 ShowToaster('success', 'REGISTER USER', response.message);
             }
@@ -110,7 +116,7 @@ function DeleteRecord(email) {
         data: { email: email },
         success: function (response) {
             if (response.success) {               
-                ReloadDataTable(objDataTable);
+                ReloadDataTable(objRegisterTable);
                 HideModal('#modal-delete');
                 ShowToaster('success', 'DELETE USER', response.message);
             }
