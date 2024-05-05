@@ -87,12 +87,13 @@ function LogoutUser(url) {
 
 
 function ForgotPassword(url) {
+    
     let data = {
         Email: $('#forgot-email').val()       
     };
   
-    ValidateEmail(formdata.Email);
-
+    ValidateEmail(data.Email);
+    
     let is_true = false;
 
     is_true = IsFieldValid('#forgotPasswordForm');
@@ -101,6 +102,7 @@ function ForgotPassword(url) {
         return;
     }
 
+    
     $.ajax({
         url: url,
         type: 'POST',
