@@ -1,4 +1,16 @@
-﻿//Toaster Notification
+﻿$(document).ready(function () {
+	if (localStorage.getItem('loginTriggered')) {
+		ShowToaster('success', 'LOGIN USER', 'Login successful!');
+		localStorage.removeItem('loginTriggered');
+	}
+
+	if (localStorage.getItem('logoutTriggered')) {
+		ShowToaster('success', 'LOGOUT USER', 'Logout successful!');
+		localStorage.removeItem('logoutTriggered');
+	}
+});
+
+//Toaster Notification
 function ShowToaster(Type, Header, Message)
 {  
 	toastr.options.hideDuration = 2000;

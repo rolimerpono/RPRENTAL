@@ -43,14 +43,15 @@ function LoginUser(url) {
         data: data,
         success: function (response) {
             if (response.success) {
+                localStorage.setItem('loginTriggered', true);
+
                  if (response.role == 'Admin') {
                     window.location.href = '/Dashboard/Index';   
                 }
                 else {
                     window.location.href = '/Home/Index'
-                }
-                ShowToaster('success', 'LOGIN USER', response.message);
-               
+                }              
+              
             }
             else {
               
@@ -59,6 +60,27 @@ function LoginUser(url) {
         },
         error: function (xhr, status, error) {
             ShowToaster('error', 'LOGIN USER', response.message);
+        }
+    });
+}
+
+function LogoutUser(url) {
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+
+        success: function (response) {
+            if (response.success) {
+                localStorage.setItem('logoutTriggered', true);
+                window.location.href = '/Home/Index';
+            }
+            else {
+                ShowToaster('error', 'LOGOUT USER', response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'LOGOUT USER', error);
         }
     });
 }
@@ -188,24 +210,5 @@ function RegisterUser(url) {
   
 }
 
-function LogoutUser(url) {  
-    debugger
-    $.ajax({
-        url: url,
-        type: 'POST',
-       
-        success: function (response) {
-            if (response.success) {
-                ShowToaster('success', 'LOGOUT USER', response.message);
-                window.location.href = '/Home/Index';              
-            }
-            else {
-                ShowToaster('error', 'LOGOUT USER', response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            ShowToaster('error', 'LOGOUT USER', error);
-        }
-    });
-}
+
 
