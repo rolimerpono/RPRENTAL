@@ -68,7 +68,7 @@ function InitializeDataTable() {
 }
 
 function SaveUser(url, formSelector) {
-    debugger
+    
     let email = $('#Email').val()
     let data = $(formSelector).serialize();  
     
