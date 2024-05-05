@@ -2,24 +2,23 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <div></div>
-            <img class="img-fluid border border-dark border-1" src="@Model.ImageUrl" alt="Room Image">
-        </div>
+    <div class="row pt-3 mb-3">
 
+        <div class="col-md-4">
+            <img class="img-fluid border border-dark border-1" src="@Model.ImageUrl" alt="Room Image" style="min-height: 250px; max-height: 250px;">
+        </div>
     
-        <div class="col-md-7">
+        <div class="col-md-8">
             <div class="pt-2"><h3 class="text-uppercase text-primary fw-bold">@Model.RoomName</h3></div>
             <div style="min-height:70px;max-height:70px;">
                 <p class="text-truncate-modal" title="@Model.Description">@Model.Description</p>
             </div>
             <div class="pt-2"><h4 class="text-primary fw-bold">ROOM AMENITIES:</h4></div>
 
-            <div class="row" style="max-height:70px; display: flex; flex-wrap: wrap;">
+              <div class="row" style="max-height:70px; overflow-y: scroll; display: flex; flex-wrap: wrap;">
                 @foreach (var objAmenity in Model.RoomAmenities)
                 {
-                    <div class="col-lg-4" style="flex: 1;">
+                    <div class="col-lg-4" style="flex: 0 0 30%;">
                         <div class="fw-bold">@objAmenity.Amenity!.AmenityName</div>
                     </div>
                 }
@@ -27,12 +26,12 @@
 
         </div>
     </div>
-    <div class="row pt-3">
+    <div class="row pt-1">
         <div class="col-6 col-md-2">
             <span class="text-primary fw-bold">OCCUPANCY:</span>
         </div>
         <div class="col-6 col-md-10 text-end">
-            <span class="fw-bold">@Model.MaxOccupancy Person</span>
+            <span class="fw-bold text-danger">@Model.MaxOccupancy Person</span>
         </div>
     </div>
     <div class="row pt-1">
@@ -40,7 +39,7 @@
             <span class="text-primary fw-bold">PRICE:</span>
         </div>
         <div class="col-6 col-md-10 text-end">
-            <span class="fw-bold">@Model.RoomPrice.ToString("c")</span>
+            <span class="fw-bold text-danger">@Model.RoomPrice.ToString("c")</span>
         </div>
     </div>
 </div>
