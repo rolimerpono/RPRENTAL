@@ -48,12 +48,12 @@ function ConfirmBooking(RoomId) {
 function GetBooking(RoomId) {
     
     var serializedData = $('#checking_info').serialize();  
-  
+    
     $.ajax({
         url: '/Booking/CreateBooking',
         method: 'GET',
         data: { Id: RoomId, jsonData: serializedData },
-        success: function (response) {
+        success: function (response) {            
           
             let modalContent = $('#modal-booking-content-' + RoomId);        
             modalContent.empty().html(response);
@@ -61,7 +61,7 @@ function GetBooking(RoomId) {
 
         },
         error: function (xhr, status, error) {         
-            ShowToaster('error', 'PAYMENT', error);
+            ShowToaster('warning', 'BOOKING', error + ', Please login first to procced booking. Thank you.');
         }
     });
 }

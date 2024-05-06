@@ -1,5 +1,6 @@
 using Common;
 using DataService.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using RPRENTAL.Models;
@@ -49,7 +50,8 @@ namespace RPRENTAL.Controllers
         }
            
 
-        [HttpPost]
+
+        [HttpPost]    
         public IActionResult GetRoomAvailable(DateOnly CheckinDate, DateOnly CheckoutDate, int? iPage)
         {
             var objRoomList = _iWorker.tbl_Rooms
