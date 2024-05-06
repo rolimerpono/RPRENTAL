@@ -56,7 +56,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Room objRoom)
         {
             try
@@ -106,7 +106,7 @@ namespace RPRENTAL.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(Room objRoom, IFormFile Image)
         {
             try
@@ -136,7 +136,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Delete(int RoomId)
         {
             try

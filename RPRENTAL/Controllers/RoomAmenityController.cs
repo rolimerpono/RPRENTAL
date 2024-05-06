@@ -43,7 +43,7 @@ namespace RPRENTAL.Controllers
     
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult DisplayRoomAmenities(int Id)
         {           
 
@@ -112,7 +112,7 @@ namespace RPRENTAL.Controllers
             return Json(new { data = objRoomList });
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult ApplyRoomAmenities(int Id, string jsonData)
         {
             try

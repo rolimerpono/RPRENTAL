@@ -80,7 +80,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet]      
         public IActionResult CreateBooking(int Id, string jsonData)
         {
             Booking objBooking;
@@ -136,7 +136,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken ]     
         public IActionResult CheckIn(int BookingId, int RoomNo)
         {
             Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BookingId == BookingId);
@@ -154,7 +154,8 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
+       
         public IActionResult CheckOut(int BookingId)
         {
             Booking objBooking = _IWorker.tbl_Booking.Get(fw => fw.BookingId == BookingId);
@@ -171,6 +172,8 @@ namespace RPRENTAL.Controllers
             return Json(new { success = true, message = SD.BookingTransaction.Success });
 
         }
+
+        [HttpPost,ValidateAntiForgeryToken]
 
         public IActionResult CancelBooking(int BookingId)
         {

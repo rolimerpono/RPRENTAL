@@ -54,7 +54,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(RoomNumberVM objRoomNumberVM)
         {
             Boolean IsRoomNumberExists = _IRoomNumberService.IsRoomNumberExists(objRoomNumberVM.RoomNumber!.RoomNo);
@@ -115,7 +115,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(RoomNumberVM objRoomNumberVM)
         {          
 
@@ -154,7 +154,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Delete(int RoomNo)
         {
             try

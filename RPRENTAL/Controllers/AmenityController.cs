@@ -49,7 +49,7 @@ namespace RPRENTAL.Controllers
              
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Amenity objAmenity)
         {
             
@@ -93,7 +93,7 @@ namespace RPRENTAL.Controllers
             return Json(new { sucess = false, message = "Something went wrong." });
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(Amenity objAmenity)
         {
             try
@@ -113,7 +113,7 @@ namespace RPRENTAL.Controllers
             return Json(new { success = false, message = "Something went wrong." });
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Delete(int AmenityId)
         {
             try

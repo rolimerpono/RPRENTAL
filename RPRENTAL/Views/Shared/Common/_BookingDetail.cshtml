@@ -1,6 +1,7 @@
 ﻿@model Booking
 
 <form id="booking_detail">
+    @Html.AntiForgeryToken()
     <div class="container">
    
         <input id="BookingId" asp-for="@Model.BookingId" hidden />

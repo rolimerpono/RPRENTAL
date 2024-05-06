@@ -33,10 +33,14 @@
 });
 
 function LoginUser(url) {
+    
 
     let email = $('#email').val();
     let password = $('#password').val();
-    let data = { Email: email, Password: password };
+    let token = $('input[name="__RequestVerificationToken"]').val();
+
+    let data = { Email: email, Password: password, __RequestVerificationToken: token }; 
+    
 
     $.ajax({
         url: url,
@@ -88,9 +92,12 @@ function LogoutUser(url) {
 
 
 function ForgotPassword(url) {
-    
+
+    let token = $('input[name="__RequestVerificationToken"]').val();    
+
     let data = {
-        Email: $('#forgot-email').val()       
+        Email: $('#forgot-email').val(),
+        __RequestVerificationToken : token
     };
   
     ValidateEmail(data.Email);
@@ -129,12 +136,15 @@ function ForgotPassword(url) {
 
 function ResetPassword(url) {
 
+   let token = $('input[name="__RequestVerificationToken"]').val();   
+
    let data = {
         Email: $('#reset-email').val(),
         Password: $('#reset-password').val(),
         ConfirmPassword: $('#reset-con-password').val(),
         OTP: $('#reset-OTP').val(),
-        Token: $('#reset-token').val()
+        Token: $('#reset-token').val(),
+       __RequestVerificationToken : token
     };
 
     ValidateEmail(data.Email);
@@ -175,13 +185,16 @@ function ResetPassword(url) {
 
 
 function RegisterUser(url) {
+
+    let token = $('input[name="__RequestVerificationToken"]').val();   
     
     let data = {
         Email: $('#reg-email').val(),
         Fullname: $('#reg-fullname').val(),
         PhoneNumber: $('#reg-phoneno').val(),
         Password: $('#reg-password').val(),
-        ConfirmPassword: $('#reg-confirmpassword').val()       
+        ConfirmPassword: $('#reg-confirmpassword').val(),
+        __RequestVerificationToken : token
     };
     ValidateEmail(data.Email);
 

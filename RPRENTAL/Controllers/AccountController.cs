@@ -101,7 +101,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegisterVM objData)
         {
             if (ModelState.IsValid)
@@ -172,7 +172,7 @@ namespace RPRENTAL.Controllers
             return PartialView("Update", objRegister);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(RegisterVM objData)
         {
             var objUser = await _UserManager.FindByEmailAsync(objData.Email);
@@ -208,7 +208,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string email)
         {
             try
@@ -247,6 +247,7 @@ namespace RPRENTAL.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
@@ -272,7 +273,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM objData)
         {
           
@@ -326,7 +327,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             try
@@ -343,7 +344,7 @@ namespace RPRENTAL.Controllers
             return Json(new { success = false, message = "Something went wrong." });
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword([Required, EmailAddress] string email)
         {
             if (_SignInManager.IsSignedIn(User))
@@ -398,7 +399,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPassword objReset)
         {
             var Password_Authentication = _IResetPasswordService.Get(objReset);    
