@@ -3,7 +3,7 @@
         LoginUser('/Account/Login');
     });
 
-    $('.btn-register').click(function () {
+    $('.btn-register').click(function () {        
         RegisterUser('/Account/Register');
     });
 
@@ -127,6 +127,7 @@ function ForgotPassword(url) {
 }
 
 function ResetPassword(url) {
+
    let data = {
         Email: $('#reset-email').val(),
         Password: $('#reset-password').val(),
@@ -135,7 +136,7 @@ function ResetPassword(url) {
         Token: $('#reset-token').val()
     };
 
-    ValidateEmail(formdata.Email);
+    ValidateEmail(data.Email);
 
     let is_true = false;
 
@@ -173,7 +174,7 @@ function ResetPassword(url) {
 
 
 function RegisterUser(url) {
-    
+  
     let data = {
         Email: $('#reg-email').val(),
         Fullname: $('#reg-fullname').val(),
@@ -182,7 +183,7 @@ function RegisterUser(url) {
         ConfirmPassword: $('#reg-confirmpassword').val()       
     };
 
-    ValidateEmail(formdata.Email);
+    ValidateEmail(data.Email);
 
     let is_true = false;
 

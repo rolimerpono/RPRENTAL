@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\crud\\jsregister\\jsaccount.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\crud\\jsregister\\jsaccount.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\wwwroot\\js\\admin\\dashboard\\getcustomerandbookingbarchart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\admin\\dashboard\\getcustomerandbookingbarchart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|c:\\users\\rolly\\source\\repos\\rprental\\dataservice\\interface\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|solutionrelative:dataservice\\interface\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|c:\\users\\rolly\\source\\repos\\rprental\\dataservice\\implementation\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|solutionrelative:dataservice\\implementation\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|c:\\users\\rolly\\source\\repos\\rprental\\dataservice\\dto\\barchartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FBE858C-C852-4749-996C-8A9788F926C8}|DataService\\DataService.csproj|solutionrelative:dataservice\\dto\\barchartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental\\rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JSAccount.js",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
+              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
+              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
+              "ViewState": "AQIAAKsAAAAAAAAAAAAAALcAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-06T06:40:23.385Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -54,80 +51,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\DashboardController.cs",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "RPRENTAL\\Controllers\\DashboardController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAABYAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T06:08:35.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IDashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Interface\\IDashboardService.cs",
-              "RelativeDocumentMoniker": "DataService\\Interface\\IDashboardService.cs",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Interface\\IDashboardService.cs",
-              "RelativeToolTip": "DataService\\Interface\\IDashboardService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T06:08:00.638Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Implementation\\DashboardService.cs",
-              "RelativeDocumentMoniker": "DataService\\Implementation\\DashboardService.cs",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\Implementation\\DashboardService.cs",
-              "RelativeToolTip": "DataService\\Implementation\\DashboardService.cs",
-              "ViewState": "AQIAAIEAAAAAAAAAAAAAAA0AAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T06:06:05.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BarChartDTO.cs",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DTO\\BarChartDTO.cs",
-              "RelativeDocumentMoniker": "DataService\\DTO\\BarChartDTO.cs",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DataService\\DTO\\BarChartDTO.cs",
-              "RelativeToolTip": "DataService\\DTO\\BarChartDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T05:32:33.666Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Dashboard\\Index.cshtml",
-              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Dashboard\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Dashboard\\Index.cshtml",
-              "RelativeToolTip": "RPRENTAL\\Views\\Dashboard\\Index.cshtml",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAAAGcAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-06T04:55:16.536Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "getCustomerAndBookingBarChart.js",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingBarChart.js",
-              "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingBarChart.js",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingBarChart.js",
-              "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Admin\\Dashboard\\getCustomerAndBookingBarChart.js",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAABUAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-06T03:56:18.883Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "RPRENTAL\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAKUAAAAAAAAAAAAAAKEAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-06T06:37:40.349Z",
               "EditorCaption": ""
             }
           ]

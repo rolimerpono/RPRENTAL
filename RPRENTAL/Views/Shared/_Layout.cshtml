@@ -26,8 +26,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    @* <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li> *@
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">              
                     <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                     @if (_SignInManager.IsSignedIn(User) && User.IsInRole(SD.UserRole.Admin.ToString()))
                     {
@@ -154,25 +153,25 @@
                 <div class="modal-body">
                     <form id="form-add">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label class="form-label">Email</label>
                             <input type="text" class="form-control" id="reg-email" name="reg-email" placeholder="Enter email" autofocus autocomplete="off" required>
                             <span id="email-validation"></span>
                           
                         </div>
                         <div class="mb-3">
-                            <label for="fullname" class="form-label">Fullname</label>
+                            <label class="form-label">Fullname</label>
                             <input type="text" class="form-control" id="reg-fullname" name="reg-fullname" placeholder="Enter fullname" autocomplete="off" required>
                         </div>
                         <div class="mb-3">
-                            <label for="phoneno" class="form-label">Phone Number</label>
+                            <label class="form-label">Phone Number</label>
                             <input type="number" class="form-control" id="reg-phoneno" name="reg-phoneno" placeholder="Enter phone number" autocomplete="off" required>
                         </div>
                          <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label class="form-label">Password</label>
                             <input type="password" class="form-control" id="reg-password" name="reg-password" placeholder="Enter password" autocomplete="new-password" required>
                         </div>
                          <div class="mb-3">
-                            <label for="confirmpass" class="form-label">Confirm Password</label>
+                            <label class="form-label">Confirm Password</label>
                             <input type="password" class="form-control" id="reg-confirmpassword" name="reg-confirmpassword" placeholder="Re-enter password" autocomplete="new-password" required> 
                         </div>                      
                      
