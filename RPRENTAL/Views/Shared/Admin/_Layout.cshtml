@@ -98,6 +98,22 @@
                         <li><a class="dropdown-item text-white" asp-controller="RoomAmenity" asp-action="Index"><span class="mx-3">Room Amenity</span></a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white px-0" href="#" role="button" id="dropdown-reports" aria-expanded="false">
+                        <span class="m-4 pe-5">Reports</span>
+                        <i class="bi bi-caret-right" id="reports-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu border-0" id="reports-menu">
+
+                        <li><a class="dropdown-item text-white" href="#"><span class="mx-3">Room</span></a></li>
+                        <li><a class="dropdown-item text-white" href="#"><span class="mx-3">Room Number</span></a></li>
+                        <li><a class="dropdown-item text-white" href="#"><span class="mx-3">Amenity</span></a></li>
+                        <li><a class="dropdown-item text-white" href="#"><span class="mx-3">Room Amenity</span></a></li>
+                    </ul>
+                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link text-white px-0" asp-controller="Booking" asp-action="Index">
                         <span class="m-4">Booking List</span>
@@ -107,18 +123,14 @@
                     <a class="nav-link text-white px-0" asp-controller="Account" asp-action="Index">
                         <span class="m-4">Register User</span>
                     </a>
-                </li>
-              
+                </li>             
 
 
                 <li class="nav-item position-absolute bottom-0 w-100">
                     <a class="nav-link text-white px-0 btn-logout text-center" asp-controller="Home">
                         <span class="m-4">Logout</span>
                     </a>                   
-                </li>
-
-
-              
+                </li>              
             </ul>
         </div>
 
