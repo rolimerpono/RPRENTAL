@@ -1,6 +1,6 @@
 ﻿namespace RPRENTAL.ViewModels
 {
-    public class LineChartDTO
+    public class BarChartDTO
     {
         public List<ChartData> Series { get; set; }
         public string[] Categories { get; set; }

@@ -29,7 +29,7 @@ namespace RPRENTAL.Controllers
 
         public async Task<IActionResult> GetMemberAndBookingLineChartData()
         {
-            return Json(await _IDashboardService.GetMemberAndBookingLineChartData());
+            return Json(await _IDashboardService.GetMemberAndBookingBarChartData());
         }
 
         public async Task<IActionResult> GetRegisteredUserChartData()

@@ -29,6 +29,9 @@ function loadCustomerPieChart(id, data) {
         },
         labels: data.labels,    
         colors: chartColors,
+        stroke: {
+            show: false
+        },
         legend: {
             show: false,
             showForSingleSeries: false,

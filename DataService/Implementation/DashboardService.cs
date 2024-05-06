@@ -7,16 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static RPRENTAL.ViewModels.LineChartDTO;
+using static RPRENTAL.ViewModels.BarChartDTO;
 
 namespace DataService.Implementation
 {
     public class DashboardService : IDashboardService
     {
         private readonly IWorker _IWorker;
-        private int previous_month = DateTime.Now.Month == 1 ? 12: DateTime.Now.Month - 1;
 
-        private readonly DateTime previous_month_start_date = new(DateTime.Now.Year, DateTime.Now.Month - 1, 1);
+
+        static int previous_month = DateTime.Now.Month == 1 ? 12: DateTime.Now.Month - 1;
+
+        private readonly DateTime previous_month_start_date = new(DateTime.Now.Year, previous_month - 1, 1);
         private readonly DateTime current_month_start_date = new(DateTime.Now.Year,DateTime.Now.Month, 1);
 
         public DashboardService(IWorker Iworker)
@@ -47,7 +49,7 @@ namespace DataService.Implementation
             return piechart_vm;
         }
 
-        public async Task<LineChartDTO> GetMemberAndBookingLineChartData()
+        public async Task<BarChartDTO> GetMemberAndBookingBarChartData()
         {
             var booking_data = _IWorker.tbl_Booking.GetAll(fw => fw.BookingDate >= DateTime.Now.AddDays(-30) && fw.BookingDate.Date <= DateTime.Now)
                .GroupBy(fw => fw.BookingDate.Date)
@@ -109,7 +111,7 @@ namespace DataService.Implementation
 
             };
 
-            LineChartDTO linechart_data = new LineChartDTO()
+            BarChartDTO linechart_data = new BarChartDTO()
             {
                 Categories = categories,
                 Series = charList
@@ -127,7 +129,7 @@ namespace DataService.Implementation
             fw.CreatedDate <= DateTime.Now);
 
 
-            var count_previous_month = total_user.Count(fw => fw.CreatedDate >= current_month_start_date &&
+            var count_previous_month = total_user.Count(fw => fw.CreatedDate >= previous_month_start_date &&
             fw.CreatedDate <= current_month_start_date);
 
 
@@ -147,7 +149,7 @@ namespace DataService.Implementation
             fw.BookingDate <= DateTime.Now).Sum(fw => fw.TotalCost);
 
 
-            var count_previous_month = (decimal)total_booking.Where(fw => fw.BookingDate >= current_month_start_date &&
+            var count_previous_month = (decimal)total_booking.Where(fw => fw.BookingDate >= previous_month_start_date &&
             fw.BookingDate <= current_month_start_date).Sum(fw => fw.TotalCost);
 
 
@@ -167,7 +169,7 @@ namespace DataService.Implementation
             fw.BookingDate <= DateTime.Now);
 
 
-            var count_previous_month = total_booking.Count(fw => fw.BookingDate >= current_month_start_date &&
+            var count_previous_month = total_booking.Count(fw => fw.BookingDate >= previous_month_start_date &&
             fw.BookingDate <= current_month_start_date);
 
 
