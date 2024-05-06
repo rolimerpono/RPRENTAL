@@ -9,16 +9,17 @@ function loadMemberAndBookingBarChart() {
         url: "/Dashboard/GetMemberAndBookingBarChartData",
         type: 'Get',
         dataType: 'json',
-        success: function (data) {
-            debugger
+        success: function (data) {            
             loadBarChart("new_member_booking_and_customer_bar_chart", data);      
         }
     });
 }
 
 function loadBarChart(id, data) {
+  
     var options = {
         series: data.series,
+     
         chart: {
             type: 'bar',
             height: 185
