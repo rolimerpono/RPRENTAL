@@ -4,6 +4,7 @@
     });
 
     $('.btn-register').click(function () {        
+        debugger
         RegisterUser('/Account/Register');
     });
 
@@ -174,7 +175,8 @@ function ResetPassword(url) {
 
 
 function RegisterUser(url) {
-  
+
+    debugger
     let data = {
         Email: $('#reg-email').val(),
         Fullname: $('#reg-fullname').val(),
@@ -182,7 +184,6 @@ function RegisterUser(url) {
         Password: $('#reg-password').val(),
         ConfirmPassword: $('#reg-confirmpassword').val()       
     };
-
     ValidateEmail(data.Email);
 
     let is_true = false;
