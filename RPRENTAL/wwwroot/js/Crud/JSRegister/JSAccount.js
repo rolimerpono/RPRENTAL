@@ -3,8 +3,8 @@
         LoginUser('/Account/Login');
     });
 
-    $('.btn-register').click(function () {        
-        debugger
+    $('.btn-register').click(function () {      
+        
         RegisterUser('/Account/Register');
     });
 
@@ -175,8 +175,7 @@ function ResetPassword(url) {
 
 
 function RegisterUser(url) {
-
-    debugger
+    
     let data = {
         Email: $('#reg-email').val(),
         Fullname: $('#reg-fullname').val(),
