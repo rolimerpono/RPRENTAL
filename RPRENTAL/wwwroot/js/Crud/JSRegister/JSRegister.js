@@ -69,7 +69,7 @@ function InitializeDataTable() {
 
 function SaveUser(url, formSelector) {
     
-    let email = $('#Email').val()
+    let email = $('#Email').val()     
     let data = $(formSelector).serialize();  
     
 
@@ -106,10 +106,18 @@ function SaveUser(url, formSelector) {
 
 function DeleteRecord(email) {
 
+    let token = $('input[name="__RequestVerificationToken"]').val();    
+
+    let data = {
+        email: email,
+        __RequestVerificationToken: token
+    }
+    
+
     $.ajax({
         url: '/Account/Delete',
         method: 'POST',
-        data: { email: email },
+        data: data,
         success: function (response) {
             if (response.success) {               
                 ReloadDataTable(objRegisterTable);

@@ -246,8 +246,8 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost,ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
@@ -327,7 +327,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             try

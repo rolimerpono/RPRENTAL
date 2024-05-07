@@ -125,7 +125,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="forgotPasswordForm">
-                       
+                        @Html.AntiForgeryToken()
                         <div class="mb-3">
                             <label class="form-label">Enter email address for recovery:</label>
                             <input type="text" class="form-control" id="forgot-email" name="forgot-email" placeholder="Enter email" autofocus autocomplete="off">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-add">
-                      
+                        @Html.AntiForgeryToken()
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="text" class="form-control" id="reg-email" name="reg-email" placeholder="Enter email" autofocus autocomplete="off" required>
@@ -198,7 +198,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="resetPasswordForm">
-                    
+                        @Html.AntiForgeryToken()
                         <input id="reset-token" name="reset-token" hidden />
                         <div class="mb-3">
                             <label class="form-label">Enter email</label>

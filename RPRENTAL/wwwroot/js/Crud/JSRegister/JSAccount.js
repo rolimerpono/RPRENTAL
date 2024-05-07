@@ -196,6 +196,7 @@ function RegisterUser(url) {
         ConfirmPassword: $('#reg-confirmpassword').val(),
         __RequestVerificationToken : token
     };
+
     ValidateEmail(data.Email);
 
     let is_true = false;

@@ -138,14 +138,17 @@
 
     <!--Off canvas end-->
 
-    <main role="main" class="pb-3 min-vh-100">
+    @* <main role="main" class="pb-3 min-vh-100">
         @RenderBody()
-    </main>
- 
-    <div class="pb-3">
+    </main> *@
 
+    <div class="container-fluid">
+        <main role="main" class="pb-3 min-vh-100">
+            @RenderBody()
+        </main>
     </div>
-    
+ 
+      
 
     <partial name="_footer" />
 
