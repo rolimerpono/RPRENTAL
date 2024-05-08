@@ -9,7 +9,7 @@ $(document).ready(function () {
     });
 
     $('.btn-save').click(function () {
-        debugger
+        
         SaveAmenity('/Amenity/Create', '#form-add');
     });
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     $('.btn-edit').click(function () {
-        debugger
+        
         SaveAmenity('/Amenity/Update', '#form-edit');
     });
 
@@ -68,12 +68,10 @@ function InitializedDataTable() {
 
 
 
-function SaveAmenity(url, formSelector) {
-   
+function SaveAmenity(url, formSelector) {   
 
-    let data = new FormData($(formSelector)[0]);
-
-    debugger
+    let data = $(formSelector).serialize();
+    
     let is_true = false;
 
     is_true = IsFieldValid(formSelector); 
@@ -88,17 +86,17 @@ function SaveAmenity(url, formSelector) {
         url: url,
         data: data,   
         success: function (response) {
-            debugger
+            
             if (response.success) {            
                 ReloadDataTable(objAmenityTable);
                 HideModal(formSelector.replace('form', 'modal'));
-               
+                ShowToaster('success', 'AMENITY', response.message);
             } else {
-               
+                ShowToaster('error', 'AMENITY', response.message);
             }
         },
         error: function (xhr, status, error) {
-            
+            ShowToaster('error', 'AMENITY', error);
         }
     });   
 }
@@ -107,6 +105,7 @@ function DeleteAmenity() {
 
     let amenityId = $('#AmenityId').val();
     let token = $('input[name="__RequestVerificationToken"]').val(); 
+    debugger
 
     let data =
     {
@@ -119,10 +118,15 @@ function DeleteAmenity() {
         type: 'POST',
         url: '/Amenity/Delete',
         data: data,
-        success: function (response) {        
-            ReloadDataTable(objAmenityTable);      
-            HideModal('#modal-delete');
-            ShowToaster('success', 'AMENITY', response.message);
+        success: function (response) {    
+            if (response.success) {
+                ReloadDataTable(objAmenityTable);
+                HideModal('#modal-delete');
+                ShowToaster('success', 'AMENITY', response.message);
+            }
+            else {
+                ShowToaster('error', 'AMENITY', response.message);
+            }
         },
         error: function (xhr, status, error) {
             ShowToaster('success', 'AMENITY', error);

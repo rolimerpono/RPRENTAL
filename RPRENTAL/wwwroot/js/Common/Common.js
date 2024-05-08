@@ -104,7 +104,7 @@ function IsFieldValid(formSelector) {
 }
 
 function  ValidateEmail(email) {	
-
+	
 	let is_valid = false;	
 	let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	is_valid = emailPattern.test(email);

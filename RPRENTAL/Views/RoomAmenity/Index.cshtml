@@ -1,40 +1,38 @@
 ﻿@model RoomAmenityVM
 
-<form>
-    @Html.AntiForgeryToken()
-    <div class="container">
+<div class="container">
    
-        <div class="row pt-3">
-            <div class="col">
-                <div class="text-center text-white"><h2>ROOM AMENITY </h2></div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <table id="tbl_Rooms" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">                   
-                    <thead class="bg-primary text-white">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>                        
-                            <th class="text-center">Select</th>                      
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>           
-         
-            <div class="col-12 pt-3">
-              <partial name="Common/_RoomAmenity" model="@Model" /> 
-            </div>        
-        </div>
-        <div class="row pt-3">
-            <div class="col-md-12 pt-md-0 text-end">
-                <button id="btn-apply" class="btn btn-primary" style="width:100px;" type="submit">Apply</button>
-            </div>
+    <div class="row pt-3">
+        <div class="col">
+            <div class="text-center text-white"><h2>ROOM AMENITY </h2></div>
         </div>
     </div>
-</form>
+    <div class="row mt-3">
+        <div class="col-12">
+            <table id="tbl_Rooms" class="table table-bordered table-hover text-start" style="border: 1px thin #ccc;">                   
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>                        
+                        <th class="text-center">Select</th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>           
+         
+        <div class="col-12 pt-3">
+            <partial name="Common/_RoomAmenity" model="@Model" /> 
+        </div>        
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-12 pt-md-0 text-end">
+            <button id="btn-apply" class="btn btn-primary" style="width:100px;" type="submit">Apply</button>
+        </div>
+    </div>
+</div>
+
 
 
 @section Scripts {

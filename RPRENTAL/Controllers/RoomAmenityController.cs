@@ -21,38 +21,45 @@ namespace RPRENTAL.Controllers
         private readonly IHelper _helper;
         private readonly ICompositeViewEngine _viewEngine;
 
-
-        public RoomAmenityController(IRoomService iRoom, IAmenityService iAmenity, IRoomAmenityService iRoomAmenity,IHelper helper, ICompositeViewEngine viewengine)
+        public RoomAmenityController(IRoomService iRoom, IAmenityService iAmenity, IRoomAmenityService iRoomAmenity,IHelper helper, ICompositeViewEngine viewEngine)
         {
-            _IRoomAmenityService =  iRoomAmenity;
+            _IRoomAmenityService = iRoomAmenity;
             _IAmenityService = iAmenity;
             _IRoomService = iRoom;
             _helper = helper;
-            _viewEngine = viewengine;
+            _viewEngine = viewEngine;
         }
         public IActionResult Index()
         {
+            try
+            {
 
-            var objRoomList = _IRoomService.GetAll();
-            var objAmenityList = _IAmenityService.GetAll();
-            var objRoomAmenities = _IRoomAmenityService.GetAll();
+                var objRoomList = _IRoomService.GetAll();
+                var objAmenityList = _IAmenityService.GetAll();
+                var objRoomAmenities = _IRoomAmenityService.GetAll();
 
-            RoomAmenityVM objData = new RoomAmenityVM();
+                RoomAmenityVM objData = new RoomAmenityVM();
 
-            objData.RoomList = objRoomList.ToList();
-            objData.Amenities = objAmenityList.ToList();
-            objData.RoomAmenity = objRoomAmenities.ToList();           
-            
+                objData.RoomList = objRoomList.ToList();
+                objData.Amenities = objAmenityList.ToList();
+                objData.RoomAmenity = objRoomAmenities.ToList();
 
-            return View("Index", objData);
+
+                return View("Index", objData);
+            }
+            catch(Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-    
 
 
-        [HttpPost, ValidateAntiForgeryToken]
+
+        [HttpPost]
         public IActionResult DisplayRoomAmenities(int Id)
         {
+
             try
             {
 
@@ -113,14 +120,13 @@ namespace RPRENTAL.Controllers
                 PartialViewResult pvr = PartialView("Common/_RoomAmenity", objData);
                 string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
 
-                return Json(new { success = true, htmlContent = html_string });
-
+                return Json(new { success = true,message = "", htmlContent = html_string });
             }
             catch(Exception ex)
             {
-                return Json(new { success = false, message = ex.Message + "  " + SD.SystemMessage.ContactAdmin });
+                return Json(new {success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin});
             }
-           
+
         }
 
         [HttpGet]
@@ -128,40 +134,51 @@ namespace RPRENTAL.Controllers
         {
             var objRoomList = _IRoomService.GetAll();
 
-            return Json(new { data = objRoomList });
+            try
+            {
+                return Json(new { data = objRoomList });
+            }
+            
+            catch (Exception ex)
+            {
+                return Json(new { success = false, data = "", message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
+            }
+          
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult ApplyRoomAmenities(int Id, string jsonData)
         {
             try
             {
-                if(Id != 0) {
+                if (Id != 0)
+                {
                     _IRoomAmenityService.Delete(Id);
                 }
 
                 var objAmenityList = JsonConvert.DeserializeObject<List<Amenity>>(jsonData);
 
 
-                if (objAmenityList == null)
+                if (objAmenityList != null)
                 {
-                    return Json(new { success =false, message = SD.CrudTransactionsMessage.RecordNotFound });
-                }
 
-                foreach (var item in objAmenityList)
-                {
-                    var objAmenity = new RoomAmenity { Id = 0, RoomId = Id, AmenityId = item.AmenityId };
-                    _IRoomAmenityService.Create(objAmenity);
-                }                  
-                
-                return Json(new { success = true, message = SD.CrudTransactionsMessage.Edit });
+
+                    foreach (var item in objAmenityList)
+                    {
+
+                        var objAmenity = new RoomAmenity { Id = 0, RoomId = Id, AmenityId = item.AmenityId };
+                        _IRoomAmenityService.Create(objAmenity);
+                    }
+
+                }
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Save });
 
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
-        
+
         }
 
     }
