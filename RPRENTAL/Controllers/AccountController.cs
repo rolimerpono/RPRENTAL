@@ -104,7 +104,7 @@ namespace RPRENTAL.Controllers
                 PartialViewResult pvr = PartialView("Create", objUser);
                 string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);               
 
-                return Json(new { success = true, htmlContent = html_string });
+                return Json(new { success = true, message = "", htmlContent = html_string });
 
 
             }

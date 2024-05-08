@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     $('.btn-add').click(function () {
         LoadModal('/RoomNumber/Create', '#modal-add-content');
-        InputBoxFocus('#RoomNo','#modal-add');
+        InputBoxFocus('#RoomNo', '#modal-add');
     });
 
     $('.btn-save').click(function () {
@@ -13,9 +13,9 @@ $(document).ready(function () {
     });
 
     $('#tbl_RoomNumber').on('click', '.select-edit-btn', function () {
-        let rowData = GetRowData(objRoomNumberTable , $(this));
+        let rowData = GetRowData(objRoomNumberTable, $(this));        
         LoadModal('/RoomNumber/Update', '#modal-edit-content', rowData);
-        InputBoxFocus('#Description','#modal-edit');
+        InputBoxFocus('#Description', '#modal-edit');
     });
 
     $('.btn-edit').click(function () {
@@ -23,8 +23,9 @@ $(document).ready(function () {
     });
 
     $('#tbl_RoomNumber').on('click', '.select-delete-btn', function () {
-        let rowData = GetRowData(objRoomNumberTable, $(this));        
-        $('#RoomNo').val(rowData.roomNo);    
+        let rowData = GetRowData(objRoomNumberTable, $(this));
+        debugger
+        $('#RoomNo').val(rowData.roomNo);
         $('#modal-delete').modal('show');
     });
 
@@ -47,10 +48,10 @@ function InitializeDataTable() {
                 width: '400px',
                 render: function (data, type, row) {
                     return '<span title="' + data + '" >' + (data.length > 80 ? data.substr(0, 80 - 3) + '....' : data) + '</span>';
-                
+
                 }
 
-            },  
+            },
             {
                 data: 'roomNo',
                 width: '100px',
@@ -73,13 +74,8 @@ function InitializeDataTable() {
 }
 
 function SaveRoomNumber(url, formSelector) {
-    let token = $('input[name="__RequestVerificationToken"]').val(); 
-    let objData = $(formSelector).serialize();  
 
-    let data = {
-        objRoom: objData,
-        __RequestVerificationToken : token
-    };
+    var data = $(formSelector).serialize();    
 
     let is_true = false;
 
@@ -93,21 +89,21 @@ function SaveRoomNumber(url, formSelector) {
         type: 'POST',
         url: url,
         data: data,
-            
+
         success: function (response) {
 
-            if (response.success) {             
+            if (response.success) {
                 ReloadDataTable(objRoomNumberTable);
                 HideModal(formSelector.replace('form', 'modal'));
-               
+
                 ShowToaster('success', 'ROOM NUMBER', response.message);
             } else {
-               
+
                 ShowToaster('error', 'ROOM NUMBER', response.message);
             }
 
         },
-        error: function (xhr, status, error) {           
+        error: function (xhr, status, error) {
             ShowToaster('success', 'ROOM NUMBER', error);
         }
     });
@@ -116,21 +112,15 @@ function SaveRoomNumber(url, formSelector) {
 
 function DeleteRoomNumber() {
 
-    let token = $('input[name="__RequestVerificationToken"]').val();     
-    let roomNo = $('#RoomNo').val();  
+    let data = $('#RoomNo').val();
 
-    let data = {
-        RoomNo: roomNo,
-        __RequestVerificationToken: token
-    };
-    
     $.ajax({
         type: 'POST',
         url: '/RoomNumber/Delete',
-        data: data,
-        success: function (response) {            
-            ReloadDataTable(objRoomNumberTable);     
-            HideModal('#modal-delete');           
+        data: { RoomNo: data },
+        success: function (response) {
+            ReloadDataTable(objDataTable);
+            HideModal('#modal-delete');
             ShowToaster('success', 'ROOM NUMBER', response.message);
         },
         error: function (xhr, status, error) {

@@ -50,6 +50,7 @@ function ReloadDataTable(objMainTable) {
 	objMainTable.ajax.reload();
 }
 
+
 function LoadModal(url, modalContent, data = null) {
 
 	$.ajax({
@@ -57,7 +58,8 @@ function LoadModal(url, modalContent, data = null) {
 		url: url,
 		data: data,
 		success: function (response) {			
-			if (response.success) {				
+			if (response.success) {		
+				debugger
 				$(modalContent).html(response.htmlContent);
 				$(modalContent.replace('-content', '')).modal('show');
 			}
@@ -85,7 +87,7 @@ function InputBoxFocus(input_name, modal_name) {
 		var input = $(input_name);
 		input.focus().select();
 
-		if (input.val().trim() !== '') {
+		if (input.val() !== '') {
 			var inputLength = input.val().length;
 			input[0].setSelectionRange(inputLength, inputLength);
 		}
