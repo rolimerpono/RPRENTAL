@@ -9,22 +9,24 @@ $(document).ready(function () {
     });
 
     $('.btn-save').click(function () {
+        debugger
         SaveAmenity('/Amenity/Create', '#form-add');
     });
 
     $('#tbl_Amenity').on('click', '.select-edit-btn', function () {
-        var rowData = GetRowData(objAmenityTable,$(this));
+        let rowData = GetRowData(objAmenityTable,$(this));
         LoadModal('/Amenity/Update', '#modal-edit-content', rowData);       
         InputBoxFocus('#AmenityName', '#modal-edit')
 
     });
 
     $('.btn-edit').click(function () {
+        debugger
         SaveAmenity('/Amenity/Update', '#form-edit');
     });
 
     $('#tbl_Amenity').on('click', '.select-delete-btn', function () {
-        var rowData = GetRowData(objAmenityTable, $(this));        
+        let rowData = GetRowData(objAmenityTable, $(this));        
         $('#AmenityId').val(rowData.amenityId);
         $('#modal-delete').modal('show');
     });
@@ -67,8 +69,11 @@ function InitializedDataTable() {
 
 
 function SaveAmenity(url, formSelector) {
+   
 
-    let data = $(formSelector).serialize();  
+    let data = new FormData($(formSelector)[0]);
+
+    debugger
     let is_true = false;
 
     is_true = IsFieldValid(formSelector); 
@@ -81,31 +86,39 @@ function SaveAmenity(url, formSelector) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: data,
+        data: data,   
         success: function (response) {
             debugger
             if (response.success) {            
                 ReloadDataTable(objAmenityTable);
                 HideModal(formSelector.replace('form', 'modal'));
-                ShowToaster('success', 'AMENITY', response.message);
+               
             } else {
-                ShowToaster('error', 'AMENITY', response.message);
+               
             }
-
         },
         error: function (xhr, status, error) {
-            ShowToaster('error', 'AMENITY', error);
+            
         }
     });   
 }
 
 function DeleteAmenity() {
+
     let amenityId = $('#AmenityId').val();
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
+
+    let data =
+    {
+        AmenityId: amenityId,
+        __RequestVerificationToken : token
+    };
+   
     
     $.ajax({
         type: 'POST',
         url: '/Amenity/Delete',
-        data: {AmenityId : amenityId},
+        data: data,
         success: function (response) {        
             ReloadDataTable(objAmenityTable);      
             HideModal('#modal-delete');

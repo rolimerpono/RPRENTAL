@@ -1,29 +1,13 @@
-﻿function ShowPayment(Id) {
+﻿function ConfirmBooking(RoomId) {
+    
+    let token = $('input[name="__RequestVerificationToken"]').val();
+    let serializedData = $('#checking_info').serialize();
 
-    $.ajax({
-        url: '/Booking/ShowPayment',
-        method: 'POST',
-        data: { BookingId: Id },
-        success: function (response) {
-
-            if (response.success) {
-
-                window.location.href = response.redirectUrl;
-            }
-            else {            
-                ShowToaster('error', 'PAYMENT', response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            ShowToaster('error', 'PAYMENT', error);
-        }
-    });
-
-}
-
-function ConfirmBooking(RoomId) {
-
-    let serializedData = $('#checking_info').serialize();    
+    let data = {
+        Id: RoomId,
+        jsonData: serializedData,
+        __RequestVerificationToken: token
+    };
 
     $.ajax({
         url: '/Booking/ConfirmBooking',
@@ -40,24 +24,67 @@ function ConfirmBooking(RoomId) {
             }
         },
         error: function (xhr, status, error) {
-            showToast('error', 'Something went wrong : ' + error);
+            ShowToaster('error', 'Something went wrong : ' + error);
         }
     });
 }
 
+function ShowPayment(bookingId) {
+    debugger
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
+
+    let data = {
+        BookingId: bookingId,
+        __RequestVerificationToken : token
+    };
+
+    $.ajax({
+        url: '/Booking/ShowPayment',
+        method: 'POST',
+        data: data,
+        success: function (response) {
+
+            if (response.success) {
+
+                window.location.href = response.redirectUrl;
+            }
+            else {            
+                ShowToaster('error', 'SHOW PAYMENT', response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            ShowToaster('error', 'SHOW PAYMENT', error);
+        }
+    });
+
+}
+
+
+
 function GetBooking(RoomId) {
     
-    var serializedData = $('#checking_info').serialize();  
+    let serializedData = $('#checking_info').serialize();  
+
+    let data = {
+        Id: RoomId,
+        jsonData: serializedData       
+    };
     
     $.ajax({
         url: '/Booking/CreateBooking',
         method: 'GET',
-        data: { Id: RoomId, jsonData: serializedData },
+        data: data,
         success: function (response) {            
-          
-            let modalContent = $('#modal-booking-content-' + RoomId);        
-            modalContent.empty().html(response);
-            $('#modal-booking-' + RoomId).modal('show');   
+            debugger
+            if (response.success) {
+                let modalContent = $('#modal-booking-content-' + RoomId);
+                modalContent.empty();
+                modalContent.html(response.htmlContent);
+                $('#modal-booking-' + RoomId).modal('show');
+            }
+            else {
+                ShowToaster('error', 'CHECK ROOM AVAILABITLIY', response.message);
+            }
 
         },
         error: function (xhr, status, error) {         

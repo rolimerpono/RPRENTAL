@@ -73,8 +73,13 @@ function InitializeDataTable() {
 }
 
 function SaveRoomNumber(url, formSelector) {
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
+    let objData = $(formSelector).serialize();  
 
-    var data = $(formSelector).serialize();   
+    let data = {
+        objRoom: objData,
+        __RequestVerificationToken : token
+    };
 
     let is_true = false;
 
@@ -110,15 +115,21 @@ function SaveRoomNumber(url, formSelector) {
 }
 
 function DeleteRoomNumber() {
-    
-    let data = $('#RoomNo').val();  
+
+    let token = $('input[name="__RequestVerificationToken"]').val();     
+    let roomNo = $('#RoomNo').val();  
+
+    let data = {
+        RoomNo: roomNo,
+        __RequestVerificationToken: token
+    };
     
     $.ajax({
         type: 'POST',
         url: '/RoomNumber/Delete',
-        data: { RoomNo: data },
+        data: data,
         success: function (response) {            
-            ReloadDataTable(objDataTable);     
+            ReloadDataTable(objRoomNumberTable);     
             HideModal('#modal-delete');           
             ShowToaster('success', 'ROOM NUMBER', response.message);
         },

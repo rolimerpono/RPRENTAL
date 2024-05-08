@@ -69,13 +69,13 @@ function InitializeDataTable() {
 
 function SaveUser(url, formSelector) {
     
-    let email = $('#Email').val()     
+    let Email = $('#Email').val();
     let data = $(formSelector).serialize();  
-    
 
-    ValidateEmail(email);
+    ValidateEmail(Email);
+
+
     let is_true = false;
-
     is_true = IsFieldValid(formSelector);
 
     if (!is_true) {

@@ -61,8 +61,11 @@ function DisplayRoomAmenities(path, RoomId) {
         type: 'POST',
         data: { Id: RoomId },
         success: function (response) {
-            if (response) {
-                $('#selected_room').html(response);
+            if (response.success) {
+                $('#selected_room').html(response.htmlContent);
+            }
+            else {
+                ShowToaster('error', 'AMENITIES', response.message);
             }
         },
         error: function (xhr, status, error) {
@@ -72,11 +75,18 @@ function DisplayRoomAmenities(path, RoomId) {
 }
 
 function ApplyRoomAmenities(path, RoomId, serializedData) {
-    
+
+    let token = $('input[name="__RequestVerificationToken"]').val();  
+    let data = {
+        Id, RoomId,
+        jsonData: serializedData,
+        __RequestVerificationToken : token
+    };
+
     $.ajax({
         url: path,
         type: 'POST',
-        data: { Id: RoomId, jsonData: serializedData },
+        data: data,
         success: function (response) {           
             if (response) {                
                 ShowToaster('success','AMENITIES', response.message);

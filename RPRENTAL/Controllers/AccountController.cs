@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using RPRENTAL.ViewModels;
 using StaticUtility;
+using Stripe.TestHelpers.Treasury;
 using Stripe.Treasury;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Helpers;
@@ -22,14 +24,21 @@ namespace RPRENTAL.Controllers
         private readonly SignInManager<ApplicationUser> _SignInManager;
         private readonly RoleManager<IdentityRole> _RoleManager;
         private readonly IResetPasswordService _IResetPasswordService;
+        private readonly IHelper _helper;
+        private readonly ICompositeViewEngine _viewEngine;
 
-        public AccountController(IWorker IWorker, UserManager<ApplicationUser> ApplicationUser, SignInManager<ApplicationUser> SignInManager, RoleManager<IdentityRole> RoleManager, IResetPasswordService iResetPasswordService)
+        public AccountController(IWorker IWorker, UserManager<ApplicationUser> ApplicationUser, SignInManager<ApplicationUser> SignInManager, 
+            RoleManager<IdentityRole> RoleManager, IResetPasswordService iResetPasswordService,
+            IHelper helper, ICompositeViewEngine viewengine            
+            )
         {
             _IWorker = IWorker;
             _UserManager = ApplicationUser;
             _SignInManager = SignInManager;
             _RoleManager = RoleManager;
             _IResetPasswordService = iResetPasswordService; 
+            _helper = helper;
+            _viewEngine = viewengine;
         }
 
         public IActionResult Index()
@@ -91,85 +100,110 @@ namespace RPRENTAL.Controllers
 
                 };
 
+                
+                PartialViewResult pvr = PartialView("Create", objUser);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);               
+
+                return Json(new { success = true, htmlContent = html_string });
+
 
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
-            return PartialView("Create", objUser);
-
+           
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegisterVM objData)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ApplicationUser objUser = new ApplicationUser()
+
+                if (ModelState.IsValid)
                 {
-                    Fullname = objData.Fullname,
-                    Email = objData.Email,
-                    PhoneNumber = objData.PhoneNumber,
-                    NormalizedEmail = objData.Email.ToUpper(),
-                    EmailConfirmed = true,
-                    UserName = objData.Email,
-                    CreatedDate = DateTime.Now,
-
-                };
-
-                if (objData.Password != objData.ConfirmPassword)
-                {
-                    return Json(new { success = false, message = "The password you entered did not matched." });
-                }              
-
-                var objUserManager = await _UserManager.CreateAsync(objUser, objData.Password);
-
-                if (objUserManager.Succeeded)
-                {
-                    if (!string.IsNullOrEmpty(objData.Role))
+                    ApplicationUser objUser = new ApplicationUser()
                     {
-                        await _UserManager.AddToRoleAsync(objUser, objData.Role);
+                        Fullname = objData.Fullname,
+                        Email = objData.Email,
+                        PhoneNumber = objData.PhoneNumber,
+                        NormalizedEmail = objData.Email.ToUpper(),
+                        EmailConfirmed = true,
+                        UserName = objData.Email,
+                        CreatedDate = DateTime.Now,
+
+                    };
+
+                    if (objData.Password != objData.ConfirmPassword)
+                    {
+                        return Json(new { success = false, message = SD.CrudTransactionsMessage.PasswordConfirm });
+                    }
+
+                    var objUserManager = await _UserManager.CreateAsync(objUser, objData.Password);
+
+                    if (objUserManager.Succeeded)
+                    {
+                        if (!string.IsNullOrEmpty(objData.Role))
+                        {
+                            await _UserManager.AddToRoleAsync(objUser, objData.Role);
+                        }
+                        else
+                        {
+                            await _UserManager.AddToRoleAsync(objUser, SD.UserRole.Customer.ToString());
+                        }
+
+
+                        return Json(new { success = true, message = SD.CrudTransactionsMessage.Save});
                     }
                     else
                     {
-                        await _UserManager.AddToRoleAsync(objUser, SD.UserRole.Customer.ToString());
+                        var objError = objUserManager.Errors.Select(error => error.Description).ToList();
+                        return Json(new { success = false, message = objError }); ;
                     }
 
-
-                    return Json(new { success = true, message = "Successfully registered" });
-                }
-                else
-                {
-                    var objError = objUserManager.Errors.Select(error => error.Description).ToList();
-                    return Json(new { success = false, message = objError }); ;
                 }
 
+                var modelStateError = ModelState.Values.SelectMany(error => error.Errors).Select(e => e.ErrorMessage).ToList();
+                return Json(new { success = false, message = modelStateError });
             }
-
-            var modelStateError = ModelState.Values.SelectMany( error => error.Errors).Select(e => e.ErrorMessage).ToList();
-            return Json(new { success = false, message = modelStateError });
+            catch(Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
+            }
 
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update(string email)
         {
-            var objUser = await _UserManager.FindByEmailAsync(email);
-
-            RegisterVM objRegister = new RegisterVM();
-
-            objRegister.Email = objUser.Email!;
-            objRegister.Fullname = objUser.Fullname!;
-            objRegister.PhoneNumber = objUser.PhoneNumber;
-            objRegister.Role = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
-            objRegister.RoleList = _RoleManager.Roles.Select(fw => new SelectListItem
+            try
             {
-                Text = fw.Name,
-                Value = fw.Name
-            });
+                var objUser = await _UserManager.FindByEmailAsync(email);
+
+                RegisterVM objRegister = new RegisterVM();
+
+                objRegister.Email = objUser.Email!;
+                objRegister.Fullname = objUser.Fullname!;
+                objRegister.PhoneNumber = objUser.PhoneNumber;
+                objRegister.Role = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault();
+                objRegister.RoleList = _RoleManager.Roles.Select(fw => new SelectListItem
+                {
+                    Text = fw.Name,
+                    Value = fw.Name
+                });
 
 
-            return PartialView("Update", objRegister);
+                PartialViewResult pvr = PartialView("Update", objUser);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+                return Json(new { success = true, htmlContent = html_string });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
+            }
+           
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -197,12 +231,12 @@ namespace RPRENTAL.Controllers
 
                 await _UserManager.UpdateAsync(objUser);
 
-                return Json(new { success = true, message = "Successfully registered" });
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Edit});
 
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = "Something went wrong" });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
 
         }
@@ -218,17 +252,17 @@ namespace RPRENTAL.Controllers
 
                 if (objBooking != null)
                 {
-                    return Json(new { success = false, message = "The user have current transaction, unable to delete. Thank you." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.IsUserHasTransactions });
                 }
 
                 if (email == "rolimer_pono@yahoo.com") //Temporary
                 {
-                    return Json(new { success = false, message="This user not allowed to delete." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.IsDefaultAdmin });
                 }
 
                 var objUser = await _UserManager.FindByEmailAsync(email);
                 if (objUser == null)
-                    return Json(new { success = false, message = "User not found." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound });
 
                 var objUserRole = (await _UserManager.GetRolesAsync(objUser)).FirstOrDefault();
                 if (objUserRole != null)
@@ -237,11 +271,11 @@ namespace RPRENTAL.Controllers
                 await _UserManager.DeleteAsync(objUser);
                 _IWorker.tbl_User.Remove(objUser);
 
-                return Json(new { success = true, message = "Successfully deleted." });
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Delete });
             }
             catch (Exception ex)
             {             
-                return Json(new { success = false, message = "An error occurred while deleting the user." });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
         }
 
@@ -250,24 +284,31 @@ namespace RPRENTAL.Controllers
        
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
-
-            if (objSignIn.Succeeded)
+            try
             {
-                var objUser = await _UserManager.FindByEmailAsync(loginVM.Email);
+                var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
 
-                if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.Admin.ToString()))
+                if (objSignIn.Succeeded)
                 {
-                    return Json(new { success = true, message = "Successfully login" , role= SD.UserRole.Admin.ToString()});
+                    var objUser = await _UserManager.FindByEmailAsync(loginVM.Email);
+
+                    if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.Admin.ToString()))
+                    {
+                        return Json(new { success = true, message = SD.SystemMessage.Login, role = SD.UserRole.Admin.ToString() });
+                    }
+                    else
+                    {
+                        return Json(new { success = true, message = SD.SystemMessage.Login, role = "" });
+                    }
                 }
                 else
                 {
-                    return Json(new { success = true, message = "Successfully login", role="" });
+                    return Json(new { success = false, message = SD.SystemMessage.FailUserLogin });
                 }
             }
-            else
+            catch(Exception ex)
             {
-                return Json(new { success = false, message = "Invalid user login or password. Please try again." });
+                return Json(new { success = true, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
 
         }
@@ -276,9 +317,17 @@ namespace RPRENTAL.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM objData)
         {
-          
-            if (ModelState.IsValid)
+            try
             {
+                var errorMessages = ModelState.Values.SelectMany(v => v.Errors)
+                                         .Select(e => e.ErrorMessage)
+                                         .ToList();
+
+                if (!ModelState.IsValid)
+                {
+                    return Json(new { success = false, message = errorMessages });
+                }
+
                 ApplicationUser objUser = new ApplicationUser()
                 {
                     Fullname = objData.Fullname,
@@ -291,10 +340,10 @@ namespace RPRENTAL.Controllers
 
                 };
 
-                
+
                 if (objData.Password != objData.ConfirmPassword)
                 {
-                    return Json(new { success = false, message = "The password you entered did not matched." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.PasswordConfirm });
                 }
 
                 var objUserManager = await _UserManager.CreateAsync(objUser, objData.Password);
@@ -308,22 +357,24 @@ namespace RPRENTAL.Controllers
                     else
                     {
                         await _UserManager.AddToRoleAsync(objUser, SD.UserRole.Customer.ToString());
-                        
+
                     }
 
                     await _SignInManager.SignInAsync(objUser, isPersistent: false);
 
-                    return Json(new { success = true, message = "Successfully registered" });
+                    return Json(new { success = true, message = SD.CrudTransactionsMessage.Save });
                 }
                 else
                 {
                     var objError = objUserManager.Errors.Select(error => error.Description).ToList();
                     return Json(new { success = false, message = objError }); ;
-                }
-
+                }                
+            
             }
-
-            return Json(new { success = true, message = "Successfully registered" });
+            catch(Exception ex)
+            {
+                return Json(new { success = false,message  = ex.Message + " " + SD.SystemMessage.ContactAdmin}); ;
+            }
 
         }
 
@@ -334,41 +385,33 @@ namespace RPRENTAL.Controllers
             {
                 await _SignInManager.SignOutAsync();
 
-                return Json(new { success = true, message = "Successfully logout" });
+                return Json(new { success = true, message = SD.SystemMessage.Logout });
             }
             catch(Exception ex)            
             {
-            
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             
             }
-            return Json(new { success = false, message = "Something went wrong." });
+            
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword([Required, EmailAddress] string email)
         {
-            if (_SignInManager.IsSignedIn(User))
+            try
             {
-                return RedirectToAction("Index", "Home");
-            }
 
-            ViewBag.Email = email;
+                var user = await _UserManager.FindByEmailAsync(email);
 
-            if (!ModelState.IsValid)
-            {
-                ViewBag.EmailError = ModelState["email"]?.Errors.First().ErrorMessage ?? "Invalid Email Address";
-                return View();
-            }
+                if (user == null)
+                {
+                    return Json(new {success =false , message = SD.CrudTransactionsMessage.RecordNotFound});
+                }
 
-            var user = await _UserManager.FindByEmailAsync(email);
-
-            if (user != null)
-            {
-               
-                string token_generated = await _UserManager.GeneratePasswordResetTokenAsync(user);            
+                string token_generated = await _UserManager.GeneratePasswordResetTokenAsync(user);
                 string otp_generated = SD.GenerateOTP();
                 ResetPassword objResetPassword = new ResetPassword();
-               
+
 
                 Email objEmail = new Email();
                 objEmail.SenderMail = "sycopons2010@gmail.com";
@@ -391,51 +434,62 @@ namespace RPRENTAL.Controllers
                 objResetPassword.CreatedDate = DateTime.Now;
 
                 _IResetPasswordService.Create(objResetPassword);
-                return Json(new { success = true, message = "Please check your email for the OTP.", data = objResetPassword.Token });
 
+                return Json(new { success = true, message = "Please check your email for the OTP.", data = objResetPassword.Token });                
+              
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message  + " " + SD.SystemMessage.ContactAdmin});
             }
 
-            return Json(new { sucess = false, message = "Something went wrong" });
 
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPassword objReset)
         {
-            var Password_Authentication = _IResetPasswordService.Get(objReset);    
-            var objUser = await _UserManager.FindByEmailAsync(objReset.Email);
-
-            if (objUser != null)
+            try
             {
-                if (Password_Authentication != null)
+                var Password_Authentication = _IResetPasswordService.Get(objReset);
+                var objUser = await _UserManager.FindByEmailAsync(objReset.Email);
+
+                if (objUser != null)
                 {
-                   
-                    if (objReset.Password != objReset.ConfirmPassword
-                        || (string.IsNullOrEmpty(objReset.Password)
-                        || string.IsNullOrEmpty(objReset.ConfirmPassword)))
-                    {
-                        return Json(new { success = false, message = "The password you entered was invalid" });
-                    }
-
-                    if (DateTime.Now > Password_Authentication.ExpirationDate)
-                    {
-                        return Json(new { success = false, message = "OTP already expired. Please login within 3 minutes. Thank you." });
-
-                    }
-
-                    string user_role  = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault()!.ToString().ToLower();
-                    await _UserManager.ResetPasswordAsync(objUser, objReset.Token, objReset.Password);
-                    await _SignInManager.SignInAsync(objUser, isPersistent: false);
-
-                    return Json(new { success = true, message = "Password successfully changed.", Role = user_role});
-                    
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound, data = objReset });
                 }
 
-                return Json(new { success = false, message = "Credentials input are not valid", data = objReset });
+                if (Password_Authentication != null)
+                {
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput, data = objReset });
+                }
 
-            }           
+                if (objReset.Password != objReset.ConfirmPassword
+                    || (string.IsNullOrEmpty(objReset.Password)
+                    || string.IsNullOrEmpty(objReset.ConfirmPassword)))
+                {
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.PasswordConfirm });
+                }
 
-            return Json(new { success = false, message = "Email entered not found.", data = objReset });
+
+                if (DateTime.Now > Password_Authentication.ExpirationDate)
+                {
+                    return Json(new { success = false, message = "The OTP you have entered was already expired. Please login within 3 minutes. Thank you." });
+                }
+
+
+                string user_role = _UserManager.GetRolesAsync(objUser).GetAwaiter().GetResult().FirstOrDefault()!.ToString().ToLower();
+                await _UserManager.ResetPasswordAsync(objUser, objReset.Token, objReset.Password);
+                await _SignInManager.SignInAsync(objUser, isPersistent: false);
+
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Save, Role = user_role });
+
+                    
+            }
+            catch(Exception ex)
+            {
+                return Json(new {success =false, message  = ex.Message + " " + SD.SystemMessage.ContactAdmin});
+            }
         }       
 
         public IActionResult AccessDenied()

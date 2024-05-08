@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+
+	
 	if (localStorage.getItem('loginTriggered')) {
 		ShowToaster('success', 'LOGIN USER', 'Login successful!');
 		localStorage.removeItem('loginTriggered');
@@ -13,6 +15,8 @@
 //Toaster Notification
 function ShowToaster(Type, Header, Message)
 {  
+
+	
 	toastr.options.hideDuration = 2000;
 	toastr.options.preventDuplicates = 1;
 	toastr.options.closeButton = 1;
@@ -47,15 +51,19 @@ function ReloadDataTable(objMainTable) {
 }
 
 function LoadModal(url, modalContent, data = null) {
-	
 
 	$.ajax({
 		type: 'GET',
 		url: url,
 		data: data,
-		success: function (result) {
-			$(modalContent).html(result);
-			$(modalContent.replace('-content', '')).modal('show');
+		success: function (response) {			
+			if (response.success) {				
+				$(modalContent).html(response.htmlContent);
+				$(modalContent.replace('-content', '')).modal('show');
+			}
+			else {
+				ShowToaster('error', '', response.message);
+			}		
 		},
 		error: function (xhr, status, error) {
 			ShowToaster('error', 'Error', error);
@@ -84,19 +92,18 @@ function InputBoxFocus(input_name, modal_name) {
 	});
 }
 
-function IsFieldValid(formSelector) {
-	
+function IsFieldValid(formSelector) {	
 	
 	if (!$(formSelector)[0].checkValidity()) {
 		$(formSelector).addClass('was-validated');
 		return false;
 	}
+
+
 	return true;
 }
 
-function ValidateEmail(email)
-{	
-	
+function  ValidateEmail(email) {	
 
 	let is_valid = false;	
 	let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -109,7 +116,6 @@ function ValidateEmail(email)
 }
 
 function GetRowData(objTable, btn) {	
-
 	return objTable.row(btn.closest('tr')).data();
 }
 

@@ -1,3 +1,23 @@
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
 
 .bs-icon {
     --bs-icon-size: .75rem;
@@ -64,21 +84,6 @@
 .carousel-pic {
     object-fit:fill;
     height: inherit;
-}
-
-/*Toaster*/
-
-.toaster {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: none;
-    margin-bottom: 15px;
-    margin-right: 5px;
-    transition: opacity 0.5s ease-in-out;
-    z-index: 9999;
 }
 
 .pagination-link:hover {

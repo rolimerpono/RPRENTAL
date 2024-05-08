@@ -2,8 +2,10 @@
 using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Model;
 using RPRENTAL.ViewModels;
+using StaticUtility;
 using Stripe.TestHelpers.Treasury;
 
 namespace RPRENTAL.Controllers
@@ -11,14 +13,17 @@ namespace RPRENTAL.Controllers
     public class AmenityController : Controller
     {
         private readonly IAmenityService _IAmenityService;
-        public AmenityController(IAmenityService IAmenityService)
+        private readonly IHelper _helper;
+        private readonly ICompositeViewEngine _viewEngine;
+        public AmenityController(IAmenityService IAmenityService, IHelper helper, ICompositeViewEngine viewEngine)
         {
             _IAmenityService = IAmenityService;
+            _helper = helper;
+            _viewEngine = viewEngine;
         }
 
         public IActionResult Index()
         {
-
 
             try
             {
@@ -43,40 +48,40 @@ namespace RPRENTAL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            Amenity objAmenityVM = new();
+            Amenity objAmenity = new();
 
-           return PartialView("Create", objAmenityVM);
+            PartialViewResult pvr = PartialView("Create", objAmenity);
+            string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+            return Json(new { success = true, message = "", htmlContent = html_string });
              
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Amenity objAmenity)
         {
-            
-
-            Boolean isAmenityExists = _IAmenityService.IsAmenityExists(objAmenity.AmenityName);
-
-            if (isAmenityExists)
-            {
-                return Json(new { success = false, message = "Record already exists." });
-            }
-
 
             try
             {
+                Boolean isAmenityExists = _IAmenityService.IsAmenityExists(objAmenity.AmenityName);
+
+                if (isAmenityExists)
+                {
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordExists });
+                }
+
                 if (ModelState.IsValid && objAmenity.AmenityId == 0)
                 {
                     _IAmenityService.Create(objAmenity);
-                  
-
-                    return Json(new { success = true, message = "Amenity created successfully." });
                 }
-                return Json(new { success = false, message = "Something went wrong." });
+
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Save });
 
             }
+
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
 
         }
@@ -84,13 +89,26 @@ namespace RPRENTAL.Controllers
         [HttpGet]
         public IActionResult Update(int AmenityId)
         {
-            Amenity objAmenity;
-            objAmenity = _IAmenityService.Get(AmenityId);
-            if (objAmenity != null)
+            try
             {
-                return PartialView("Update", objAmenity);
-            }          
-            return Json(new { sucess = false, message = "Something went wrong." });
+                Amenity objAmenity;
+                objAmenity = _IAmenityService.Get(AmenityId);
+
+                if (objAmenity == null)
+                {
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound });
+                }
+
+                PartialViewResult pvr = PartialView("Update", objAmenity);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+                return Json(new { success = true, message = "", htmlContent = html_string });
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false , message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
+            }
+           
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -98,19 +116,20 @@ namespace RPRENTAL.Controllers
         {
             try
             {
-                if (ModelState.IsValid && objAmenity.AmenityId > 0)
+                if (!ModelState.IsValid && objAmenity.AmenityId <= 0)
                 {
-                    _IAmenityService.Update(objAmenity);
-                    
-
-                    return Json(new { success = true, message = "Amenity updated successfully." });
+                    return Json(new {success =false, message = SD.CrudTransactionsMessage.RecordNotFound });
                 }
+
+                _IAmenityService.Update(objAmenity);                  
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Edit });
+                
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + "  " + SD.SystemMessage.ContactAdmin });
             }
-            return Json(new { success = false, message = "Something went wrong." });
+            
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -118,20 +137,19 @@ namespace RPRENTAL.Controllers
         {
             try
             {
-                if (AmenityId != 0)
+                if (AmenityId == 0)
                 {
-                    _IAmenityService.Delete(AmenityId);                  
-                    return Json(new { success = true, message = "Amenity deleted successfully." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound });
                 }
-                else
-                {
-                    return Json(new { success = false, message = "Something went wrong." });
-                }
+
+                _IAmenityService.Delete(AmenityId);                  
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Delete});
+            
 
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
         }
 

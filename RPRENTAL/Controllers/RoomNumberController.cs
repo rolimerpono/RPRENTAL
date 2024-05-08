@@ -2,8 +2,10 @@
 using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Model;
 using RPRENTAL.ViewModels;
+using StaticUtility;
 using System.Runtime.CompilerServices;
 
 namespace RPRENTAL.Controllers
@@ -12,10 +14,15 @@ namespace RPRENTAL.Controllers
     {
         private readonly IRoomNumberService _IRoomNumberService;
         private readonly IRoomService _IRoomService;
-        public RoomNumberController(IRoomNumberService IRoomNumberService, IRoomService iRoomService)
+        private readonly IHelper _helper;
+        private readonly ICompositeViewEngine _viewEngine;
+
+        public RoomNumberController(IRoomNumberService IRoomNumberService, IRoomService iRoomService, IHelper helper, ICompositeViewEngine viewEngine)
         {
             _IRoomNumberService = IRoomNumberService;
             _IRoomService = iRoomService;
+            _helper = helper;
+            _viewEngine = viewEngine;
         }
         public IActionResult Index()
         {
@@ -34,113 +41,154 @@ namespace RPRENTAL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-
-            RoomNumberVM objRoomNumberVM = new RoomNumberVM()
+            try
             {
-                
-                RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
-                {
-                    Text = fw.RoomName,
-                    Value = fw.RoomId.ToString()
-                   
-                })
-                .OrderBy(fw => fw.Text)
-                 .GroupBy(fw => fw.Text)
-                 .Select(fw => fw.First()).ToList()               
-           
-            };
 
-            return PartialView("Create",objRoomNumberVM);
+                RoomNumberVM objRoomNumberVM = new RoomNumberVM()
+                {
+
+                    RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                    {
+                        Text = fw.RoomName,
+                        Value = fw.RoomId.ToString()
+
+                    })
+                    .OrderBy(fw => fw.Text)
+                     .GroupBy(fw => fw.Text)
+                     .Select(fw => fw.First()).ToList()
+
+                };
+
+                PartialViewResult pvr = PartialView("Create", objRoomNumberVM);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+                return Json(new { success = true, htmlContent = html_string });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message + "  " + SD.SystemMessage.ContactAdmin });
+            }          
 
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(RoomNumberVM objRoomNumberVM)
         {
-            Boolean IsRoomNumberExists = _IRoomNumberService.IsRoomNumberExists(objRoomNumberVM.RoomNumber!.RoomNo);
+            try
+            {
 
+                bool IsRoomNumberExists = _IRoomNumberService.IsRoomNumberExists(objRoomNumberVM.RoomNumber!.RoomNo);
 
-            if (IsRoomNumberExists)
-            {             
-
-                objRoomNumberVM.RoomList = new List<SelectListItem>();
-
-                objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                if (IsRoomNumberExists)
                 {
-                    Text = fw.RoomName,
-                    Value = fw.RoomId.ToString() 
-                })
-                .OrderBy(fw => fw.Text)
-                .GroupBy(fw => fw.Text)
-                .Select(fw => fw.First())
-                .ToList()
-                ;
-                return Json(new { success = false, message = "Warning!, Room number already exists." });
-            }
+
+                    objRoomNumberVM.RoomList = new List<SelectListItem>();
+
+                    objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                    {
+                        Text = fw.RoomName,
+                        Value = fw.RoomId.ToString()
+                    })
+                    .OrderBy(fw => fw.Text)
+                    .GroupBy(fw => fw.Text)
+                    .Select(fw => fw.First())
+                    .ToList();
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordExists });
+                }
 
 
-            if (ModelState.IsValid && !IsRoomNumberExists)
-            {
+                if (!ModelState.IsValid)
+                {
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput });
+                }
+
                 _IRoomNumberService.Create(objRoomNumberVM.RoomNumber);
-                return Json(new { success = true, message = "Room number created successfully." });
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Save });
+            
             }
-            else
-            {
-                return Json(new { success = false, message = "Something went wrong..." });
-            }         
+
+            catch(Exception ex) {
+            
+                return Json(new {success = false, message =  ex.Message + " " + SD.SystemMessage.ContactAdmin});
+            }
+            
         }
 
 
         [HttpGet]
         public IActionResult Update(int RoomNo)
         {
+            try
+            {
 
-            RoomNumberVM objRoomNumberVM = new RoomNumberVM()            {
-
-                RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                if (RoomNo == 0)
                 {
-                    Text = fw.RoomName,
-                    Value = fw.RoomId.ToString()
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput });
+                }
 
-                })
-                .OrderBy(fw => fw.Text)
-                 .GroupBy(fw => fw.Text)
-                 .Select(fw => fw.First()),
-                
-                RoomNumber = _IRoomNumberService.Get(RoomNo)
-            };
-            
 
-            return PartialView("Update", objRoomNumberVM);
+                RoomNumberVM objRoomNumberVM = new RoomNumberVM()
+                {
+
+                    RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                    {
+                        Text = fw.RoomName,
+                        Value = fw.RoomId.ToString()
+
+                    })
+                    .OrderBy(fw => fw.Text)
+                     .GroupBy(fw => fw.Text)
+                     .Select(fw => fw.First()),
+
+                    RoomNumber = _IRoomNumberService.Get(RoomNo)
+                };
+
+
+                PartialViewResult pvr = PartialView("Update", objRoomNumberVM);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+                return Json(new { success = true, htmlContent = html_string });
+
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
+            }
+
 
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(RoomNumberVM objRoomNumberVM)
-        {          
-
-            if (ModelState.IsValid)
+        {
+            try
             {
-                _IRoomNumberService.Update(objRoomNumberVM.RoomNumber!);
-                return Json(new { success = true, message = "Room number updated successfully." });
-            }
-            else
-            {
-                objRoomNumberVM.RoomList = new List<SelectListItem>();
 
-                objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                if (!ModelState.IsValid)
                 {
-                    Text = fw.RoomName,
-                    Value = fw.RoomId.ToString()
-                })
-                .OrderBy(fw => fw.Text)
-                .GroupBy(fw => fw.Text)
-                .Select(fw => fw.First())
-                .ToList()
-                ;
+                    objRoomNumberVM.RoomList = new List<SelectListItem>();
 
-                return Json(new { success = false, message = "Something went wrong..." });
+                    objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                    {
+                        Text = fw.RoomName,
+                        Value = fw.RoomId.ToString()
+                    })
+                    .OrderBy(fw => fw.Text)
+                    .GroupBy(fw => fw.Text)
+                    .Select(fw => fw.First())
+                    .ToList();
+
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput });
+                }
+
+                _IRoomNumberService.Update(objRoomNumberVM.RoomNumber!);
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Edit });
             }
+            catch(Exception ex) {
+
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });                    
+            }
+          
         }
 
 

@@ -1,17 +1,23 @@
 ﻿using DataService.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Model;
+using StaticUtility;
 
 namespace RPRENTAL.Controllers
 {
     public class RoomController : Controller
     {
-        private readonly IRoomService _IRoomService;         
+        private readonly IRoomService _IRoomService;
+        private readonly IHelper _helper;
+        private readonly ICompositeViewEngine _viewEngine;
 
-        public RoomController(IRoomService roomService)
+        public RoomController(IRoomService roomService, IHelper helper, ICompositeViewEngine viewEngine)
         {
             _IRoomService = roomService;
+            _helper = helper;
+            _viewEngine = viewEngine;
         }
 
     
@@ -47,12 +53,17 @@ namespace RPRENTAL.Controllers
             {
                 objRoom = new Room { RoomId = 0, Description = "", RoomName = "", RoomPrice = 0, MaxOccupancy = 0, ImageUrl = "https://placehold.co/600x400", CreatedDate = DateTime.Now };
 
+                
+                PartialViewResult pvr = PartialView("Create", objRoom);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+
+                return Json(new { success = true, htmlContent = html_string });
+
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
-            return PartialView("Create", objRoom);
 
         }
 
@@ -66,23 +77,21 @@ namespace RPRENTAL.Controllers
 
                 if (is_exists)
                 {
-                    return Json(new { success = false, message = "Room name already exists." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordExists });
                 }
 
-                if (ModelState.IsValid && objRoom.RoomId == 0)
+                if (!ModelState.IsValid)
                 {
-                    _IRoomService.Create(objRoom);                 
-                    return Json(new { success = true, message = "Room created successfully." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput});
                 }
-                else
-                {
-                    return Json(new { success = false, message = "Something went wrong." });
-                }
+
+                _IRoomService.Create(objRoom);                 
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Save });              
 
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message  + " " + SD.SystemMessage.ContactAdmin});
             }
 
         }
@@ -93,17 +102,25 @@ namespace RPRENTAL.Controllers
             try
             {
                 Room objRoom;
+
                 objRoom = _IRoomService.Get(RoomId);
-                return PartialView("Update", objRoom);
+
+                if (objRoom == null)
+                {
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput });            
+                }
+                
+                PartialViewResult pvr = PartialView("Update", objRoom);
+                string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
+                return Json(new { success = true, message = "", htmlContent = html_string });
+
             }
             catch (Exception ex)
             {
-                throw;
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
         
         }
-
-
 
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -115,22 +132,19 @@ namespace RPRENTAL.Controllers
                 {
                     ModelState.Remove("Image");
                 }
-               
-                if (ModelState.IsValid && objRoom.RoomId > 0)
-                {
-                    _IRoomService.Update(objRoom);
 
-                    TempData["success"] = "Room updated successfully.";
-                    return Json(new { success = true, message = "Room updated successfully." });
-                }
-                else
+                if (!ModelState.IsValid)
                 {
-                    return Json(new { success = true, message = "Something went wrong" });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.InvalidInput });
+
                 }
+                _IRoomService.Update(objRoom);                   
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Edit });
+             
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
             
         }
@@ -141,19 +155,18 @@ namespace RPRENTAL.Controllers
         {
             try
             {
-                if (RoomId != 0)
+                if (RoomId <= 0)
                 {
-
-                    _IRoomService.Delete(RoomId);
-                    TempData["success"] = "Room deleted successfully.";
-                    return Json(new { success = true, message = "Room deleted successfully." });
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound });
                 }
-                return Json(new { success = false, message = "Something went wrong." });
+
+                _IRoomService.Delete(RoomId);                
+                return Json(new { success = true, message = SD.CrudTransactionsMessage.Delete });           
 
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
         }
     }

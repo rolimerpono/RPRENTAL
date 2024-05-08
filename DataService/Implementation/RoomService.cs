@@ -29,7 +29,7 @@ namespace DataService.Implementation
 
                 if (objRoom.Image != null)
                 {
-                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.Image.FileName);
+                    string strFilename = Guid.NewGuid().ToString() + ".jpg";
                     string strImagePath = Path.Combine(_webHost.WebRootPath, @"img\Room Images");
 
 
@@ -37,9 +37,14 @@ namespace DataService.Implementation
                     objRoom.Image.CopyTo(filestream);
                     objRoom.ImageUrl = @"\img\Room Images\" + strFilename;
 
+
+
+                    filestream.Close();
+                    filestream.Dispose();
                 }
             
 
+              
                 _iWorker.tbl_Rooms.Add(objRoom);
                 _iWorker.tbl_Rooms.Save();
                
@@ -133,7 +138,7 @@ namespace DataService.Implementation
 
                 if (objRoom.Image != null)
                 {
-                    string strFilename = Guid.NewGuid().ToString() + Path.GetExtension(objRoom.Image.FileName);
+                    string strFilename = Guid.NewGuid().ToString() + ".jpg";
                     string strImagePath = Path.Combine(_webHost.WebRootPath, @"img\Room Images");
 
 
@@ -143,7 +148,7 @@ namespace DataService.Implementation
 
                         if (System.IO.File.Exists(previous_image))
                         {
-                            System.IO.File.Delete(previous_image);
+                            System.IO.File.Delete(previous_image);                            
                         }
                         
                     }
@@ -151,6 +156,9 @@ namespace DataService.Implementation
                     var filestream = new FileStream(Path.Combine(strImagePath, strFilename), FileMode.Create);
                     objRoom.Image.CopyTo(filestream);
                     objRoom.ImageUrl = @"\img\Room Images\" + strFilename;
+                    
+                    filestream.Close();
+                    filestream.Dispose();
                 
                 }
 

@@ -78,6 +78,7 @@
                 <h5 class="modal-title text-white fw-bold" id="deleteModalLabel">DELETE ROOM</h5>
             </div>
             <form id="form-delete" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
                 <input id="RoomId" hidden name="RoomId" />
                 <div class="modal-body" style="height:100px;">
                     <div class="row">

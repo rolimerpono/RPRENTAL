@@ -9,13 +9,13 @@
     @Html.AntiForgeryToken()
     <div class="modal-body">
         <div class="row">
-            
-            <div class="col-lg-6 col-md-12">
+
+            <div class="col-lg-6 col-md-12 form-group">
                 <div class="border">
-                    <img src="@Model.ImageUrl" class="img-fluid" alt="Room Image">
+                    <img id="image_preview" name="image_preview" src="@Model.ImageUrl" class="img-fluid" style="max-width: 100%; min-height:400px;max-height:400px;" alt="Room Image">
                 </div>
-                <div class="input-group pt-3">
-                    <input type="file" id="imageUpload" class="form-control" asp-for="@Model.Image" name="IMAGE" accept="image/*">                   
+                <div class="pt-3">
+                    <input type="file" class="form-control" asp-for="@Model.Image" onchange="DisplayImagePreview(event)" accept="image/*">
                 </div>
             </div>
 
@@ -23,21 +23,21 @@
                 <input type="text" class="form-control" hidden asp-for="@Model.ImageUrl">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Room Name:</label>
-                    <input id="RoomName" type="text" class="form-control" asp-for="@Model.RoomName" placeholder="Enter Room Name" required autocomplete="off">
+                    <input id="RoomName" name="RoomName" type="text" class="form-control" asp-for="@Model.RoomName" placeholder="Enter Room Name" required autocomplete="off">
                     <div class="invalid-feedback">Please provide a room name.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold" for="description">Description:</label>
-                    <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Enter Description" autocomplete="off">
+                    <input id="Description" name="Description" type="text" class="form-control" asp-for="@Model.Description" placeholder="Enter Description" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price:</label>
-                    <input type="number" class="form-control" asp-for="@Model.RoomPrice" placeholder="Enter Price" required autocomplete="off" min="@priceRange!.Minimum" max="@priceRange.Maximum">
+                    <input id="RoomPrice" name="RoomPrice" type="number" class="form-control" asp-for="@Model.RoomPrice" placeholder="Enter Price" required autocomplete="off" min="@priceRange!.Minimum" max="@priceRange.Maximum">
                     <div class="invalid-feedback">Please provide a price between $@priceRange.Minimum and $@priceRange.Maximum.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Occupancy:</label>
-                    <input type="number" class="form-control" asp-for="@Model.MaxOccupancy" placeholder="Enter Occupancy" required autocomplete="off" min="@occupancyRange!.Minimum" max="@occupancyRange.Maximum">
+                    <input type="number" id="MaxOccupancy" name="MaxOccupancy" class="form-control" asp-for="@Model.MaxOccupancy" placeholder="Enter Occupancy" required autocomplete="off" min="@occupancyRange!.Minimum" max="@occupancyRange.Maximum">
                     <div class="invalid-feedback">Please provide an occupancy between @occupancyRange.Minimum and @occupancyRange.Maximum.</div>
                 </div>
             </div>

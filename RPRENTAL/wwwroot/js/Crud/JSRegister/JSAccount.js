@@ -116,8 +116,7 @@ function ForgotPassword(url) {
         type: 'POST',
         data: data,
         success: function (response) {
-            if (response.success) {
-               
+            if (response.success) {               
                 HideModal('#modal-forgot-password');
                 $('#modal-reset-password').modal('show');
                 $('#reset-token').val(response.data);               

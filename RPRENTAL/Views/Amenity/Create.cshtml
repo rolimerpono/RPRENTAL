@@ -1,11 +1,12 @@
 ﻿@model Amenity
 
 <form id="form-add">  
+    @Html.AntiForgeryToken()
     <div class="modal-body">
         <div class="row">          
             <div class="col-md-12 pt-md-0 pt-3">              
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Amenity Name:</label>
+                    <label asp-for="@Model.AmenityName" class="form-label fw-bold">Amenity Name:</label>
                     <input id="AmenityName" type="text" class="form-control" asp-for="@Model.AmenityName" placeholder="Enter Amenity Name" required autocomplete="off">
                     <div class="invalid-feedback">Please provide a amenity name.</div>                     
                 </div>          

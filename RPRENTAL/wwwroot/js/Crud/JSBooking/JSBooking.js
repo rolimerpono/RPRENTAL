@@ -45,16 +45,18 @@ $(document).ready(function () {
 });
 
 function CheckIn() {
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
 
     let data = {
-        BookingId   : $('#BookingId').val(),
-        RoomNo      : $('#RoomNo').val()
-    }
+        BookingId: $('#BookingId').val(),
+        RoomNo: $('#RoomNo').val(),
+        __RequestVerificationToken: token
+    };
   
     $.ajax({
         type: 'POST',
         url: '/Booking/CheckIn',
-        data: {BookingId: data.BookingId , RoomNo : data.RoomNo},
+        data: data,
         success: function (response) {
 
             if (response.success) {              
@@ -75,13 +77,18 @@ function CheckIn() {
 
 function CheckOut() {
 
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
+    let bookingId = $('#BookingId').val()    
 
-    let BookingId = $('#BookingId').val()    
+    let data = {
+        BookingId: bookingId,
+        __RequestVerificationToken : token
+    };
 
     $.ajax({
         type: 'POST',
         url: '/Booking/CheckOut',
-        data: { BookingId: BookingId },
+        data: data,
         success: function (response) {
             if (response.success) {              
                 ReloadDataTable(objBookingTable);               
@@ -102,13 +109,20 @@ function CheckOut() {
 }
 
 function ProceedPayment() {
+    debugger
 
-    let BookingId = $('#BookingId').val();    
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
+    let bookingId = $('#BookingId').val();    
+
+    let data = {
+        BookingId: bookingId,
+        __RequestVerificationToken : token
+    };
 
     $.ajax({
         url: '/Booking/ShowPayment',
         method: 'POST',
-        data: { BookingId: BookingId },
+        data: data,
         success: function (response) {
             
             if (response.success) {
@@ -128,12 +142,18 @@ function ProceedPayment() {
 
 function CancelBooking() {
 
-    let BookingId = $('#BookingId').val()    
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
+    let bookingId = $('#BookingId').val();    
+
+    let data = {
+        BookingId: bookingId,
+        __RequestVerificationToken : token
+    };
 
     $.ajax({
         type: 'POST',
         url: '/Booking/CancelBooking',
-        data: { BookingId: BookingId },
+        data: data,
 
         success: function (response) {
             if (response.success) {           

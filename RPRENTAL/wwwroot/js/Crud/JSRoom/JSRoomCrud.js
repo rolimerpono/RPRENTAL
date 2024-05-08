@@ -11,22 +11,22 @@ $(document).ready(function () {
     });
 
     $('.btn-save').click(function () {
+        
         SaveRoom('/Room/Create', '#form-add');       
     });
 
     $('#tbl_Rooms').on('click', '.select-edit-btn', function () {
-        var rowData = GetRowData(objRoomTable , $(this));
+        let rowData = GetRowData(objRoomTable , $(this));
         LoadModal('/Room/Update', '#modal-edit-content', rowData);
         InputBoxFocus('#RoomName','#modal-edit');
     });
 
-    $('.btn-edit').click(function () {
-        SaveRoom('/Room/Update', '#form-edit');     
-       
+    $('.btn-edit').click(function () {        
+        SaveRoom('/Room/Update', '#form-edit');   
     });
 
     $('#tbl_Rooms').on('click', '.select-delete-btn', function () {
-        var rowData = GetRowData(objRoomTable, $(this));   
+        let rowData = GetRowData(objRoomTable, $(this));   
         $('#RoomId').val(rowData.roomId);
         $('#modal-delete').modal('show');
     });
@@ -80,8 +80,9 @@ function InitializeDataTable() {
 }
 
 function SaveRoom(url, formSelector) {  
-
-    var data = new FormData($(formSelector)[0]);
+   
+    let data = new FormData($(formSelector)[0]);
+ 
 
     let is_true = false;
 
@@ -117,12 +118,19 @@ function SaveRoom(url, formSelector) {
 
 function DeleteRoom() { 
 
+
+    let token = $('input[name="__RequestVerificationToken"]').val(); 
     let roomId = $('#RoomId').val();  
+
+    let data = {
+        RoomId: roomId,
+        __RequestVerificationToken : token
+    };
     
     $.ajax({
         type: 'POST',
         url: '/Room/Delete',
-        data: { RoomId: roomId },
+        data: data,
         success: function (response) {
             ReloadDataTable(objRoomTable);           
             HideModal('#modal-delete');
