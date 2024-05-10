@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
 	
 	if (localStorage.getItem('loginTriggered')) {
 		ShowToaster('success', 'LOGIN USER', 'Login successful!');
@@ -12,7 +11,7 @@
 	}
 });
 
-let ShowToaster = function(Type, Header, Message)
+function ShowToaster(Type, Header, Message)
 {  
 
 	
@@ -39,18 +38,17 @@ let ShowToaster = function(Type, Header, Message)
 	}	
 }
 
-let DisplayImagePreview = function(event) {
+function DisplayImagePreview(event) {
 	let imageSrc = URL.createObjectURL(event.target.files[0]);
 	$('#image_preview').attr('src', imageSrc);
 }
 
 
-let ReloadDataTable = function(objMainTable) {
+function ReloadDataTable(objMainTable) {
 	objMainTable.ajax.reload();
 }
 
-
-let LoadModal = function(url, modalContent, data = null) {
+function LoadModal(url, modalContent, data = null) {
 
 	$.ajax({
 		type: 'GET',
@@ -76,11 +74,11 @@ let LoadModal = function(url, modalContent, data = null) {
 	});
 }
 
-let HideModal = function(modalContent) {	
+function HideModal(modalContent) {	
 	$(modalContent).modal('hide');
 }
 
-let InputBoxFocus = function(input_name, modal_name) {		
+function InputBoxFocus(input_name, modal_name) {		
 	$(document).on('shown.bs.modal', modal_name, function () {
 
 		var input = $(input_name);
@@ -93,7 +91,7 @@ let InputBoxFocus = function(input_name, modal_name) {
 	});
 }
 
-let IsFieldValid = function(formSelector) {	
+function IsFieldValid(formSelector) {	
 	
 	if (!$(formSelector)[0].checkValidity()) {
 		$(formSelector).addClass('was-validated');
@@ -104,7 +102,7 @@ let IsFieldValid = function(formSelector) {
 	return true;
 }
 
-let ValidateEmail = function(email) {	
+function ValidateEmail(email) {	
 	
 	let is_valid = false;	
 	let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -116,7 +114,7 @@ let ValidateEmail = function(email) {
 	}
 }
 
-let GetRowData = function(objTable, btn) {	
+function GetRowData(objTable, btn) {	
 	return objTable.row(btn.closest('tr')).data();
 }
 
