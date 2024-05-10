@@ -194,10 +194,12 @@ namespace RPRENTAL.Controllers
                 });
 
 
-                PartialViewResult pvr = PartialView("Update", objUser);
+                PartialViewResult pvr = PartialView("Update", objRegister);
                 string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
 
-                return Json(new { success = true, htmlContent = html_string });
+                return Json(new { success = true, message = "", htmlContent = html_string });
+
+       
             }
             catch (Exception ex)
             {

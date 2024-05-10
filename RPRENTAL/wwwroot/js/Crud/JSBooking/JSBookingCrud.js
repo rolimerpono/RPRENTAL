@@ -1,20 +1,15 @@
 ﻿function ConfirmBooking(RoomId) {
-    
-    let token = $('input[name="__RequestVerificationToken"]').val();
+   
     let serializedData = $('#checking_info').serialize();
 
-    let data = {
-        Id: RoomId,
-        jsonData: serializedData,
-        __RequestVerificationToken: token
-    };
-
+    
     $.ajax({
         url: '/Booking/ConfirmBooking',
         method: 'POST',
         data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {
             if (response.success) {
+                debugger
                 let response_data = JSON.parse(response.booking);
                 $('#modal-booking-' + RoomId).modal('hide');
                 ShowPayment(response_data.BookingId);
@@ -29,13 +24,11 @@
     });
 }
 
-function ShowPayment(bookingId) {
-    debugger
-    let token = $('input[name="__RequestVerificationToken"]').val(); 
+function ShowPayment(bookingId) {    
+    
 
     let data = {
-        BookingId: bookingId,
-        __RequestVerificationToken : token
+        BookingId: bookingId
     };
 
     $.ajax({
@@ -75,7 +68,7 @@ function GetBooking(RoomId) {
         method: 'GET',
         data: data,
         success: function (response) {            
-            debugger
+            
             if (response.success) {
                 let modalContent = $('#modal-booking-content-' + RoomId);
                 modalContent.empty();

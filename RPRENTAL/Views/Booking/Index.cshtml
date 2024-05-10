@@ -17,26 +17,27 @@
 
         </div>
         <div class="col-lg-5">
-            <div class="btn-group-toggle btn-group d-flex flex-wrap" data-toggle="buttons">              
-                <a id="pending" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.Pending.ToString()> 
+            <div class="btn-group-toggle btn-group d-flex flex-wrap" data-toggle="buttons">
+                
+                <a id="pending" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index"  asp-route-status="@SD.BookingStatus.Pending.ToString()">
                     Pending
-                    <input type="radio" class="btn-check" id="option1" autocomplete="off">                    
+                    <input class="btn-check" type="radio"  id="option1" autocomplete="off">
                 </a>
-                <a id="approved" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.Approved.ToString()>
+                <a id="approved" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Approved.ToString()">
                     Approved
-                    <input type="radio" class="btn-check" id="option2" autocomplete="off">                    
+                    <input class="btn-check" type="radio" id="option2" autocomplete="off">
                 </a>
-                <a id="checkin" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.Checkin.ToString()>
+                <a id="checkin" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Checkin.ToString()">
                     Checkin
-                    <input type="radio" class="btn-check" id="option3" autocomplete="off">                   
+                    <input class="btn-check" type="radio" id="option3" autocomplete="off">
                 </a>
-                <a id="checkout" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.Checkout.ToString()>
+                <a id="checkout" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Checkout.ToString()">
                     Checkout
-                    <input type="radio" class="btn-check" id="option4" autocomplete="off">                    
+                    <input class="btn-check" type="radio" id="option4" autocomplete="off">
                 </a>
-                <a id="cancelled" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status=@SD.BookingStatus.Cancelled.ToString()> 
+                <a id="cancelled" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Cancelled.ToString()">
                     Cancelled
-                    <input type="radio" class="btn-check" id="option5" autocomplete="off">                    
+                    <input class="btn-check" type="radio" id="option5" autocomplete="off">
                 </a>
             </div>
         </div>

@@ -12,8 +12,7 @@
 	}
 });
 
-//Toaster Notification
-function ShowToaster(Type, Header, Message)
+let ShowToaster = function(Type, Header, Message)
 {  
 
 	
@@ -40,18 +39,18 @@ function ShowToaster(Type, Header, Message)
 	}	
 }
 
-function DisplayImagePreview(event) {
+let DisplayImagePreview = function(event) {
 	let imageSrc = URL.createObjectURL(event.target.files[0]);
 	$('#image_preview').attr('src', imageSrc);
 }
 
 
-function ReloadDataTable(objMainTable) {
+let ReloadDataTable = function(objMainTable) {
 	objMainTable.ajax.reload();
 }
 
 
-function LoadModal(url, modalContent, data = null) {
+let LoadModal = function(url, modalContent, data = null) {
 
 	$.ajax({
 		type: 'GET',
@@ -59,7 +58,7 @@ function LoadModal(url, modalContent, data = null) {
 		data: data,
 		success: function (response) {			
 			if (response.success) {		
-				debugger
+				$(modalContent).html('');
 				$(modalContent).html(response.htmlContent);
 				$(modalContent.replace('-content', '')).modal('show');
 			}
@@ -77,11 +76,11 @@ function LoadModal(url, modalContent, data = null) {
 	});
 }
 
-function HideModal(modalContent) {	
+let HideModal = function(modalContent) {	
 	$(modalContent).modal('hide');
 }
 
-function InputBoxFocus(input_name, modal_name) {		
+let InputBoxFocus = function(input_name, modal_name) {		
 	$(document).on('shown.bs.modal', modal_name, function () {
 
 		var input = $(input_name);
@@ -94,7 +93,7 @@ function InputBoxFocus(input_name, modal_name) {
 	});
 }
 
-function IsFieldValid(formSelector) {	
+let IsFieldValid = function(formSelector) {	
 	
 	if (!$(formSelector)[0].checkValidity()) {
 		$(formSelector).addClass('was-validated');
@@ -105,7 +104,7 @@ function IsFieldValid(formSelector) {
 	return true;
 }
 
-function  ValidateEmail(email) {	
+let ValidateEmail = function(email) {	
 	
 	let is_valid = false;	
 	let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,7 +116,7 @@ function  ValidateEmail(email) {
 	}
 }
 
-function GetRowData(objTable, btn) {	
+let GetRowData = function(objTable, btn) {	
 	return objTable.row(btn.closest('tr')).data();
 }
 

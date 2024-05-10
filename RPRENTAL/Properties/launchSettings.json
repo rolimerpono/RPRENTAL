@@ -7,7 +7,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:4258"
+      "applicationUrl": "http://localhost:4268"
     },
     "https": {
       "commandName": "Project",
@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:4318;http://localhost:4298"
+      "applicationUrl": "https://localhost:4368;http://localhost:4268"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -28,10 +28,10 @@
     "WSL": {
       "commandName": "WSL2",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:4218",
+      "launchUrl": "https://localhost:4268",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "https://localhost:4118;http://localhost:4298"
+        "ASPNETCORE_URLS": "https://localhost:4168;http://localhost:4268"
       },
       "distributionName": ""
     }

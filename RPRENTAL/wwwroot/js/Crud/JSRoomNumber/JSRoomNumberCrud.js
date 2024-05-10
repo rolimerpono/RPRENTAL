@@ -30,7 +30,7 @@ $(document).ready(function () {
     });
 
     $('.btn-delete').click(function () {
-        DeleteRoomNumber();
+        DeleteRoomNumber('#form-delete');
     });
 });
 
@@ -110,21 +110,27 @@ function SaveRoomNumber(url, formSelector) {
 
 }
 
-function DeleteRoomNumber() {
+function DeleteRoomNumber(formSelector) {
 
-    let data = $('#RoomNo').val();
+    var data = $(formSelector).serialize();   
+    
 
     $.ajax({
         type: 'POST',
         url: '/RoomNumber/Delete',
-        data: { RoomNo: data },
+        data: data,
         success: function (response) {
-            ReloadDataTable(objDataTable);
-            HideModal('#modal-delete');
-            ShowToaster('success', 'ROOM NUMBER', response.message);
+            if (response.success) {
+                ReloadDataTable(objRoomNumberTable);
+                HideModal('#modal-delete');
+                ShowToaster('success', 'ROOM NUMBER', response.message);
+            }
+            else {
+                ShowToaster('error', 'ROOM NUMBER', response.message);
+            }
         },
         error: function (xhr, status, error) {
-            ShowToaster('error', 'ROOM NUMBER', response.message);
+            ShowToaster('error', 'ROOM NUMBER', error);
         }
     });
 }

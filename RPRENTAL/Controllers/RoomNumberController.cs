@@ -133,28 +133,34 @@ namespace RPRENTAL.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(RoomNumberVM objRoomNumberVM)
         {
-
-            if (ModelState.IsValid && objRoomNumberVM.RoomNumber != null)
+            try
             {
+
+                if (!ModelState.IsValid && objRoomNumberVM.RoomNumber == null)
+                {
+                    objRoomNumberVM.RoomList = new List<SelectListItem>();
+
+                    objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
+                    {
+                        Text = fw.RoomName,
+                        Value = fw.RoomId.ToString()
+                    })
+                    .OrderBy(fw => fw.Text)
+                    .GroupBy(fw => fw.Text)
+                    .Select(fw => fw.First())
+                    .ToList();
+
+                    return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound});
+                }               
+            
+
                 _IRoomNumberService.Update(objRoomNumberVM.RoomNumber!);
                 return Json(new { success = true, message = SD.CrudTransactionsMessage.Edit });
+
             }
-            else
+            catch(Exception ex)
             {
-                objRoomNumberVM.RoomList = new List<SelectListItem>();
-
-                objRoomNumberVM.RoomList = _IRoomService.GetAll().Select(fw => new SelectListItem
-                {
-                    Text = fw.RoomName,
-                    Value = fw.RoomId.ToString()
-                })
-                .OrderBy(fw => fw.Text)
-                .GroupBy(fw => fw.Text)
-                .Select(fw => fw.First())
-                .ToList()
-                ;
-
-                return Json(new { success = false, message = "Something went wrong..." });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
         }
 
@@ -162,9 +168,17 @@ namespace RPRENTAL.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            IEnumerable<RoomNumber> objRoomNumber;
-            objRoomNumber = _IRoomNumberService.GetAll();
-            return Json(new { data = objRoomNumber });
+            try
+            {
+                IEnumerable<RoomNumber> objRoomNumber;
+                objRoomNumber = _IRoomNumberService.GetAll();
+                return Json(new { success = true, message = "", data = objRoomNumber });
+            }
+            catch (Exception ex)
+            { 
+                return Json(new {success =false , message = ex.Message + " "  + SD.SystemMessage.ContactAdmin});
+            }
+          
 
         }
 
@@ -179,12 +193,13 @@ namespace RPRENTAL.Controllers
                     _IRoomNumberService.Delete(RoomNo);
                     return Json(new { success = true, message = SD.CrudTransactionsMessage.Delete });
                 }
-                return Json(new { success = false, message = "The Room number value is null or empty. Kindly contact system administrator." });
+
+                return Json(new { success = false, message = SD.CrudTransactionsMessage.RecordNotFound });
 
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
         }
 

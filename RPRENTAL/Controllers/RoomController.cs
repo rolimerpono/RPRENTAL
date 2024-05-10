@@ -20,7 +20,6 @@ namespace RPRENTAL.Controllers
             _viewEngine = viewEngine;
         }
 
-    
         public IActionResult Index()
         {
             try

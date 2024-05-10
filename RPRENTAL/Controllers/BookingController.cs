@@ -11,6 +11,8 @@ using Stripe;
 using Stripe.Checkout;
 using System;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using static StaticUtility.SD;
 using static System.Net.WebRequestMethods;
 
@@ -39,44 +41,45 @@ namespace RPRENTAL.Controllers
         }
 
         public IActionResult Index()
-        {
+        {         
             return View();
         }
 
-        public IActionResult Test()
-        {
-            return View();
-        }
 
-        [HttpGet]
+        [HttpGet]        
         public IActionResult GetAll(string? status)
         {
-
             IEnumerable<Booking> objBookings;
+            try
+            {               
 
-            if (User.IsInRole(SD.UserRole.Admin.ToString()))
-            {
-                objBookings = _IWorker.tbl_Booking.GetAll();
+                if (User.IsInRole(SD.UserRole.Admin.ToString()))
+                {
+                    objBookings = _IWorker.tbl_Booking.GetAll();
 
+                }
+                else
+                {
+                    var user_id = (User.Identity as ClaimsIdentity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    objBookings = _IWorker.tbl_Booking.GetAll(fw => fw.UserId == user_id);
+                }
+
+                if (!string.IsNullOrEmpty(status) && status != "null")
+                {
+                    objBookings = objBookings.Where(fw => fw.BookingStatus!.ToLower() == status.ToLower());
+                }
+                else
+                {
+                    objBookings = objBookings.Where(fw => fw.BookingStatus!.ToLower() == SD.BookingStatus.Pending.ToString().ToLower());
+                }
+
+                return Json(new { success = true, message = "", data = objBookings });
             }
-            else
+            catch(Exception ex)
             {
-                var user_id = (User.Identity as ClaimsIdentity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                objBookings = _IWorker.tbl_Booking.GetAll(fw => fw.UserId == user_id);
+                return Json(new {success= false, message =  ex.Message + " " + SD.SystemMessage.ContactAdmin});
             }
-
-            if (!string.IsNullOrEmpty(status) && status != "null")
-            {
-                objBookings = objBookings.Where(fw => fw.BookingStatus!.ToLower() == status.ToLower());
-            }
-            else
-            {
-                objBookings = objBookings.Where(fw => fw.BookingStatus!.ToLower() == SD.BookingStatus.Pending.ToString().ToLower());
-            }
-
-            return Json(new { data = objBookings });
-        }
-
+        }       
 
         [HttpGet]      
         public IActionResult CreateBooking(int Id, string jsonData)
@@ -126,11 +129,11 @@ namespace RPRENTAL.Controllers
                 string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
                
 
-                return Json(new { success = true, htmlContent = html_string });
+                return Json(new { success = true, message = "", htmlContent = html_string });
             }
             catch(Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
             }
 
         }
@@ -223,7 +226,7 @@ namespace RPRENTAL.Controllers
                 PartialViewResult pvr = PartialView("Common/_BookingDetail", objBooking);
                 string html_string = _helper.ViewToString(this.ControllerContext, pvr, _viewEngine);
 
-                return Json(new { success = true, htmlContent = html_string });
+                return Json(new { success = true, message= "", htmlContent = html_string });
 
             }
             catch(Exception ex) {
@@ -233,7 +236,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost , ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult ConfirmBooking(int Id, string jsonData)
         {
             Booking objBooking = new Booking();
@@ -255,6 +258,11 @@ namespace RPRENTAL.Controllers
                 DateOnly checkin_date = DateOnly.Parse(objData["CheckinDate"]);
                 DateOnly checkout_date = DateOnly.Parse(objData["CheckoutDate"]);
                 int room_id = Id;
+
+                if (room_id == 0 || (checkin_date <= DateOnly.FromDateTime(DateTime.Now) || checkout_date <= DateOnly.FromDateTime(DateTime.Now)))
+                {
+                    return Json(new { success = false, message = SD.BookingTransactionMessage.Fail + " " + SD.SystemMessage.ContactAdmin });
+                }
 
                 var objRoom = _IWorker.tbl_Rooms.Get(fw => fw.RoomId == room_id);
 
@@ -292,7 +300,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-        [HttpPost ,ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult ShowPayment(int BookingId)
         {
             try

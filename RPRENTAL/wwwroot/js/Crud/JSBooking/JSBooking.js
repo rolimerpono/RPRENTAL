@@ -3,19 +3,24 @@ $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     let status = urlParams.get('status') ?? 'Pending';
-    $('.btn-checkin').click(function () {    
+    
+    $('.btn-checkin').click(function (e) {    
+        e.preventDefault();
         CheckIn();
     }); 
 
-    $('.btn-checkout').click(function () {
+    $('.btn-checkout').click(function (e) {
+        e.preventDefault();
         CheckOut();
     }); 
 
-    $('.btn-cancel').click(function () {
+    $('.btn-cancel').click(function (e) {
+        e.preventDefault();
         CancelBooking();
     }); 
 
-    $('.btn-payment').click(function () {
+    $('.btn-payment').click(function (e) {
+        e.preventDefault();
         ProceedPayment();
     }); 
 
@@ -33,8 +38,11 @@ $(document).ready(function () {
         if (buttonId) $(buttonId).toggleClass('btn-primary btn-success');
     };   
 
+
     UpdateButtonColor(status); 
     LoadBookings(status);
+    
+   
 
     $('#tbl_Bookings').on('click', '.select-view-btn', function () {     
         var rowData = GetRowData(objBookingTable, $(this));
@@ -108,8 +116,7 @@ function CheckOut() {
     });
 }
 
-function ProceedPayment() {
-    debugger
+function ProceedPayment() {    
 
     let token = $('input[name="__RequestVerificationToken"]').val(); 
     let bookingId = $('#BookingId').val();    
@@ -173,10 +180,14 @@ function CancelBooking() {
         $(modalContentSelector).html('');
     });
 }
-function LoadBookings(status) { 
+
+function LoadBookings(status) {  
+
     objBookingTable = $('#tbl_Bookings').DataTable({
         ajax: {
-            url: '/Booking/GetAll?status=' + status
+            type: 'GET',           
+            url: '/Booking/GetAll',
+            data: { status: status }
         },
         columns: [
             { data: 'bookingId', visible: false },
@@ -204,6 +215,5 @@ function LoadBookings(status) {
         fixedColumns: true,
         scrollY: true        
         
-    });    
-
+    });  
 }
