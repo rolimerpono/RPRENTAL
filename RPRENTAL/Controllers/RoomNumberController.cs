@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Model;
 using RPRENTAL.ViewModels;
-using StaticUtility;
+using Utility;
 using System.Runtime.CompilerServices;
 
 namespace RPRENTAL.Controllers

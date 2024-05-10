@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using PayPal.Api;
 using Repository.Interface;
 using RPRENTAL.ViewModels;
-using StaticUtility;
+using Utility;
 using Stripe.Tax;
 using System.Diagnostics;
 

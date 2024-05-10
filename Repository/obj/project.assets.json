@@ -3818,7 +3818,7 @@
           "bin/placeholder/Model.dll": {}
         }
       },
-      "StaticUtility/1.0.0": {
+      "Utility/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -3834,10 +3834,10 @@
           "sib_api_v3_sdk": "4.0.2"
         },
         "compile": {
-          "bin/placeholder/StaticUtility.dll": {}
+          "bin/placeholder/Utility.dll": {}
         },
         "runtime": {
-          "bin/placeholder/StaticUtility.dll": {}
+          "bin/placeholder/Utility.dll": {}
         }
       }
     }
@@ -10846,10 +10846,10 @@
       "path": "../Model/Model.csproj",
       "msbuildProject": "../Model/Model.csproj"
     },
-    "StaticUtility/1.0.0": {
+    "Utility/1.0.0": {
       "type": "project",
-      "path": "../StaticUtility/StaticUtility.csproj",
-      "msbuildProject": "../StaticUtility/StaticUtility.csproj"
+      "path": "../Utility/Utility.csproj",
+      "msbuildProject": "../Utility/Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10861,8 +10861,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.1",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.1",
       "PayPal >= 1.9.1",
-      "StaticUtility >= 1.0.0",
-      "Stripe.net >= 43.18.0"
+      "Stripe.net >= 43.18.0",
+      "Utility >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -10901,8 +10901,8 @@
             "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
               "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
             },
-            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj"
             }
           }
         }

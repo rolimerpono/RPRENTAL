@@ -1,6 +1,6 @@
 ﻿using DataService.Interface;
 using RPRENTAL.ViewModels;
-using StaticUtility;
+using Utility;
 using Stripe.FinancialConnections;
 using System;
 using System.Collections.Generic;

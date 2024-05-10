@@ -7,7 +7,7 @@ using Microsoft.Identity.Client;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
-namespace StaticUtility
+namespace Utility
 {
     public static class SD
     {

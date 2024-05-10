@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Model;
 using RPRENTAL.Models;
 using RPRENTAL.ViewModels;
-using StaticUtility;
+using Utility;
 using System.Diagnostics;
 using System.Linq;
 

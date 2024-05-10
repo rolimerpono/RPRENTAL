@@ -10751,9 +10751,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
-      "projectName": "StaticUtility",
-      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\Utility.csproj",
+      "projectName": "Utility",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\Utility.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\obj\\",
       "projectStyle": "PackageReference",

@@ -6,14 +6,13 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Model;
 using Newtonsoft.Json;
-using StaticUtility;
+using Utility;
 using Stripe;
 using Stripe.Checkout;
 using System;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using static StaticUtility.SD;
 using static System.Net.WebRequestMethods;
 
 

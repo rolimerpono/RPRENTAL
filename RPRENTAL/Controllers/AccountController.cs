@@ -9,11 +9,12 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using RPRENTAL.ViewModels;
-using StaticUtility;
 using Stripe.TestHelpers.Treasury;
 using Stripe.Treasury;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Helpers;
+using Utility;
+
 
 namespace RPRENTAL.Controllers
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Model;
-using StaticUtility;
+using Utility;
 
 namespace RPRENTAL.Controllers
 {

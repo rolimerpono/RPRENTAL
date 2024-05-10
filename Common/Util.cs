@@ -1,7 +1,7 @@
 ﻿using DataService.Interface;
 using Microsoft.EntityFrameworkCore;
 using Model;
-using StaticUtility;
+using Utility;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Common

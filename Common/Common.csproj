@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataService\DataService.csproj" />
-    <ProjectReference Include="..\StaticUtility\StaticUtility.csproj" />
   </ItemGroup>
 
 </Project>

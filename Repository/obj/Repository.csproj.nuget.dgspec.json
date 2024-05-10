@@ -234,8 +234,8 @@
               "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj": {
                 "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\DatabaseAccess\\DatabaseAccess.csproj"
               },
-              "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
-                "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj"
+              "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj": {
+                "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj"
               }
             }
           }
@@ -308,14 +308,14 @@
         }
       }
     },
-    "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj": {
+    "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
-        "projectName": "StaticUtility",
-        "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\StaticUtility.csproj",
+        "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj",
+        "projectName": "Utility",
+        "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj",
         "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\StaticUtility\\obj\\",
+        "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

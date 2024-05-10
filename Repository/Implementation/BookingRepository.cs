@@ -1,7 +1,7 @@
 ﻿using DatabaseAccess;
 using Model;
 using Repository.Interface;
-using StaticUtility;
+using Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
