@@ -1,20 +1,23 @@
 ﻿$(document).ready(function () {
 	
-	if (localStorage.getItem('loginTriggered')) {
-		ShowToaster('success', 'LOGIN USER', response.message);
+	if (localStorage.getItem('loginTriggered')) {		
+		ShowToaster('success', 'LOGIN USER', localStorage.getItem('loginMsg'));
 		localStorage.removeItem('loginTriggered');
+		localStorage.removeItem('loginMsg');
+		
 	}
 
-	if (localStorage.getItem('logoutTriggered')) {
-		ShowToaster('success', 'LOGOUT USER', response.message);
+	if (localStorage.getItem('logoutTriggered')) {		
+		ShowToaster('success', 'LOGOUT USER', localStorage.getItem('logoutMsg'));
 		localStorage.removeItem('logoutTriggered');
+		localStorage.removeItem('logoutMsg');
+	
 	}
 });
 
 function ShowToaster(Type, Header, Message)
 {  
 
-	
 	toastr.options.hideDuration = 2000;
 	toastr.options.preventDuplicates = 1;
 	toastr.options.closeButton = 1;
@@ -79,7 +82,14 @@ function LoadModal(url, modalContent, data = null) {
 	});
 }
 
-function HideModal(modalContent) {	
+function CloseModal(modal_id) {
+	$(modal_id).html('');
+	$(modal_id).empty();
+}
+
+
+
+function HideModal(modalContent) {		
 	$(modalContent).modal('hide');
 }
 

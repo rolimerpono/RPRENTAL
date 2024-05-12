@@ -49,6 +49,7 @@ function LoginUser(url) {
         success: function (response) {
             if (response.success) {
                 localStorage.setItem('loginTriggered', true);
+                localStorage.setItem('loginMsg', response.message);
 
                  if (response.role == 'Admin') {
                     window.location.href = '/Dashboard/Index';   
@@ -78,6 +79,7 @@ function LogoutUser(url) {
         success: function (response) {
             if (response.success) {
                 localStorage.setItem('logoutTriggered', true);
+                localStorage.setItem('logoutMsg',response.message);
                 window.location.href = '/Home/Index';
             }
             else {
