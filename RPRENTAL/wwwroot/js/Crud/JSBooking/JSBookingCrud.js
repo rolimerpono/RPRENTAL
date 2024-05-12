@@ -9,7 +9,7 @@
         data: { Id: RoomId, jsonData: serializedData },
         success: function (response) {
             if (response.success) {
-                debugger
+                
                 let response_data = JSON.parse(response.booking);
                 $('#modal-booking-' + RoomId).modal('hide');
                 ShowPayment(response_data.BookingId);

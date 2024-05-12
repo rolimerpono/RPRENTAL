@@ -1,41 +1,50 @@
 ﻿@{
-    var status = Context.Request.Query["status"];
-    if (string.IsNullOrEmpty(status))
+    var user_role = string.Empty;
+
+    if (User.IsInRole(SD.UserRole.Admin.ToString()))
     {
-        status = "Pending";    
+        user_role = SD.UserRole.Admin.ToString();
     }
+    else
+    {
+        user_role = SD.UserRole.Customer.ToString();
+    }
+  
 }
 
-<div class="container">
+<div class="container"> 
+ 
     <div class="row pt-3">
         <div class="col">
             <div class="text-center text-white"><h2>BOOKING LIST</h2></div>
         </div>
     </div>
+
+    <input id="user_role" type="hidden" value="@user_role" hidden />
+
     <div class="row mt-3 justify-content-end text-end">
         <div class="col-lg-7">
 
         </div>
         <div class="col-lg-5">
-            <div class="btn-group-toggle btn-group d-flex flex-wrap" data-toggle="buttons">
-                
-                <a id="pending" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index"  asp-route-status="@SD.BookingStatus.Pending.ToString()">
+            <div class="btn-group-toggle btn-group d-flex flex-wrap" data-toggle="buttons">                
+                <a id="pending" class="btn btn-primary rounded-0 bg-success">
                     Pending
                     <input class="btn-check" type="radio"  id="option1" autocomplete="off">
                 </a>
-                <a id="approved" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Approved.ToString()">
+                <a id="approved" class="btn btn-primary rounded-0">
                     Approved
                     <input class="btn-check" type="radio" id="option2" autocomplete="off">
                 </a>
-                <a id="checkin" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Checkin.ToString()">
+                <a id="checkin" class="btn btn-primary rounded-0">
                     Checkin
                     <input class="btn-check" type="radio" id="option3" autocomplete="off">
                 </a>
-                <a id="checkout" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Checkout.ToString()">
+                <a id="checkout" class="btn btn-primary rounded-0">
                     Checkout
                     <input class="btn-check" type="radio" id="option4" autocomplete="off">
                 </a>
-                <a id="cancelled" class="btn btn-primary rounded-0" asp-controller="Booking" asp-action="Index" asp-route-status="@SD.BookingStatus.Cancelled.ToString()">
+                <a id="cancelled" class="btn btn-primary rounded-0">
                     Cancelled
                     <input class="btn-check" type="radio" id="option5" autocomplete="off">
                 </a>
@@ -63,7 +72,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>  
 </div>
 
 <!-- Booking Modal -->
@@ -73,51 +82,13 @@
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white fw-bold" id="modalbookingDetails">BOOKING DETAILS</h5>
             </div>         
-            <div class="pt-3" id="modal-booking-content"></div>
+            <div class="pt-3" id="modal-booking-content">
 
-            <div class="modal-footer">
-
-            
-                @if (status.ToString().ToLower() == SD.BookingStatus.Pending.ToString().ToLower() || status.ToString().ToLower() == SD.BookingStatus.Approved.ToString().ToLower())
-                {
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-danger btn-cancel" style="width:120px;">Cancel Booking</button>
-                    </div>
-                }
-
-                <div class="col"></div> 
-
-                <div class="col-auto">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
-                </div>
-               
-                @if (status.ToString().ToLower() == SD.BookingStatus.Pending.ToString().ToLower() && (User.IsInRole(SD.UserRole.Admin.ToString())))
-                {
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-payment" style="width:100px;">Payment</button>
-                    </div>
-                }
-
-              
-                @if (status.ToString().ToLower() == SD.BookingStatus.Approved.ToString().ToLower() && User.IsInRole(SD.UserRole.Admin.ToString()))
-                {
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
-                </div>
-                }               
-
-                @if (status.ToString().ToLower() == SD.BookingStatus.Checkin.ToString().ToLower() && User.IsInRole(SD.UserRole.Admin.ToString()))
-                {
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
-                </div>
-                }              
+            </div>            
+            <div id="footer-content">
 
             </div>
-
-
-        </div>
-     
+        </div>     
     </div>
 </div>
 <!--End Booking Modal -->

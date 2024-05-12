@@ -1,0 +1,43 @@
+﻿@{
+    var status = Context.Request.Query["status"];
+    if (string.IsNullOrEmpty(status))
+    {
+        status = "Pending";
+    }
+}
+
+
+@if (status.ToString().ToLower() == SD.BookingStatus.Pending.ToString().ToLower() || status.ToString().ToLower() == SD.BookingStatus.Approved.ToString().ToLower())
+{
+    <div class="col-auto">
+        <button type="button" class="btn btn-danger btn-cancel" style="width:120px;">Cancel Booking</button>
+    </div>
+}
+
+<div class="col"></div>
+
+<div class="col-auto">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+</div>
+
+@if (status.ToString().ToLower() == SD.BookingStatus.Pending.ToString().ToLower() && (User.IsInRole(SD.UserRole.Admin.ToString())))
+{
+<div class="col-auto">
+    <button type="button" class="btn btn-primary btn-payment" style="width:100px;">Payment</button>
+    </div>
+}
+
+
+@if (status.ToString().ToLower() == SD.BookingStatus.Approved.ToString().ToLower() && User.IsInRole(SD.UserRole.Admin.ToString()))
+{
+<div class="col-auto">
+    <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
+</div>
+}
+
+@if (status.ToString().ToLower() == SD.BookingStatus.Checkin.ToString().ToLower() && User.IsInRole(SD.UserRole.Admin.ToString()))
+{
+<div class="col-auto">
+    <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
+</div>
+}         

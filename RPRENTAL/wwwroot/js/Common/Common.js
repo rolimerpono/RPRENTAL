@@ -55,16 +55,21 @@ function LoadModal(url, modalContent, data = null) {
 		url: url,
 		data: data,
 		success: function (response) {			
-			if (response.success) {		
-				$(modalContent).html('');
+			if (response.success) {	
+				$(modalContent).html('');	
+				$(modalContent).empty();				
 				$(modalContent).html(response.htmlContent);
 				$(modalContent.replace('-content', '')).modal('show');
 			}
 			else {
+				$(modalContent).html('');
+				$(modalContent).empty();	
 				ShowToaster('error', '', response.message);
 			}		
 		},
 		error: function (xhr, status, error) {
+			$(modalContent).html('');
+			$(modalContent).empty();	
 			ShowToaster('error', 'Error', error);
 		}
 	});

@@ -1,58 +1,59 @@
 ﻿let objBookingTable;
-$(document).ready(function () {
 
-    const urlParams = new URLSearchParams(window.location.search);
-    let status = urlParams.get('status') ?? 'Pending';
-    
-    $('.btn-checkin').click(function (e) {    
+$(document).ready(function () {
+    let status = 'pending';
+
+    $('.btn-group-toggle a').click(function () {
+
+        if (!$(this).hasClass('bg-success')) {
+
+            $(this).toggleClass('bg-primary bg-success');
+
+            $('.btn-group-toggle a').not(this).removeClass('bg-success').addClass('bg-primary');
+        }
+    });
+
+    $('#pending, #approved, #checkin, #checkout, #cancelled').click(function (e) {
+        e.preventDefault();
+        status = $(this).attr("id").toLowerCase();
+
+        LoadBookings(status);
+    });
+
+    LoadBookings(status);
+
+    $('#tbl_Bookings').on('click', '.select-view-btn', function (e) {
+        e.preventDefault();
+        var rowData = GetRowData(objBookingTable, $(this));
+        LoadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);
+    });
+
+    $(document).on('click', '.btn-checkin', function (e) {
         e.preventDefault();
         CheckIn();
-    }); 
+    });
 
-    $('.btn-checkout').click(function (e) {
+    $(document).on('click', '.btn-checkout', function (e) {
         e.preventDefault();
         CheckOut();
-    }); 
+    });
 
-    $('.btn-cancel').click(function (e) {
+    $(document).on('click', '.btn-cancel', function (e) {
         e.preventDefault();
         CancelBooking();
-    }); 
+    });
 
-    $('.btn-payment').click(function (e) {
+    $(document).on('click', '.btn-payment', function (e) {
         e.preventDefault();
         ProceedPayment();
-    }); 
-
-    const statusToButtonMap = {
-        'all': '#all',
-        'pending': '#pending',
-        'approved': '#approved',
-        'checkin': '#checkin',
-        'checkout': '#checkout',
-        'cancelled': '#cancelled'
-    };
-
-    const UpdateButtonColor = status => {
-        const buttonId = statusToButtonMap[status.toLowerCase()];        
-        if (buttonId) $(buttonId).toggleClass('btn-primary btn-success');
-    };   
-
-
-    UpdateButtonColor(status); 
-    LoadBookings(status);
-    
-   
-
-    $('#tbl_Bookings').on('click', '.select-view-btn', function () {     
-        var rowData = GetRowData(objBookingTable, $(this));
-        LoadModal('/Booking/BookingDetails', '#modal-booking-content', rowData);       
     });
-  
 
 });
 
+
 function CheckIn() {
+    debugger
+
     let token = $('input[name="__RequestVerificationToken"]').val(); 
 
     let data = {
@@ -60,6 +61,8 @@ function CheckIn() {
         RoomNo: $('#RoomNo').val(),
         __RequestVerificationToken: token
     };
+
+    
   
     $.ajax({
         type: 'POST',
@@ -117,6 +120,7 @@ function CheckOut() {
 }
 
 function ProceedPayment() {    
+    
 
     let token = $('input[name="__RequestVerificationToken"]').val(); 
     let bookingId = $('#BookingId').val();    
@@ -183,11 +187,12 @@ function CancelBooking() {
 
 function LoadBookings(status) {  
 
+    $('#tbl_Bookings').DataTable().clear().destroy();
     objBookingTable = $('#tbl_Bookings').DataTable({
         ajax: {
             type: 'GET',           
             url: '/Booking/GetAll',
-            data: { status: status }
+            data: {status:status},
         },
         columns: [
             { data: 'bookingId', visible: false },
@@ -215,5 +220,60 @@ function LoadBookings(status) {
         fixedColumns: true,
         scrollY: true        
         
-    });  
+    }); 
+
+    PopulateModalFooter(status);
+}
+
+function PopulateModalFooter(status)
+{
+    let role = $('#user_role').val().toLowerCase();
+    
+    let first_content = `<div class="modal-footer"> `;
+    let end_content = `</div>`;
+
+    let footerContent = "";
+
+    if (status == 'pending' || status == 'approved')
+    {
+        footerContent =
+            `<div class="col-auto">
+                <button type="button" class="btn btn-danger btn-cancel" style="width:120px;">Cancel Booking</button>
+            </div>`;
+    }
+
+        footerContent += `<div class="col"></div>`;   
+
+        footerContent += `<div class="col-auto">
+                            <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px;">Close</button>
+                        </div>`;
+
+    if (status == 'pending' && role == 'admin')
+    {      
+        footerContent += `<div class="col-auto">
+                                <button type="button" class="btn btn-primary btn-payment" style="width:100px;">Payment</button>
+                         </div>`;        
+    }
+
+    if (status == 'approved' && role == 'admin')
+    {
+        footerContent += `<div class="col-auto">
+                                <button type="button" class="btn btn-primary btn-checkin" style="width:100px;">Check-In</button>
+                          </div>`;
+
+    }
+
+    if (status == 'checkin' && role == 'admin')
+    {
+        footerContent += `<div class="col-auto">
+                            <button type="button" class="btn btn-primary btn-checkout" style="width:100px;">Check-Out</button>
+                        </div>`;
+    }
+
+    footerContent = first_content + footerContent + end_content; 
+
+    $('#footer-content').html('');
+    $('#footer-content').empty();   
+    $('#footer-content').html(footerContent);
+
 }
