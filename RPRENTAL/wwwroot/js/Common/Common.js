@@ -1,12 +1,12 @@
 ﻿$(document).ready(function () {
 	
 	if (localStorage.getItem('loginTriggered')) {
-		ShowToaster('success', 'LOGIN USER', 'Login successful!');
+		ShowToaster('success', 'LOGIN USER', response.message);
 		localStorage.removeItem('loginTriggered');
 	}
 
 	if (localStorage.getItem('logoutTriggered')) {
-		ShowToaster('success', 'LOGOUT USER', 'Logout successful!');
+		ShowToaster('success', 'LOGOUT USER', response.message);
 		localStorage.removeItem('logoutTriggered');
 	}
 });
