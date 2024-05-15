@@ -34,13 +34,13 @@ namespace Utility
             public const string Save = "Record was successfully saved.";
             public const string Edit = "Record was successfully updated.";
             public const string Delete = "Record was successfully deleted.";
-            public const string RecordExists = "Record is already exists.";
+            public const string RecordExists = "Record was already exists.";
             public const string EmptyField = "Please fill all required fields.";
             public const string InvalidInput = "Please make sure the input you entered was valid.";
             public const string PasswordConfirm = "The password you have entered did not matched.";
             public const string DateRange = "Please provide a valid date range, and choose dates from tomorrow onwards. Thank you.";
             public const string IsUserHasTransactions = "The user you have selected have current transaction.";
-            public const string IsDefaultAdmin = "The user you have selected is the default admin of the system.";
+            public const string IsDefaultAdmin = "The user you have selected was the default admin of the system.";
             public const string RecordNotFound = "The record not found.";
             public const string RecordFound = "Record found.";
         }
