@@ -7,6 +7,7 @@ using Model;
 using RPRENTAL.ViewModels;
 using Utility;
 using Stripe.TestHelpers.Treasury;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RPRENTAL.Controllers
 {
@@ -45,6 +46,8 @@ namespace RPRENTAL.Controllers
             return Json(new { data = objAmenity });
         }
 
+
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -57,6 +60,7 @@ namespace RPRENTAL.Controllers
              
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Amenity objAmenity)
         {
@@ -86,6 +90,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Update(int AmenityId)
         {
@@ -111,6 +116,7 @@ namespace RPRENTAL.Controllers
            
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(Amenity objAmenity)
         {
@@ -132,6 +138,7 @@ namespace RPRENTAL.Controllers
             
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Delete(int AmenityId)
         {

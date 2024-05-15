@@ -32,21 +32,18 @@ builder.Services.AddIdentity<ApplicationUser,IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddScoped<IHelper, Helper>();
-
-Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoSettings:ApiKey"]);
-
-
 builder.Services.AddIdentityCore<ApplicationUser>(option => option.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDBContext>()
     .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
+builder.Services.AddScoped<IHelper, Helper>();
+
+Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoSettings:ApiKey"]);
 
 builder.Services.AddMvc().AddViewOptions(options => options.HtmlHelperOptions.FormInputRenderMode = FormInputRenderMode.AlwaysUseCurrentCulture);
 
 builder.Services.Configure<IdentityOptions>(opt =>
 {
-
     opt.Password.RequiredLength = 6;
     opt.Password.RequiredUniqueChars = 1;
     opt.Password.RequireUppercase = true;

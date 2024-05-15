@@ -7,6 +7,7 @@ using Model;
 using RPRENTAL.ViewModels;
 using Utility;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RPRENTAL.Controllers
 {
@@ -37,6 +38,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -65,6 +67,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(RoomNumberVM objRoomNumberVM)
         {
@@ -101,7 +104,7 @@ namespace RPRENTAL.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Update(int RoomNo)
         {
@@ -130,6 +133,8 @@ namespace RPRENTAL.Controllers
 
         }
 
+
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(RoomNumberVM objRoomNumberVM)
         {
@@ -164,7 +169,7 @@ namespace RPRENTAL.Controllers
             }
         }
 
-
+  
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -182,7 +187,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Delete(int RoomNo)
         {

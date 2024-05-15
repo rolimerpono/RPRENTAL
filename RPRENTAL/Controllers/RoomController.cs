@@ -1,4 +1,5 @@
 ﻿using DataService.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
@@ -7,6 +8,7 @@ using Utility;
 
 namespace RPRENTAL.Controllers
 {
+  
     public class RoomController : Controller
     {
         private readonly IRoomService _IRoomService;
@@ -19,6 +21,7 @@ namespace RPRENTAL.Controllers
             _helper = helper;
             _viewEngine = viewEngine;
         }
+
 
         public IActionResult Index()
         {
@@ -44,6 +47,7 @@ namespace RPRENTAL.Controllers
         
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -66,6 +70,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Room objRoom)
         {
@@ -95,6 +100,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Update(int RoomId)
         {
@@ -122,6 +128,7 @@ namespace RPRENTAL.Controllers
         }
 
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(Room objRoom, IFormFile Image)
         {
@@ -148,7 +155,7 @@ namespace RPRENTAL.Controllers
             
         }
 
-
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Delete(int RoomId)
         {

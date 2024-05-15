@@ -1,6 +1,7 @@
 ﻿using DataService.DTO;
 using DataService.Implementation;
 using DataService.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -75,6 +76,40 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Login(LoginVM loginVM)
+        {
+            try
+            {
+                var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
+
+                if (objSignIn.Succeeded)
+                {
+                    var objUser = await _UserManager.FindByEmailAsync(loginVM.Email);
+
+                    if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.Admin.ToString()))
+                    {
+                        return Json(new { success = true, message = SD.SystemMessage.Login, role = SD.UserRole.Admin.ToString() });
+                    }
+                    else
+                    {
+                        return Json(new { success = true, message = SD.SystemMessage.Login, role = "" });
+                    }
+                }
+                else
+                {
+                    return Json(new { success = false, message = SD.SystemMessage.FailUserLogin });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = true, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
+            }
+
+        }
+
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -116,6 +151,7 @@ namespace RPRENTAL.Controllers
            
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegisterVM objData)
         {
@@ -175,6 +211,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Update(string email)
         {
@@ -209,6 +246,7 @@ namespace RPRENTAL.Controllers
            
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(RegisterVM objData)
         {
@@ -244,7 +282,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string email)
         {
@@ -283,38 +321,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-        [HttpPost,ValidateAntiForgeryToken]
-       
-        public async Task<IActionResult> Login(LoginVM loginVM)
-        {
-            try
-            {
-                var objSignIn = await _SignInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.IsRemember, lockoutOnFailure: false);
 
-                if (objSignIn.Succeeded)
-                {
-                    var objUser = await _UserManager.FindByEmailAsync(loginVM.Email);
-
-                    if (await _UserManager.IsInRoleAsync(objUser, SD.UserRole.Admin.ToString()))
-                    {
-                        return Json(new { success = true, message = SD.SystemMessage.Login, role = SD.UserRole.Admin.ToString() });
-                    }
-                    else
-                    {
-                        return Json(new { success = true, message = SD.SystemMessage.Login, role = "" });
-                    }
-                }
-                else
-                {
-                    return Json(new { success = false, message = SD.SystemMessage.FailUserLogin });
-                }
-            }
-            catch(Exception ex)
-            {
-                return Json(new { success = true, message = ex.Message + " " + SD.SystemMessage.ContactAdmin });
-            }
-
-        }
 
 
         [HttpPost, ValidateAntiForgeryToken]

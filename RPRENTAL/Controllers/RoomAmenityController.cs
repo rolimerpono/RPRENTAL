@@ -10,6 +10,7 @@ using RPRENTAL.ViewModels;
 using Utility;
 using Stripe.Tax;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RPRENTAL.Controllers
 {
@@ -54,8 +55,7 @@ namespace RPRENTAL.Controllers
         }
 
 
-
-
+        [Authorize]
         [HttpPost]
         public IActionResult DisplayRoomAmenities(int Id)
         {
@@ -129,6 +129,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult GetRoomList()
         {
@@ -146,6 +147,7 @@ namespace RPRENTAL.Controllers
           
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult ApplyRoomAmenities(int Id, string jsonData)
         {

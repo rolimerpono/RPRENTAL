@@ -78,8 +78,9 @@ namespace RPRENTAL.Controllers
             {
                 return Json(new {success= false, message =  ex.Message + " " + SD.SystemMessage.ContactAdmin});
             }
-        }       
+        }
 
+        [Authorize]
         [HttpGet]      
         public IActionResult CreateBooking(int Id, string jsonData)
         {
@@ -137,6 +138,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpPost,ValidateAntiForgeryToken ]     
         public IActionResult CheckIn(int BookingId, int RoomNo)
         {
@@ -155,6 +157,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpPost, ValidateAntiForgeryToken]
        
         public IActionResult CheckOut(int BookingId)
@@ -174,6 +177,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpPost,ValidateAntiForgeryToken]
 
         public IActionResult CancelBooking(int BookingId)
@@ -192,6 +196,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         public IActionResult BookingDetails(int BookingId)
         {
             try
@@ -234,7 +239,7 @@ namespace RPRENTAL.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost]
         public IActionResult ConfirmBooking(int Id, string jsonData)
         {
@@ -299,6 +304,7 @@ namespace RPRENTAL.Controllers
 
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult ShowPayment(int BookingId)
         {
@@ -433,7 +439,8 @@ namespace RPRENTAL.Controllers
             }
 
         }
-        
+
+        [Authorize]
         public IActionResult BookingConfirmation(int BookingId)
         {
 
