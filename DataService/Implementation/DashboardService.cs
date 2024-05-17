@@ -61,7 +61,7 @@ namespace DataService.Implementation
 
 
             var customer_data = _IWorker.tbl_User.GetAll(fw => fw.CreatedDate >= DateTime.Now.AddDays(-30) && fw.CreatedDate.Value.Date <= DateTime.Now)
-                .GroupBy(fw => fw.CreatedDate.Value.Date)
+                .GroupBy(fw => fw.CreatedDate!.Value.Date)
                 .Select(f => new
                 {
                     DateTime = f.Key,
