@@ -23,6 +23,7 @@ namespace Model
         public int AmenityId { get; set; }
 
         [MaxLength(200)]
+        [Required]
         public string AmenityName { get; set; }
 
         [NotMapped]

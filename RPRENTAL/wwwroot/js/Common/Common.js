@@ -112,8 +112,6 @@ function IsFieldValid(formSelector) {
 		$(formSelector).addClass('was-validated');
 		return false;
 	}
-
-
 	return true;
 }
 

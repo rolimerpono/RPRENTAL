@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('.btn-login').click(function () {
-        LoginUser('/Account/Login');
+        LoginUser('/Account/Login','#loginForm');
     });
 
     $('.btn-register').click(function () {      
@@ -32,7 +32,15 @@
 
 });
 
-function LoginUser(url) {
+function LoginUser(url, formSelector) {
+    
+    let is_true = false;
+
+    is_true = IsFieldValid(formSelector);
+
+    if (!is_true) {
+        return;
+    }
     
 
     let email = $('#email').val();

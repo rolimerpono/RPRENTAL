@@ -90,12 +90,14 @@
                     <form id="loginForm">   
                         @Html.AntiForgeryToken()
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" autofocus autocomplete="off" value="rolimer_pono@yahoo.com">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" type="text" class="form-control" name="email" placeholder="Enter email" required autofocus autocomplete="off">  
+                            <div class="invalid-feedback">Please provide a username.</div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" autocomplete="new-password" value="Admin@123">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="Enter password" required autocomplete="off">
+                            <div class="invalid-feedback">Please provide a password.</div>
                         </div>
                     </form>
                 </div>
@@ -250,7 +252,8 @@
     <script src="~/js/Crud/JSBooking/JSBookingCrud.js"></script>
 @*     <script src="~/js/Crud/JSBooking/JSBooking.js"></script> *@
     <script src="~/js/toaster/toaster.min.js"></script>
-   
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 
