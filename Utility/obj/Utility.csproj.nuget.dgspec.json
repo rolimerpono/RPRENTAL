@@ -106,7 +106,7 @@
         "projectName": "Utility",
         "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\Utility.csproj",
         "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ROLLY\\source\\repos\\RPRENTAL\\Utility\\obj\\",
+        "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRENTAL\\Utility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

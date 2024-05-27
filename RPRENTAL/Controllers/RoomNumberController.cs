@@ -26,15 +26,7 @@ namespace RPRENTAL.Controllers
         }
         public IActionResult Index()
         {
-            try
-            {
-                var objRoomNumber = _IRoomNumberService.GetAll();
-                return View(objRoomNumber);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            return View();
 
         }
 

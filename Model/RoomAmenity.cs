@@ -27,11 +27,7 @@ namespace Model
         [Required]
         public int AmenityId { get; set; }
      
-        public Amenity? Amenity { get; set; }
-
-
-
-      
+        public Amenity? Amenity { get; set; }      
 
 
     }
