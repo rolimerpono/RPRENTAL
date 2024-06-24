@@ -8,7 +8,8 @@ using Utility;
 
 namespace RPRENTAL.Controllers
 {
-  
+
+    [Authorize]
     public class RoomController : Controller
     {
         private readonly IRoomService _IRoomService;
