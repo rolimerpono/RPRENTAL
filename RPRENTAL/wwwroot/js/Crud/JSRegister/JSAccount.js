@@ -88,7 +88,9 @@ function LogoutUser(url) {
             if (response.success) {
                 localStorage.setItem('logoutTriggered', true);
                 localStorage.setItem('logoutMsg',response.message);
-                window.location.href = '/Home/Index';
+                window.location.href = '/Home';
+
+
             }
             else {
                 ShowToaster('error', 'LOGOUT USER', response.message);

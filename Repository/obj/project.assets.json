@@ -10872,9 +10872,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Repository\\Repository.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Repository\\obj\\",
       "projectStyle": "PackageReference",
@@ -10898,11 +10898,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DatabaseAccess\\DatabaseAccess.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DatabaseAccess\\DatabaseAccess.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\DatabaseAccess\\DatabaseAccess.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\DatabaseAccess\\DatabaseAccess.csproj"
             },
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Utility\\Utility.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Utility\\Utility.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Utility\\Utility.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Utility\\Utility.csproj"
             }
           }
         }

@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace RPRENTAL.Controllers
 {
+
+    [Authorize]
     public class RoomAmenityController : Controller
     {
         private readonly IRoomService _IRoomService;

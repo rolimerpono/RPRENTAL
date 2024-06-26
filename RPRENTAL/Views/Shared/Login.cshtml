@@ -1,1 +1,55 @@
-﻿THIS IS LOGIN PAGE
+﻿
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+    <div class="row align-items-center">
+        <div id="main-header" class="col-lg-6 mx-auto text-center d-flex flex-column justify-content-center vh-100 bg-white text-dark">
+            <div class="heading-1">
+                <span>Nice to see you again</span>
+            </div>
+
+            <div class="heading-2">
+                <span>WELCOME BACK</span>
+            </div>
+
+            <div class="heading-3">
+                <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eros sed augue ultrices finibus. Duis vel lectus pulvinar,
+                    dignissim libero eget, rhoncus odio. Curabitur facilisis placerat ante vitae consequat.
+                    Fusce volutpat nisl a ligula posuere dictum.
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-6 mx-auto text-center d-flex flex-column justify-content-center vh-100 bg-dark text-white">
+            <form id="loginForm">
+                @Html.AntiForgeryToken()
+                <div class="container">
+                    <div class="row text-center pb-4">
+                        <h2><span>SIGN IN</span></h2>
+                        <span>Login to your account to start service</span>
+                    </div>                
+
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 pb-2">
+                            <input id="username" type="email" class="form-control" placeholder="Enter username" required autofocus autocomplete="off" />
+                            <div class="invalid-feedback text-start">Please provide a username.</div>
+                        </div>
+                        <div class="col-lg-8 offset-lg-2 pb-2">
+                            <input id="password" type="password" class="form-control" placeholder="Enter password" required autocomplete="off" />
+                            <div class="invalid-feedback text-start">Please provide a password.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 pt-2 text-right">
+                            <button type="button" class="form-control bg-primary w-25 btn-login">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+

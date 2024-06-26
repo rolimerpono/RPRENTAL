@@ -9701,9 +9701,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DataService\\DataService.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\DataService\\DataService.csproj",
       "projectName": "DataService",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DataService\\DataService.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\DataService\\DataService.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DataService\\obj\\",
       "projectStyle": "PackageReference",
@@ -9727,11 +9727,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Model\\Model.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Model\\Model.csproj"
             },
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Repository\\Repository.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Repository\\Repository.csproj"
             }
           }
         }

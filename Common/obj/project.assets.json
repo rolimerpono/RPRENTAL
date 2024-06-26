@@ -9722,9 +9722,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Common\\Common.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Common\\Common.csproj",
       "projectName": "Common",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Common\\Common.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Common\\Common.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Common\\obj\\",
       "projectStyle": "PackageReference",
@@ -9748,8 +9748,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DataService\\DataService.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\DataService\\DataService.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\DataService\\DataService.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\DataService\\DataService.csproj"
             }
           }
         }

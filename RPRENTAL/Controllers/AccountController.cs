@@ -19,6 +19,9 @@ using Utility;
 
 namespace RPRENTAL.Controllers
 {
+
+
+
     public class AccountController : Controller
     {
         private readonly IWorker _IWorker;
@@ -43,11 +46,14 @@ namespace RPRENTAL.Controllers
             _viewEngine = viewengine;
         }
 
+
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

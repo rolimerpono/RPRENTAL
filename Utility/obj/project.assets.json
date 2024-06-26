@@ -10751,9 +10751,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Utility\\Utility.csproj",
+      "projectUniqueName": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Utility\\Utility.csproj",
       "projectName": "Utility",
-      "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Utility\\Utility.csproj",
+      "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Utility\\Utility.csproj",
       "packagesPath": "C:\\Users\\ROLLY\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Utility\\obj\\",
       "projectStyle": "PackageReference",
@@ -10777,8 +10777,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\ROLLY\\Source\\Repos\\RPRental_Web\\Model\\Model.csproj"
+            "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\Model\\Model.csproj"
             }
           }
         }
