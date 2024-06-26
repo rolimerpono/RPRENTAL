@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental_web\\rprental\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental_web\\rprental\\wwwroot\\js\\crud\\jsregister\\jsaccount.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\wwwroot\\js\\crud\\jsregister\\jsaccount.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental_web\\rprental\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|solutionrelative:rprental\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13B9EE1-69A2-4F48-9522-9468770258DF}|RPRENTAL\\RPRENTAL.csproj|c:\\users\\rolly\\source\\repos\\rprental_web\\rprental\\views\\shared\\admin\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -74,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 336,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,28 +94,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "RPRENTAL\\Properties\\launchSettings.json",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\Properties\\launchSettings.json",
               "RelativeToolTip": "RPRENTAL\\Properties\\launchSettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAvAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-26T05:03:15.1Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BookingController.cs",
-              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\Controllers\\BookingController.cs",
-              "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\BookingController.cs",
-              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\Controllers\\BookingController.cs",
-              "RelativeToolTip": "RPRENTAL\\Controllers\\BookingController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T04:50:08.748Z",
               "EditorCaption": ""
             },
             {
@@ -211,15 +198,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "JSAccount.js",
               "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
               "RelativeDocumentMoniker": "RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
               "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
               "RelativeToolTip": "RPRENTAL\\wwwroot\\js\\Crud\\JSRegister\\JSAccount.js",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAAAFoAAAAvAAAA",
+              "ViewState": "AQIAAMcAAAAAAAAAAAAAAOIAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-06-26T04:33:16.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "RPRENTAL\\Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\ROLLY\\source\\repos\\RPRental_Web\\RPRENTAL\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "RPRENTAL\\Controllers\\BookingController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T04:50:08.748Z",
               "EditorCaption": ""
             },
             {

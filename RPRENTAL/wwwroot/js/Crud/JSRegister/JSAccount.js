@@ -60,10 +60,10 @@ function LoginUser(url, formSelector) {
                 localStorage.setItem('loginMsg', response.message);
 
                  if (response.role == 'Admin') {
-                    window.location.href = '/Dashboard/Index';   
+                    window.location.href = '/Dashboard';   
                 }
                 else {
-                    window.location.href = '/Home/Index'
+                    window.location.href = '/Home'
                 }              
               
             }
@@ -178,9 +178,9 @@ function ResetPassword(url) {
                 $('#modal-reset-password').modal('hide');
                 
                 if (response.role == 'Admin') {
-                    window.location.href = '/Dashboard/Index';
+                    window.location.href = '/Dashboard';
                 }
-                window.location.href = '/Home/Index';
+                window.location.href = '/Home';
                 ShowToaster('success', 'RESET PASSWORD', response.message);
             }
             else {               
@@ -224,7 +224,7 @@ function RegisterUser(url) {
         data: data,
         success: function (response) {
             if (response.success) {
-                window.location.href = '/Home/Index';
+                window.location.href = '/Home';
                 ShowToaster('success','REGISTER USER', response.message);
             }
             else {
